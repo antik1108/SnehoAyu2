@@ -1,0 +1,45 @@
+{
+  "brandName": "स्नेह आयु",
+  "bengaliBrandName": "স্नेহ আয়ু",
+  "taglines": {
+    "en": "Your baby's care companion",
+    "bn": "আপনার শিশুর যত্নের সঙ্গী",
+    "hi": "आपके शिशु की देखभाल का साथी"
+  },
+  "languageSelect": {
+    "title": "भाषा चुनें",
+    "subtitle": "आगे बढ़ने के लिए अपनी पसंदीदा भाषा चुनें",
+    "button_bn": "বাংলা",
+    "button_bn_sub": "Bengali",
+    "button_hi": "हिंदी",
+    "button_hi_sub": "Hindi",
+    "button_en": "English",
+    "button_en_sub": "English",
+    "ariaLabel_bn": "बंगाली भाषा चुनें",
+    "ariaLabel_hi": "हिंदी भाषा चुनें",
+    "ariaLabel_en": "अंग्रेजी भाषा चुनें"
+  },
+  "welcomeScreen": {
+    "headline": "एनआईसीयू (NICU) से छुट्टी के बाद आपके और आपके शिशु की सहायता के लिए",
+    "dailyCareGuide": "दैनिक देखभाल मार्गदर्शिका",
+    "growthTracking": "विकास ट्रैकिंग",
+    "dangerSigns": "खतरे के लक्षण",
+    "createAccount": "अकाउंट बनाएं",
+    "alreadyHaveAccount": "मेरा पहले से एक अकाउंट है"
+  },
+  "welcome": {
+    "title": "स्नेह आयु में आपका स्वागत है",
+    "subtitle": "आपके शिशु का स्वास्थ्य, आपके हाथ में।",
+    "description": "यह एक उदाहरण स्क्रीन है जो दिखाता है कि आपकी पसंदीदा भाषा सफलतापूर्वक सहेज ली गई है और इंटरफ़ेस पूरी तरह से अनुवादित है। आप बच्चे की प्रोफ़ाइल और स्वास्थ्य सेवा सुविधाओं के साथ आगे बढ़ सकते हैं।",
+    "statusCard": {
+      "header": "स्थानीयकरण विवरण",
+      "storageKey": "लोकलस्टोरेज कुंजी (LocalStorage Key)",
+      "activeCode": "सक्रिय भाषा कोड",
+      "activeLabel": "सक्रिय भाषा का नाम",
+      "refreshTest": "स्थायित्व परीक्षण"
+    },
+    "persistenceStatus": "सहेजा गया (ब्राउज़र को रीफ़्रेश करके जांचें!)",
+    "changeLanguage": "भाषा बदलें",
+    "getStarted": "शुरू करें"
+  }
+}

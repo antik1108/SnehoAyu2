@@ -1,0 +1,45 @@
+{
+  "brandName": "স্নেহ আয়ু",
+  "bengaliBrandName": "স্নেহ আয়ু",
+  "taglines": {
+    "en": "Your baby's care companion",
+    "bn": "আপনার শিশুর যত্নের সঙ্গী",
+    "hi": "आपके शिशु की देखभाल का साथी"
+  },
+  "languageSelect": {
+    "title": "ভাষা নির্বাচন করুন",
+    "subtitle": "এগিয়ে যাওয়ার জন্য আপনার পছন্দের ভাষা বেছে নিন",
+    "button_bn": "বাংলা",
+    "button_bn_sub": "Bengali",
+    "button_hi": "हिंदी",
+    "button_hi_sub": "Hindi",
+    "button_en": "English",
+    "button_en_sub": "English",
+    "ariaLabel_bn": "বাংলা ভাষা নির্বাচন করুন",
+    "ariaLabel_hi": "হিন্দি ভাষা নির্বাচন করুন",
+    "ariaLabel_en": "ইংরেজি ভাষা নির্বাচন করুন"
+  },
+  "welcomeScreen": {
+    "headline": "এনআইসিইউ (NICU) থেকে ছুটির পর আপনার এবং আপনার শিশুর সহায়তায়",
+    "dailyCareGuide": "দৈনিক যত্ন নির্দেশিকা",
+    "growthTracking": "বৃদ্ধি ট্র্যাকিং",
+    "dangerSigns": "বিপদের লক্ষণ",
+    "createAccount": "অ্যাকাউন্ট তৈরি করুন",
+    "alreadyHaveAccount": "আমার ইতিমধ্যে একটি অ্যাকাউন্ট আছে"
+  },
+  "welcome": {
+    "title": "স্নেহ আয়ু-তে আপনাকে স্বাগতম",
+    "subtitle": "আপনার শিশুর স্বাস্থ্য, আপনার হাতে।",
+    "description": "এটি একটি নমুনা স্ক্রীন যা দেখাচ্ছে যে আপনার পছন্দের ভাষা সফলভাবে সংরক্ষিত হয়েছে এবং ইন্টারফেসটি সম্পূর্ণ অনুবাদিত হয়েছে। আপনি এখন শিশুর প্রোফাইল এবং স্বাস্থ্যসেবা বৈশিষ্ট্যগুলির সাথে এগিয়ে যেতে পারেন।",
+    "statusCard": {
+      "header": "স্থানীয়করণের বিবরণ",
+      "storageKey": "লোকালস্টোরেজ কী (LocalStorage Key)",
+      "activeCode": "সক্রিয় ভাষার কোড",
+      "activeLabel": "সক্রিয় ভাষার নাম",
+      "refreshTest": "সংরক্ষণ পরীক্ষা"
+    },
+    "persistenceStatus": "সংরক্ষিত (ব্রাউজার রিফ্রেশ করে পরীক্ষা করুন!)",
+    "changeLanguage": "ভাষা পরিবর্তন করুন",
+    "getStarted": "শুরু করুন"
+  }
+}

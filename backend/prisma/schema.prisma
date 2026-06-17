@@ -1,0 +1,185 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Hospital {
+  id             String   @id @default(uuid()) @db.Uuid
+  name           String
+  code           String   @unique
+  district       String
+  state          String   @default("West Bengal")
+  type           String
+  emergencyPhone String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  users          User[]
+  motherProfiles MotherProfile[]
+  nurseProfiles  NurseProfile[]
+}
+
+model User {
+  id                     String    @id @default(uuid()) @db.Uuid
+  /// Normalised to +91XXXXXXXXXX. Unique username for this app.
+  phone                  String    @unique
+  phoneVerified          Boolean   @default(false)
+  email                  String?   @unique
+  passwordHash           String
+  pinHash                String?
+  role                   String
+  preferredLanguage      String    @default("bn")
+  hospitalId             String?   @db.Uuid
+  isActive               Boolean   @default(true)
+  lastLoginAt            DateTime?
+  /// Password brute-force protection
+  failedPasswordAttempts Int       @default(0)
+  passwordLockedUntil    DateTime?
+  /// PIN brute-force protection  (used from Day 3 onwards)
+  failedPinAttempts      Int       @default(0)
+  pinLockedUntil         DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+  deletedAt              DateTime?
+
+  hospital          Hospital?          @relation(fields: [hospitalId], references: [id])
+  motherProfile     MotherProfile?
+  nurseProfile      NurseProfile?
+  researcherProfile ResearcherProfile?
+  refreshTokens     RefreshToken[]
+
+  @@index([phone])
+}
+
+// OtpVerification is intentionally preserved but not used in the password-auth
+// flow (Day 2). It will remain dormant until an SMS-gateway is integrated.
+model OtpVerification {
+  id        String    @id @default(uuid()) @db.Uuid
+  phone     String
+  otpHash   String
+  purpose   String
+  isUsed    Boolean   @default(false)
+  attempts  Int       @default(0)
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+  usedAt    DateTime?
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  tokenHash String    @unique
+  deviceInfo String?
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([tokenHash])
+  @@index([expiresAt])
+}
+
+model MotherProfile {
+  id                   String             @id @default(uuid()) @db.Uuid
+  userId               String             @unique @db.Uuid
+  participantCode      String?            @unique
+  studyGroup           String?
+  hospitalId           String?            @db.Uuid
+  fullName             String?
+  ageRange             String
+  educationMother      String
+  educationFather      String
+  occupationMother     String
+  occupationFather     String
+  incomeClass          String
+  familyType           String
+  familyMembersCount   String
+  religion             String
+  residenceType        String
+  contactNumber        String?
+  prevPretermEducation Boolean            @default(false)
+  educationSource      String[]
+  enrolledAt           DateTime           @default(now())
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user                 User               @relation(fields: [userId], references: [id])
+  hospital             Hospital?          @relation(fields: [hospitalId], references: [id])
+  babyProfile          BabyProfile?
+  followUpSchedules    FollowUpSchedule[]
+}
+
+model BabyProfile {
+  id                     String        @id @default(uuid()) @db.Uuid
+  motherProfileId        String        @unique @db.Uuid
+  babyName               String?
+  sex                    String
+  dateOfBirth            DateTime
+  gestationalAgeWeeks    Decimal       @db.Decimal(4, 1)
+  birthWeightGrams       Int
+  weightAtDischargeGrams Int
+  placeOfDelivery        String
+  nicuStayDays           Int
+  skinToSkinAtBirth      Boolean
+  kmcInNicu              Boolean
+  feedingAtDischarge     String
+  criedAtBirth           Boolean
+  neededResuscitation    Boolean
+  birthWeightStratum     String
+  dischargeDate          DateTime
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
+
+  motherProfile          MotherProfile @relation(fields: [motherProfileId], references: [id])
+}
+
+model NurseProfile {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @unique @db.Uuid
+  hospitalId String   @db.Uuid
+  fullName   String
+  employeeId String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id])
+  hospital   Hospital @relation(fields: [hospitalId], references: [id])
+}
+
+model ResearcherProfile {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @unique @db.Uuid
+  fullName    String
+  designation String?
+  email       String   @unique
+  accessLevel String   @default("full")
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model FollowUpSchedule {
+  id                String        @id @default(uuid()) @db.Uuid
+  motherProfileId   String        @db.Uuid
+  timePoint         String
+  scheduledDate     DateTime
+  actualDate        DateTime?
+  status            String        @default("pending")
+  dataComplete      Boolean       @default(false)
+  collectedByUserId String?       @db.Uuid
+  notes             String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+}

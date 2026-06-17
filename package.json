@@ -1,0 +1,18 @@
+{
+  "name": "snehoayu-monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev -w frontend",
+    "dev:backend": "npm run dev -w backend",
+    "dev": "npm run dev -w backend & npm run dev -w frontend",
+    "build:frontend": "npm run build -w frontend",
+    "build:backend": "npm run build -w backend",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "db:migrate": "npx -w backend prisma migrate dev",
+    "db:generate": "npx -w backend prisma generate"
+  }
+}

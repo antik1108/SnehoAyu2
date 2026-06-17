@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font Family Definitions */
+  --font-sans: "Hind Siliguri", system-ui, -apple-system, sans-serif;
+  --font-technical: "Inter", monospace;
+  --font-bengali: "Hind Siliguri", system-ui, sans-serif;
+
+  /* Spacing Scale - 4px Grid Alignment */
+  --spacing-space-1: 4px;
+  --spacing-space-2: 8px;
+  --spacing-space-3: 12px;
+  --spacing-space-4: 16px;
+  --spacing-space-5: 20px;
+  --spacing-space-6: 24px;
+  --spacing-space-8: 32px;
+  --spacing-space-12: 48px;
+  --spacing-space-16: 64px;
+
+  /* Semantic Color Tokens - Auto Swapped via css variables in base layers */
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
+  
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-info: var(--color-info);
+
+  /* Motion & Animations */
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-sheet-up: slide-up 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Custom Base Application Layer & Dark Mode Semantic Swap */
+@layer base {
+  :root {
+    --color-background: #f8fafc;
+    --color-surface: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+    
+    --color-primary: #0f766e;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #f43f5e;
+    --color-secondary-foreground: #ffffff;
+    
+    --color-success: #059669;
+    --color-warning: #d97706;
+    --color-error: #dc2626;
+    --color-info: #2563eb;
+    
+    /* shadcn/ui custom variable bridges */
+    --radius: 0.75rem;
+    --background: var(--color-background);
+    --foreground: var(--color-text);
+    --card: var(--color-surface);
+    --card-foreground: var(--color-text);
+    --popover: var(--color-surface);
+    --popover-foreground: var(--color-text);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-background);
+    --muted-foreground: var(--color-text-muted);
+    --accent: var(--color-background);
+    --accent-foreground: var(--color-primary);
+    --destructive: var(--color-error);
+    --destructive-foreground: #ffffff;
+    --border: var(--color-border);
+    --input: var(--color-border);
+    --ring: var(--color-primary);
+  }
+
+  .dark {
+    --color-background: #090d16;
+    --color-surface: #0e1526;
+    --color-border: #1e293b;
+    --color-text: #f8fafc;
+    --color-text-muted: #94a3b8;
+    
+    --color-primary: #14b8a6;
+    --color-primary-foreground: #090d16;
+    --color-secondary: #fb7185;
+    --color-secondary-foreground: #090d16;
+    
+    --color-success: #34d399;
+    --color-warning: #fbbf24;
+    --color-error: #f87171;
+    --color-info: #60a5fa;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    transition: background-color 250ms ease, color 250ms ease;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Define global transitions and focus state enhancements for touch-friendly accessibility */
+  button:focus-visible, 
+  a:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom scrollbar matching clean care aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

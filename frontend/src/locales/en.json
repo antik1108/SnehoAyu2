@@ -1,0 +1,45 @@
+{
+  "brandName": "SnehoAyu",
+  "bengaliBrandName": "স্নেহ আয়ু",
+  "taglines": {
+    "en": "Your baby's care companion",
+    "bn": "আপনার শিশুর যত্নের সঙ্গী",
+    "hi": "आपके शिशु की देखभाल का साथी"
+  },
+  "languageSelect": {
+    "title": "Select Language",
+    "subtitle": "Choose your preferred language to proceed",
+    "button_bn": "বাংলা",
+    "button_bn_sub": "Bengali",
+    "button_hi": "हिंदी",
+    "button_hi_sub": "Hindi",
+    "button_en": "English",
+    "button_en_sub": "English",
+    "ariaLabel_bn": "Select Bengali language",
+    "ariaLabel_hi": "Select Hindi language",
+    "ariaLabel_en": "Select English language"
+  },
+  "welcomeScreen": {
+    "headline": "Supporting you and your baby after NICU discharge",
+    "dailyCareGuide": "Daily Care Guide",
+    "growthTracking": "Growth Tracking",
+    "dangerSigns": "Danger Signs",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "I Already Have an Account"
+  },
+  "welcome": {
+    "title": "Welcome to SnehoAyu",
+    "subtitle": "Your baby's health, in your hands.",
+    "description": "This is an example screen displaying that your language preference was successfully persisted and the interface is fully translated. You can proceed with baby profiles and healthcare features.",
+    "statusCard": {
+      "header": "Localization Details",
+      "storageKey": "LocalStorage Key",
+      "activeCode": "Active Language Code",
+      "activeLabel": "Active Language Name",
+      "refreshTest": "Persistence Test"
+    },
+    "persistenceStatus": "Persisted (Try refreshing the browser!)",
+    "changeLanguage": "Change Language",
+    "getStarted": "Get Started"
+  }
+}
