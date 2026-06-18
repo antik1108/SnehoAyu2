@@ -41,6 +41,7 @@ export interface AuthenticatedUser {
   role: string;
   preferredLanguage: string;
   isActive: boolean;
+  hospitalId?: string | null;
 }
 
 // Extend Express Request via declaration merging so req.user is typed.
@@ -74,7 +75,7 @@ export async function requireAuth(
     // 1. Extract Bearer token
     const authHeader = req.headers['authorization'];
     if (!authHeader || !/^Bearer [^\s]+$/.test(authHeader)) {
-      next(createError(401, 'MISSING_TOKEN', AUTH_ERROR_MESSAGE));
+      next(createError(401, 'AUTH_TOKEN_REQUIRED', AUTH_ERROR_MESSAGE));
       return;
     }
 
@@ -87,10 +88,10 @@ export async function requireAuth(
       payload = verifyAccessToken(token);
     } catch (err) {
       if (err instanceof jwt.TokenExpiredError) {
-        next(createError(401, 'TOKEN_EXPIRED', 'Your session has expired. Please log in again.'));
+        next(createError(401, 'AUTH_TOKEN_EXPIRED', 'Your session has expired. Please log in again.'));
       } else {
         // Do NOT forward the raw JWT error — it may contain internal details.
-        next(createError(401, 'INVALID_TOKEN', AUTH_ERROR_MESSAGE));
+        next(createError(401, 'AUTH_TOKEN_INVALID', AUTH_ERROR_MESSAGE));
       }
       return;
     }
@@ -105,11 +106,12 @@ export async function requireAuth(
         preferredLanguage: true,
         isActive: true,
         deletedAt: true,
+        hospitalId: true,
       },
     });
 
     if (!user || !user.isActive || user.deletedAt !== null) {
-      next(createError(401, 'INVALID_TOKEN', AUTH_ERROR_MESSAGE));
+      next(createError(401, 'AUTH_TOKEN_INVALID', AUTH_ERROR_MESSAGE));
       return;
     }
 
@@ -120,6 +122,7 @@ export async function requireAuth(
       role: user.role,
       preferredLanguage: user.preferredLanguage,
       isActive: user.isActive,
+      hospitalId: user.hospitalId,
     };
 
     next();

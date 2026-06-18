@@ -41,5 +41,259 @@
     "persistenceStatus": "Persisted (Try refreshing the browser!)",
     "changeLanguage": "Change Language",
     "getStarted": "Get Started"
+  },
+  "auth": {
+    "common": {
+      "mobileNumber": "Mobile number",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "phonePlaceholder": "Enter 10-digit number",
+      "passwordPlaceholder": "Enter password",
+      "confirmPasswordPlaceholder": "Confirm password"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Enter your mobile number and create a secure password.",
+      "submit": "Create Account",
+      "submitting": "Creating Account…",
+      "footerText": "Already have an account?",
+      "footerLink": "Log in"
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Log in using your mobile number and password.",
+      "submit": "Log In",
+      "submitting": "Logging In…",
+      "footerText": "New to SnehoAyu?",
+      "footerLink": "Create an account",
+      "pinNotice": "PIN login will be available after PIN setup."
+    },
+    "validation": {
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Enter a valid 10-digit Indian mobile number.",
+      "passwordRequired": "Password is required.",
+      "passwordLength": "Password must be between 8 and 72 characters.",
+      "confirmRequired": "Confirm your password.",
+      "passwordMismatch": "Passwords do not match."
+    },
+    "errors": {
+      "phoneAlreadyRegistered": "This mobile number already has an account. Log in instead.",
+      "invalidCredentials": "The mobile number or password is incorrect.",
+      "network": "Check your internet connection and try again.",
+      "unexpected": "Something went wrong. Please try again."
+    },
+    "pin": {
+      "create": {
+        "title": "Create a 4-digit PIN",
+        "subtitle": "Use this PIN for faster login.",
+        "step1": "Step 1 of 2",
+        "step2": "Step 2 of 2",
+        "promptEnter": "Enter your PIN",
+        "promptConfirm": "Confirm your PIN",
+        "promptConfirmSubtitle": "Enter the same PIN again.",
+        "submitting": "Setting up your PIN…",
+        "success": "PIN created successfully."
+      },
+      "login": {
+        "title": "Log in with PIN",
+        "subtitle": "Enter your mobile number and 4-digit PIN.",
+        "link": "Log in with PIN",
+        "submit": "Log In",
+        "submitting": "Logging In…",
+        "linkPassword": "Log in with password",
+        "forgotPinNotice": "Forgot your PIN? Log in with your password.",
+        "pinNotConfigured": "PIN login is not set up for this account. Log in with your password first."
+      },
+      "validation": {
+        "pinRequired": "PIN is required.",
+        "pinDigits": "PIN must contain exactly four digits.",
+        "mismatch": "The PINs do not match. Please try again.",
+        "enterAllDigits": "Enter all four digits.",
+        "weakPin": "This PIN is easy to guess."
+      },
+      "keypad": {
+        "backspace": "Delete last digit",
+        "clear": "Clear PIN"
+      }
+    }
+  },
+  "onboarding": {
+    "common": {
+      "saveAndContinue": "Save and Continue",
+      "saving": "Saving…",
+      "yes": "Yes",
+      "no": "No",
+      "loading": "Loading…",
+      "retry": "Retry",
+      "optional": "(Optional)"
+    },
+    "steps": {
+      "indicator": "Step {{step}} of 4: {{label}}",
+      "mother": "Mother’s Details",
+      "baby": "Baby’s Details",
+      "hospital": "Hospital Code",
+      "complete": "Signup Complete"
+    },
+    "mother": {
+      "title": "Mother’s Details",
+      "subtitle": "Please complete the mother’s demographic information.",
+      "fullName": "Full name",
+      "ageRange": "Age range",
+      "educationMother": "Mother’s education",
+      "educationFather": "Father’s education",
+      "occupationMother": "Mother’s occupation",
+      "occupationFather": "Father’s occupation",
+      "incomeClass": "Family income class",
+      "familyType": "Family type",
+      "familyMembersCount": "Number of family members",
+      "religion": "Religion",
+      "residenceType": "Residence type",
+      "contactNumber": "Alternate contact number",
+      "prevPretermEducation": "Previously received education about preterm care?",
+      "educationSource": "Source of information",
+      "selectOption": "Select option",
+      "ageRangeOptions": {
+        "below_18": "Below 18 years",
+        "18_25": "18–25 years",
+        "26_30": "26–30 years",
+        "31_35": "31–35 years",
+        "36_40": "36–40 years",
+        "above_40": "Above 40 years"
+      },
+      "educationOptions": {
+        "no_formal": "No formal education",
+        "primary": "Primary education",
+        "secondary": "Secondary education",
+        "higher_secondary": "Higher Secondary",
+        "graduate": "Graduate",
+        "postgraduate_plus": "Postgraduate and above"
+      },
+      "motherOccupationOptions": {
+        "homemaker": "Homemaker",
+        "govt_service": "Government service",
+        "private_service": "Private service",
+        "business": "Business / Self-employed",
+        "daily_labour": "Daily labourer",
+        "other": "Other"
+      },
+      "fatherOccupationOptions": {
+        "unemployed": "Unemployed",
+        "govt_service": "Government service",
+        "private_service": "Private service",
+        "business": "Business / Self-employed",
+        "daily_labour": "Daily labourer",
+        "other": "Other"
+      },
+      "incomeClassOptions": {
+        "I": "Class I (Upper)",
+        "II": "Class II (Upper Middle)",
+        "III": "Class III (Middle)",
+        "IV": "Class IV (Lower Middle)",
+        "V": "Class V (Lower)"
+      },
+      "familyTypeOptions": {
+        "nuclear": "Nuclear family",
+        "joint": "Joint family",
+        "extended": "Extended family"
+      },
+      "religionOptions": {
+        "hindu": "Hinduism",
+        "muslim": "Islam",
+        "christian": "Christianity",
+        "other": "Other"
+      },
+      "residenceOptions": {
+        "urban": "Urban",
+        "rural": "Rural",
+        "semi_urban": "Semi-urban"
+      },
+      "sourceOptions": {
+        "health_worker": "Health worker",
+        "family": "Family members",
+        "peer": "Peer / Friends",
+        "workshop": "Workshop / Class",
+        "magazine": "Magazine / Brochure"
+      }
+    },
+    "baby": {
+      "title": "Baby’s Details",
+      "subtitle": "Enter the information from the NICU discharge record.",
+      "babyName": "Baby’s name",
+      "sex": "Sex",
+      "sexOptions": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "dateOfBirth": "Date of birth",
+      "gestationalAgeWeeks": "Gestational age at birth (weeks)",
+      "birthWeightGrams": "Birth weight (grams)",
+      "weightAtDischargeGrams": "Weight at discharge (grams)",
+      "placeOfDelivery": "Place of delivery",
+      "placeOfDeliveryOptions": {
+        "hospital": "Hospital / Health facility",
+        "home": "Home delivery"
+      },
+      "nicuStayDays": "NICU stay (days)",
+      "skinToSkinAtBirth": "Skin-to-skin contact at birth?",
+      "nicuKmc": "KMC provided in NICU?",
+      "feedingAtDischarge": "Feeding type at discharge",
+      "feedingOptions": {
+        "exclusive_bf": "Exclusive breastfeeding",
+        "exclusive_formula": "Exclusive formula feeding",
+        "mixed": "Mixed feeding"
+      },
+      "criedAtBirth": "Cried after birth?",
+      "neededResuscitation": "Needed resuscitation?",
+      "dischargeDate": "Discharge date"
+    },
+    "hospital": {
+      "title": "Enter Hospital Code",
+      "subtitle": "This code is provided by the study coordinator.",
+      "inputLabel": "Hospital code",
+      "placeholder": "e.g. BNK",
+      "submit": "Verify Hospital",
+      "submitting": "Verifying…",
+      "verifiedHeading": "Hospital Verified",
+      "nameLabel": "Hospital Name",
+      "codeLabel": "Hospital Code",
+      "allocationProgress": "Generating participant code…",
+      "completionProgress": "Completing onboarding…"
+    },
+    "complete": {
+      "title": "You’re all set!",
+      "subtitle": "Your account and study enrolment are ready.",
+      "participantCode": "Participant Code",
+      "hospitalName": "Hospital Name",
+      "studyGroup": "Study Group",
+      "groupLabels": {
+        "study": "Study Group",
+        "control": "Control Group"
+      },
+      "infoMessage": "SnehoAyu will support you and your baby throughout the next six months.",
+      "goHome": "Go to Home"
+    },
+    "validation": {
+      "fieldRequired": "This field is required.",
+      "familyCountInvalid": "Family members count must be an integer between 1 and 30.",
+      "contactInvalid": "Contact number must be a valid 10-digit Indian mobile number.",
+      "sourceRequired": "At least one source of information must be selected.",
+      "babyNameLength": "Baby name must not exceed 100 characters.",
+      "futureDate": "Date must not be in the future.",
+      "dischargeBeforeBirth": "Discharge date must not be earlier than birth date.",
+      "gaInvalid": "Gestational age must be between 24.0 and 36.9 weeks (at most one decimal place).",
+      "birthWeightInvalid": "Birth weight must be between 400 and 4000 grams.",
+      "dischargeWeightInvalid": "Discharge weight must be between 400 and 5000 grams.",
+      "nicuStayInvalid": "NICU stay must be between 1 and 120 days.",
+      "hospitalCodeFormat": "Hospital code must contain only letters and numbers, between 2 and 10 characters.",
+      "hospitalCodeRequired": "Hospital code is required."
+    },
+    "errors": {
+      "motherProfileRequired": "Mother profile is required. Please fill it out first.",
+      "babyProfileRequired": "Baby profile is required. Please fill it out first.",
+      "studyGroupRequired": "The researcher must assign the study group before onboarding can be completed.",
+      "hospitalEnrollmentClosed": "Enrolment at this hospital is currently closed.",
+      "hospitalLinkLocked": "The hospital cannot be changed after a participant code is assigned.",
+      "invalidHospitalCode": "The hospital code is invalid."
+    }
   }
 }

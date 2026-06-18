@@ -43,6 +43,8 @@ export interface AppError extends Error {
   code?: string;
   /** Whether this error is "expected" (operational) vs a programmer bug. */
   isOperational?: boolean;
+  /** Extra validation details if any */
+  details?: unknown;
 }
 
 /** JSON shape of every error response this server emits. */
@@ -168,6 +170,17 @@ export const globalErrorHandler: ErrorRequestHandler = (
 
   // ── 4. Operational / custom AppErrors ────────────────────────────────────
   if (err.isOperational === true) {
+    if (err.code === 'INVALID_REQUEST' || err.code === 'VALIDATION_ERROR' || err.details !== undefined) {
+      res.status(err.statusCode ?? 400).json({
+        success: false,
+        error: {
+          code: err.code ?? 'INVALID_REQUEST',
+          message: err.message,
+          details: err.details,
+        },
+      });
+      return;
+    }
     res.status(err.statusCode ?? 400).json({
       success: false,
       code: err.code ?? 'APPLICATION_ERROR',
@@ -213,11 +226,15 @@ export const globalErrorHandler: ErrorRequestHandler = (
 export function createError(
   statusCode: number,
   code: string,
-  message: string
+  message: string,
+  details?: unknown
 ): AppError {
   const err = new Error(message) as AppError;
   err.statusCode = statusCode;
   err.code = code;
   err.isOperational = true;
+  if (details !== undefined) {
+    err.details = details;
+  }
   return err;
 }

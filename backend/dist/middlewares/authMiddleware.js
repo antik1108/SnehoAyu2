@@ -39,7 +39,7 @@ export async function requireAuth(req, _res, next) {
         // 1. Extract Bearer token
         const authHeader = req.headers['authorization'];
         if (!authHeader || !/^Bearer [^\s]+$/.test(authHeader)) {
-            next(createError(401, 'MISSING_TOKEN', AUTH_ERROR_MESSAGE));
+            next(createError(401, 'AUTH_TOKEN_REQUIRED', AUTH_ERROR_MESSAGE));
             return;
         }
         const token = authHeader.slice(7);
@@ -51,11 +51,11 @@ export async function requireAuth(req, _res, next) {
         }
         catch (err) {
             if (err instanceof jwt.TokenExpiredError) {
-                next(createError(401, 'TOKEN_EXPIRED', 'Your session has expired. Please log in again.'));
+                next(createError(401, 'AUTH_TOKEN_EXPIRED', 'Your session has expired. Please log in again.'));
             }
             else {
                 // Do NOT forward the raw JWT error — it may contain internal details.
-                next(createError(401, 'INVALID_TOKEN', AUTH_ERROR_MESSAGE));
+                next(createError(401, 'AUTH_TOKEN_INVALID', AUTH_ERROR_MESSAGE));
             }
             return;
         }
@@ -69,10 +69,11 @@ export async function requireAuth(req, _res, next) {
                 preferredLanguage: true,
                 isActive: true,
                 deletedAt: true,
+                hospitalId: true,
             },
         });
         if (!user || !user.isActive || user.deletedAt !== null) {
-            next(createError(401, 'INVALID_TOKEN', AUTH_ERROR_MESSAGE));
+            next(createError(401, 'AUTH_TOKEN_INVALID', AUTH_ERROR_MESSAGE));
             return;
         }
         // 4. Attach to request for downstream handlers
@@ -82,6 +83,7 @@ export async function requireAuth(req, _res, next) {
             role: user.role,
             preferredLanguage: user.preferredLanguage,
             isActive: user.isActive,
+            hospitalId: user.hospitalId,
         };
         next();
     }

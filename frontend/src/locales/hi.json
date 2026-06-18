@@ -41,5 +41,259 @@
     "persistenceStatus": "सहेजा गया (ब्राउज़र को रीफ़्रेश करके जांचें!)",
     "changeLanguage": "भाषा बदलें",
     "getStarted": "शुरू करें"
+  },
+  "auth": {
+    "common": {
+      "mobileNumber": "मोबाइल नंबर",
+      "password": "पासवर्ड",
+      "confirmPassword": "पासवर्ड की पुष्टि करें",
+      "phonePlaceholder": "10-अंकों का नंबर दर्ज करें",
+      "passwordPlaceholder": "पासवर्ड दर्ज करें",
+      "confirmPasswordPlaceholder": "पासवर्ड दोबारा दर्ज करें"
+    },
+    "register": {
+      "title": "अपना खाता बनाएँ",
+      "subtitle": "अपना mobile number दर्ज करें और सुरक्षित पासवर्ड बनाएँ।",
+      "submit": "खाता बनाएँ",
+      "submitting": "खाता बनाया जा रहा है…",
+      "footerText": "पहले से कोई खाता है?",
+      "footerLink": "लॉग इन करें"
+    },
+    "login": {
+      "title": "वापसी पर स्वागत है",
+      "subtitle": "मोबाइल नंबर और पासवर्ड से लॉग इन करें।",
+      "submit": "लॉग इन करें",
+      "submitting": "लॉग इन किया जा रहा है…",
+      "footerText": "स्नेह आयु में नए हैं?",
+      "footerLink": "खाता बनाएँ",
+      "pinNotice": "पिन सेट करने के बाद पिन लॉगिन उपलब्ध होगा।"
+    },
+    "validation": {
+      "phoneRequired": "मोबाइल नंबर आवश्यक है।",
+      "phoneInvalid": "एक वैध 10-अंकीय भारतीय मोबाइल नंबर दर्ज करें।",
+      "passwordRequired": "पासवर्ड आवश्यक है।",
+      "passwordLength": "पासवर्ड 8 से 72 वर्णों के बीच होना चाहिए।",
+      "confirmRequired": "पासवर्ड की पुष्टि करें।",
+      "passwordMismatch": "पासवर्ड मेल नहीं खाते।"
+    },
+    "errors": {
+      "phoneAlreadyRegistered": "इस मोबाइल नंबर पर पहले से ही एक खाता है। इसके बजाय लॉग इन करें।",
+      "invalidCredentials": "मोबाइल नंबर या पासवर्ड गलत है।",
+      "network": "अपने इंटरनेट कनेक्शन की जांच करें और दोबारा प्रयास करें।",
+      "unexpected": "कुछ गलत हो गया। कृपया दोबारा प्रयास करें।"
+    },
+    "pin": {
+      "create": {
+        "title": "4 अंकों का पिन बनाएँ",
+        "subtitle": "तेज़ लॉगिन के लिए इस पिन का उपयोग करें।",
+        "step1": "चरण 1 में से 2",
+        "step2": "चरण 2 में से 2",
+        "promptEnter": "अपना पिन दर्ज करें",
+        "promptConfirm": "अपने पिन की पुष्टि करें",
+        "promptConfirmSubtitle": "वही 4 अंकों का पिन फिर से दर्ज करें।",
+        "submitting": "आपका पिन सेट किया जा रहा है…",
+        "success": "पिन सफलतापूर्वक बनाया गया।"
+      },
+      "login": {
+        "title": "पिन से लॉग इन करें",
+        "subtitle": "अपना मोबाइल नंबर और 4 अंकों का पिन दर्ज करें।",
+        "link": "पिन से लॉग इन करें",
+        "submit": "लॉग इन करें",
+        "submitting": "लॉग इन किया जा रहा है…",
+        "linkPassword": "पासवर्ड से लॉग इन करें",
+        "forgotPinNotice": "पिन भूल गए? पासवर्ड से लॉग इन करें।",
+        "pinNotConfigured": "इस खाते के लिए पिन लॉगिन सेट नहीं है। पासवर्ड से लॉग इन करें।"
+      },
+      "validation": {
+        "pinRequired": "पिन आवश्यक है।",
+        "pinDigits": "पिन ठीक 4 अंकों का होना चाहिए।",
+        "mismatch": "दोनों पिन मेल नहीं खाते। फिर से प्रयास करें।",
+        "enterAllDigits": "चारों अंक दर्ज करें।",
+        "weakPin": "इस पिन का अनुमान लगाना आसान है।"
+      },
+      "keypad": {
+        "backspace": "अंतिम अंक हटाएँ",
+        "clear": "पिन साफ़ करें"
+      }
+    }
+  },
+  "onboarding": {
+    "common": {
+      "saveAndContinue": "सहेजें और आगे बढ़ें",
+      "saving": "सहेजा जा रहा है…",
+      "yes": "हाँ",
+      "no": "नहीं",
+      "loading": "लोड हो रहा है…",
+      "retry": "पुनः प्रयास करें",
+      "optional": "(वैकल्पिक)"
+    },
+    "steps": {
+      "indicator": "चरण {{step}} में से ४: {{label}}",
+      "mother": "माँ का विवरण",
+      "baby": "शिशु का विवरण",
+      "hospital": "अस्पताल कोड",
+      "complete": "पंजीकरण पूर्ण"
+    },
+    "mother": {
+      "title": "माँ का विवरण",
+      "subtitle": "कृपया माँ की जनसांख्यिकीय जानकारी पूरी करें।",
+      "fullName": "माँ का नाम",
+      "ageRange": "आयु सीमा",
+      "educationMother": "माँ की शिक्षा",
+      "educationFather": "पिता की शिक्षा",
+      "occupationMother": "माँ का व्यवसाय",
+      "occupationFather": "पिता का व्यवसाय",
+      "incomeClass": "परिवार की आय श्रेणी",
+      "familyType": "परिवार का प्रकार",
+      "familyMembersCount": "परिवार के सदस्यों की संख्या",
+      "religion": "धर्म",
+      "residenceType": "निवास का क्षेत्र",
+      "contactNumber": "वैकल्पिक संपर्क नंबर",
+      "prevPretermEducation": "क्या समय से पहले जन्मे शिशु की देखभाल के बारे में पहले जानकारी मिली है?",
+      "educationSource": "जानकारी का स्रोत",
+      "selectOption": "विकल्प चुनें",
+      "ageRangeOptions": {
+        "below_18": "१८ वर्ष से कम",
+        "18_25": "१८–२५ वर्ष",
+        "26_30": "२६–३० वर्ष",
+        "31_35": "३१–३५ वर्ष",
+        "36_40": "३६–४० वर्ष",
+        "above_40": "४० वर्ष से अधिक"
+      },
+      "educationOptions": {
+        "no_formal": "कोई औपचारिक शिक्षा नहीं",
+        "primary": "प्राथमिक शिक्षा",
+        "secondary": "माध्यमिक शिक्षा",
+        "higher_secondary": "उच्च माध्यमिक",
+        "graduate": "स्नातक",
+        "postgraduate_plus": "स्नातकोत्तर और उससे अधिक"
+      },
+      "motherOccupationOptions": {
+        "homemaker": "गृहणी",
+        "govt_service": "सरकारी नौकरी",
+        "private_service": "निजी नौकरी",
+        "business": "व्यवसाय / स्वरोजगार",
+        "daily_labour": "दैनिक मजदूर",
+        "other": "अन्य"
+      },
+      "fatherOccupationOptions": {
+        "unemployed": "बेरोजगार",
+        "govt_service": "सरकारी नौकरी",
+        "private_service": "निजी नौकरी",
+        "business": "व्यवसाय / स्वरोजगार",
+        "daily_labour": "दैनिक मजदूर",
+        "other": "अन्य"
+      },
+      "incomeClassOptions": {
+        "I": "श्रेणी I (उच्च)",
+        "II": "श्रेणी II (उच्च मध्य)",
+        "III": "श्रेणी III (मध्य)",
+        "IV": "श्रेणी IV (निम्न मध्य)",
+        "V": "श्रेणी V (निम्न)"
+      },
+      "familyTypeOptions": {
+        "nuclear": "एकल परिवार",
+        "joint": "संयुक्त परिवार",
+        "extended": "विस्तृत परिवार"
+      },
+      "religionOptions": {
+        "hindu": "हिंदू धर्म",
+        "muslim": "इस्लाम धर्म",
+        "christian": "ईसाई धर्म",
+        "other": "अन्य"
+      },
+      "residenceOptions": {
+        "urban": "शहरी",
+        "rural": "ग्रामीण",
+        "semi_urban": "अर्ध-शहरी"
+      },
+      "sourceOptions": {
+        "health_worker": "स्वास्थ्य कार्यकर्ता",
+        "family": "परिवार के सदस्य",
+        "peer": "साथी / मित्र",
+        "workshop": "कार्यशाला / कक्षा",
+        "magazine": "पत्रिका / विवरणिका"
+      }
+    },
+    "baby": {
+      "title": "शिशु का विवरण",
+      "subtitle": "NICU डिस्चार्ज रिकॉर्ड के अनुसार जानकारी दर्ज करें।",
+      "babyName": "शिशु का नाम",
+      "sex": "लिंग",
+      "sexOptions": {
+        "male": "बालक",
+        "female": "बालिका"
+      },
+      "dateOfBirth": "जन्म तिथि",
+      "gestationalAgeWeeks": "जन्म के समय गर्भकाल (सप्ताह)",
+      "birthWeightGrams": "जन्म का वजन (ग्राम)",
+      "weightAtDischargeGrams": "डिस्चार्ज के समय वजन (ग्राम)",
+      "placeOfDelivery": "प्रसव का स्थान",
+      "placeOfDeliveryOptions": {
+        "hospital": "अस्पताल / स्वास्थ्य सुविधा",
+        "home": "घर पर प्रसव"
+      },
+      "nicuStayDays": "NICU में रहने के दिन",
+      "skinToSkinAtBirth": "जन्म के समय त्वचा से त्वचा संपर्क?",
+      "nicuKmc": "NICU में KMC दिया गया?",
+      "feedingAtDischarge": "डिस्चार्ज के समय आहार का प्रकार",
+      "feedingOptions": {
+        "exclusive_bf": "केवल स्तनपान",
+        "exclusive_formula": "केवल फॉर्मूला दूध",
+        "mixed": "मिश्रित आहार (स्तनपान और फॉर्मूला)"
+      },
+      "criedAtBirth": "जन्म के बाद रोया?",
+      "neededResuscitation": "पुनर्जीवन की आवश्यकता हुई?",
+      "dischargeDate": "डिस्चार्ज तिथि"
+    },
+    "hospital": {
+      "title": "अस्पताल कोड दर्ज करें",
+      "subtitle": "यह कोड अध्ययन समन्वयक द्वारा प्रदान किया गया है।",
+      "inputLabel": "अस्पताल कोड",
+      "placeholder": "जैसे: BNK",
+      "submit": "अस्पताल सत्यापित करें",
+      "submitting": "सत्यापन हो रहा है…",
+      "verifiedHeading": "अस्पताल सत्यापित",
+      "nameLabel": "अस्पताल का नाम",
+      "codeLabel": "अस्पताल कोड",
+      "allocationProgress": "प्रतिभागी कोड उत्पन्न किया जा रहा है…",
+      "completionProgress": "नामांकन पूर्ण किया जा रहा है…"
+    },
+    "complete": {
+      "title": "सब तैयार है!",
+      "subtitle": "आपका खाता और अध्ययन नामांकन पूरा हो गया है।",
+      "participantCode": "प्रतिभागी कोड",
+      "hospitalName": "अस्पताल का नाम",
+      "studyGroup": "अध्ययन समूह",
+      "groupLabels": {
+        "study": "अध्ययन समूह",
+        "control": "नियंत्रण समूह"
+      },
+      "infoMessage": "अगले छह महीनों तक स्नेहआयु आपके और आपके शिशु के साथ रहेगा।",
+      "goHome": "होम पर जाएँ"
+    },
+    "validation": {
+      "fieldRequired": "यह फ़ील्ड आवश्यक है।",
+      "familyCountInvalid": "परिवार के सदस्यों की संख्या १ से ३० के बीच एक पूर्णांक होनी चाहिए।",
+      "contactInvalid": "संपर्क नंबर एक वैध १०-अंकीय भारतीय मोबाइल नंबर होना चाहिए।",
+      "sourceRequired": "कम से कम एक जानकारी का स्रोत चुना जाना आवश्यक है।",
+      "babyNameLength": "शिशु का नाम १०० वर्णों से अधिक नहीं होना चाहिए।",
+      "futureDate": "तिथि भविष्य की नहीं हो सकती।",
+      "dischargeBeforeBirth": "डिस्चार्ज तिथि जन्म तिथि से पहले नहीं हो सकती।",
+      "gaInvalid": "गर्भकाल २४.० से ३६.९ सप्ताह के बीच होना चाहिए (अधिकतम एक दशमलव स्थान)।",
+      "birthWeightInvalid": "जन्म का वजन ४०० से ४००० ग्राम के बीच होना चाहिए।",
+      "dischargeWeightInvalid": "डिस्चार्ज वजन ४०० से ५००० ग्राम के बीच होना चाहिए।",
+      "nicuStayInvalid": "NICU प्रवास १ से १२० दिनों के बीच होना चाहिए।",
+      "hospitalCodeFormat": "अस्पताल कोड में केवल अक्षर और संख्याएँ होनी चाहिए, २ से १० वर्णों के बीच।",
+      "hospitalCodeRequired": "अस्पताल कोड आवश्यक है।"
+    },
+    "errors": {
+      "motherProfileRequired": "माँ का प्रोफ़ाइल आवश्यक है। कृपया पहले इसे भरें।",
+      "babyProfileRequired": "शिशु का प्रोफ़ाइल आवश्यक है। कृपया पहले इसे भरें।",
+      "studyGroupRequired": "नामांकन पूर्ण करने से पहले शोधकर्ता को अध्ययन समूह आवंटित करना होगा।",
+      "hospitalEnrollmentClosed": "इस अस्पताल में वर्तमान में नामांकन बंद है।",
+      "hospitalLinkLocked": "प्रतिभागी कोड आवंटित होने के बाद अस्पताल नहीं बदला जा सकता।",
+      "invalidHospitalCode": "अस्पताल कोड अमान्य है।"
+    }
   }
 }

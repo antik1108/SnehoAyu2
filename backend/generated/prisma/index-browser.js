@@ -129,6 +129,7 @@ exports.Prisma.HospitalScalarFieldEnum = {
   type: 'type',
   emergencyPhone: 'emergencyPhone',
   isActive: 'isActive',
+  nextParticipantNumber: 'nextParticipantNumber',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -197,6 +198,7 @@ exports.Prisma.MotherProfileScalarFieldEnum = {
   prevPretermEducation: 'prevPretermEducation',
   educationSource: 'educationSource',
   enrolledAt: 'enrolledAt',
+  onboardingCompletedAt: 'onboardingCompletedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

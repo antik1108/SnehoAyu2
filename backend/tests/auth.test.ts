@@ -25,6 +25,7 @@ const { prismaMock, txMock } = vi.hoisted(() => {
     },
     refreshToken: {
       create: vi.fn(),
+      update: vi.fn(),
     },
   };
 
@@ -36,7 +37,9 @@ const { prismaMock, txMock } = vi.hoisted(() => {
         update: vi.fn(),
       },
       refreshToken: {
+        findUnique: vi.fn(),
         create: vi.fn(),
+        updateMany: vi.fn(),
       },
       $transaction: vi.fn(async (callback: (transaction: typeof tx) => unknown) =>
         callback(tx)
@@ -53,6 +56,8 @@ let createOrUpdatePin: typeof import('../src/services/authService.js').createOrU
 let loginWithPin: typeof import('../src/services/authService.js').loginWithPin;
 let changePin: typeof import('../src/services/authService.js').changePin;
 let removePin: typeof import('../src/services/authService.js').removePin;
+let refreshSessionToken: typeof import('../src/services/authService.js').refreshSessionToken;
+let logoutUser: typeof import('../src/services/authService.js').logoutUser;
 let normalizePhone: typeof import('../src/utils/phoneNumber.js').normalizePhone;
 let validateRegisterInput: typeof import('../src/validators/authValidator.js').validateRegisterInput;
 let validateLoginInput: typeof import('../src/validators/authValidator.js').validateLoginInput;
@@ -105,6 +110,8 @@ beforeAll(async () => {
     loginWithPin,
     changePin,
     removePin,
+    refreshSessionToken,
+    logoutUser,
   } = await import('../src/services/authService.js'));
   ({ normalizePhone } = await import('../src/utils/phoneNumber.js'));
   ({
@@ -442,7 +449,7 @@ describe('PIN protected endpoint authentication', () => {
     expect(next).toHaveBeenCalledWith(
       expect.objectContaining({
         statusCode: 401,
-        code: 'MISSING_TOKEN',
+        code: 'AUTH_TOKEN_REQUIRED',
       })
     );
   });
@@ -458,7 +465,7 @@ describe('PIN protected endpoint authentication', () => {
     expect(next).toHaveBeenCalledWith(
       expect.objectContaining({
         statusCode: 401,
-        code: 'INVALID_TOKEN',
+        code: 'AUTH_TOKEN_INVALID',
       })
     );
   });
@@ -717,6 +724,59 @@ describe('PIN login', () => {
         failedPinAttempts: { increment: 1 },
       },
       select: { failedPinAttempts: true },
+    });
+  });
+
+  describe('refreshSessionToken', () => {
+    it('refreshes token successfully and rotates refresh token', async () => {
+      const user = makeUser();
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      const tokenRecord = {
+        id: 'token-uuid',
+        userId: user.id,
+        tokenHash: 'some-hash',
+        expiresAt,
+        revokedAt: null,
+        user,
+      };
+
+      prismaMock.refreshToken.findUnique.mockResolvedValue(tokenRecord);
+      txMock.refreshToken.update.mockResolvedValue({});
+      txMock.refreshToken.create.mockResolvedValue({});
+
+      const result = await refreshSessionToken('some-token');
+
+      expect(result.accessToken).toBeDefined();
+      expect(result.refreshToken).toBeDefined();
+      expect(result.user.id).toBe(user.id);
+      expect(txMock.refreshToken.update).toHaveBeenCalledWith({
+        where: { id: 'token-uuid' },
+        data: { revokedAt: expect.any(Date) },
+      });
+      expect(txMock.refreshToken.create).toHaveBeenCalled();
+    });
+
+    it('rejects expired or revoked refresh token', async () => {
+      prismaMock.refreshToken.findUnique.mockResolvedValue({
+        id: 'token-uuid',
+        revokedAt: new Date(),
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      });
+
+      await expect(refreshSessionToken('some-token')).rejects.toMatchObject({
+        code: 'INVALID_REFRESH_TOKEN',
+      });
+    });
+  });
+
+  describe('logoutUser', () => {
+    it('revokes refresh token', async () => {
+      prismaMock.refreshToken.updateMany.mockResolvedValue({ count: 1 });
+      await logoutUser('some-token');
+      expect(prismaMock.refreshToken.updateMany).toHaveBeenCalledWith({
+        where: { tokenHash: expect.any(String) },
+        data: { revokedAt: expect.any(Date) },
+      });
     });
   });
 });

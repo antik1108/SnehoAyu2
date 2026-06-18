@@ -11,16 +11,17 @@ datasource db {
 }
 
 model Hospital {
-  id             String   @id @default(uuid()) @db.Uuid
-  name           String
-  code           String   @unique
-  district       String
-  state          String   @default("West Bengal")
-  type           String
-  emergencyPhone String?
-  isActive       Boolean  @default(true)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id                    String   @id @default(uuid()) @db.Uuid
+  name                  String
+  code                  String   @unique
+  district              String
+  state                 String   @default("West Bengal")
+  type                  String
+  emergencyPhone        String?
+  isActive              Boolean  @default(true)
+  nextParticipantNumber Int      @default(1)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 
   users          User[]
   motherProfiles MotherProfile[]
@@ -110,6 +111,7 @@ model MotherProfile {
   prevPretermEducation Boolean            @default(false)
   educationSource      String[]
   enrolledAt           DateTime           @default(now())
+  onboardingCompletedAt DateTime?          @map("onboarding_completed_at")
   createdAt            DateTime           @default(now())
   updatedAt            DateTime           @updatedAt
 
@@ -182,4 +184,6 @@ model FollowUpSchedule {
   updatedAt         DateTime      @updatedAt
 
   motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+
+  @@unique([motherProfileId, timePoint])
 }

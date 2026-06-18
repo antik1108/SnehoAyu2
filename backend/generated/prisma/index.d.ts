@@ -1710,8 +1710,18 @@ export namespace Prisma {
 
   export type AggregateHospital = {
     _count: HospitalCountAggregateOutputType | null
+    _avg: HospitalAvgAggregateOutputType | null
+    _sum: HospitalSumAggregateOutputType | null
     _min: HospitalMinAggregateOutputType | null
     _max: HospitalMaxAggregateOutputType | null
+  }
+
+  export type HospitalAvgAggregateOutputType = {
+    nextParticipantNumber: number | null
+  }
+
+  export type HospitalSumAggregateOutputType = {
+    nextParticipantNumber: number | null
   }
 
   export type HospitalMinAggregateOutputType = {
@@ -1723,6 +1733,7 @@ export namespace Prisma {
     type: string | null
     emergencyPhone: string | null
     isActive: boolean | null
+    nextParticipantNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1736,6 +1747,7 @@ export namespace Prisma {
     type: string | null
     emergencyPhone: string | null
     isActive: boolean | null
+    nextParticipantNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1749,11 +1761,20 @@ export namespace Prisma {
     type: number
     emergencyPhone: number
     isActive: number
+    nextParticipantNumber: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
+
+  export type HospitalAvgAggregateInputType = {
+    nextParticipantNumber?: true
+  }
+
+  export type HospitalSumAggregateInputType = {
+    nextParticipantNumber?: true
+  }
 
   export type HospitalMinAggregateInputType = {
     id?: true
@@ -1764,6 +1785,7 @@ export namespace Prisma {
     type?: true
     emergencyPhone?: true
     isActive?: true
+    nextParticipantNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1777,6 +1799,7 @@ export namespace Prisma {
     type?: true
     emergencyPhone?: true
     isActive?: true
+    nextParticipantNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1790,6 +1813,7 @@ export namespace Prisma {
     type?: true
     emergencyPhone?: true
     isActive?: true
+    nextParticipantNumber?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1833,6 +1857,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: HospitalAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HospitalSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: HospitalMinAggregateInputType
@@ -1863,6 +1899,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: HospitalCountAggregateInputType | true
+    _avg?: HospitalAvgAggregateInputType
+    _sum?: HospitalSumAggregateInputType
     _min?: HospitalMinAggregateInputType
     _max?: HospitalMaxAggregateInputType
   }
@@ -1876,9 +1914,12 @@ export namespace Prisma {
     type: string
     emergencyPhone: string | null
     isActive: boolean
+    nextParticipantNumber: number
     createdAt: Date
     updatedAt: Date
     _count: HospitalCountAggregateOutputType | null
+    _avg: HospitalAvgAggregateOutputType | null
+    _sum: HospitalSumAggregateOutputType | null
     _min: HospitalMinAggregateOutputType | null
     _max: HospitalMaxAggregateOutputType | null
   }
@@ -1906,6 +1947,7 @@ export namespace Prisma {
     type?: boolean
     emergencyPhone?: boolean
     isActive?: boolean
+    nextParticipantNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     users?: boolean | Hospital$usersArgs<ExtArgs>
@@ -1923,6 +1965,7 @@ export namespace Prisma {
     type?: boolean
     emergencyPhone?: boolean
     isActive?: boolean
+    nextParticipantNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["hospital"]>
@@ -1936,6 +1979,7 @@ export namespace Prisma {
     type?: boolean
     emergencyPhone?: boolean
     isActive?: boolean
+    nextParticipantNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["hospital"]>
@@ -1949,11 +1993,12 @@ export namespace Prisma {
     type?: boolean
     emergencyPhone?: boolean
     isActive?: boolean
+    nextParticipantNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "district" | "state" | "type" | "emergencyPhone" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["hospital"]>
+  export type HospitalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "code" | "district" | "state" | "type" | "emergencyPhone" | "isActive" | "nextParticipantNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["hospital"]>
   export type HospitalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | Hospital$usersArgs<ExtArgs>
     motherProfiles?: boolean | Hospital$motherProfilesArgs<ExtArgs>
@@ -1979,6 +2024,7 @@ export namespace Prisma {
       type: string
       emergencyPhone: string | null
       isActive: boolean
+      nextParticipantNumber: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["hospital"]>
@@ -2415,6 +2461,7 @@ export namespace Prisma {
     readonly type: FieldRef<"Hospital", 'String'>
     readonly emergencyPhone: FieldRef<"Hospital", 'String'>
     readonly isActive: FieldRef<"Hospital", 'Boolean'>
+    readonly nextParticipantNumber: FieldRef<"Hospital", 'Int'>
     readonly createdAt: FieldRef<"Hospital", 'DateTime'>
     readonly updatedAt: FieldRef<"Hospital", 'DateTime'>
   }
@@ -6502,6 +6549,7 @@ export namespace Prisma {
     contactNumber: string | null
     prevPretermEducation: boolean | null
     enrolledAt: Date | null
+    onboardingCompletedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6526,6 +6574,7 @@ export namespace Prisma {
     contactNumber: string | null
     prevPretermEducation: boolean | null
     enrolledAt: Date | null
+    onboardingCompletedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6551,6 +6600,7 @@ export namespace Prisma {
     prevPretermEducation: number
     educationSource: number
     enrolledAt: number
+    onboardingCompletedAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6577,6 +6627,7 @@ export namespace Prisma {
     contactNumber?: true
     prevPretermEducation?: true
     enrolledAt?: true
+    onboardingCompletedAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6601,6 +6652,7 @@ export namespace Prisma {
     contactNumber?: true
     prevPretermEducation?: true
     enrolledAt?: true
+    onboardingCompletedAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6626,6 +6678,7 @@ export namespace Prisma {
     prevPretermEducation?: true
     educationSource?: true
     enrolledAt?: true
+    onboardingCompletedAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6724,6 +6777,7 @@ export namespace Prisma {
     prevPretermEducation: boolean
     educationSource: string[]
     enrolledAt: Date
+    onboardingCompletedAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: MotherProfileCountAggregateOutputType | null
@@ -6766,6 +6820,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: boolean
     enrolledAt?: boolean
+    onboardingCompletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6796,6 +6851,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: boolean
     enrolledAt?: boolean
+    onboardingCompletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6823,6 +6879,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: boolean
     enrolledAt?: boolean
+    onboardingCompletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6850,11 +6907,12 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: boolean
     enrolledAt?: boolean
+    onboardingCompletedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type MotherProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "participantCode" | "studyGroup" | "hospitalId" | "fullName" | "ageRange" | "educationMother" | "educationFather" | "occupationMother" | "occupationFather" | "incomeClass" | "familyType" | "familyMembersCount" | "religion" | "residenceType" | "contactNumber" | "prevPretermEducation" | "educationSource" | "enrolledAt" | "createdAt" | "updatedAt", ExtArgs["result"]["motherProfile"]>
+  export type MotherProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "participantCode" | "studyGroup" | "hospitalId" | "fullName" | "ageRange" | "educationMother" | "educationFather" | "occupationMother" | "occupationFather" | "incomeClass" | "familyType" | "familyMembersCount" | "religion" | "residenceType" | "contactNumber" | "prevPretermEducation" | "educationSource" | "enrolledAt" | "onboardingCompletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["motherProfile"]>
   export type MotherProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     hospital?: boolean | MotherProfile$hospitalArgs<ExtArgs>
@@ -6900,6 +6958,7 @@ export namespace Prisma {
       prevPretermEducation: boolean
       educationSource: string[]
       enrolledAt: Date
+      onboardingCompletedAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["motherProfile"]>
@@ -7349,6 +7408,7 @@ export namespace Prisma {
     readonly prevPretermEducation: FieldRef<"MotherProfile", 'Boolean'>
     readonly educationSource: FieldRef<"MotherProfile", 'String[]'>
     readonly enrolledAt: FieldRef<"MotherProfile", 'DateTime'>
+    readonly onboardingCompletedAt: FieldRef<"MotherProfile", 'DateTime'>
     readonly createdAt: FieldRef<"MotherProfile", 'DateTime'>
     readonly updatedAt: FieldRef<"MotherProfile", 'DateTime'>
   }
@@ -12473,6 +12533,7 @@ export namespace Prisma {
     type: 'type',
     emergencyPhone: 'emergencyPhone',
     isActive: 'isActive',
+    nextParticipantNumber: 'nextParticipantNumber',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12553,6 +12614,7 @@ export namespace Prisma {
     prevPretermEducation: 'prevPretermEducation',
     educationSource: 'educationSource',
     enrolledAt: 'enrolledAt',
+    onboardingCompletedAt: 'onboardingCompletedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12679,20 +12741,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -12703,6 +12751,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -12749,6 +12811,7 @@ export namespace Prisma {
     type?: StringFilter<"Hospital"> | string
     emergencyPhone?: StringNullableFilter<"Hospital"> | string | null
     isActive?: BoolFilter<"Hospital"> | boolean
+    nextParticipantNumber?: IntFilter<"Hospital"> | number
     createdAt?: DateTimeFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeFilter<"Hospital"> | Date | string
     users?: UserListRelationFilter
@@ -12765,6 +12828,7 @@ export namespace Prisma {
     type?: SortOrder
     emergencyPhone?: SortOrderInput | SortOrder
     isActive?: SortOrder
+    nextParticipantNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     users?: UserOrderByRelationAggregateInput
@@ -12784,6 +12848,7 @@ export namespace Prisma {
     type?: StringFilter<"Hospital"> | string
     emergencyPhone?: StringNullableFilter<"Hospital"> | string | null
     isActive?: BoolFilter<"Hospital"> | boolean
+    nextParticipantNumber?: IntFilter<"Hospital"> | number
     createdAt?: DateTimeFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeFilter<"Hospital"> | Date | string
     users?: UserListRelationFilter
@@ -12800,11 +12865,14 @@ export namespace Prisma {
     type?: SortOrder
     emergencyPhone?: SortOrderInput | SortOrder
     isActive?: SortOrder
+    nextParticipantNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: HospitalCountOrderByAggregateInput
+    _avg?: HospitalAvgOrderByAggregateInput
     _max?: HospitalMaxOrderByAggregateInput
     _min?: HospitalMinOrderByAggregateInput
+    _sum?: HospitalSumOrderByAggregateInput
   }
 
   export type HospitalScalarWhereWithAggregatesInput = {
@@ -12819,6 +12887,7 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter<"Hospital"> | string
     emergencyPhone?: StringNullableWithAggregatesFilter<"Hospital"> | string | null
     isActive?: BoolWithAggregatesFilter<"Hospital"> | boolean
+    nextParticipantNumber?: IntWithAggregatesFilter<"Hospital"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Hospital"> | Date | string
   }
@@ -13120,6 +13189,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFilter<"MotherProfile"> | boolean
     educationSource?: StringNullableListFilter<"MotherProfile">
     enrolledAt?: DateTimeFilter<"MotherProfile"> | Date | string
+    onboardingCompletedAt?: DateTimeNullableFilter<"MotherProfile"> | Date | string | null
     createdAt?: DateTimeFilter<"MotherProfile"> | Date | string
     updatedAt?: DateTimeFilter<"MotherProfile"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -13149,6 +13219,7 @@ export namespace Prisma {
     prevPretermEducation?: SortOrder
     educationSource?: SortOrder
     enrolledAt?: SortOrder
+    onboardingCompletedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -13181,6 +13252,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFilter<"MotherProfile"> | boolean
     educationSource?: StringNullableListFilter<"MotherProfile">
     enrolledAt?: DateTimeFilter<"MotherProfile"> | Date | string
+    onboardingCompletedAt?: DateTimeNullableFilter<"MotherProfile"> | Date | string | null
     createdAt?: DateTimeFilter<"MotherProfile"> | Date | string
     updatedAt?: DateTimeFilter<"MotherProfile"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -13210,6 +13282,7 @@ export namespace Prisma {
     prevPretermEducation?: SortOrder
     educationSource?: SortOrder
     enrolledAt?: SortOrder
+    onboardingCompletedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MotherProfileCountOrderByAggregateInput
@@ -13241,6 +13314,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolWithAggregatesFilter<"MotherProfile"> | boolean
     educationSource?: StringNullableListFilter<"MotherProfile">
     enrolledAt?: DateTimeWithAggregatesFilter<"MotherProfile"> | Date | string
+    onboardingCompletedAt?: DateTimeNullableWithAggregatesFilter<"MotherProfile"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"MotherProfile"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MotherProfile"> | Date | string
   }
@@ -13540,6 +13614,7 @@ export namespace Prisma {
 
   export type FollowUpScheduleWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    motherProfileId_timePoint?: FollowUpScheduleMotherProfileIdTimePointCompoundUniqueInput
     AND?: FollowUpScheduleWhereInput | FollowUpScheduleWhereInput[]
     OR?: FollowUpScheduleWhereInput[]
     NOT?: FollowUpScheduleWhereInput | FollowUpScheduleWhereInput[]
@@ -13554,7 +13629,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
     updatedAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
     motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
-  }, "id">
+  }, "id" | "motherProfileId_timePoint">
 
   export type FollowUpScheduleOrderByWithAggregationInput = {
     id?: SortOrder
@@ -13599,6 +13674,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutHospitalInput
@@ -13615,6 +13691,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutHospitalInput
@@ -13631,6 +13708,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutHospitalNestedInput
@@ -13647,6 +13725,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutHospitalNestedInput
@@ -13663,6 +13742,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13676,6 +13756,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13689,6 +13770,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14027,6 +14109,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutMotherProfileInput
@@ -14056,6 +14139,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
@@ -14081,6 +14165,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
@@ -14110,6 +14195,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
@@ -14137,6 +14223,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14160,6 +14247,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14185,6 +14273,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14623,6 +14712,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -14678,8 +14778,13 @@ export namespace Prisma {
     type?: SortOrder
     emergencyPhone?: SortOrder
     isActive?: SortOrder
+    nextParticipantNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type HospitalAvgOrderByAggregateInput = {
+    nextParticipantNumber?: SortOrder
   }
 
   export type HospitalMaxOrderByAggregateInput = {
@@ -14691,6 +14796,7 @@ export namespace Prisma {
     type?: SortOrder
     emergencyPhone?: SortOrder
     isActive?: SortOrder
+    nextParticipantNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14704,8 +14810,13 @@ export namespace Prisma {
     type?: SortOrder
     emergencyPhone?: SortOrder
     isActive?: SortOrder
+    nextParticipantNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type HospitalSumOrderByAggregateInput = {
+    nextParticipantNumber?: SortOrder
   }
 
   export type UuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -14767,6 +14878,22 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -14802,17 +14929,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type HospitalNullableScalarRelationFilter = {
@@ -14947,22 +15063,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type OtpVerificationCountOrderByAggregateInput = {
     id?: SortOrder
     phone?: SortOrder
@@ -15086,6 +15186,7 @@ export namespace Prisma {
     prevPretermEducation?: SortOrder
     educationSource?: SortOrder
     enrolledAt?: SortOrder
+    onboardingCompletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15110,6 +15211,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     prevPretermEducation?: SortOrder
     enrolledAt?: SortOrder
+    onboardingCompletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15134,6 +15236,7 @@ export namespace Prisma {
     contactNumber?: SortOrder
     prevPretermEducation?: SortOrder
     enrolledAt?: SortOrder
+    onboardingCompletedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15315,6 +15418,11 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type FollowUpScheduleMotherProfileIdTimePointCompoundUniqueInput = {
+    motherProfileId: string
+    timePoint: string
+  }
+
   export type FollowUpScheduleCountOrderByAggregateInput = {
     id?: SortOrder
     motherProfileId?: SortOrder
@@ -15409,6 +15517,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -15557,14 +15673,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type HospitalUpdateOneWithoutUsersNestedInput = {
@@ -15914,6 +16022,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -15937,17 +16056,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -16001,6 +16109,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -16065,33 +16200,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDecimalFilter<$PrismaModel = never> = {
@@ -16198,6 +16306,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutMotherProfileInput
@@ -16225,6 +16334,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
@@ -16349,6 +16459,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFilter<"MotherProfile"> | boolean
     educationSource?: StringNullableListFilter<"MotherProfile">
     enrolledAt?: DateTimeFilter<"MotherProfile"> | Date | string
+    onboardingCompletedAt?: DateTimeNullableFilter<"MotherProfile"> | Date | string | null
     createdAt?: DateTimeFilter<"MotherProfile"> | Date | string
     updatedAt?: DateTimeFilter<"MotherProfile"> | Date | string
   }
@@ -16391,6 +16502,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     motherProfiles?: MotherProfileCreateNestedManyWithoutHospitalInput
@@ -16406,6 +16518,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     motherProfiles?: MotherProfileUncheckedCreateNestedManyWithoutHospitalInput
@@ -16436,6 +16549,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
@@ -16463,6 +16577,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
@@ -16568,6 +16683,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     motherProfiles?: MotherProfileUpdateManyWithoutHospitalNestedInput
@@ -16583,6 +16699,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     motherProfiles?: MotherProfileUncheckedUpdateManyWithoutHospitalNestedInput
@@ -16619,6 +16736,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
@@ -16646,6 +16764,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
@@ -16913,6 +17032,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutHospitalInput
@@ -16928,6 +17048,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutHospitalInput
@@ -17101,6 +17222,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutHospitalNestedInput
@@ -17116,6 +17238,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutHospitalNestedInput
@@ -17227,6 +17350,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutMotherProfileInput
@@ -17255,6 +17379,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
@@ -17295,6 +17420,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
@@ -17323,6 +17449,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
@@ -17390,6 +17517,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutHospitalInput
@@ -17405,6 +17533,7 @@ export namespace Prisma {
     type: string
     emergencyPhone?: string | null
     isActive?: boolean
+    nextParticipantNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutHospitalInput
@@ -17495,6 +17624,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutHospitalNestedInput
@@ -17510,6 +17640,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     emergencyPhone?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    nextParticipantNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutHospitalNestedInput
@@ -17647,6 +17778,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutMotherProfileInput
@@ -17675,6 +17807,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
@@ -17715,6 +17848,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
@@ -17743,6 +17877,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
@@ -17788,6 +17923,7 @@ export namespace Prisma {
     prevPretermEducation?: boolean
     educationSource?: MotherProfileCreateeducationSourceInput | string[]
     enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17888,6 +18024,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
@@ -17915,6 +18052,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
@@ -17941,6 +18079,7 @@ export namespace Prisma {
     prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
     educationSource?: MotherProfileUpdateeducationSourceInput | string[]
     enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

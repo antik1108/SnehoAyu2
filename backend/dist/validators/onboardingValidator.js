@@ -137,14 +137,6 @@ function readIsoDate(body, field) {
     }
     return { value: date };
 }
-function pushText(target, errors, body, field) {
-    const result = readRequiredText(body, field);
-    if (result.error || result.value === undefined) {
-        errors.push(result.error ?? { field, message: `${field} is required.` });
-        return;
-    }
-    target[field] = result.value;
-}
 export function calculateBirthWeightStratum(birthWeightGrams) {
     if (birthWeightGrams < 1500) {
         return 'under_1500';
@@ -162,27 +154,85 @@ export function validateMotherProfileInput(value) {
         };
     }
     const errors = unknownKeyErrors(value, MOTHER_KEYS);
-    const textValues = {};
-    for (const field of [
-        'ageRange',
-        'educationMother',
-        'educationFather',
-        'occupationMother',
-        'occupationFather',
-        'religion',
-    ]) {
-        pushText(textValues, errors, value, field);
-    }
+    const ageRange = readEnum(value, 'ageRange', [
+        'below_18',
+        '18_25',
+        '26_30',
+        '31_35',
+        '36_40',
+        'above_40',
+    ]);
+    if (ageRange.error)
+        errors.push(ageRange.error);
+    const educationMother = readEnum(value, 'educationMother', [
+        'no_formal',
+        'primary',
+        'secondary',
+        'higher_secondary',
+        'graduate',
+        'postgraduate_plus',
+    ]);
+    if (educationMother.error)
+        errors.push(educationMother.error);
+    const educationFather = readEnum(value, 'educationFather', [
+        'no_formal',
+        'primary',
+        'secondary',
+        'higher_secondary',
+        'graduate',
+        'postgraduate_plus',
+    ]);
+    if (educationFather.error)
+        errors.push(educationFather.error);
+    const occupationMother = readEnum(value, 'occupationMother', [
+        'homemaker',
+        'govt_service',
+        'private_service',
+        'business',
+        'daily_labour',
+        'other',
+    ]);
+    if (occupationMother.error)
+        errors.push(occupationMother.error);
+    const occupationFather = readEnum(value, 'occupationFather', [
+        'unemployed',
+        'govt_service',
+        'private_service',
+        'business',
+        'daily_labour',
+        'other',
+    ]);
+    if (occupationFather.error)
+        errors.push(occupationFather.error);
+    const religion = readEnum(value, 'religion', [
+        'hindu',
+        'muslim',
+        'christian',
+        'other',
+    ]);
+    if (religion.error)
+        errors.push(religion.error);
     const fullName = readOptionalText(value, 'fullName');
-    if (fullName.error)
+    if (fullName.error) {
         errors.push(fullName.error);
+    }
+    else if (fullName.value && fullName.value.length > 255) {
+        errors.push({
+            field: 'fullName',
+            message: 'fullName must not exceed 255 characters.',
+        });
+    }
     const contactNumber = readOptionalText(value, 'contactNumber');
     if (contactNumber.error)
         errors.push(contactNumber.error);
     let normalizedContactNumber;
     if (contactNumber.value) {
+        let cleaned = contactNumber.value.replace(/[\s\-()+]/g, '');
+        if (cleaned.startsWith('91') && cleaned.length === 12) {
+            cleaned = cleaned.slice(2);
+        }
         try {
-            normalizedContactNumber = normalizePhone(contactNumber.value);
+            normalizedContactNumber = normalizePhone(cleaned);
         }
         catch {
             errors.push({
@@ -220,10 +270,10 @@ export function validateMotherProfileInput(value) {
     const rawFamilyMembers = value['familyMembersCount'];
     let familyMembersCount;
     if (typeof rawFamilyMembers === 'number') {
-        if (!Number.isInteger(rawFamilyMembers) || rawFamilyMembers < 1) {
+        if (!Number.isInteger(rawFamilyMembers) || rawFamilyMembers < 1 || rawFamilyMembers > 30) {
             errors.push({
                 field: 'familyMembersCount',
-                message: 'familyMembersCount must be a positive integer.',
+                message: 'familyMembersCount must be an integer between 1 and 30.',
             });
         }
         else {
@@ -232,10 +282,11 @@ export function validateMotherProfileInput(value) {
     }
     else if (typeof rawFamilyMembers === 'string') {
         const trimmed = rawFamilyMembers.trim();
-        if (!/^[1-9]\d*$/.test(trimmed)) {
+        const num = Number(trimmed);
+        if (!/^\d+$/.test(trimmed) || !Number.isInteger(num) || num < 1 || num > 30) {
             errors.push({
                 field: 'familyMembersCount',
-                message: 'familyMembersCount must be a positive integer.',
+                message: 'familyMembersCount must be an integer between 1 and 30.',
             });
         }
         else {
@@ -245,7 +296,7 @@ export function validateMotherProfileInput(value) {
     else {
         errors.push({
             field: 'familyMembersCount',
-            message: 'familyMembersCount must be a string or number.',
+            message: 'familyMembersCount must be a string or number representing an integer between 1 and 30.',
         });
     }
     let educationSource = [];
@@ -288,15 +339,15 @@ export function validateMotherProfileInput(value) {
         errors: [],
         data: {
             fullName: fullName.value,
-            ageRange: textValues['ageRange'],
-            educationMother: textValues['educationMother'],
-            educationFather: textValues['educationFather'],
-            occupationMother: textValues['occupationMother'],
-            occupationFather: textValues['occupationFather'],
+            ageRange: ageRange.value,
+            educationMother: educationMother.value,
+            educationFather: educationFather.value,
+            occupationMother: occupationMother.value,
+            occupationFather: occupationFather.value,
             incomeClass: incomeClass.value,
             familyType: familyType.value,
             familyMembersCount: familyMembersCount,
-            religion: textValues['religion'],
+            religion: religion.value,
             residenceType: residenceType.value,
             contactNumber: normalizedContactNumber,
             prevPretermEducation: prevPretermEducation.value,
@@ -313,8 +364,15 @@ export function validateBabyProfileInput(value) {
     }
     const errors = unknownKeyErrors(value, BABY_KEYS);
     const babyName = readOptionalText(value, 'babyName');
-    if (babyName.error)
+    if (babyName.error) {
         errors.push(babyName.error);
+    }
+    else if (babyName.value && babyName.value.length > 100) {
+        errors.push({
+            field: 'babyName',
+            message: 'babyName must not exceed 100 characters.',
+        });
+    }
     const sex = readEnum(value, 'sex', ['male', 'female']);
     if (sex.error)
         errors.push(sex.error);
@@ -336,10 +394,20 @@ export function validateBabyProfileInput(value) {
             message: 'gestationalAgeWeeks must be at least 24 and less than 37.',
         });
     }
+    else {
+        const str = String(gestationalAgeWeeks.value);
+        const parts = str.split('.');
+        if (parts.length > 1 && parts[1].length > 1) {
+            errors.push({
+                field: 'gestationalAgeWeeks',
+                message: 'gestationalAgeWeeks must have at most one decimal place.',
+            });
+        }
+    }
     const birthWeightGrams = readIntegerInRange(value, 'birthWeightGrams', 400, 4000);
     if (birthWeightGrams.error)
         errors.push(birthWeightGrams.error);
-    const weightAtDischargeGrams = readIntegerInRange(value, 'weightAtDischargeGrams', 400, 6000);
+    const weightAtDischargeGrams = readIntegerInRange(value, 'weightAtDischargeGrams', 400, 5000);
     if (weightAtDischargeGrams.error)
         errors.push(weightAtDischargeGrams.error);
     const nicuStayDays = readIntegerInRange(value, 'nicuStayDays', 1, 120);
@@ -415,5 +483,54 @@ export function validateBabyProfileInput(value) {
             dischargeDate: dischargeDate.value,
             birthWeightStratum: calculateBirthWeightStratum(birthWeight),
         },
+    };
+}
+export function validateHospitalCodeInput(value) {
+    if (!isRecord(value)) {
+        return {
+            valid: false,
+            errors: [{ field: 'body', message: 'Request body must be an object.' }],
+        };
+    }
+    const errors = unknownKeyErrors(value, new Set(['code']));
+    const codeResult = readRequiredText(value, 'code');
+    if (codeResult.error) {
+        errors.push(codeResult.error);
+    }
+    else if (codeResult.value !== undefined) {
+        const normalized = codeResult.value.trim().toUpperCase();
+        if (!/^[A-Z0-9]{2,10}$/.test(normalized)) {
+            errors.push({
+                field: 'code',
+                message: 'Hospital code must contain only letters and numbers, between 2 and 10 characters.',
+            });
+        }
+    }
+    if (errors.length > 0) {
+        return { valid: false, errors };
+    }
+    return {
+        valid: true,
+        errors: [],
+        data: {
+            code: codeResult.value.trim().toUpperCase(),
+        },
+    };
+}
+export function validateCompleteOnboardingInput(body) {
+    if (!isRecord(body)) {
+        return {
+            valid: false,
+            errors: [{ field: 'body', message: 'Request body must be an object.' }],
+        };
+    }
+    const errors = unknownKeyErrors(body, new Set([]));
+    if (errors.length > 0) {
+        return { valid: false, errors };
+    }
+    return {
+        valid: true,
+        errors: [],
+        data: {},
     };
 }

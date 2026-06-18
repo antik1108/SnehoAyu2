@@ -41,5 +41,259 @@
     "persistenceStatus": "সংরক্ষিত (ব্রাউজার রিফ্রেশ করে পরীক্ষা করুন!)",
     "changeLanguage": "ভাষা পরিবর্তন করুন",
     "getStarted": "শুরু করুন"
+  },
+  "auth": {
+    "common": {
+      "mobileNumber": "মোবাইল নম্বর",
+      "password": "পাসওয়ার্ড",
+      "confirmPassword": "পাসওয়ার্ড নিশ্চিত করুন",
+      "phonePlaceholder": "১০-ডিজিটের নম্বরটি দিন",
+      "passwordPlaceholder": "পাসওয়ার্ড দিন",
+      "confirmPasswordPlaceholder": "পাসওয়ার্ডটি আবার দিন"
+    },
+    "register": {
+      "title": "আপনার অ্যাকাউন্ট তৈরি করুন",
+      "subtitle": "আপনার মোবাইল নম্বর দিন এবং একটি নিরাপদ পাসওয়ার্ড তৈরি করুন।",
+      "submit": "অ্যাকাউন্ট তৈরি করুন",
+      "submitting": "অ্যাকাউন্ট তৈরি করা হচ্ছে…",
+      "footerText": "ইতিমধ্যে একটি অ্যাকাউন্ট আছে?",
+      "footerLink": "লগ ইন করুন"
+    },
+    "login": {
+      "title": "আবার স্বাগতম",
+      "subtitle": "মোবাইল নম্বর ও পাসওয়ার্ড দিয়ে লগ ইন করুন।",
+      "submit": "লগ ইন করুন",
+      "submitting": "লগ ইন করা হচ্ছে…",
+      "footerText": "স্নেহআয়ু-তে নতুন?",
+      "footerLink": "অ্যাকাউন্ট তৈরি করুন",
+      "pinNotice": "পিন সেটআপ করার পরে পিন লগইন সুবিধা পাওয়া যাবে।"
+    },
+    "validation": {
+      "phoneRequired": "মোবাইল নম্বর দেওয়া আবশ্যক।",
+      "phoneInvalid": "একটি সঠিক ১০-ডিজিটের ভারতীয় মোবাইল নম্বর দিন।",
+      "passwordRequired": "পাসওয়ার্ড দেওয়া আবশ্যক।",
+      "passwordLength": "পাসওয়ার্ডটি ৮ থেকে ৭২ অক্ষরের মধ্যে হতে হবে।",
+      "confirmRequired": "পাসওয়ার্ডটি নিশ্চিত করুন।",
+      "passwordMismatch": "পাসওয়ার্ড দুটি মেলেনি।"
+    },
+    "errors": {
+      "phoneAlreadyRegistered": "এই মোবাইল নম্বরে ইতিমধ্যে একটি অ্যাকাউন্ট আছে। অনুগ্রহ করে লগ ইন করুন।",
+      "invalidCredentials": "মোবাইল নম্বর অথবা পাসওয়ার্ডটি ভুল।",
+      "network": "আপনার ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।",
+      "unexpected": "কিছু ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
+    },
+    "pin": {
+      "create": {
+        "title": "৪ সংখ্যার একটি পিন তৈরি করুন",
+        "subtitle": "দ্রুত লগ ইন করতে এই পিন ব্যবহার করুন।",
+        "step1": "ধাপ ১-এর ২",
+        "step2": "ধাপ ২-এর ২",
+        "promptEnter": "আপনার পিন লিখুন",
+        "promptConfirm": "আপনার পিন নিশ্চিত করুন",
+        "promptConfirmSubtitle": "একই ৪ সংখ্যার পিন আবার লিখুন।",
+        "submitting": "আপনার পিন সেট করা হচ্ছে…",
+        "success": "পিন সফলভাবে তৈরি হয়েছে।"
+      },
+      "login": {
+        "title": "পিন দিয়ে লগ ইন করুন",
+        "subtitle": "আপনার মোবাইল নম্বর ও ৪ সংখ্যার পিন লিখুন।",
+        "link": "পিন দিয়ে লগ ইন করুন",
+        "submit": "লগ ইন করুন",
+        "submitting": "লগ ইন করা হচ্ছে…",
+        "linkPassword": "পাসওয়ার্ড দিয়ে লগ ইন করুন",
+        "forgotPinNotice": "পিন ভুলে গেছেন? পাসওয়ার্ড দিয়ে লগ ইন করুন।",
+        "pinNotConfigured": "এই অ্যাকাউন্টে পিন লগ ইন চালু করা নেই। পাসওয়ার্ড দিয়ে লগ ইন করুন।"
+      },
+      "validation": {
+        "pinRequired": "পিন দেওয়া আবশ্যক।",
+        "pinDigits": "পিনটি অবশ্যই ঠিক ৪টি সংখ্যার হতে হবে।",
+        "mismatch": "পিন দুটি মিলছে না। আবার চেষ্টা করুন।",
+        "enterAllDigits": "চারটি সংখ্যাই লিখুন।",
+        "weakPin": "এই পিনটি সহজে অনুমান করা যেতে পারে।"
+      },
+      "keypad": {
+        "backspace": "শেষ সংখ্যাটি মুছুন",
+        "clear": "পিন মুছুন"
+      }
+    }
+  },
+  "onboarding": {
+    "common": {
+      "saveAndContinue": "সংরক্ষণ করে এগিয়ে যান",
+      "saving": "সংরক্ষণ করা হচ্ছে…",
+      "yes": "হ্যাঁ",
+      "no": "না",
+      "loading": "লোড হচ্ছে…",
+      "retry": "আবার চেষ্টা করুন",
+      "optional": "(ঐচ্ছিক)"
+    },
+    "steps": {
+      "indicator": "ধাপ {{step}}-এর ৪: {{label}}",
+      "mother": "মায়ের তথ্য",
+      "baby": "শিশুর তথ্য",
+      "hospital": "হাসপাতালের কোড",
+      "complete": "নিবন্ধন সম্পন্ন"
+    },
+    "mother": {
+      "title": "মায়ের তথ্য",
+      "subtitle": "মায়ের জনসংখ্যাগত তথ্য পূরণ করুন।",
+      "fullName": "মায়ের নাম",
+      "ageRange": "বয়স সীমা",
+      "educationMother": "মায়ের শিক্ষাগত যোগ্যতা",
+      "educationFather": "বাবার শিক্ষাগত যোগ্যতা",
+      "occupationMother": "মায়ের পেশা",
+      "occupationFather": "বাবার পেশা",
+      "incomeClass": "পরিবারের আয়ের শ্রেণি",
+      "familyType": "পরিবারের ধরন",
+      "familyMembersCount": "পরিবারের সদস্য সংখ্যা",
+      "religion": "ধর্ম",
+      "residenceType": "বসবাসের এলাকা",
+      "contactNumber": "বিকল্প যোগাযোগ নম্বর",
+      "prevPretermEducation": "অপরিণত শিশুর যত্ন সম্পর্কে আগে কোনো শিক্ষা পেয়েছেন?",
+      "educationSource": "তথ্যের উৎস",
+      "selectOption": "বিকল্পটি বেছে নিন",
+      "ageRangeOptions": {
+        "below_18": "১৮ বছরের নিচে",
+        "18_25": "১৮-২৫ বছর",
+        "26_30": "২৬-৩০ বছর",
+        "31_35": "৩১-৩৫ বছর",
+        "36_40": "৩৬-৪০ বছর",
+        "above_40": "৪০ বছরের উপরে"
+      },
+      "educationOptions": {
+        "no_formal": "কোনো প্রাতিষ্ঠানিক শিক্ষা নেই",
+        "primary": "প্রাথমিক শিক্ষা",
+        "secondary": "মাধ্যমিক শিক্ষা",
+        "higher_secondary": "উচ্চ মাধ্যমিক",
+        "graduate": "স্নাতক",
+        "postgraduate_plus": "স্নাতকোত্তর বা তার বেশি"
+      },
+      "motherOccupationOptions": {
+        "homemaker": "গৃহিণী",
+        "govt_service": "সরকারি চাকরি",
+        "private_service": "বেসরকারি চাকরি",
+        "business": "ব্যবসা / স্ব-নিযুক্ত",
+        "daily_labour": "দিনমজুর",
+        "other": "অন্যান্য"
+      },
+      "fatherOccupationOptions": {
+        "unemployed": "বেকার",
+        "govt_service": "সরকারি চাকরি",
+        "private_service": "বেসরকারি চাকরি",
+        "business": "ব্যবसा / স্ব-নিযুক্ত",
+        "daily_labour": "দিনমজুর",
+        "other": "অন্যান্য"
+      },
+      "incomeClassOptions": {
+        "I": "শ্রেণি ১ (উচ্চ)",
+        "II": "শ্রেণি ২ (উচ্চ মধ্যম)",
+        "III": "শ্রেণি ৩ (মধ্যম)",
+        "IV": "শ্রেণি ৪ (নিম্ন মধ্যম)",
+        "V": "শ্রেণি ৫ (নিম্ন)"
+      },
+      "familyTypeOptions": {
+        "nuclear": "একক পরিবার",
+        "joint": "যৌথ পরিবার",
+        "extended": "সম্প্রসারিত পরিবার"
+      },
+      "religionOptions": {
+        "hindu": "সনাতন / হিন্দু ধর্ম",
+        "muslim": "ইসলাম ধর্ম",
+        "christian": "খ্রিস্টধর্ম",
+        "other": "অন্যান্য"
+      },
+      "residenceOptions": {
+        "urban": "শহর",
+        "rural": "গ্রাম",
+        "semi_urban": "আধা-শহর"
+      },
+      "sourceOptions": {
+        "health_worker": "স্বাস্থ্যকর্মী",
+        "family": "পরিবারের সদস্যরা",
+        "peer": "সহকর্মী / বন্ধুরা",
+        "workshop": "কর্মশালা / প্রশিক্ষণ",
+        "magazine": "পত্রিকা / লিফলেট"
+      }
+    },
+    "baby": {
+      "title": "শিশুর তথ্য",
+      "subtitle": "NICU থেকে ছাড়পত্রের নথি অনুযায়ী তথ্য লিখুন।",
+      "babyName": "শিশুর নাম",
+      "sex": "লিঙ্গ",
+      "sexOptions": {
+        "male": "পুত্র সন্তান",
+        "female": "কন্যা সন্তান"
+      },
+      "dateOfBirth": "জন্মতারিখ",
+      "gestationalAgeWeeks": "জন্মের সময় গর্ভকাল (সপ্তাহ)",
+      "birthWeightGrams": "জন্মের ওজন (গ্রাম)",
+      "weightAtDischargeGrams": "ছাড়ার সময় ওজন (গ্রাম)",
+      "placeOfDelivery": "প্রসবের স্থান",
+      "placeOfDeliveryOptions": {
+        "hospital": "হাসপাতাল / স্বাস্থ্য কেন্দ্র",
+        "home": "বাড়িতে প্রসব"
+      },
+      "nicuStayDays": "NICU-তে থাকার দিন",
+      "skinToSkinAtBirth": "জন্মের সময় ত্বক-থেকে-ত্বক সংস্পর্শ?",
+      "nicuKmc": "NICU-তে KMC দেওয়া হয়েছিল?",
+      "feedingAtDischarge": "ছাড়ার সময় খাওয়ানোর ধরন",
+      "feedingOptions": {
+        "exclusive_bf": "শুধুমাত্র বুকের দুধ",
+        "exclusive_formula": "শুধুমাত্র ফর্মুলা দুধ",
+        "mixed": "মেশানো খাওয়ানো (বুকের দুধ ও ফর্মুला)"
+      },
+      "criedAtBirth": "জন্মের পর কেঁদেছিল?",
+      "neededResuscitation": "পুনরুজ্জীবনের প্রয়োজন হয়েছিল?",
+      "dischargeDate": "ছাড়ার তারিখ"
+    },
+    "hospital": {
+      "title": "হাসপাতালের কোড লিখুন",
+      "subtitle": "এই কোডটি স্টাডি কো-অর্ডিনেটর দিয়েছেন।",
+      "inputLabel": "হাসপাতালের কোড",
+      "placeholder": "যেমন: BNK",
+      "submit": "হাসপাতাল যাচাই করুন",
+      "submitting": "যাচাই করা হচ্ছে…",
+      "verifiedHeading": "হাসপাতাল যাচাই সম্পন্ন",
+      "nameLabel": "হাসপাতালের নাম",
+      "codeLabel": "হাসপাতালের কোড",
+      "allocationProgress": "অংশগ্রহণকারী কোড তৈরি করা হচ্ছে…",
+      "completionProgress": "নিবন্ধন সম্পন্ন করা হচ্ছে…"
+    },
+    "complete": {
+      "title": "সব প্রস্তুত!",
+      "subtitle": "আপনার অ্যাকাউন্ট ও গবেষণায় অন্তর্ভুক্তি সম্পন্ন হয়েছে।",
+      "participantCode": "অংশগ্রহণকারী কোড",
+      "hospitalName": "হাসপাতাল",
+      "studyGroup": "গবেষণা দল",
+      "groupLabels": {
+        "study": "গবেষণা দল",
+        "control": "নিয়ন্ত্রণ দল"
+      },
+      "infoMessage": "পরবর্তী ছয় মাস স্নেহআয়ু আপনার ও আপনার শিশুর পাশে থাকবে।",
+      "goHome": "হোমে যান"
+    },
+    "validation": {
+      "fieldRequired": "এই ক্ষেত্রটি পূরণ করা আবশ্যক।",
+      "familyCountInvalid": "পরিবারের সদস্য সংখ্যা অবশ্যই ১ থেকে ৩০-এর মধ্যে একটি পূর্ণসংখ্যা হতে হবে।",
+      "contactInvalid": "যোগাযোগ নম্বরটি অবশ্যই একটি সঠিক ১০-ডিজিটের ভারতীয় মোবাইল নম্বর হতে হবে।",
+      "sourceRequired": "কমপক্ষে একটি তথ্যের উৎস নির্বাচন করা আবশ্যক।",
+      "babyNameLength": "শিশুর নাম ১০০ অক্ষরের বেশি হতে পারবে না।",
+      "futureDate": "তারিখ ভবিষ্যতের হতে পারবে না।",
+      "dischargeBeforeBirth": "ছাড়ার তারিখ অবশ্যই জন্মের তারিখের পরে হতে হবে।",
+      "gaInvalid": "জন্মের সময় গর্ভকাল অবশ্যই ২৪.০ থেকে ৩৬.৯ সপ্তাহের মধ্যে হতে হবে (সর্বোচ্চ এক দশমিক স্থান)।",
+      "birthWeightInvalid": "জন্মের ওজন ৪০০ থেকে ৪০০০ গ্রামের মধ্যে হতে হবে।",
+      "dischargeWeightInvalid": "ছাড়ার সময় ওজন ৪০০ থেকে ৫০০০ গ্রামের মধ্যে হতে হবে।",
+      "nicuStayInvalid": "NICU-তে থাকার দিন ১ থেকে ১২০ দিনের মধ্যে হতে হবে।",
+      "hospitalCodeFormat": "হাসপাতাল কোডে কেবল অক্ষর এবং সংখ্যা থাকতে होगा, ২ থেকে ১০ অক্ষরের মধ্যে।",
+      "hospitalCodeRequired": "হাসপাতালের কোড দেওয়া আবশ্যক।"
+    },
+    "errors": {
+      "motherProfileRequired": "মায়ের প্রোফাইল আবশ্যক। অনুগ্রহ করে প্রথমে এটি পূরণ করুন।",
+      "babyProfileRequired": "শিশুর প্রোফাইল আবশ্যক। অনুগ্রহ করে প্রথমে এটি পূরণ করুন।",
+      "studyGroupRequired": "নিবন্ধন সম্পন্ন করার আগে গবেষককে অবশ্যই গবেষণা দল নির্ধারণ করতে হবে।",
+      "hospitalEnrollmentClosed": "এই হাসপাতালে বর্তমানে নতুন নাম নথিভুক্তকরণ বন্ধ রয়েছে।",
+      "hospitalLinkLocked": "অংশগ্রহণকারী কোড বরাদ্দ করার পরে হাসপাতাল পরিবর্তন করা সম্ভব নয়।",
+      "invalidHospitalCode": "হাসপাতালের কোডটি সঠিক নয়।"
+    }
   }
 }

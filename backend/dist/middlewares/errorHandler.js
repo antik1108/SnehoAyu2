@@ -121,6 +121,17 @@ export const globalErrorHandler = (err, req, res, _next) => {
     }
     // ── 4. Operational / custom AppErrors ────────────────────────────────────
     if (err.isOperational === true) {
+        if (err.code === 'INVALID_REQUEST' || err.code === 'VALIDATION_ERROR' || err.details !== undefined) {
+            res.status(err.statusCode ?? 400).json({
+                success: false,
+                error: {
+                    code: err.code ?? 'INVALID_REQUEST',
+                    message: err.message,
+                    details: err.details,
+                },
+            });
+            return;
+        }
         res.status(err.statusCode ?? 400).json({
             success: false,
             code: err.code ?? 'APPLICATION_ERROR',
@@ -159,10 +170,13 @@ export const globalErrorHandler = (err, req, res, _next) => {
  *   return next(createError(404, 'NOT_FOUND', 'Hospital not found.'));
  * }
  */
-export function createError(statusCode, code, message) {
+export function createError(statusCode, code, message, details) {
     const err = new Error(message);
     err.statusCode = statusCode;
     err.code = code;
     err.isOperational = true;
+    if (details !== undefined) {
+        err.details = details;
+    }
     return err;
 }

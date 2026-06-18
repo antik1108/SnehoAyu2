@@ -27,6 +27,8 @@ import {
   loginPin,
   changePin,
   removePin,
+  refresh,
+  logout,
 } from '../controllers/authController.js';
 import { requireAuth } from '../middlewares/authMiddleware.js';
 import { normalizePhone } from '../utils/phoneNumber.js';
@@ -135,5 +137,11 @@ router.post('/change-pin', requireAuth, changePin);
 
 // DELETE /api/auth/remove-pin
 router.delete('/remove-pin', requireAuth, removePin);
+
+// POST /api/auth/refresh
+router.post('/refresh', refresh);
+
+// POST /api/auth/logout
+router.post('/logout', logout);
 
 export default router;
