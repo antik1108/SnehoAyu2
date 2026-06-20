@@ -12,6 +12,7 @@ import { HealthStatsStrip } from '../components/dashboard/HealthStatsStrip';
 import { FeedingSummaryCard } from '../components/dashboard/FeedingSummaryCard';
 import { NextReminderCard } from '../components/dashboard/NextReminderCard';
 import { DailyMessageCard } from '../components/dashboard/DailyMessageCard';
+import { TelehealthCard } from '../components/dashboard/TelehealthCard';
 import { getDashboardHome } from '../features/dashboard/api';
 import type { DashboardHomeData } from '../features/dashboard/types';
 import { ROUTES } from '../routes/paths';
@@ -143,6 +144,7 @@ export const Dashboard: React.FC = () => {
         <FeedingSummaryCard feeding={data.feeding} />
         <NextReminderCard nextReminder={data.nextReminder} />
         <DailyMessageCard dailyMessage={data.dailyMessage} />
+        <TelehealthCard />
         {data.careToday.available ? null : <ChecklistStateCard />}
       </div>
     </AppShell>

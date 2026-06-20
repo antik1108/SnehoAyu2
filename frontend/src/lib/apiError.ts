@@ -54,6 +54,23 @@ export function normalizeApiError(error: unknown): AppApiError {
     };
   }
 
+  if (error && typeof error === 'object') {
+    const data = error as Record<string, unknown>;
+    if (typeof data.code === 'string' || typeof data.message === 'string') {
+      const details = Array.isArray(data.details) ? (data.details as Array<{
+        field?: string;
+        section?: string;
+        message: string;
+      }>) : undefined;
+
+      return {
+        code: typeof data.code === 'string' ? data.code : 'UNEXPECTED_ERROR',
+        message: typeof data.message === 'string' ? data.message : 'An unexpected error occurred.',
+        details,
+      };
+    }
+  }
+
   return {
     code: 'UNEXPECTED_ERROR',
     message: 'An unknown error occurred.',

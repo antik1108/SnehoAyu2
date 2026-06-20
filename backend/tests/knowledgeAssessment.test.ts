@@ -112,7 +112,7 @@ describe('Knowledge Assessment Tool III backend', () => {
     }));
   });
 
-  it('returns public questions without correct answer keys and marks content not ready', async () => {
+  it('returns public questions without correct answer keys and marks content ready', async () => {
     const req = {
       user: makeUser(),
       query: { timePoint: 'baseline', lang: 'en' },
@@ -127,11 +127,11 @@ describe('Knowledge Assessment Tool III backend', () => {
     expect(next).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
     const body = res.json.mock.calls[0][0];
-    expect(body.data.contentReady).toBe(false);
+    expect(body.data.contentReady).toBe(true);
     expect(body.data.questions).toHaveLength(15);
     expect(body.data.questions[0].correctOptionId).toBeUndefined();
     expect(body.data.questions[0].approvedCorrectAnswerReference).toBeUndefined();
-    expect(body.data.questions[0].contentStatus).toBe('approval_required');
+    expect(body.data.questions[0].contentStatus).toBe('approved');
   });
 
   it('requires a matching follow-up schedule', async () => {
@@ -186,7 +186,7 @@ describe('Knowledge Assessment Tool III backend', () => {
     });
   });
 
-  it('blocks real submission while approved answer options are unavailable', async () => {
+  it('allows real submission now that approved answer options are configured', async () => {
     const responses = Object.fromEntries(
       Array.from({ length: 15 }, (_, index) => [`q${index + 1}`, 'a'])
     );
@@ -199,16 +199,23 @@ describe('Knowledge Assessment Tool III backend', () => {
     } as unknown as Request;
     prismaMock.motherProfile.findUnique.mockResolvedValue(makeMotherProfile());
     prismaMock.followUpSchedule.findUnique.mockResolvedValue(makeFollowUp());
+    prismaMock.knowledgeAssessment.findUnique.mockResolvedValue(null);
+    prismaMock.knowledgeAssessment.create.mockResolvedValue({
+      timePoint: 'baseline',
+      responses,
+      score: 4,
+      maxScore: 15,
+      percentage: 27,
+      grade: 'poor',
+      submittedAt: new Date('2026-01-01T00:00:00.000Z'),
+    });
     const res = makeResponse();
     const next = vi.fn() as NextFunction;
 
     await postKnowledgeSubmission(req, res, next);
 
-    expect(prismaMock.knowledgeAssessment.create).not.toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith(expect.objectContaining({
-      statusCode: 400,
-      code: 'KNOWLEDGE_CONTENT_NOT_CONFIGURED',
-    }));
+    expect(next).not.toHaveBeenCalled();
+    expect(prismaMock.knowledgeAssessment.create).toHaveBeenCalled();
   });
 
   it('rejects client-submitted score fields before persistence', async () => {

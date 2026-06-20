@@ -1,6 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import {
+  Milk,
+  Heart,
+  Thermometer,
+  Scale,
+  Bandage,
+  Pill,
+  AlertTriangle,
+  Check,
+  ChevronDown,
+  ChevronRight,
+  PartyPopper,
+  CircleAlert,
+  type LucideIcon,
+} from 'lucide-react';
+import { AiAssistantButton } from '../components/dashboard/AiAssistantButton';
 import { getTodayChecklist, updateTodayChecklist } from '../features/checklist/api';
 import type {
   TodayChecklist,
@@ -36,17 +52,19 @@ const ProgressRing: React.FC<{ percent: number; done: number; total: number }> =
   const stroke = 7;
   const circ = 2 * Math.PI * r;
   const offset = circ - (safe / 100) * circ;
+  const isComplete = safe >= 100;
+
   return (
-    <div className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-4">
+    <div className="surface-brand shadow-brand flex items-center gap-4 rounded-2xl p-5">
       <svg
-        width="100"
-        height="100"
+        width="84"
+        height="84"
         viewBox="0 0 100 100"
         role="img"
         aria-label={t('checklist.progress.todayProgress') + ' ' + safe + '%'}
         className="shrink-0"
       >
-        <circle cx="50" cy="50" r={r} fill="none" stroke="currentColor" strokeWidth={stroke} className="text-border" />
+        <circle cx="50" cy="50" r={r} fill="none" stroke="currentColor" strokeWidth={stroke} className="text-white/20" />
         <circle
           cx="50"
           cy="50"
@@ -57,15 +75,24 @@ const ProgressRing: React.FC<{ percent: number; done: number; total: number }> =
           strokeLinecap="round"
           strokeDasharray={circ}
           strokeDashoffset={offset}
-          className="text-primary transition-all duration-500"
+          className="text-white transition-all duration-500"
           transform="rotate(-90 50 50)"
         />
-        <text x="50" y="46" textAnchor="middle" className="fill-text text-[17px] font-bold">{safe}%</text>
-        <text x="50" y="63" textAnchor="middle" className="fill-text-muted text-[9px] font-medium">{done}/{total}</text>
+        <text x="50" y="46" textAnchor="middle" className="fill-white text-[17px] font-bold">{safe}%</text>
+        <text x="50" y="63" textAnchor="middle" className="fill-white/80 text-[9px] font-medium">{done}/{total}</text>
       </svg>
       <div>
-        <p className="text-base font-semibold text-text">{t('checklist.progress.todayProgress')}</p>
-        <p className="mt-1 text-sm text-text-muted">{done}/{total} {t('checklist.progress.completed')}</p>
+        <p className="text-base font-semibold text-white">{t('checklist.progress.todayProgress')}</p>
+        <p className="mt-1 flex items-center gap-1.5 text-sm text-white/85">
+          {isComplete ? (
+            <>
+              <PartyPopper className="h-4 w-4" aria-hidden="true" />
+              {t('checklist.progress.allDone', "All caught up for today!")}
+            </>
+          ) : (
+            `${done}/${total} ${t('checklist.progress.completed')}`
+          )}
+        </p>
       </div>
     </div>
   );
@@ -76,6 +103,7 @@ const ProgressRing: React.FC<{ percent: number; done: number; total: number }> =
 interface SectionCardProps {
   id: string;
   title: string;
+  icon: LucideIcon;
   done: boolean;
   optional?: boolean;
   children: React.ReactNode;
@@ -88,6 +116,7 @@ interface SectionCardProps {
 const SectionCard: React.FC<SectionCardProps> = ({
   id,
   title,
+  icon: Icon,
   done,
   optional,
   children,
@@ -97,46 +126,75 @@ const SectionCard: React.FC<SectionCardProps> = ({
   saveLabel,
 }) => {
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(!done);
+
+  // Auto-collapse the card once it transitions to "done" (i.e. right after
+  // a successful save) — gives a satisfying sense of progress without the
+  // user needing to manually close every section on a long checklist.
+  useEffect(() => {
+    if (done) setExpanded(false);
+  }, [done]);
 
   return (
     <section
       id={id}
-      className={`rounded-2xl border bg-surface p-4 transition-colors duration-300 ${
+      className={`overflow-hidden rounded-2xl border bg-surface transition-colors duration-300 ${
         done ? 'border-success/40 bg-success/5' : 'border-border'
       }`}
       aria-label={title}
     >
-      <div className="flex items-start justify-between gap-2">
-        <div>
+      <button
+        type="button"
+        onClick={() => setExpanded((e) => !e)}
+        aria-expanded={expanded}
+        className="flex w-full items-center gap-3 p-4 text-left focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary"
+      >
+        <span
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+            done ? 'bg-success/15 text-success' : 'bg-primary/10 text-primary'
+          }`}
+          aria-hidden="true"
+        >
+          <Icon className="h-5 w-5" strokeWidth={2} />
+        </span>
+        <div className="flex-1 min-w-0">
           <h2 className="text-sm font-semibold text-text">{title}</h2>
           {optional && (
-            <span className="text-xs text-text-muted">({t('checklist.fields.optional')})</span>
+            <span className="text-xs text-text-muted">{t('checklist.fields.optional')}</span>
           )}
         </div>
         {done && (
           <span
             aria-label="completed"
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success text-white text-xs"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success text-white"
           >
-            ✓
+            <Check className="h-3.5 w-3.5" strokeWidth={3} />
           </span>
         )}
-      </div>
-
-      <div className="mt-4 space-y-3">{children}</div>
-
-      {error && (
-        <p role="alert" className="mt-2 text-xs text-error">{error}</p>
-      )}
-
-      <button
-        type="button"
-        onClick={onSave}
-        disabled={saving}
-        className="mt-4 w-full min-h-[48px] rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-opacity disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-80"
-      >
-        {saving ? t('checklist.actions.saving') : (saveLabel ?? t('checklist.actions.save'))}
+        <ChevronDown
+          className={`h-5 w-5 shrink-0 text-text-muted transition-transform duration-200 ${expanded ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        />
       </button>
+
+      {expanded && (
+        <div className="px-4 pb-4">
+          <div className="space-y-3">{children}</div>
+
+          {error && (
+            <p role="alert" className="mt-2 text-xs text-error">{error}</p>
+          )}
+
+          <button
+            type="button"
+            onClick={onSave}
+            disabled={saving}
+            className="mt-4 w-full min-h-[48px] rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-opacity disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary active:opacity-80"
+          >
+            {saving ? t('checklist.actions.saving') : (saveLabel ?? t('checklist.actions.save'))}
+          </button>
+        </div>
+      )}
     </section>
   );
 };
@@ -250,6 +308,7 @@ const BreastfeedingSection: React.FC<{
   return (
     <SectionCard
       id="section-breastfeeding"
+      icon={Milk}
       title={t('checklist.sections.breastfeeding')}
       done={isDone}
       saving={saving}
@@ -340,6 +399,7 @@ const KmcSection: React.FC<{
   return (
     <SectionCard
       id="section-kmc"
+      icon={Heart}
       title={t('checklist.sections.kmc')}
       done={initial.done}
       saving={saving}
@@ -421,6 +481,7 @@ const TemperatureSection: React.FC<{
   return (
     <SectionCard
       id="section-temperature"
+      icon={Thermometer}
       title={t('checklist.sections.temperature')}
       done={initial.done}
       saving={saving}
@@ -511,6 +572,7 @@ const WeightSection: React.FC<{
   return (
     <SectionCard
       id="section-weight"
+      icon={Scale}
       title={t('checklist.sections.weight')}
       done={initial.done}
       optional
@@ -572,6 +634,7 @@ const SkinCordCareSection: React.FC<{
   return (
     <SectionCard
       id="section-skin-cord"
+      icon={Bandage}
       title={t('checklist.sections.skinCordCare')}
       done={initial.done}
       saving={saving}
@@ -636,6 +699,7 @@ const MedicationSection: React.FC<{
   return (
     <SectionCard
       id="section-medication"
+      icon={Pill}
       title={t('checklist.sections.medication')}
       done={initial.done !== null && initial.done !== undefined ? (initial.done as boolean) : false}
       optional
@@ -698,6 +762,7 @@ const DangerSignsSection: React.FC<{
   return (
     <SectionCard
       id="section-danger-signs"
+      icon={AlertTriangle}
       title={t('checklist.sections.dangerSigns')}
       done={initial.reviewed}
       saving={saving}
@@ -717,9 +782,10 @@ const DangerSignsSection: React.FC<{
       <button
         type="button"
         onClick={() => navigate('/learn?section=danger-signs')}
-        className="w-full min-h-[44px] rounded-xl border border-primary/40 bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="flex w-full min-h-[44px] items-center justify-center gap-1 rounded-xl border border-primary/40 bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
-        {t('checklist.fields.viewDangerSignsGuide')} →
+        {t('checklist.fields.viewDangerSignsGuide')}
+        <ChevronRight className="h-4 w-4" aria-hidden="true" />
       </button>
     </SectionCard>
   );
@@ -731,7 +797,9 @@ const ChecklistError: React.FC<{ onRetry: () => void }> = ({ onRetry }) => {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center px-6">
-      <div className="text-4xl mb-4">⚠️</div>
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-error/10 text-error">
+        <CircleAlert className="h-7 w-7" aria-hidden="true" />
+      </div>
       <p className="text-sm font-medium text-text">{t('checklist.errors.loadFailed')}</p>
       <button
         type="button"
@@ -824,6 +892,9 @@ export const Checklist: React.FC = () => {
         <h1 className="text-base font-bold text-text">{t('checklist.title')}</h1>
         <p className="text-xs text-text-muted">{t('checklist.subtitle')}</p>
       </header>
+      {/* Rendered outside the header (backdrop-blur creates a containing
+          block for fixed-position descendants) so it positions correctly. */}
+      <AiAssistantButton />
 
       <main className="mx-auto max-w-md px-4 py-5 space-y-4">
         {loading && <ChecklistSkeleton />}

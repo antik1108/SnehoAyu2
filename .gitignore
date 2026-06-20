@@ -27,6 +27,9 @@ backend/.env.*
 frontend/.env
 frontend/.env.*
 *.local
+!.env.example
+!backend/.env.example
+!frontend/.env.example
 
 # Generated caches and temp files
 backend/.vite

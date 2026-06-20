@@ -4,6 +4,7 @@ import { calculateCorrectedAge, diffInDaysUtc, formatAgeDays, formatAgeWeeks, to
 import { formatDateOnly } from '../utils/dateOnly.js';
 import { mapChecklistToDashboard } from './checklistService.js';
 import { getLatestGrowthReadingForDashboard } from './growthService.js';
+import { resolveDailyMessageForMother } from './messageService.js';
 
 type RequestUser = {
   id: string;
@@ -213,12 +214,16 @@ export async function getDashboardHomeForMother(user: RequestUser): Promise<Dash
             daysRemaining: null,
             status: null,
           },
-      dailyMessage: {
-        available: false,
-        text: null,
-        language: currentUser.preferredLanguage === 'hi' || currentUser.preferredLanguage === 'en' ? currentUser.preferredLanguage : 'bn',
-        source: 'not_configured',
-      },
+      dailyMessage: (() => {
+        const language: 'bn' | 'hi' | 'en' = currentUser.preferredLanguage === 'hi' || currentUser.preferredLanguage === 'en' ? currentUser.preferredLanguage : 'bn';
+        const { text } = resolveDailyMessageForMother(babyProfile.dischargeDate, today, language);
+        return {
+          available: text !== null,
+          text,
+          language,
+          source: text !== null ? 'message_scheduler' as const : 'not_configured' as const,
+        };
+      })(),
     },
   };
 }

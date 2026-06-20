@@ -43,7 +43,10 @@ export const SignupPhone: React.FC = () => {
         const hasLower = /[a-z]/.test(password);
         const hasDigit = /[0-9]/.test(password);
         if (!hasUpper || !hasLower || !hasDigit) {
-          errors.password = t('auth.validation.passwordLength', 'Password must be between 8 and 72 characters.'); // Using general msg or custom complex rule
+          errors.password = t(
+            'auth.validation.passwordComplexity',
+            'Password must include an uppercase letter, a lowercase letter, and a number.'
+          );
         }
       }
     }
@@ -119,6 +122,7 @@ export const SignupPhone: React.FC = () => {
           label={t('auth.common.password', 'Password')}
           placeholder={t('auth.common.passwordPlaceholder', 'Enter password')}
           error={fieldErrors.password}
+          hint={t('auth.validation.passwordHint', '8+ characters, with an uppercase letter, a lowercase letter, and a number.')}
           autoComplete="new-password"
           disabled={isSubmitting}
         />

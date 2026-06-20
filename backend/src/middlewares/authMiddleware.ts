@@ -133,6 +133,27 @@ export async function requireAuth(
 }
 
 /**
+ * Middleware factory that restricts a route to one or more roles.
+ * Must run after `requireAuth` so `req.user` is already populated.
+ *
+ * @example
+ * router.get('/admin/participants', requireAuth, requireRole('researcher'), handler);
+ */
+export function requireRole(...roles: string[]) {
+  return (req: Request, _res: Response, next: NextFunction): void => {
+    if (!req.user) {
+      next(createError(401, 'AUTH_TOKEN_REQUIRED', AUTH_ERROR_MESSAGE));
+      return;
+    }
+    if (!roles.includes(req.user.role)) {
+      next(createError(403, 'FORBIDDEN', 'You do not have permission to access this resource.'));
+      return;
+    }
+    next();
+  };
+}
+
+/**
  * Convenience middleware that reads the token if present but does NOT reject
  * unauthenticated requests. Useful for routes that behave differently for
  * logged-in vs anonymous users.

@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
 import { ROUTES } from '../routes/paths';
 
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?auto=format&fit=crop&w=900&q=80';
+
 export const Welcome: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -10,28 +12,32 @@ export const Welcome: React.FC = () => {
 
   return (
     <div
-      className="flex min-h-screen w-full items-center justify-center bg-background p-4"
+      className="flex min-h-screen w-full items-center justify-center bg-gradient-to-b from-teal-50 via-background to-background p-4"
       style={{ minHeight: '100dvh' }}
     >
-      <main className="w-full max-w-md rounded-2xl border border-border bg-surface p-6 sm:p-8 flex flex-col justify-between">
-        <div className="flex flex-col items-center text-center mb-6">
-          <h1 className="font-sans text-3xl font-bold text-primary mb-2" lang="bn">
-            স্নেহআয়ু
-          </h1>
-          
-          <h2 className="font-sans text-lg font-bold text-text mb-2 px-2 leading-snug">
-            {t('welcomeScreen.headline', 'Supporting you and your baby after NICU discharge')}
-          </h2>
-          <p className="text-xs text-text-muted max-w-xs leading-relaxed">
-            {currentLang === 'bn' 
-              ? 'প্রতিদিনের সহজ যত্নের নির্দেশনা, শিশুর বৃদ্ধি পর্যবেক্ষণ এবং জরুরি লক্ষণের তথ্য—সব এক জায়গায়।'
-              : currentLang === 'hi'
-              ? 'रोज़ की देखभाल, विकास की निगरानी और खतरे के संकेतों की जानकारी—सब एक जगह।'
-              : 'Simple daily guidance, growth tracking, and urgent care information—together in one place.'}
-          </p>
-          <div className="h-px w-16 bg-border mt-4" />
+      <main className="w-full max-w-md overflow-hidden rounded-3xl border border-border bg-surface shadow-xl shadow-teal-900/5 flex flex-col justify-between">
+        <div className="relative h-48 w-full overflow-hidden">
+          <img src={HERO_IMAGE} alt="" className="h-full w-full object-cover" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-950/80 via-teal-900/20 to-transparent" />
+          <div className="absolute bottom-4 left-6 right-6">
+            <p className="font-sans text-2xl font-bold text-white drop-shadow" lang="bn">স্নেহআয়ু</p>
+            <p className="mt-1 text-xs text-white/90 drop-shadow max-w-xs leading-relaxed">
+              {currentLang === 'bn'
+                ? 'প্রতিদিনের সহজ যত্নের নির্দেশনা, শিশুর বৃদ্ধি পর্যবেক্ষণ এবং জরুরি লক্ষণের তথ্য—সব এক জায়গায়।'
+                : currentLang === 'hi'
+                ? 'रोज़ की देखभाल, विकास की निगरानी और खतरे के संकेतों की जानकारी—सब एक जगह।'
+                : 'Simple daily guidance, growth tracking, and urgent care information—together in one place.'}
+            </p>
+          </div>
         </div>
 
+        <div className="px-6 pt-6 sm:px-8 text-center mb-2">
+          <h2 className="font-sans text-lg font-bold text-text px-2 leading-snug">
+            {t('welcomeScreen.headline', 'Supporting you and your baby after NICU discharge')}
+          </h2>
+        </div>
+
+        <div className="px-6 pb-6 sm:px-8 sm:pb-8 flex flex-col justify-between flex-1">
         <div className="flex flex-col gap-4 mb-8">
           <div className="flex items-start gap-3.5 p-3 rounded-xl border border-border bg-background/50">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -117,6 +123,7 @@ export const Welcome: React.FC = () => {
           >
             {currentLang === 'bn' ? 'বাংলা / ভাষা পরিবর্তন করুন' : currentLang === 'hi' ? 'हिंदी / भाषा बदलें' : 'English / Change Language'}
           </Link>
+        </div>
         </div>
       </main>
     </div>

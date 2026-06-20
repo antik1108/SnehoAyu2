@@ -38,6 +38,7 @@ import 'dotenv/config'; // Must be the very first import to populate process.env
 
 import app from './app.js';
 import prisma from './lib/prisma.js';
+import { startMessageScheduler } from './jobs/messageScheduler.js';
 
 // ---------------------------------------------------------------------------
 // App setup
@@ -64,6 +65,8 @@ async function startServer(): Promise<void> {
     // endpoint, which allows orchestration tools to detect the DB failure and
     // restart the relevant container rather than losing the server entirely.
   }
+
+  startMessageScheduler();
 
   app.listen(PORT, () => {
     console.log(`

@@ -4,6 +4,7 @@ import {
   createGrowthReadingForMother,
   getGrowthHistoryForMother,
   getLatestGrowthReadingForMother,
+  getGrowthChartForMother,
 } from '../services/growthService.js';
 import {
   validateCreateGrowthReadingInput,
@@ -71,6 +72,26 @@ export async function getGrowthLatest(req: Request, res: Response, next: NextFun
     }
 
     const result = await getLatestGrowthReadingForMother(req.user);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getGrowthChart(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    if (!req.user) {
+      next(createError(401, 'AUTH_TOKEN_REQUIRED', 'Authentication required. Please log in.'));
+      return;
+    }
+
+    const metric = req.query['metric'];
+    if (metric !== 'weight' && metric !== 'length' && metric !== 'headCircumference') {
+      next(createError(400, 'INVALID_REQUEST', "metric must be 'weight', 'length', or 'headCircumference'."));
+      return;
+    }
+
+    const result = await getGrowthChartForMother(req.user, metric);
     res.status(200).json(result);
   } catch (error) {
     next(error);

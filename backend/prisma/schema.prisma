@@ -125,6 +125,11 @@ model MotherProfile {
   who5Assessments      Who5Assessment[]
   psocAssessments      PsocAssessment[]
   growthReadings       GrowthReading[]
+  tdscAssessments      TdscAssessment[]
+  vaccineRecords       VaccineRecord[]
+  breastfeedingAssessments BreastfeedingAssessment[]
+  contentViews         ContentView[]
+  videoCallSessions    VideoCallSession[]
 }
 
 model BabyProfile {
@@ -328,4 +333,132 @@ model DailyLog {
   @@unique([motherProfileId, careDate])
   @@index([motherProfileId, careDate])
   @@map("daily_logs")
+}
+
+/// Append-only research-grade audit trail. Never updated or deleted.
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  actorId    String?  @map("actor_id") @db.Uuid
+  actorRole  String?  @map("actor_role") @db.VarChar(20)
+  action     String   @db.VarChar(100)
+  entityType String   @map("entity_type") @db.VarChar(50)
+  entityId   String?  @map("entity_id") @db.VarChar(100)
+  metadata   Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@map("audit_logs")
+}
+
+model TdscAssessment {
+  id                String        @id @default(uuid()) @db.Uuid
+  motherProfileId   String        @map("mother_profile_id") @db.Uuid
+  motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+  timePoint         String        @map("time_point") @db.VarChar(20)
+  assessmentDate    DateTime      @map("assessment_date") @db.Date
+  correctedAgeDays  Int           @map("corrected_age_days")
+  results           Json
+  suspectedDelay    Boolean       @default(false) @map("suspected_delay")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+
+  @@unique([motherProfileId, timePoint])
+  @@map("tdsc_assessments")
+}
+
+model VaccineRecord {
+  id                String        @id @default(uuid()) @db.Uuid
+  motherProfileId   String        @map("mother_profile_id") @db.Uuid
+  motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+  vaccineId         String        @map("vaccine_id") @db.VarChar(50)
+  vaccineName       String        @map("vaccine_name") @db.VarChar(150)
+  dueDate           DateTime      @map("due_date") @db.Date
+  completedDate     DateTime?     @map("completed_date") @db.Date
+  batchNumber       String?       @map("batch_number") @db.VarChar(50)
+  administeredBy    String?       @map("administered_by") @db.VarChar(150)
+  status            String        @default("pending") @db.VarChar(20)
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+
+  @@unique([motherProfileId, vaccineId])
+  @@index([motherProfileId, status])
+  @@map("vaccine_records")
+}
+
+model BreastfeedingAssessment {
+  id                String        @id @default(uuid()) @db.Uuid
+  motherProfileId   String        @map("mother_profile_id") @db.Uuid
+  motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+  timePoint         String        @map("time_point") @db.VarChar(20)
+  responses         Json
+  totalScore        Int           @map("total_score")
+  grade             String        @db.VarChar(20)
+  submittedAt       DateTime      @default(now()) @map("submitted_at")
+
+  @@unique([motherProfileId, timePoint])
+  @@map("breastfeeding_assessments")
+}
+
+model ContentItem {
+  id          String        @id @default(uuid()) @db.Uuid
+  slug        String        @unique @db.VarChar(100)
+  category    String        @db.VarChar(50)
+  createdAt   DateTime      @default(now()) @map("created_at")
+
+  views       ContentView[]
+
+  @@map("content_items")
+}
+
+model ContentView {
+  id              String        @id @default(uuid()) @db.Uuid
+  motherProfileId String        @map("mother_profile_id") @db.Uuid
+  motherProfile   MotherProfile @relation(fields: [motherProfileId], references: [id])
+  contentItemId   String        @map("content_item_id") @db.Uuid
+  contentItem     ContentItem   @relation(fields: [contentItemId], references: [id])
+  viewedAt        DateTime      @default(now()) @map("viewed_at")
+
+  @@unique([motherProfileId, contentItemId])
+  @@map("content_views")
+}
+
+model CareMessage {
+  id          String   @id @default(uuid()) @db.Uuid
+  weekNumber  Int      @map("week_number")
+  type        String   @db.VarChar(20)
+  textBn      String   @map("text_bn") @db.Text
+  textHi      String?  @map("text_hi") @db.Text
+  textEn      String?  @map("text_en") @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@unique([weekNumber, type])
+  @@map("care_messages")
+}
+
+model MessageDelivery {
+  id              String   @id @default(uuid()) @db.Uuid
+  motherProfileId String   @map("mother_profile_id") @db.Uuid
+  careMessageId   String   @map("care_message_id") @db.Uuid
+  deliveredAt     DateTime @default(now()) @map("delivered_at")
+  channel         String   @default("sms") @db.VarChar(20)
+
+  @@index([motherProfileId, deliveredAt])
+  @@map("message_deliveries")
+}
+
+model VideoCallSession {
+  id                String        @id @default(uuid()) @db.Uuid
+  motherProfileId   String        @map("mother_profile_id") @db.Uuid
+  motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+  initiatedByUserId String?       @map("initiated_by_user_id") @db.Uuid
+  scheduledAt       DateTime?     @map("scheduled_at")
+  startedAt         DateTime?     @map("started_at")
+  durationMinutes   Int?          @map("duration_minutes")
+  channel           String        @default("whatsapp") @db.VarChar(20)
+  notes             String?       @db.Text
+  createdAt         DateTime      @default(now()) @map("created_at")
+
+  @@index([motherProfileId, createdAt])
+  @@map("video_call_sessions")
 }

@@ -25,6 +25,14 @@ import { AddReading } from '../pages/growth/AddReading';
 import { LearningHub } from '../pages/LearningHub';
 import { Profile } from '../pages/Profile';
 import { DangerSigns } from '../pages/DangerSigns';
+import { ParticipantList } from '../pages/admin/ParticipantList';
+import { ParticipantDetail } from '../pages/admin/ParticipantDetail';
+import { HospitalManagement } from '../pages/admin/HospitalManagement';
+import { RequireRole } from './RequireRole';
+import { TdscTracker } from '../pages/assessments/TdscTracker';
+import { ImmunizationTracker } from '../pages/ImmunizationTracker';
+import { BreastfeedingAssessment } from '../pages/assessments/BreastfeedingAssessment';
+import { MessageHistory } from '../pages/MessageHistory';
 
 const NotFound: React.FC = () => {
   return (
@@ -176,6 +184,68 @@ export const AppRoutes: React.FC = () => {
           element={
             <RequireAuth>
               <DangerSigns />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.TDSC}
+          element={
+            <RequireAuth>
+              <TdscTracker />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.MESSAGE_HISTORY}
+          element={
+            <RequireAuth>
+              <MessageHistory />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.BREASTFEEDING_ASSESSMENT}
+          element={
+            <RequireAuth>
+              <BreastfeedingAssessment />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.IMMUNIZATION}
+          element={
+            <RequireAuth>
+              <ImmunizationTracker />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_PARTICIPANTS}
+          element={
+            <RequireAuth>
+              <RequireRole roles={['researcher']}>
+                <ParticipantList />
+              </RequireRole>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_PARTICIPANT_DETAIL}
+          element={
+            <RequireAuth>
+              <RequireRole roles={['researcher']}>
+                <ParticipantDetail />
+              </RequireRole>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.ADMIN_HOSPITALS}
+          element={
+            <RequireAuth>
+              <RequireRole roles={['researcher']}>
+                <HospitalManagement />
+              </RequireRole>
             </RequireAuth>
           }
         />

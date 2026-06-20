@@ -3,6 +3,7 @@ import { createError } from '../middlewares/errorHandler.js';
 import { calculateCorrectedAge } from '../utils/age.js';
 import { compareDateOnly, formatDateOnly, getTodayDateOnlyInIST, parseDateOnlyToUTCDate } from '../utils/dateOnly.js';
 import type { CreateGrowthReadingInput } from '../validators/growthValidator.js';
+import { calculateZScore, getPercentileCurve, type Sex } from '../content/whoGrowthStandards.js';
 
 type RequestUser = {
   id: string;
@@ -64,24 +65,41 @@ function toNumber(value: unknown): number {
   return Number(value);
 }
 
-function mapGrowthReading(record: GrowthRecord) {
+function mapGrowthReading(record: GrowthRecord, sex?: Sex) {
+  const correctedAgeWeeks = toNumber(record.correctedAgeWeeks);
+  const weightKg = record.weightGrams / 1000;
+  const lengthCm = toNumber(record.lengthCm);
+  const headCircumferenceCm = toNumber(record.headCircumferenceCm);
+
+  const zScores = sex
+    ? {
+        weightForAge: calculateZScore('weight', sex, correctedAgeWeeks, weightKg),
+        lengthForAge: calculateZScore('length', sex, correctedAgeWeeks, lengthCm),
+        headCircumferenceForAge: calculateZScore('headCircumference', sex, correctedAgeWeeks, headCircumferenceCm),
+      }
+    : undefined;
+
   return {
     readingDate: formatDateOnly(record.readingDate),
     weightGrams: record.weightGrams,
-    lengthCm: toNumber(record.lengthCm),
-    headCircumferenceCm: toNumber(record.headCircumferenceCm),
+    lengthCm,
+    headCircumferenceCm,
     chronologicalAge: {
       days: record.chronologicalAgeDays,
       weeks: toNumber(record.chronologicalAgeWeeks),
     },
     correctedAge: {
       days: record.correctedAgeDays,
-      weeks: toNumber(record.correctedAgeWeeks),
+      weeks: correctedAgeWeeks,
     },
     timePoint: record.timePoint,
     source: record.source as 'manual' | 'growth',
     notes: record.notes ?? null,
     createdAt: record.createdAt?.toISOString(),
+    zScores,
+    lowZScoreAlert: zScores
+      ? zScores.weightForAge < -2 || zScores.lengthForAge < -2 || zScores.headCircumferenceForAge < -2
+      : false,
   };
 }
 
@@ -147,7 +165,7 @@ export async function createGrowthReadingForMother(user: RequestUser, input: Cre
     return {
       success: true,
       message: 'Growth reading saved successfully.',
-      data: mapGrowthReading(record),
+      data: mapGrowthReading(record, babyProfile.sex as Sex),
     };
   } catch (error) {
     if (typeof error === 'object' && error !== null && 'code' in error && (error as { code?: string }).code === 'P2002') {
@@ -172,7 +190,41 @@ export async function getGrowthHistoryForMother(user: RequestUser, limit: number
     success: true,
     data: {
       baseline: mapDischargeBaseline(babyProfile),
-      readings: readings.map(mapGrowthReading),
+      readings: readings.map((r) => mapGrowthReading(r, babyProfile.sex as Sex)),
+    },
+  };
+}
+
+export async function getGrowthChartForMother(user: RequestUser, metric: 'weight' | 'length' | 'headCircumference') {
+  const currentUser = assertMotherUser(user);
+  const { motherProfile, babyProfile } = await resolveGrowthContext(currentUser);
+
+  const readings = await prisma.growthReading.findMany({
+    where: { motherProfileId: motherProfile.id, babyProfileId: babyProfile.id },
+    orderBy: [{ readingDate: 'asc' }],
+  });
+
+  const sex = babyProfile.sex as Sex;
+  const mapped = readings.map((r) => mapGrowthReading(r, sex));
+  const maxWeeks = Math.max(26, ...mapped.map((r) => Math.ceil(r.correctedAge.weeks)));
+
+  return {
+    success: true,
+    data: {
+      metric,
+      sex,
+      percentileCurve: getPercentileCurve(metric, sex, maxWeeks),
+      readings: mapped.map((r) => ({
+        readingDate: r.readingDate,
+        correctedAgeWeeks: r.correctedAge.weeks,
+        value: metric === 'weight' ? r.weightGrams / 1000 : metric === 'length' ? r.lengthCm : r.headCircumferenceCm,
+        zScore: metric === 'weight'
+          ? r.zScores?.weightForAge
+          : metric === 'length'
+            ? r.zScores?.lengthForAge
+            : r.zScores?.headCircumferenceForAge,
+      })),
+      alert: mapped.some((r) => r.lowZScoreAlert),
     },
   };
 }
@@ -190,7 +242,7 @@ export async function getLatestGrowthReadingForMother(user: RequestUser) {
     return {
       success: true,
       data: {
-        ...mapGrowthReading(latest),
+        ...mapGrowthReading(latest, babyProfile.sex as Sex),
         source: 'growth' as const,
       },
     };

@@ -52,6 +52,8 @@ interface ErrorResponse {
   success: false;
   code: string;
   message: string;
+  /** Optional structured validation details */
+  details?: unknown;
   /** Only included when NODE_ENV !== 'production' */
   stack?: string;
 }
@@ -79,11 +81,24 @@ function parsePrismaError(err: AppError): { status: number; code: string; messag
     P2002: { status: 409, message: 'A record with that value already exists.' },
     P2003: { status: 400, message: 'Foreign-key constraint violation.' },
     P2004: { status: 400, message: 'A database constraint was violated.' },
+    P2021: { status: 503, message: 'The service is temporarily unavailable. Please try again shortly.' },
+    P2022: { status: 503, message: 'The service is temporarily unavailable. Please try again shortly.' },
     P2025: { status: 404, message: 'Record not found.' },
   };
 
-  const matched = map[prismaCode];
-  if (!matched) return null;
+  // Any unmapped Prisma error code still gets a safe, generic message —
+  // never the raw Prisma message, which includes file paths and SQL context.
+  const matched = map[prismaCode] ?? {
+    status: 500,
+    message: 'Something went wrong on our end. Please try again in a moment.',
+  };
+
+  if (isDev && (prismaCode === 'P2021' || prismaCode === 'P2022')) {
+    console.error(
+      `[Database] Schema drift detected (${prismaCode}). Your local database is likely missing recent migrations.\n` +
+        '  Run: cd backend && npx prisma migrate deploy   (or `npx prisma migrate dev` in development)'
+    );
+  }
 
   return {
     status: matched.status,
@@ -170,23 +185,13 @@ export const globalErrorHandler: ErrorRequestHandler = (
 
   // ── 4. Operational / custom AppErrors ────────────────────────────────────
   if (err.isOperational === true) {
-    if (err.code === 'INVALID_REQUEST' || err.code === 'VALIDATION_ERROR' || err.details !== undefined) {
-      res.status(err.statusCode ?? 400).json({
-        success: false,
-        error: {
-          code: err.code ?? 'INVALID_REQUEST',
-          message: err.message,
-          details: err.details,
-        },
-      });
-      return;
-    }
     res.status(err.statusCode ?? 400).json({
       success: false,
-      code: err.code ?? 'APPLICATION_ERROR',
+      code: err.code ?? 'INVALID_REQUEST',
       message: err.message,
+      ...(err.details !== undefined && { details: err.details }),
       ...(isDev && { stack: err.stack }),
-    } satisfies ErrorResponse);
+    });
     return;
   }
 
@@ -200,13 +205,15 @@ export const globalErrorHandler: ErrorRequestHandler = (
     return;
   }
 
-  // ── 6. Unknown / programmer errors – hide details in production ───────────
+  // ── 6. Unknown / programmer errors ─────────────────────────────────────────
+  // Never send the raw err.message to the client — it can contain internal
+  // file paths, SQL, or other implementation details. The full message and
+  // stack are already logged above for developers. The `stack` field below
+  // (dev-only) is for local debugging in API clients like Postman/curl.
   res.status(err.statusCode ?? 500).json({
     success: false,
     code: err.code ?? 'INTERNAL_SERVER_ERROR',
-    message: isDev
-      ? err.message
-      : 'An unexpected error occurred. Please try again.',
+    message: 'Something went wrong on our end. Please try again in a moment.',
     ...(isDev && { stack: err.stack }),
   } satisfies ErrorResponse);
 };

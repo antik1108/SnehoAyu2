@@ -7,12 +7,20 @@ import i18n from '../i18n';
 const growthApiMock = vi.hoisted(() => ({
   getLatestGrowthReading: vi.fn(),
   getGrowthHistory: vi.fn(),
+  getGrowthChart: vi.fn(),
 }));
 
 vi.mock('../features/growth/api', () => growthApiMock);
 
 beforeEach(() => {
   vi.clearAllMocks();
+  growthApiMock.getGrowthChart.mockResolvedValue({
+    metric: 'weight',
+    sex: 'male',
+    percentileCurve: [],
+    readings: [],
+    alert: false,
+  });
   void i18n.changeLanguage('en');
 });
 

@@ -12,12 +12,61 @@ export interface Who5Question {
   contentStatus: 'approved' | 'approval_required';
 }
 
+/**
+ * WHO-5 Well-Being Index — official 5-item instrument (PRD Tool IV).
+ * Bengali and Hindi text use the published WHO regional-office translations.
+ */
 export const who5Questions: Who5Question[] = [
-  { id: 'q1', order: 1, text: { en: 'I have felt cheerful and in good spirits' }, contentStatus: 'approval_required' },
-  { id: 'q2', order: 2, text: { en: 'I have felt calm and relaxed' }, contentStatus: 'approval_required' },
-  { id: 'q3', order: 3, text: { en: 'I have felt active and vigorous' }, contentStatus: 'approval_required' },
-  { id: 'q4', order: 4, text: { en: 'I woke up feeling fresh and rested' }, contentStatus: 'approval_required' },
-  { id: 'q5', order: 5, text: { en: 'My daily life has been filled with interesting things' }, contentStatus: 'approval_required' },
+  {
+    id: 'q1',
+    order: 1,
+    text: {
+      en: 'I have felt cheerful and in good spirits',
+      bn: 'আমি প্রফুল্ল এবং ভালো মেজাজে ছিলাম',
+      hi: 'मैं प्रसन्न और अच्छे मूड में रहा/रही हूँ',
+    },
+    contentStatus: 'approved',
+  },
+  {
+    id: 'q2',
+    order: 2,
+    text: {
+      en: 'I have felt calm and relaxed',
+      bn: 'আমি শান্ত এবং স্বস্তি বোধ করেছি',
+      hi: 'मैं शांत और तनावमुक्त महसूस कर रहा/रही हूँ',
+    },
+    contentStatus: 'approved',
+  },
+  {
+    id: 'q3',
+    order: 3,
+    text: {
+      en: 'I have felt active and vigorous',
+      bn: 'আমি সক্রিয় এবং উদ্যমী বোধ করেছি',
+      hi: 'मैं सक्रिय और ऊर्जावान महसूस कर रहा/रही हूँ',
+    },
+    contentStatus: 'approved',
+  },
+  {
+    id: 'q4',
+    order: 4,
+    text: {
+      en: 'I woke up feeling fresh and rested',
+      bn: 'আমি সতেজ এবং বিশ্রাম নিয়ে ঘুম থেকে উঠেছি',
+      hi: 'मैं ताज़ा और आराम महसूस करते हुए जागा/जागी हूँ',
+    },
+    contentStatus: 'approved',
+  },
+  {
+    id: 'q5',
+    order: 5,
+    text: {
+      en: 'My daily life has been filled with interesting things',
+      bn: 'আমার দৈনন্দিন জীবন আকর্ষণীয় বিষয়ে পূর্ণ ছিল',
+      hi: 'मेरा दैनिक जीवन दिलचस्प चीज़ों से भरा रहा है',
+    },
+    contentStatus: 'approved',
+  },
 ];
 
 export const who5Scale: Array<{

@@ -830,10 +830,8 @@ describe('hospital code verification and linking', () => {
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
         success: true,
-        data: expect.objectContaining({
-          alreadyLinked: false,
-          hospital: expect.objectContaining({ code: 'BNK' }),
-        }),
+        alreadyLinked: false,
+        data: expect.objectContaining({ code: 'BNK' }),
       })
     );
   });
@@ -918,7 +916,7 @@ describe('hospital code verification and linking', () => {
       expect.objectContaining({
         success: true,
         message: 'Hospital is already linked.',
-        data: expect.objectContaining({ alreadyLinked: true }),
+        alreadyLinked: true,
       })
     );
   });

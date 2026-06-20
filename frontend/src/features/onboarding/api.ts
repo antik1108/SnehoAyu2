@@ -17,8 +17,13 @@ export async function saveBabyProfile(data: BabyProfileInput): Promise<unknown> 
   return res.data;
 }
 
-export async function linkHospital(code: string): Promise<{ success: boolean; data: HospitalInfo }> {
-  const res = await api.post<{ success: boolean; data: HospitalInfo }>('/onboarding/hospital-code', { code });
+export async function linkHospital(
+  code: string
+): Promise<{ success: boolean; data: HospitalInfo; alreadyLinked?: boolean; nextStep?: string }> {
+  const res = await api.post<{ success: boolean; data: HospitalInfo; alreadyLinked?: boolean; nextStep?: string }>(
+    '/onboarding/hospital-code',
+    { code }
+  );
   return res.data;
 }
 

@@ -17,6 +17,7 @@ import {
 } from '../utils/participantCode.js';
 import { addUtcDays, formatDateOnly } from '../utils/dateOnly.js';
 import { randomInt } from 'crypto';
+import { recordAudit } from '../services/auditService.js';
 
 function getMotherUserId(req: Request): string {
   if (!req.user) {
@@ -351,17 +352,16 @@ export async function linkHospital(
         success: true,
         message: 'Hospital is already linked.',
         data: {
-          hospital: {
-            code: hospital.code,
-            name: hospital.name,
-            district: hospital.district,
-            state: hospital.state,
-            type: hospital.type,
-            emergencyPhone: hospital.emergencyPhone,
-          },
-          alreadyLinked: true,
-          nextStep: 'participant_code',
+          id: hospital.id,
+          name: hospital.name,
+          code: hospital.code,
+          district: hospital.district,
+          state: hospital.state,
+          type: hospital.type,
+          emergencyPhone: hospital.emergencyPhone,
         },
+        alreadyLinked: true,
+        nextStep: 'participant_code',
       });
       return;
     }
@@ -395,17 +395,16 @@ export async function linkHospital(
       success: true,
       message: 'Hospital linked successfully.',
       data: {
-        hospital: {
-          code: hospital.code,
-          name: hospital.name,
-          district: hospital.district,
-          state: hospital.state,
-          type: hospital.type,
-          emergencyPhone: hospital.emergencyPhone,
-        },
-        alreadyLinked: false,
-        nextStep: 'participant_code',
+        id: hospital.id,
+        name: hospital.name,
+        code: hospital.code,
+        district: hospital.district,
+        state: hospital.state,
+        type: hospital.type,
+        emergencyPhone: hospital.emergencyPhone,
       },
+      alreadyLinked: false,
+      nextStep: 'participant_code',
     });
   } catch (err) {
     next(err);
@@ -629,6 +628,7 @@ export async function getOrCreateParticipantCode(
         sequenceNumber,
         birthWeightStratum: result.birthWeightStratum,
         hospital: {
+          id: result.hospital?.id,
           code: result.hospital?.code,
           name: result.hospital?.name,
         },
@@ -1025,6 +1025,17 @@ export async function completeOnboarding(
         status: schedule.status,
         dataComplete: schedule.dataComplete,
       };
+    }
+
+    if (!result.alreadyCompleted) {
+      void recordAudit({
+        actorId: req.user?.id,
+        actorRole: req.user?.role,
+        action: 'onboarding.completed',
+        entityType: 'MotherProfile',
+        entityId: result.participantCode ?? undefined,
+        metadata: { studyGroup: result.studyGroup, hospitalCode: result.hospital?.code },
+      });
     }
 
     res.status(200).json({

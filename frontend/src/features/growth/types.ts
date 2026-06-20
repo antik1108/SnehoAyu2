@@ -41,3 +41,29 @@ export interface GrowthLatestResponse {
   chronologicalAge?: GrowthAge;
   correctedAge?: GrowthAge;
 }
+
+export type GrowthMetric = 'weight' | 'length' | 'headCircumference';
+
+export interface PercentileCurvePoint {
+  weeks: number;
+  p3: number;
+  p15: number;
+  p50: number;
+  p85: number;
+  p97: number;
+}
+
+export interface GrowthChartReadingPoint {
+  readingDate: string;
+  correctedAgeWeeks: number;
+  value: number;
+  zScore?: number;
+}
+
+export interface GrowthChartResponse {
+  metric: GrowthMetric;
+  sex: 'male' | 'female';
+  percentileCurve: PercentileCurvePoint[];
+  readings: GrowthChartReadingPoint[];
+  alert: boolean;
+}

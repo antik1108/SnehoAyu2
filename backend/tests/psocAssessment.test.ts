@@ -56,7 +56,7 @@ describe('PSOC assessment backend', () => {
 
     expect(next).not.toHaveBeenCalled();
     const body = res.json.mock.calls[0][0];
-    expect(body.data.contentReady).toBe(false);
+    expect(body.data.contentReady).toBe(true);
     expect(body.data.questions).toHaveLength(17);
     expect(body.data.scale.map((option: { value: number }) => option.value)).toEqual([1, 2, 3, 4, 5, 6]);
     expect(body.data.questions[1].scoringDirection).toBeUndefined();
@@ -83,17 +83,30 @@ describe('PSOC assessment backend', () => {
     expect(next).toHaveBeenCalledWith(expect.objectContaining({ statusCode: 400, code: 'INVALID_PSOC_RESPONSES' }));
   });
 
-  it('blocks submission while approved PSOC content is unavailable', async () => {
+  it('allows submission now that approved PSOC content is available', async () => {
     prismaMock.motherProfile.findUnique.mockResolvedValue(makeMotherProfile());
     prismaMock.followUpSchedule.findUnique.mockResolvedValue({ id: 'follow-up-id' });
+    prismaMock.psocAssessment.findUnique.mockResolvedValue(null);
+    prismaMock.psocAssessment.create.mockResolvedValue({
+      timePoint: 'baseline',
+      rawResponses: psocResponses(4),
+      scoredResponses: psocResponses(4),
+      efficacyScore: 32,
+      satisfactionScore: 36,
+      totalScore: 68,
+      maxScore: 102,
+      classification: null,
+      classificationMethod: null,
+      submittedAt: new Date('2026-01-01T00:00:00.000Z'),
+    });
     const res = makeResponse();
     const next = vi.fn() as NextFunction;
     await postPsocSubmission({
       user: makeUser(),
       body: { timePoint: 'baseline', responses: psocResponses(4) },
     } as unknown as Request, res, next);
-    expect(prismaMock.psocAssessment.create).not.toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith(expect.objectContaining({ statusCode: 400, code: 'ASSESSMENT_CONTENT_NOT_CONFIGURED' }));
+    expect(next).not.toHaveBeenCalled();
+    expect(prismaMock.psocAssessment.create).toHaveBeenCalled();
   });
 
   it('scores direct and reverse PSOC items with subscales', () => {

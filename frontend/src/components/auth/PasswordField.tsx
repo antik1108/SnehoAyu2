@@ -6,6 +6,7 @@ interface PasswordFieldProps {
   label: string;
   placeholder?: string;
   error?: string;
+  hint?: string;
   id?: string;
   autoComplete?: 'current-password' | 'new-password';
   disabled?: boolean;
@@ -17,6 +18,7 @@ export const PasswordField: React.FC<PasswordFieldProps> = ({
   label,
   placeholder = '••••••••',
   error,
+  hint,
   id = 'password-input',
   autoComplete = 'current-password',
   disabled = false,
@@ -95,11 +97,13 @@ export const PasswordField: React.FC<PasswordFieldProps> = ({
           )}
         </button>
       </div>
-      {error && (
+      {error ? (
         <span id={`${id}-error`} className="font-sans text-xs text-error font-medium" role="alert">
           {error}
         </span>
-      )}
+      ) : hint ? (
+        <span className="font-sans text-xs text-text-muted">{hint}</span>
+      ) : null}
     </div>
   );
 };

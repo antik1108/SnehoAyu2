@@ -138,6 +138,17 @@
     "dangerSigns": {
       "title": "Danger Signs",
       "body": "Danger sign guidance will be available soon."
+    },
+    "aiInsight": {
+      "title": "Your AI Care Summary",
+      "subtitle": "A quick read on how your baby is doing",
+      "generate": "Get my AI summary",
+      "refresh": "Refresh summary",
+      "loading": "Analysing…",
+      "attentionNeeded": "Needs your attention",
+      "disclaimer": "General guidance only — not a medical diagnosis. For any urgent concern, use the Danger Signs guide and contact your hospital.",
+      "askPlaceholder": "Ask about your baby's care…",
+      "ask": "Ask"
     }
   },
   "growth": {
@@ -247,7 +258,9 @@
       "passwordRequired": "Password is required.",
       "passwordLength": "Password must be between 8 and 72 characters.",
       "confirmRequired": "Confirm your password.",
-      "passwordMismatch": "Passwords do not match."
+      "passwordMismatch": "Passwords do not match.",
+      "passwordComplexity": "Password must include an uppercase letter, a lowercase letter, and a number.",
+      "passwordHint": "8+ characters, with an uppercase letter, a lowercase letter, and a number."
     },
     "errors": {
       "phoneAlreadyRegistered": "This mobile number already has an account. Log in instead.",
@@ -474,7 +487,8 @@
     "subtitle": "Track today’s care activities.",
     "progress": {
       "todayProgress": "Today’s progress",
-      "completed": "completed"
+      "completed": "completed",
+      "allDone": "All caught up for today! 🎉"
     },
     "sections": {
       "breastfeeding": "Breastfeeding",
@@ -510,7 +524,8 @@
       "saving": "Saving…",
       "saved": "Saved",
       "tryAgain": "Try again",
-      "notLogged": "Not logged yet"
+      "notLogged": "Not logged yet",
+      "cancel": "Cancel"
     },
     "validation": {
       "feedsCount": "Feeds must be an integer between 0 and 30.",
@@ -524,6 +539,120 @@
     "errors": {
       "loadFailed": "Could not load today’s checklist.",
       "saveFailed": "Could not save checklist section. Please try again."
+    }
+  },
+  "tdsc": {
+    "title": "Developmental Milestones",
+    "subtitle": "TDSC Screening",
+    "loading": "Loading…",
+    "submit": "Submit Assessment",
+    "validationError": "Please mark pass/fail for every milestone before submitting.",
+    "pass": "Pass",
+    "fail": "Fail",
+    "submittedTitle": "Assessment submitted",
+    "delayFlagged": "A suspected developmental delay was flagged. Please discuss with your healthcare provider.",
+    "noConcerns": "No concerns flagged at this time."
+  },
+  "immunization": {
+    "title": "Immunization Tracker",
+    "subtitle": "Track your baby's vaccination schedule",
+    "completedOf": "of",
+    "completedLabel": "completed",
+    "pending": "Pending",
+    "completed": "Completed",
+    "noVaccines": "No vaccines in this list.",
+    "due": "Due",
+    "given": "Given",
+    "markDone": "Mark as Done",
+    "sideEffects": "Common side effects",
+    "close": "Close"
+  },
+  "breastfeeding": {
+    "title": "Breastfeeding Assessment",
+    "subtitle": "Tool II - Section B4",
+    "currentlyBreastfeeding": "Currently breastfeeding",
+    "exclusive": "Exclusive breastfeeding",
+    "predominant": "Predominantly breastfeeding",
+    "mixed": "Mixed feeding",
+    "notBreastfeeding": "Not breastfeeding",
+    "feedsPerDay": "Feeds per 24 hours",
+    "sessionDuration": "Typical session duration (minutes)",
+    "nightFeeds": "Night feeds count",
+    "feedingOnCues": "Feeding on cues",
+    "always": "Always",
+    "sometimes": "Sometimes",
+    "fixedSchedule": "Fixed schedule only",
+    "feedingProblems": "Feeding problems (select all that apply)",
+    "expressedMilk": "Expressed breast milk used",
+    "alternativeFeeding": "Alternative feeding methods used (bottle/formula)",
+    "submit": "Submit Assessment",
+    "submitting": "Submitting…",
+    "submittedTitle": "Assessment submitted",
+    "grade": "Grade"
+  },
+  "learningHub": {
+    "title": "Learning Hub",
+    "subtitle": "Care guidance for you and your baby",
+    "featured": "Featured this week",
+    "back": "← Back",
+    "minRead": "min read",
+    "viewed": "Viewed",
+    "audio": "Audio",
+    "categories": {
+      "all": "All",
+      "feeding": "Feeding",
+      "kmc": "KMC",
+      "growth": "Growth",
+      "danger_signs": "Danger Signs",
+      "emotional_support": "Emotional Support",
+      "immunization": "Immunization"
+    }
+  },
+  "dangerSignsFull": {
+    "title": "Danger Signs",
+    "subtitle": "Know when to seek immediate care",
+    "observe": "What to observe",
+    "action": "What to do",
+    "callButton": "Emergency: Call Hospital",
+    "confirmCall": "Tap again to confirm call"
+  },
+  "messageHistory": {
+    "title": "Message History",
+    "subtitle": "Past care tips sent to you",
+    "loading": "Loading…",
+    "empty": "No messages yet."
+  },
+  "admin": {
+    "participants": {
+      "title": "Participants",
+      "subtitle": "Enrolled mothers across all study sites.",
+      "loading": "Loading…",
+      "empty": "No participants enrolled yet.",
+      "code": "Code",
+      "hospital": "Hospital",
+      "group": "Group",
+      "stratum": "Stratum",
+      "status": "Status",
+      "onboarded": "Onboarded",
+      "pending": "Pending",
+      "unassigned": "Unassigned",
+      "study": "Study",
+      "control": "Control",
+      "videoCall": "Video Call"
+    }
+  },
+  "profile": {
+    "noHospital": "No hospital linked",
+    "group": "group",
+    "correctedAge": "corrected",
+    "appVersion": "SnehoAyu — Version 1.0",
+    "settings": {
+      "language": "Language",
+      "changePin": "Change PIN",
+      "logout": "Log out",
+      "newPin": "New 4-digit PIN",
+      "confirmNewPin": "Confirm new PIN",
+      "pinChanged": "PIN updated successfully."
     }
   }
 }

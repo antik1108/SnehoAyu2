@@ -25,6 +25,7 @@ import { normalizePhone } from '../utils/phoneNumber.js';
 import { generateTokenPair, hashRefreshToken } from '../utils/token.js';
 import { env } from '../config/env.js';
 import { createError } from '../middlewares/errorHandler.js';
+import { recordAudit } from './auditService.js';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -520,6 +521,14 @@ export async function loginWithPin(
         expiresAt: tokens.refreshExpiresAt,
       },
     });
+  });
+
+  void recordAudit({
+    actorId: user.id,
+    actorRole: user.role,
+    action: 'auth.login_pin',
+    entityType: 'User',
+    entityId: user.id,
   });
 
   return {

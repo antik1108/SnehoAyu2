@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { AppShell } from '../components/layout/AppShell';
 import { CurrentMeasurementsCard } from '../components/growth/CurrentMeasurementsCard';
 import { GrowthHistoryList } from '../components/growth/GrowthHistoryList';
+import { GrowthChart } from '../components/growth/GrowthChart';
 import { getGrowthHistory, getLatestGrowthReading } from '../features/growth/api';
 import type { GrowthHistoryResponse, GrowthLatestResponse } from '../features/growth/types';
 import { normalizeApiError, type AppApiError } from '../lib/apiError';
@@ -73,6 +74,7 @@ export const Growth: React.FC = () => {
     <AppShell title={t('growth.title')} subtitle={t('growth.subtitle')}>
       <div className="space-y-4">
         {latest ? <CurrentMeasurementsCard latest={latest} /> : null}
+        <GrowthChart />
         <Link
           to={ROUTES.ADD_GROWTH_READING}
           className="flex min-h-12 w-full items-center justify-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground"

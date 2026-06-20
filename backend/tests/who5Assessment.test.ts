@@ -66,7 +66,7 @@ describe('WHO-5 assessment backend', () => {
 
     expect(next).not.toHaveBeenCalled();
     const body = res.json.mock.calls[0][0];
-    expect(body.data.contentReady).toBe(false);
+    expect(body.data.contentReady).toBe(true);
     expect(body.data.questions).toHaveLength(5);
     expect(body.data.scale.map((option: { value: number }) => option.value)).toEqual([0, 1, 2, 3, 4, 5]);
     expect(body.data.questions[0].rawScore).toBeUndefined();
@@ -82,17 +82,31 @@ describe('WHO-5 assessment backend', () => {
     expect(next).toHaveBeenCalledWith(expect.objectContaining({ statusCode: 400, code: 'INVALID_WHO5_RESPONSES' }));
   });
 
-  it('blocks submission while approved translations are unavailable', async () => {
+  it('allows submission now that approved translations are available', async () => {
     prismaMock.motherProfile.findUnique.mockResolvedValue(makeMotherProfile());
     prismaMock.followUpSchedule.findUnique.mockResolvedValue({ id: 'follow-up-id' });
+    prismaMock.who5Assessment.findUnique.mockResolvedValue(null);
+    prismaMock.who5Assessment.create.mockResolvedValue({
+      id: 'who5-id',
+      motherProfileId: 'mother-id',
+      followUpScheduleId: 'follow-up-id',
+      timePoint: 'baseline',
+      responses: { q1: 1, q2: 2, q3: 3, q4: 4, q5: 5 },
+      rawScore: 15,
+      maxScore: 25,
+      percentageScore: 60,
+      poorWellbeingFlag: false,
+      interpretation: 'no_flag',
+      submittedAt: new Date('2026-01-01T00:00:00.000Z'),
+    });
     const res = makeResponse();
     const next = vi.fn() as NextFunction;
     await postWho5Submission({
       user: makeUser(),
       body: { timePoint: 'baseline', responses: { q1: 1, q2: 2, q3: 3, q4: 4, q5: 5 } },
     } as unknown as Request, res, next);
-    expect(prismaMock.who5Assessment.create).not.toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith(expect.objectContaining({ statusCode: 400, code: 'ASSESSMENT_CONTENT_NOT_CONFIGURED' }));
+    expect(next).not.toHaveBeenCalled();
+    expect(prismaMock.who5Assessment.create).toHaveBeenCalled();
   });
 
   it('scores WHO-5 using backend-only rules', () => {

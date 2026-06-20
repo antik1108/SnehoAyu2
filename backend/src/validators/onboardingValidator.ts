@@ -1,4 +1,5 @@
 import { normalizePhone } from '../utils/phoneNumber.js';
+import { todayIstDateOnly } from '../utils/dateOnly.js';
 
 export interface ValidationError {
   field: string;
@@ -580,15 +581,19 @@ export function validateBabyProfileInput(
   const neededResuscitation = readBoolean(value, 'neededResuscitation');
   if (neededResuscitation.error) errors.push(neededResuscitation.error);
 
-  const now = new Date();
-  if (dateOfBirth.value && dateOfBirth.value > now) {
+  // Compare against "today" in IST (the app's target timezone), not raw
+  // server UTC time — otherwise a date that is today in India can appear to
+  // be "in the future" whenever the server's UTC clock is still on the
+  // previous calendar day (i.e. before ~5:30am IST).
+  const todayIst = todayIstDateOnly();
+  if (dateOfBirth.value && dateOfBirth.value > todayIst) {
     errors.push({
       field: 'dateOfBirth',
       message: 'dateOfBirth must not be in the future.',
     });
   }
 
-  if (dischargeDate.value && dischargeDate.value > now) {
+  if (dischargeDate.value && dischargeDate.value > todayIst) {
     errors.push({
       field: 'dischargeDate',
       message: 'dischargeDate must not be in the future.',

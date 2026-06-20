@@ -9,6 +9,8 @@ interface AuthPageShellProps {
   onBack?: () => void;
 }
 
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80';
+
 export const AuthPageShell: React.FC<AuthPageShellProps> = ({
   children,
   title,
@@ -28,41 +30,46 @@ export const AuthPageShell: React.FC<AuthPageShellProps> = ({
 
   return (
     <div
-      className="flex min-h-screen w-full items-center justify-center bg-background p-4"
+      className="flex min-h-screen w-full items-center justify-center bg-gradient-to-b from-teal-50 via-background to-background p-4"
       style={{ minHeight: '100dvh' }}
     >
-      <main className="relative w-full max-w-md rounded-2xl border border-border bg-surface p-6 sm:p-8">
-        {/* Back Button */}
-        {showBackButton && (
-          <button
-            type="button"
-            onClick={handleBack}
-            aria-label="Go back"
-            className="absolute left-6 top-6 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-text hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        )}
+      <main className="relative w-full max-w-md overflow-hidden rounded-3xl border border-border bg-surface shadow-xl shadow-teal-900/5">
+        {/* Hero image */}
+        <div className="relative h-36 w-full overflow-hidden">
+          <img
+            src={HERO_IMAGE}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-900/70 via-teal-900/10 to-transparent" />
 
-        {/* Branding header */}
-        <div className={`flex flex-col items-center text-center ${showBackButton ? 'mt-8' : ''} mb-6`}>
-          <h1 className="font-sans text-2xl font-bold text-primary mb-1" lang="bn">
-            স্নেহআয়ু
-          </h1>
-          <div className="h-px w-12 bg-border my-2" />
-          <h2 className="font-sans text-xl font-semibold text-text">{title}</h2>
-          {subtitle && <p className="mt-1 text-xs text-text-muted">{subtitle}</p>}
+          {showBackButton && (
+            <button
+              type="button"
+              onClick={handleBack}
+              aria-label="Go back"
+              className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white/90 text-text backdrop-blur hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          <div className="absolute bottom-3 left-6 right-6">
+            <p className="font-sans text-lg font-bold text-white drop-shadow" lang="bn">স্নেহআয়ু</p>
+          </div>
         </div>
 
-        {children}
+        <div className="p-6 sm:p-8">
+          <div className="mb-6 text-center">
+            <h2 className="font-sans text-xl font-semibold text-text">{title}</h2>
+            {subtitle && <p className="mt-1.5 text-sm leading-relaxed text-text-muted">{subtitle}</p>}
+          </div>
+
+          {children}
+        </div>
       </main>
     </div>
   );

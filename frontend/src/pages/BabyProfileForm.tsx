@@ -11,6 +11,7 @@ import {
 } from '../features/onboarding/types';
 import { ROUTES } from '../routes/paths';
 import { InlineFormError } from '../components/feedback/InlineFormError';
+import { normalizeApiError } from '../lib/apiError';
 
 export const BabyProfileForm: React.FC = () => {
   const { t } = useTranslation();
@@ -216,9 +217,13 @@ export const BabyProfileForm: React.FC = () => {
       await saveBabyProfile(payload);
       navigate(ROUTES.HOSPITAL_CODE);
     } catch (err: unknown) {
-      const error = err as { message?: string; code?: string };
+      const error = normalizeApiError(err);
       if (error.code === 'STRATUM_OUT_OF_BOUNDS') {
         setFormError(t('onboarding.validation.birthWeightInvalid'));
+      } else if (error.details && error.details.length > 0) {
+        // Surface the specific field-level reason instead of the generic
+        // "Some profile fields are invalid." envelope message.
+        setFormError(error.details.map((d) => d.message).join(' '));
       } else {
         setFormError(error.message || t('auth.errors.unexpected', 'Something went wrong. Please try again.'));
       }

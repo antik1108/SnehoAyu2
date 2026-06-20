@@ -21,6 +21,13 @@ export const ROUTES = {
   LEARN: '/learn',
   PROFILE: '/profile',
   DANGER_SIGNS: '/danger-signs',
+  ADMIN_PARTICIPANTS: '/admin/participants',
+  ADMIN_PARTICIPANT_DETAIL: '/admin/participants/:id',
+  ADMIN_HOSPITALS: '/admin/hospitals',
+  TDSC: '/assessments/tdsc',
+  IMMUNIZATION: '/immunization',
+  BREASTFEEDING_ASSESSMENT: '/assessments/breastfeeding',
+  MESSAGE_HISTORY: '/messages',
 } as const;
 
 export type RoutePath = typeof ROUTES[keyof typeof ROUTES];

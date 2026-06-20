@@ -22,6 +22,14 @@ import dashboardRouter from './routes/dashboardRoutes.js';
 import checklistRouter from './routes/checklistRoutes.js';
 import assessmentRouter from './routes/assessmentRoutes.js';
 import growthRouter from './routes/growthRoutes.js';
+import adminRouter from './routes/adminRoutes.js';
+import tdscRouter from './routes/tdscRoutes.js';
+import immunizationRouter from './routes/immunizationRoutes.js';
+import breastfeedingRouter from './routes/breastfeedingRoutes.js';
+import contentRouter from './routes/contentRoutes.js';
+import messageRouter from './routes/messageRoutes.js';
+import telehealthRouter from './routes/telehealthRoutes.js';
+import insightsRouter from './routes/insightsRoutes.js';
 
 const app = express();
 
@@ -50,6 +58,14 @@ app.use('/api/dashboard', dashboardRouter);
 app.use('/api/checklist', checklistRouter);
 app.use('/api/assessments', assessmentRouter);
 app.use('/api/growth', growthRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/tdsc', tdscRouter);
+app.use('/api/immunization', immunizationRouter);
+app.use('/api/breastfeeding', breastfeedingRouter);
+app.use('/api/content', contentRouter);
+app.use('/api/messages', messageRouter);
+app.use('/api/telehealth', telehealthRouter);
+app.use('/api/insights', insightsRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);
