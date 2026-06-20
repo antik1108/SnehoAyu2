@@ -42,6 +42,179 @@
     "changeLanguage": "Change Language",
     "getStarted": "Get Started"
   },
+  "dashboard": {
+    "title": "Home",
+    "subtitle": "Your baby’s care today",
+    "greeting": "Good morning",
+    "common": {
+      "notLoggedYet": "Not logged yet",
+      "notAvailable": "Not logged yet"
+    },
+    "navigation": {
+      "label": "Main navigation",
+      "home": "Home",
+      "checklist": "Checklist",
+      "growth": "Growth",
+      "learn": "Learn",
+      "profile": "Profile"
+    },
+    "babyStatus": {
+      "title": "Baby Status",
+      "age": "Age",
+      "correctedAge": "Corrected age",
+      "latestWeight": "Latest weight",
+      "dischargeWeightSource": "Weight at discharge",
+      "participantCode": "Participant code"
+    },
+    "careProgress": {
+      "title": "Today’s Care",
+      "completed": "completed",
+      "available": "Start checklist",
+      "empty": "Today’s checklist will be available after checklist setup."
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "feeding": "Log Feeding",
+      "temperature": "Log Temperature",
+      "kmc": "Log KMC"
+    },
+    "healthStats": {
+      "title": "Health Stats",
+      "temperature": "Temperature",
+      "weight": "Weight",
+      "spO2": "SpO2"
+    },
+    "feeding": {
+      "title": "Feeding Summary",
+      "empty": "Feeding logs will appear after you start today’s checklist.",
+      "progress": "{{completed}} feeds logged today. Target: {{min}}–{{max}} feeds per 24 hours."
+    },
+    "reminder": {
+      "title": "Next Reminder",
+      "empty": "No upcoming reminder found.",
+      "daysRemaining": "Due in {{count}} days"
+    },
+    "dailyMessage": {
+      "title": "Daily Message",
+      "empty": "Daily care messages will appear here."
+    },
+    "recovery": {
+      "title": "Complete onboarding to view your dashboard.",
+      "generic": "Complete onboarding to view your dashboard.",
+      "action": "Continue onboarding",
+      "MOTHER_PROFILE_REQUIRED": "Complete the mother profile first.",
+      "BABY_PROFILE_REQUIRED": "Complete the baby profile first.",
+      "HOSPITAL_LINK_REQUIRED": "Link your hospital to continue.",
+      "PARTICIPANT_CODE_REQUIRED": "Finish onboarding to unlock the dashboard.",
+      "ONBOARDING_INCOMPLETE": "Finish onboarding to unlock the dashboard."
+    },
+    "errors": {
+      "title": "We could not load the dashboard.",
+      "retry": "Try again"
+    },
+    "checklist": {
+      "title": "Today’s Checklist",
+      "empty": "Checklist will be available soon.",
+      "pageTitle": "Checklist",
+      "pageBody": "Checklist will be available soon.",
+      "focus": {
+        "feeding": "Feeding flow will open here when checklist logging is ready.",
+        "temperature": "Temperature flow will open here when checklist logging is ready.",
+        "kmc": "KMC flow will open here when checklist logging is ready."
+      }
+    },
+    "growth": {
+      "title": "Growth",
+      "body": "Growth tracking will be available soon."
+    },
+    "learn": {
+      "title": "Learn",
+      "body": "Learning resources will appear here soon."
+    },
+    "profile": {
+      "title": "Profile",
+      "body": "Profile settings will be available soon."
+    },
+    "dangerSigns": {
+      "title": "Danger Signs",
+      "body": "Danger sign guidance will be available soon."
+    }
+  },
+  "growth": {
+    "title": "Growth Tracking",
+    "subtitle": "Track your baby’s growth over time.",
+    "loading": "Loading growth readings…",
+    "current": {
+      "title": "Current Measurements",
+      "weight": "Latest weight",
+      "length": "Latest length",
+      "head": "Latest head circumference",
+      "readingDate": "Reading date",
+      "notAvailable": "Not available"
+    },
+    "history": {
+      "title": "Growth History",
+      "baseline": "Discharge baseline"
+    },
+    "empty": {
+      "title": "No growth readings yet.",
+      "body": "Your baby’s discharge weight is shown until a new reading is added."
+    },
+    "form": {
+      "title": "Add Reading"
+    },
+    "fields": {
+      "readingDate": "Reading date",
+      "weight": "Weight",
+      "length": "Length",
+      "head": "Head circumference",
+      "timePoint": "Time point",
+      "notes": "Notes"
+    },
+    "units": {
+      "grams": "g",
+      "cm": "cm",
+      "days": "days",
+      "weeks": "weeks"
+    },
+    "age": {
+      "chronological": "Chronological age",
+      "corrected": "Corrected age"
+    },
+    "source": {
+      "growth": "Latest growth reading",
+      "manual": "Latest growth reading",
+      "discharge": "Weight at discharge",
+      "none": "No reading yet"
+    },
+    "timePoint": {
+      "none": "Not selected",
+      "baseline": "Baseline",
+      "1_month": "1 month",
+      "3_months": "3 months",
+      "6_months": "6 months"
+    },
+    "validation": {
+      "invalidDate": "Enter a valid reading date.",
+      "futureDate": "Reading date cannot be in the future.",
+      "weightRange": "Weight must be between 400 g and 8000 g.",
+      "lengthRange": "Length must be between 20.0 cm and 80.0 cm.",
+      "headRange": "Head circumference must be between 15.0 cm and 55.0 cm.",
+      "invalidTimePoint": "Choose a valid time point.",
+      "notesLength": "Notes must be 300 characters or fewer."
+    },
+    "errors": {
+      "load": "We could not load growth readings.",
+      "retry": "Try again",
+      "duplicate": "A growth reading already exists for this date."
+    },
+    "actions": {
+      "addNew": "Add New Reading",
+      "save": "Save Reading",
+      "saving": "Saving…",
+      "back": "Back to Growth"
+    }
+  },
   "auth": {
     "common": {
       "mobileNumber": "Mobile number",
@@ -294,6 +467,63 @@
       "hospitalEnrollmentClosed": "Enrolment at this hospital is currently closed.",
       "hospitalLinkLocked": "The hospital cannot be changed after a participant code is assigned.",
       "invalidHospitalCode": "The hospital code is invalid."
+    }
+  },
+  "checklist": {
+    "title": "Daily Care Checklist",
+    "subtitle": "Track today’s care activities.",
+    "progress": {
+      "todayProgress": "Today’s progress",
+      "completed": "completed"
+    },
+    "sections": {
+      "breastfeeding": "Breastfeeding",
+      "kmc": "Kangaroo Mother Care",
+      "temperature": "Temperature",
+      "weight": "Weight Check",
+      "skinCordCare": "Skin and Cord Care",
+      "medication": "Medication",
+      "dangerSigns": "Danger Signs Review"
+    },
+    "fields": {
+      "feedsCount": "Number of feeds today",
+      "volumeMl": "Milk volume, if measured (ml)",
+      "feedingTargetHint": "Target: 8–12 feeds in 24 hours",
+      "kmcMinutes": "KMC minutes today",
+      "kmcTargetHint": "You can enter total minutes for today.",
+      "tempMorning": "Morning temperature (°C)",
+      "tempEvening": "Evening temperature (°C)",
+      "weightGrams": "Weight today (grams)",
+      "optional": "Optional",
+      "skinCordCareDone": "Skin and cord care completed",
+      "medicationDone": "Medication today",
+      "medicationNA": "Not applicable",
+      "medicationYes": "Done",
+      "medicationNo": "Not done",
+      "medicationNotes": "Notes",
+      "medicationNotesPlaceholder": "Enter medication notes (max 300 characters)",
+      "dangerSignsReviewed": "I reviewed danger signs today",
+      "viewDangerSignsGuide": "View Danger Signs Guide"
+    },
+    "actions": {
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "tryAgain": "Try again",
+      "notLogged": "Not logged yet"
+    },
+    "validation": {
+      "feedsCount": "Feeds must be an integer between 0 and 30.",
+      "volumeMl": "Volume must be an integer between 0 and 2000.",
+      "kmcMinutes": "KMC minutes must be an integer between 0 and 1440.",
+      "morningTemp": "Morning temperature must be between 30.0 and 43.0 °C (at most 1 decimal place).",
+      "eveningTemp": "Evening temperature must be between 30.0 and 43.0 °C (at most 1 decimal place).",
+      "weightGrams": "Weight must be an integer between 400 and 7000 grams.",
+      "medicationNotes": "Notes must not exceed 300 characters."
+    },
+    "errors": {
+      "loadFailed": "Could not load today’s checklist.",
+      "saveFailed": "Could not save checklist section. Please try again."
     }
   }
 }

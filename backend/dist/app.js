@@ -13,6 +13,10 @@ import { notFoundHandler, globalErrorHandler, } from './middlewares/errorHandler
 import healthRouter from './routes/health.js';
 import authRouter from './routes/authRoutes.js';
 import onboardingRouter from './routes/onboardingRoutes.js';
+import dashboardRouter from './routes/dashboardRoutes.js';
+import checklistRouter from './routes/checklistRoutes.js';
+import assessmentRouter from './routes/assessmentRoutes.js';
+import growthRouter from './routes/growthRoutes.js';
 const app = express();
 app.use(helmet());
 app.use(corsMiddleware);
@@ -32,6 +36,10 @@ app.get('/', (_req, res) => {
 app.use('/api/health', healthRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/onboarding', onboardingRouter);
+app.use('/api/dashboard', dashboardRouter);
+app.use('/api/checklist', checklistRouter);
+app.use('/api/assessments', assessmentRouter);
+app.use('/api/growth', growthRouter);
 app.use(notFoundHandler);
 app.use(globalErrorHandler);
 export default app;

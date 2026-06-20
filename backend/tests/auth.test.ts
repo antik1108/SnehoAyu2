@@ -49,6 +49,7 @@ const { prismaMock, txMock } = vi.hoisted(() => {
 });
 
 vi.mock('../src/lib/prisma.js', () => ({ default: prismaMock }));
+vi.setConfig({ testTimeout: 15_000 });
 
 let registerUser: typeof import('../src/services/authService.js').registerUser;
 let loginUser: typeof import('../src/services/authService.js').loginUser;

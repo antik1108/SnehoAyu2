@@ -12,6 +12,15 @@ export const ROUTES = {
   HOSPITAL_CODE: '/signup/hospital-code',
   SIGNUP_COMPLETE: '/signup/complete',
   DASHBOARD: '/dashboard',
+  CHECKLIST: '/checklist',
+  KNOWLEDGE_ASSESSMENT: '/assessments/knowledge',
+  WHO5_ASSESSMENT: '/assessments/who5',
+  PSOC_ASSESSMENT: '/assessments/psoc',
+  GROWTH: '/growth',
+  ADD_GROWTH_READING: '/growth/add',
+  LEARN: '/learn',
+  PROFILE: '/profile',
+  DANGER_SIGNS: '/danger-signs',
 } as const;
 
 export type RoutePath = typeof ROUTES[keyof typeof ROUTES];

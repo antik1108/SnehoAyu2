@@ -15,7 +15,7 @@
  *  DELETE /api/auth/remove-pin – Password-confirmed PIN removal
  */
 import { validateRegisterInput, validateLoginInput, validateCreatePinInput, validateLoginPinInput, validateChangePinInput, validateRemovePinInput, } from '../validators/authValidator.js';
-import { registerUser, loginUser, createOrUpdatePin, loginWithPin, changePin as changeUserPin, removePin as removeUserPin, } from '../services/authService.js';
+import { registerUser, loginUser, createOrUpdatePin, loginWithPin, changePin as changeUserPin, removePin as removeUserPin, refreshSessionToken, logoutUser, } from '../services/authService.js';
 import { createError } from '../middlewares/errorHandler.js';
 import { PhoneValidationError } from '../utils/phoneNumber.js';
 // ---------------------------------------------------------------------------
@@ -191,6 +191,44 @@ export async function removePin(req, res, next) {
             success: true,
             message: 'PIN removed successfully.',
             data: result,
+        });
+    }
+    catch (err) {
+        next(err);
+    }
+}
+export async function refresh(req, res, next) {
+    try {
+        const { refreshToken } = req.body;
+        if (!refreshToken) {
+            next(createError(400, 'REFRESH_TOKEN_REQUIRED', 'Refresh token is required.'));
+            return;
+        }
+        const result = await refreshSessionToken(refreshToken);
+        res.status(200).json({
+            success: true,
+            message: 'Token refreshed successfully.',
+            data: {
+                accessToken: result.accessToken,
+                refreshToken: result.refreshToken,
+                user: result.user,
+                nextStep: result.nextStep,
+            },
+        });
+    }
+    catch (err) {
+        next(err);
+    }
+}
+export async function logout(req, res, next) {
+    try {
+        const { refreshToken } = req.body;
+        if (refreshToken) {
+            await logoutUser(refreshToken);
+        }
+        res.status(200).json({
+            success: true,
+            message: 'Logged out successfully.',
         });
     }
     catch (err) {

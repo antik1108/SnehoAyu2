@@ -58,6 +58,31 @@ export type ResearcherProfile = $Result.DefaultSelection<Prisma.$ResearcherProfi
  * 
  */
 export type FollowUpSchedule = $Result.DefaultSelection<Prisma.$FollowUpSchedulePayload>
+/**
+ * Model KnowledgeAssessment
+ * 
+ */
+export type KnowledgeAssessment = $Result.DefaultSelection<Prisma.$KnowledgeAssessmentPayload>
+/**
+ * Model Who5Assessment
+ * 
+ */
+export type Who5Assessment = $Result.DefaultSelection<Prisma.$Who5AssessmentPayload>
+/**
+ * Model PsocAssessment
+ * 
+ */
+export type PsocAssessment = $Result.DefaultSelection<Prisma.$PsocAssessmentPayload>
+/**
+ * Model GrowthReading
+ * 
+ */
+export type GrowthReading = $Result.DefaultSelection<Prisma.$GrowthReadingPayload>
+/**
+ * Model DailyLog
+ * 
+ */
+export type DailyLog = $Result.DefaultSelection<Prisma.$DailyLogPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -269,6 +294,56 @@ export class PrismaClient<
     * ```
     */
   get followUpSchedule(): Prisma.FollowUpScheduleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.knowledgeAssessment`: Exposes CRUD operations for the **KnowledgeAssessment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more KnowledgeAssessments
+    * const knowledgeAssessments = await prisma.knowledgeAssessment.findMany()
+    * ```
+    */
+  get knowledgeAssessment(): Prisma.KnowledgeAssessmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.who5Assessment`: Exposes CRUD operations for the **Who5Assessment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Who5Assessments
+    * const who5Assessments = await prisma.who5Assessment.findMany()
+    * ```
+    */
+  get who5Assessment(): Prisma.Who5AssessmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.psocAssessment`: Exposes CRUD operations for the **PsocAssessment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PsocAssessments
+    * const psocAssessments = await prisma.psocAssessment.findMany()
+    * ```
+    */
+  get psocAssessment(): Prisma.PsocAssessmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.growthReading`: Exposes CRUD operations for the **GrowthReading** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GrowthReadings
+    * const growthReadings = await prisma.growthReading.findMany()
+    * ```
+    */
+  get growthReading(): Prisma.GrowthReadingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dailyLog`: Exposes CRUD operations for the **DailyLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DailyLogs
+    * const dailyLogs = await prisma.dailyLog.findMany()
+    * ```
+    */
+  get dailyLog(): Prisma.DailyLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -711,7 +786,12 @@ export namespace Prisma {
     BabyProfile: 'BabyProfile',
     NurseProfile: 'NurseProfile',
     ResearcherProfile: 'ResearcherProfile',
-    FollowUpSchedule: 'FollowUpSchedule'
+    FollowUpSchedule: 'FollowUpSchedule',
+    KnowledgeAssessment: 'KnowledgeAssessment',
+    Who5Assessment: 'Who5Assessment',
+    PsocAssessment: 'PsocAssessment',
+    GrowthReading: 'GrowthReading',
+    DailyLog: 'DailyLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -727,7 +807,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "hospital" | "user" | "otpVerification" | "refreshToken" | "motherProfile" | "babyProfile" | "nurseProfile" | "researcherProfile" | "followUpSchedule"
+      modelProps: "hospital" | "user" | "otpVerification" | "refreshToken" | "motherProfile" | "babyProfile" | "nurseProfile" | "researcherProfile" | "followUpSchedule" | "knowledgeAssessment" | "who5Assessment" | "psocAssessment" | "growthReading" | "dailyLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1397,6 +1477,376 @@ export namespace Prisma {
           }
         }
       }
+      KnowledgeAssessment: {
+        payload: Prisma.$KnowledgeAssessmentPayload<ExtArgs>
+        fields: Prisma.KnowledgeAssessmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KnowledgeAssessmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KnowledgeAssessmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>
+          }
+          findFirst: {
+            args: Prisma.KnowledgeAssessmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KnowledgeAssessmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>
+          }
+          findMany: {
+            args: Prisma.KnowledgeAssessmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>[]
+          }
+          create: {
+            args: Prisma.KnowledgeAssessmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>
+          }
+          createMany: {
+            args: Prisma.KnowledgeAssessmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.KnowledgeAssessmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>[]
+          }
+          delete: {
+            args: Prisma.KnowledgeAssessmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>
+          }
+          update: {
+            args: Prisma.KnowledgeAssessmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.KnowledgeAssessmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KnowledgeAssessmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.KnowledgeAssessmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.KnowledgeAssessmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KnowledgeAssessmentPayload>
+          }
+          aggregate: {
+            args: Prisma.KnowledgeAssessmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKnowledgeAssessment>
+          }
+          groupBy: {
+            args: Prisma.KnowledgeAssessmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KnowledgeAssessmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.KnowledgeAssessmentCountArgs<ExtArgs>
+            result: $Utils.Optional<KnowledgeAssessmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Who5Assessment: {
+        payload: Prisma.$Who5AssessmentPayload<ExtArgs>
+        fields: Prisma.Who5AssessmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Who5AssessmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Who5AssessmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>
+          }
+          findFirst: {
+            args: Prisma.Who5AssessmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Who5AssessmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>
+          }
+          findMany: {
+            args: Prisma.Who5AssessmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>[]
+          }
+          create: {
+            args: Prisma.Who5AssessmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>
+          }
+          createMany: {
+            args: Prisma.Who5AssessmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.Who5AssessmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>[]
+          }
+          delete: {
+            args: Prisma.Who5AssessmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>
+          }
+          update: {
+            args: Prisma.Who5AssessmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.Who5AssessmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Who5AssessmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.Who5AssessmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.Who5AssessmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Who5AssessmentPayload>
+          }
+          aggregate: {
+            args: Prisma.Who5AssessmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWho5Assessment>
+          }
+          groupBy: {
+            args: Prisma.Who5AssessmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Who5AssessmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.Who5AssessmentCountArgs<ExtArgs>
+            result: $Utils.Optional<Who5AssessmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      PsocAssessment: {
+        payload: Prisma.$PsocAssessmentPayload<ExtArgs>
+        fields: Prisma.PsocAssessmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PsocAssessmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PsocAssessmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>
+          }
+          findFirst: {
+            args: Prisma.PsocAssessmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PsocAssessmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>
+          }
+          findMany: {
+            args: Prisma.PsocAssessmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>[]
+          }
+          create: {
+            args: Prisma.PsocAssessmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>
+          }
+          createMany: {
+            args: Prisma.PsocAssessmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PsocAssessmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>[]
+          }
+          delete: {
+            args: Prisma.PsocAssessmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>
+          }
+          update: {
+            args: Prisma.PsocAssessmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.PsocAssessmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PsocAssessmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PsocAssessmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.PsocAssessmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PsocAssessmentPayload>
+          }
+          aggregate: {
+            args: Prisma.PsocAssessmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePsocAssessment>
+          }
+          groupBy: {
+            args: Prisma.PsocAssessmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PsocAssessmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PsocAssessmentCountArgs<ExtArgs>
+            result: $Utils.Optional<PsocAssessmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      GrowthReading: {
+        payload: Prisma.$GrowthReadingPayload<ExtArgs>
+        fields: Prisma.GrowthReadingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GrowthReadingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GrowthReadingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>
+          }
+          findFirst: {
+            args: Prisma.GrowthReadingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GrowthReadingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>
+          }
+          findMany: {
+            args: Prisma.GrowthReadingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>[]
+          }
+          create: {
+            args: Prisma.GrowthReadingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>
+          }
+          createMany: {
+            args: Prisma.GrowthReadingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GrowthReadingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>[]
+          }
+          delete: {
+            args: Prisma.GrowthReadingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>
+          }
+          update: {
+            args: Prisma.GrowthReadingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>
+          }
+          deleteMany: {
+            args: Prisma.GrowthReadingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GrowthReadingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GrowthReadingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>[]
+          }
+          upsert: {
+            args: Prisma.GrowthReadingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GrowthReadingPayload>
+          }
+          aggregate: {
+            args: Prisma.GrowthReadingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGrowthReading>
+          }
+          groupBy: {
+            args: Prisma.GrowthReadingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GrowthReadingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GrowthReadingCountArgs<ExtArgs>
+            result: $Utils.Optional<GrowthReadingCountAggregateOutputType> | number
+          }
+        }
+      }
+      DailyLog: {
+        payload: Prisma.$DailyLogPayload<ExtArgs>
+        fields: Prisma.DailyLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DailyLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DailyLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          findFirst: {
+            args: Prisma.DailyLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DailyLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          findMany: {
+            args: Prisma.DailyLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          create: {
+            args: Prisma.DailyLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          createMany: {
+            args: Prisma.DailyLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DailyLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          delete: {
+            args: Prisma.DailyLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          update: {
+            args: Prisma.DailyLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.DailyLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DailyLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DailyLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.DailyLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          aggregate: {
+            args: Prisma.DailyLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDailyLog>
+          }
+          groupBy: {
+            args: Prisma.DailyLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DailyLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DailyLogCountArgs<ExtArgs>
+            result: $Utils.Optional<DailyLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1514,6 +1964,11 @@ export namespace Prisma {
     nurseProfile?: NurseProfileOmit
     researcherProfile?: ResearcherProfileOmit
     followUpSchedule?: FollowUpScheduleOmit
+    knowledgeAssessment?: KnowledgeAssessmentOmit
+    who5Assessment?: Who5AssessmentOmit
+    psocAssessment?: PsocAssessmentOmit
+    growthReading?: GrowthReadingOmit
+    dailyLog?: DailyLogOmit
   }
 
   /* Types for Logging */
@@ -1644,10 +2099,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     refreshTokens: number
+    recordedGrowthReadings: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
+    recordedGrowthReadings?: boolean | UserCountOutputTypeCountRecordedGrowthReadingsArgs
   }
 
   // Custom InputTypes
@@ -1668,6 +2125,13 @@ export namespace Prisma {
     where?: RefreshTokenWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRecordedGrowthReadingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrowthReadingWhereInput
+  }
+
 
   /**
    * Count Type MotherProfileCountOutputType
@@ -1675,10 +2139,20 @@ export namespace Prisma {
 
   export type MotherProfileCountOutputType = {
     followUpSchedules: number
+    dailyLogs: number
+    knowledgeAssessments: number
+    who5Assessments: number
+    psocAssessments: number
+    growthReadings: number
   }
 
   export type MotherProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     followUpSchedules?: boolean | MotherProfileCountOutputTypeCountFollowUpSchedulesArgs
+    dailyLogs?: boolean | MotherProfileCountOutputTypeCountDailyLogsArgs
+    knowledgeAssessments?: boolean | MotherProfileCountOutputTypeCountKnowledgeAssessmentsArgs
+    who5Assessments?: boolean | MotherProfileCountOutputTypeCountWho5AssessmentsArgs
+    psocAssessments?: boolean | MotherProfileCountOutputTypeCountPsocAssessmentsArgs
+    growthReadings?: boolean | MotherProfileCountOutputTypeCountGrowthReadingsArgs
   }
 
   // Custom InputTypes
@@ -1697,6 +2171,121 @@ export namespace Prisma {
    */
   export type MotherProfileCountOutputTypeCountFollowUpSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FollowUpScheduleWhereInput
+  }
+
+  /**
+   * MotherProfileCountOutputType without action
+   */
+  export type MotherProfileCountOutputTypeCountDailyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyLogWhereInput
+  }
+
+  /**
+   * MotherProfileCountOutputType without action
+   */
+  export type MotherProfileCountOutputTypeCountKnowledgeAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnowledgeAssessmentWhereInput
+  }
+
+  /**
+   * MotherProfileCountOutputType without action
+   */
+  export type MotherProfileCountOutputTypeCountWho5AssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Who5AssessmentWhereInput
+  }
+
+  /**
+   * MotherProfileCountOutputType without action
+   */
+  export type MotherProfileCountOutputTypeCountPsocAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PsocAssessmentWhereInput
+  }
+
+  /**
+   * MotherProfileCountOutputType without action
+   */
+  export type MotherProfileCountOutputTypeCountGrowthReadingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrowthReadingWhereInput
+  }
+
+
+  /**
+   * Count Type BabyProfileCountOutputType
+   */
+
+  export type BabyProfileCountOutputType = {
+    growthReadings: number
+  }
+
+  export type BabyProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    growthReadings?: boolean | BabyProfileCountOutputTypeCountGrowthReadingsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BabyProfileCountOutputType without action
+   */
+  export type BabyProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BabyProfileCountOutputType
+     */
+    select?: BabyProfileCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BabyProfileCountOutputType without action
+   */
+  export type BabyProfileCountOutputTypeCountGrowthReadingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrowthReadingWhereInput
+  }
+
+
+  /**
+   * Count Type FollowUpScheduleCountOutputType
+   */
+
+  export type FollowUpScheduleCountOutputType = {
+    knowledgeAssessments: number
+    who5Assessments: number
+    psocAssessments: number
+  }
+
+  export type FollowUpScheduleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    knowledgeAssessments?: boolean | FollowUpScheduleCountOutputTypeCountKnowledgeAssessmentsArgs
+    who5Assessments?: boolean | FollowUpScheduleCountOutputTypeCountWho5AssessmentsArgs
+    psocAssessments?: boolean | FollowUpScheduleCountOutputTypeCountPsocAssessmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FollowUpScheduleCountOutputType without action
+   */
+  export type FollowUpScheduleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpScheduleCountOutputType
+     */
+    select?: FollowUpScheduleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FollowUpScheduleCountOutputType without action
+   */
+  export type FollowUpScheduleCountOutputTypeCountKnowledgeAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnowledgeAssessmentWhereInput
+  }
+
+  /**
+   * FollowUpScheduleCountOutputType without action
+   */
+  export type FollowUpScheduleCountOutputTypeCountWho5AssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Who5AssessmentWhereInput
+  }
+
+  /**
+   * FollowUpScheduleCountOutputType without action
+   */
+  export type FollowUpScheduleCountOutputTypeCountPsocAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PsocAssessmentWhereInput
   }
 
 
@@ -3258,6 +3847,7 @@ export namespace Prisma {
     nurseProfile?: boolean | User$nurseProfileArgs<ExtArgs>
     researcherProfile?: boolean | User$researcherProfileArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    recordedGrowthReadings?: boolean | User$recordedGrowthReadingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3333,6 +3923,7 @@ export namespace Prisma {
     nurseProfile?: boolean | User$nurseProfileArgs<ExtArgs>
     researcherProfile?: boolean | User$researcherProfileArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    recordedGrowthReadings?: boolean | User$recordedGrowthReadingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3350,6 +3941,7 @@ export namespace Prisma {
       nurseProfile: Prisma.$NurseProfilePayload<ExtArgs> | null
       researcherProfile: Prisma.$ResearcherProfilePayload<ExtArgs> | null
       refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
+      recordedGrowthReadings: Prisma.$GrowthReadingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3778,6 +4370,7 @@ export namespace Prisma {
     nurseProfile<T extends User$nurseProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$nurseProfileArgs<ExtArgs>>): Prisma__NurseProfileClient<$Result.GetResult<Prisma.$NurseProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     researcherProfile<T extends User$researcherProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$researcherProfileArgs<ExtArgs>>): Prisma__ResearcherProfileClient<$Result.GetResult<Prisma.$ResearcherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     refreshTokens<T extends User$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    recordedGrowthReadings<T extends User$recordedGrowthReadingsArgs<ExtArgs> = {}>(args?: Subset<T, User$recordedGrowthReadingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4323,6 +4916,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.recordedGrowthReadings
+   */
+  export type User$recordedGrowthReadingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    where?: GrowthReadingWhereInput
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    cursor?: GrowthReadingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrowthReadingScalarFieldEnum | GrowthReadingScalarFieldEnum[]
   }
 
   /**
@@ -6827,6 +7444,11 @@ export namespace Prisma {
     hospital?: boolean | MotherProfile$hospitalArgs<ExtArgs>
     babyProfile?: boolean | MotherProfile$babyProfileArgs<ExtArgs>
     followUpSchedules?: boolean | MotherProfile$followUpSchedulesArgs<ExtArgs>
+    dailyLogs?: boolean | MotherProfile$dailyLogsArgs<ExtArgs>
+    knowledgeAssessments?: boolean | MotherProfile$knowledgeAssessmentsArgs<ExtArgs>
+    who5Assessments?: boolean | MotherProfile$who5AssessmentsArgs<ExtArgs>
+    psocAssessments?: boolean | MotherProfile$psocAssessmentsArgs<ExtArgs>
+    growthReadings?: boolean | MotherProfile$growthReadingsArgs<ExtArgs>
     _count?: boolean | MotherProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["motherProfile"]>
 
@@ -6918,6 +7540,11 @@ export namespace Prisma {
     hospital?: boolean | MotherProfile$hospitalArgs<ExtArgs>
     babyProfile?: boolean | MotherProfile$babyProfileArgs<ExtArgs>
     followUpSchedules?: boolean | MotherProfile$followUpSchedulesArgs<ExtArgs>
+    dailyLogs?: boolean | MotherProfile$dailyLogsArgs<ExtArgs>
+    knowledgeAssessments?: boolean | MotherProfile$knowledgeAssessmentsArgs<ExtArgs>
+    who5Assessments?: boolean | MotherProfile$who5AssessmentsArgs<ExtArgs>
+    psocAssessments?: boolean | MotherProfile$psocAssessmentsArgs<ExtArgs>
+    growthReadings?: boolean | MotherProfile$growthReadingsArgs<ExtArgs>
     _count?: boolean | MotherProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MotherProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6936,6 +7563,11 @@ export namespace Prisma {
       hospital: Prisma.$HospitalPayload<ExtArgs> | null
       babyProfile: Prisma.$BabyProfilePayload<ExtArgs> | null
       followUpSchedules: Prisma.$FollowUpSchedulePayload<ExtArgs>[]
+      dailyLogs: Prisma.$DailyLogPayload<ExtArgs>[]
+      knowledgeAssessments: Prisma.$KnowledgeAssessmentPayload<ExtArgs>[]
+      who5Assessments: Prisma.$Who5AssessmentPayload<ExtArgs>[]
+      psocAssessments: Prisma.$PsocAssessmentPayload<ExtArgs>[]
+      growthReadings: Prisma.$GrowthReadingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7359,6 +7991,11 @@ export namespace Prisma {
     hospital<T extends MotherProfile$hospitalArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$hospitalArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     babyProfile<T extends MotherProfile$babyProfileArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$babyProfileArgs<ExtArgs>>): Prisma__BabyProfileClient<$Result.GetResult<Prisma.$BabyProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     followUpSchedules<T extends MotherProfile$followUpSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$followUpSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowUpSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dailyLogs<T extends MotherProfile$dailyLogsArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$dailyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    knowledgeAssessments<T extends MotherProfile$knowledgeAssessmentsArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$knowledgeAssessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    who5Assessments<T extends MotherProfile$who5AssessmentsArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$who5AssessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    psocAssessments<T extends MotherProfile$psocAssessmentsArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$psocAssessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    growthReadings<T extends MotherProfile$growthReadingsArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfile$growthReadingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7874,6 +8511,126 @@ export namespace Prisma {
   }
 
   /**
+   * MotherProfile.dailyLogs
+   */
+  export type MotherProfile$dailyLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    where?: DailyLogWhereInput
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    cursor?: DailyLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * MotherProfile.knowledgeAssessments
+   */
+  export type MotherProfile$knowledgeAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    where?: KnowledgeAssessmentWhereInput
+    orderBy?: KnowledgeAssessmentOrderByWithRelationInput | KnowledgeAssessmentOrderByWithRelationInput[]
+    cursor?: KnowledgeAssessmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: KnowledgeAssessmentScalarFieldEnum | KnowledgeAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * MotherProfile.who5Assessments
+   */
+  export type MotherProfile$who5AssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    where?: Who5AssessmentWhereInput
+    orderBy?: Who5AssessmentOrderByWithRelationInput | Who5AssessmentOrderByWithRelationInput[]
+    cursor?: Who5AssessmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Who5AssessmentScalarFieldEnum | Who5AssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * MotherProfile.psocAssessments
+   */
+  export type MotherProfile$psocAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    where?: PsocAssessmentWhereInput
+    orderBy?: PsocAssessmentOrderByWithRelationInput | PsocAssessmentOrderByWithRelationInput[]
+    cursor?: PsocAssessmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PsocAssessmentScalarFieldEnum | PsocAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * MotherProfile.growthReadings
+   */
+  export type MotherProfile$growthReadingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    where?: GrowthReadingWhereInput
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    cursor?: GrowthReadingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrowthReadingScalarFieldEnum | GrowthReadingScalarFieldEnum[]
+  }
+
+  /**
    * MotherProfile without action
    */
   export type MotherProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8215,6 +8972,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    growthReadings?: boolean | BabyProfile$growthReadingsArgs<ExtArgs>
+    _count?: boolean | BabyProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["babyProfile"]>
 
   export type BabyProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8288,6 +9047,8 @@ export namespace Prisma {
   export type BabyProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "motherProfileId" | "babyName" | "sex" | "dateOfBirth" | "gestationalAgeWeeks" | "birthWeightGrams" | "weightAtDischargeGrams" | "placeOfDelivery" | "nicuStayDays" | "skinToSkinAtBirth" | "kmcInNicu" | "feedingAtDischarge" | "criedAtBirth" | "neededResuscitation" | "birthWeightStratum" | "dischargeDate" | "createdAt" | "updatedAt", ExtArgs["result"]["babyProfile"]>
   export type BabyProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    growthReadings?: boolean | BabyProfile$growthReadingsArgs<ExtArgs>
+    _count?: boolean | BabyProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BabyProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
@@ -8300,6 +9061,7 @@ export namespace Prisma {
     name: "BabyProfile"
     objects: {
       motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+      growthReadings: Prisma.$GrowthReadingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8716,6 +9478,7 @@ export namespace Prisma {
   export interface Prisma__BabyProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    growthReadings<T extends BabyProfile$growthReadingsArgs<ExtArgs> = {}>(args?: Subset<T, BabyProfile$growthReadingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9162,6 +9925,30 @@ export namespace Prisma {
      * Limit how many BabyProfiles to delete.
      */
     limit?: number
+  }
+
+  /**
+   * BabyProfile.growthReadings
+   */
+  export type BabyProfile$growthReadingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    where?: GrowthReadingWhereInput
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    cursor?: GrowthReadingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GrowthReadingScalarFieldEnum | GrowthReadingScalarFieldEnum[]
   }
 
   /**
@@ -11582,6 +12369,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    knowledgeAssessments?: boolean | FollowUpSchedule$knowledgeAssessmentsArgs<ExtArgs>
+    who5Assessments?: boolean | FollowUpSchedule$who5AssessmentsArgs<ExtArgs>
+    psocAssessments?: boolean | FollowUpSchedule$psocAssessmentsArgs<ExtArgs>
+    _count?: boolean | FollowUpScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["followUpSchedule"]>
 
   export type FollowUpScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11631,6 +12422,10 @@ export namespace Prisma {
   export type FollowUpScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "motherProfileId" | "timePoint" | "scheduledDate" | "actualDate" | "status" | "dataComplete" | "collectedByUserId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["followUpSchedule"]>
   export type FollowUpScheduleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    knowledgeAssessments?: boolean | FollowUpSchedule$knowledgeAssessmentsArgs<ExtArgs>
+    who5Assessments?: boolean | FollowUpSchedule$who5AssessmentsArgs<ExtArgs>
+    psocAssessments?: boolean | FollowUpSchedule$psocAssessmentsArgs<ExtArgs>
+    _count?: boolean | FollowUpScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FollowUpScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
@@ -11643,6 +12438,9 @@ export namespace Prisma {
     name: "FollowUpSchedule"
     objects: {
       motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+      knowledgeAssessments: Prisma.$KnowledgeAssessmentPayload<ExtArgs>[]
+      who5Assessments: Prisma.$Who5AssessmentPayload<ExtArgs>[]
+      psocAssessments: Prisma.$PsocAssessmentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12051,6 +12849,9 @@ export namespace Prisma {
   export interface Prisma__FollowUpScheduleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    knowledgeAssessments<T extends FollowUpSchedule$knowledgeAssessmentsArgs<ExtArgs> = {}>(args?: Subset<T, FollowUpSchedule$knowledgeAssessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    who5Assessments<T extends FollowUpSchedule$who5AssessmentsArgs<ExtArgs> = {}>(args?: Subset<T, FollowUpSchedule$who5AssessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    psocAssessments<T extends FollowUpSchedule$psocAssessmentsArgs<ExtArgs> = {}>(args?: Subset<T, FollowUpSchedule$psocAssessmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12492,6 +13293,78 @@ export namespace Prisma {
   }
 
   /**
+   * FollowUpSchedule.knowledgeAssessments
+   */
+  export type FollowUpSchedule$knowledgeAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    where?: KnowledgeAssessmentWhereInput
+    orderBy?: KnowledgeAssessmentOrderByWithRelationInput | KnowledgeAssessmentOrderByWithRelationInput[]
+    cursor?: KnowledgeAssessmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: KnowledgeAssessmentScalarFieldEnum | KnowledgeAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * FollowUpSchedule.who5Assessments
+   */
+  export type FollowUpSchedule$who5AssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    where?: Who5AssessmentWhereInput
+    orderBy?: Who5AssessmentOrderByWithRelationInput | Who5AssessmentOrderByWithRelationInput[]
+    cursor?: Who5AssessmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Who5AssessmentScalarFieldEnum | Who5AssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * FollowUpSchedule.psocAssessments
+   */
+  export type FollowUpSchedule$psocAssessmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    where?: PsocAssessmentWhereInput
+    orderBy?: PsocAssessmentOrderByWithRelationInput | PsocAssessmentOrderByWithRelationInput[]
+    cursor?: PsocAssessmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PsocAssessmentScalarFieldEnum | PsocAssessmentScalarFieldEnum[]
+  }
+
+  /**
    * FollowUpSchedule without action
    */
   export type FollowUpScheduleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12507,6 +13380,6320 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: FollowUpScheduleInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model KnowledgeAssessment
+   */
+
+  export type AggregateKnowledgeAssessment = {
+    _count: KnowledgeAssessmentCountAggregateOutputType | null
+    _avg: KnowledgeAssessmentAvgAggregateOutputType | null
+    _sum: KnowledgeAssessmentSumAggregateOutputType | null
+    _min: KnowledgeAssessmentMinAggregateOutputType | null
+    _max: KnowledgeAssessmentMaxAggregateOutputType | null
+  }
+
+  export type KnowledgeAssessmentAvgAggregateOutputType = {
+    score: number | null
+    maxScore: number | null
+    percentage: number | null
+  }
+
+  export type KnowledgeAssessmentSumAggregateOutputType = {
+    score: number | null
+    maxScore: number | null
+    percentage: number | null
+  }
+
+  export type KnowledgeAssessmentMinAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    followUpScheduleId: string | null
+    timePoint: string | null
+    score: number | null
+    maxScore: number | null
+    percentage: number | null
+    grade: string | null
+    submittedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type KnowledgeAssessmentMaxAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    followUpScheduleId: string | null
+    timePoint: string | null
+    score: number | null
+    maxScore: number | null
+    percentage: number | null
+    grade: string | null
+    submittedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type KnowledgeAssessmentCountAggregateOutputType = {
+    id: number
+    motherProfileId: number
+    followUpScheduleId: number
+    timePoint: number
+    responses: number
+    score: number
+    maxScore: number
+    percentage: number
+    grade: number
+    submittedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type KnowledgeAssessmentAvgAggregateInputType = {
+    score?: true
+    maxScore?: true
+    percentage?: true
+  }
+
+  export type KnowledgeAssessmentSumAggregateInputType = {
+    score?: true
+    maxScore?: true
+    percentage?: true
+  }
+
+  export type KnowledgeAssessmentMinAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    score?: true
+    maxScore?: true
+    percentage?: true
+    grade?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type KnowledgeAssessmentMaxAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    score?: true
+    maxScore?: true
+    percentage?: true
+    grade?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type KnowledgeAssessmentCountAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    responses?: true
+    score?: true
+    maxScore?: true
+    percentage?: true
+    grade?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type KnowledgeAssessmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KnowledgeAssessment to aggregate.
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnowledgeAssessments to fetch.
+     */
+    orderBy?: KnowledgeAssessmentOrderByWithRelationInput | KnowledgeAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KnowledgeAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnowledgeAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnowledgeAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned KnowledgeAssessments
+    **/
+    _count?: true | KnowledgeAssessmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: KnowledgeAssessmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: KnowledgeAssessmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KnowledgeAssessmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KnowledgeAssessmentMaxAggregateInputType
+  }
+
+  export type GetKnowledgeAssessmentAggregateType<T extends KnowledgeAssessmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateKnowledgeAssessment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKnowledgeAssessment[P]>
+      : GetScalarType<T[P], AggregateKnowledgeAssessment[P]>
+  }
+
+
+
+
+  export type KnowledgeAssessmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KnowledgeAssessmentWhereInput
+    orderBy?: KnowledgeAssessmentOrderByWithAggregationInput | KnowledgeAssessmentOrderByWithAggregationInput[]
+    by: KnowledgeAssessmentScalarFieldEnum[] | KnowledgeAssessmentScalarFieldEnum
+    having?: KnowledgeAssessmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KnowledgeAssessmentCountAggregateInputType | true
+    _avg?: KnowledgeAssessmentAvgAggregateInputType
+    _sum?: KnowledgeAssessmentSumAggregateInputType
+    _min?: KnowledgeAssessmentMinAggregateInputType
+    _max?: KnowledgeAssessmentMaxAggregateInputType
+  }
+
+  export type KnowledgeAssessmentGroupByOutputType = {
+    id: string
+    motherProfileId: string
+    followUpScheduleId: string | null
+    timePoint: string
+    responses: JsonValue
+    score: number
+    maxScore: number
+    percentage: number
+    grade: string
+    submittedAt: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: KnowledgeAssessmentCountAggregateOutputType | null
+    _avg: KnowledgeAssessmentAvgAggregateOutputType | null
+    _sum: KnowledgeAssessmentSumAggregateOutputType | null
+    _min: KnowledgeAssessmentMinAggregateOutputType | null
+    _max: KnowledgeAssessmentMaxAggregateOutputType | null
+  }
+
+  type GetKnowledgeAssessmentGroupByPayload<T extends KnowledgeAssessmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KnowledgeAssessmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KnowledgeAssessmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KnowledgeAssessmentGroupByOutputType[P]>
+            : GetScalarType<T[P], KnowledgeAssessmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KnowledgeAssessmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    score?: boolean
+    maxScore?: boolean
+    percentage?: boolean
+    grade?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | KnowledgeAssessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["knowledgeAssessment"]>
+
+  export type KnowledgeAssessmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    score?: boolean
+    maxScore?: boolean
+    percentage?: boolean
+    grade?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | KnowledgeAssessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["knowledgeAssessment"]>
+
+  export type KnowledgeAssessmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    score?: boolean
+    maxScore?: boolean
+    percentage?: boolean
+    grade?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | KnowledgeAssessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["knowledgeAssessment"]>
+
+  export type KnowledgeAssessmentSelectScalar = {
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    score?: boolean
+    maxScore?: boolean
+    percentage?: boolean
+    grade?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type KnowledgeAssessmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "motherProfileId" | "followUpScheduleId" | "timePoint" | "responses" | "score" | "maxScore" | "percentage" | "grade" | "submittedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["knowledgeAssessment"]>
+  export type KnowledgeAssessmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | KnowledgeAssessment$followUpScheduleArgs<ExtArgs>
+  }
+  export type KnowledgeAssessmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | KnowledgeAssessment$followUpScheduleArgs<ExtArgs>
+  }
+  export type KnowledgeAssessmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | KnowledgeAssessment$followUpScheduleArgs<ExtArgs>
+  }
+
+  export type $KnowledgeAssessmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "KnowledgeAssessment"
+    objects: {
+      motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+      followUpSchedule: Prisma.$FollowUpSchedulePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      motherProfileId: string
+      followUpScheduleId: string | null
+      timePoint: string
+      responses: Prisma.JsonValue
+      score: number
+      maxScore: number
+      percentage: number
+      grade: string
+      submittedAt: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["knowledgeAssessment"]>
+    composites: {}
+  }
+
+  type KnowledgeAssessmentGetPayload<S extends boolean | null | undefined | KnowledgeAssessmentDefaultArgs> = $Result.GetResult<Prisma.$KnowledgeAssessmentPayload, S>
+
+  type KnowledgeAssessmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<KnowledgeAssessmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: KnowledgeAssessmentCountAggregateInputType | true
+    }
+
+  export interface KnowledgeAssessmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['KnowledgeAssessment'], meta: { name: 'KnowledgeAssessment' } }
+    /**
+     * Find zero or one KnowledgeAssessment that matches the filter.
+     * @param {KnowledgeAssessmentFindUniqueArgs} args - Arguments to find a KnowledgeAssessment
+     * @example
+     * // Get one KnowledgeAssessment
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KnowledgeAssessmentFindUniqueArgs>(args: SelectSubset<T, KnowledgeAssessmentFindUniqueArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one KnowledgeAssessment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {KnowledgeAssessmentFindUniqueOrThrowArgs} args - Arguments to find a KnowledgeAssessment
+     * @example
+     * // Get one KnowledgeAssessment
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KnowledgeAssessmentFindUniqueOrThrowArgs>(args: SelectSubset<T, KnowledgeAssessmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KnowledgeAssessment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentFindFirstArgs} args - Arguments to find a KnowledgeAssessment
+     * @example
+     * // Get one KnowledgeAssessment
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KnowledgeAssessmentFindFirstArgs>(args?: SelectSubset<T, KnowledgeAssessmentFindFirstArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first KnowledgeAssessment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentFindFirstOrThrowArgs} args - Arguments to find a KnowledgeAssessment
+     * @example
+     * // Get one KnowledgeAssessment
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KnowledgeAssessmentFindFirstOrThrowArgs>(args?: SelectSubset<T, KnowledgeAssessmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more KnowledgeAssessments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all KnowledgeAssessments
+     * const knowledgeAssessments = await prisma.knowledgeAssessment.findMany()
+     * 
+     * // Get first 10 KnowledgeAssessments
+     * const knowledgeAssessments = await prisma.knowledgeAssessment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const knowledgeAssessmentWithIdOnly = await prisma.knowledgeAssessment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends KnowledgeAssessmentFindManyArgs>(args?: SelectSubset<T, KnowledgeAssessmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a KnowledgeAssessment.
+     * @param {KnowledgeAssessmentCreateArgs} args - Arguments to create a KnowledgeAssessment.
+     * @example
+     * // Create one KnowledgeAssessment
+     * const KnowledgeAssessment = await prisma.knowledgeAssessment.create({
+     *   data: {
+     *     // ... data to create a KnowledgeAssessment
+     *   }
+     * })
+     * 
+     */
+    create<T extends KnowledgeAssessmentCreateArgs>(args: SelectSubset<T, KnowledgeAssessmentCreateArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many KnowledgeAssessments.
+     * @param {KnowledgeAssessmentCreateManyArgs} args - Arguments to create many KnowledgeAssessments.
+     * @example
+     * // Create many KnowledgeAssessments
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KnowledgeAssessmentCreateManyArgs>(args?: SelectSubset<T, KnowledgeAssessmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many KnowledgeAssessments and returns the data saved in the database.
+     * @param {KnowledgeAssessmentCreateManyAndReturnArgs} args - Arguments to create many KnowledgeAssessments.
+     * @example
+     * // Create many KnowledgeAssessments
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many KnowledgeAssessments and only return the `id`
+     * const knowledgeAssessmentWithIdOnly = await prisma.knowledgeAssessment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends KnowledgeAssessmentCreateManyAndReturnArgs>(args?: SelectSubset<T, KnowledgeAssessmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a KnowledgeAssessment.
+     * @param {KnowledgeAssessmentDeleteArgs} args - Arguments to delete one KnowledgeAssessment.
+     * @example
+     * // Delete one KnowledgeAssessment
+     * const KnowledgeAssessment = await prisma.knowledgeAssessment.delete({
+     *   where: {
+     *     // ... filter to delete one KnowledgeAssessment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KnowledgeAssessmentDeleteArgs>(args: SelectSubset<T, KnowledgeAssessmentDeleteArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one KnowledgeAssessment.
+     * @param {KnowledgeAssessmentUpdateArgs} args - Arguments to update one KnowledgeAssessment.
+     * @example
+     * // Update one KnowledgeAssessment
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KnowledgeAssessmentUpdateArgs>(args: SelectSubset<T, KnowledgeAssessmentUpdateArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more KnowledgeAssessments.
+     * @param {KnowledgeAssessmentDeleteManyArgs} args - Arguments to filter KnowledgeAssessments to delete.
+     * @example
+     * // Delete a few KnowledgeAssessments
+     * const { count } = await prisma.knowledgeAssessment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KnowledgeAssessmentDeleteManyArgs>(args?: SelectSubset<T, KnowledgeAssessmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KnowledgeAssessments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many KnowledgeAssessments
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KnowledgeAssessmentUpdateManyArgs>(args: SelectSubset<T, KnowledgeAssessmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more KnowledgeAssessments and returns the data updated in the database.
+     * @param {KnowledgeAssessmentUpdateManyAndReturnArgs} args - Arguments to update many KnowledgeAssessments.
+     * @example
+     * // Update many KnowledgeAssessments
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more KnowledgeAssessments and only return the `id`
+     * const knowledgeAssessmentWithIdOnly = await prisma.knowledgeAssessment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends KnowledgeAssessmentUpdateManyAndReturnArgs>(args: SelectSubset<T, KnowledgeAssessmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one KnowledgeAssessment.
+     * @param {KnowledgeAssessmentUpsertArgs} args - Arguments to update or create a KnowledgeAssessment.
+     * @example
+     * // Update or create a KnowledgeAssessment
+     * const knowledgeAssessment = await prisma.knowledgeAssessment.upsert({
+     *   create: {
+     *     // ... data to create a KnowledgeAssessment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the KnowledgeAssessment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KnowledgeAssessmentUpsertArgs>(args: SelectSubset<T, KnowledgeAssessmentUpsertArgs<ExtArgs>>): Prisma__KnowledgeAssessmentClient<$Result.GetResult<Prisma.$KnowledgeAssessmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of KnowledgeAssessments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentCountArgs} args - Arguments to filter KnowledgeAssessments to count.
+     * @example
+     * // Count the number of KnowledgeAssessments
+     * const count = await prisma.knowledgeAssessment.count({
+     *   where: {
+     *     // ... the filter for the KnowledgeAssessments we want to count
+     *   }
+     * })
+    **/
+    count<T extends KnowledgeAssessmentCountArgs>(
+      args?: Subset<T, KnowledgeAssessmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KnowledgeAssessmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a KnowledgeAssessment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KnowledgeAssessmentAggregateArgs>(args: Subset<T, KnowledgeAssessmentAggregateArgs>): Prisma.PrismaPromise<GetKnowledgeAssessmentAggregateType<T>>
+
+    /**
+     * Group by KnowledgeAssessment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KnowledgeAssessmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KnowledgeAssessmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KnowledgeAssessmentGroupByArgs['orderBy'] }
+        : { orderBy?: KnowledgeAssessmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KnowledgeAssessmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKnowledgeAssessmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the KnowledgeAssessment model
+   */
+  readonly fields: KnowledgeAssessmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for KnowledgeAssessment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KnowledgeAssessmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    followUpSchedule<T extends KnowledgeAssessment$followUpScheduleArgs<ExtArgs> = {}>(args?: Subset<T, KnowledgeAssessment$followUpScheduleArgs<ExtArgs>>): Prisma__FollowUpScheduleClient<$Result.GetResult<Prisma.$FollowUpSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the KnowledgeAssessment model
+   */
+  interface KnowledgeAssessmentFieldRefs {
+    readonly id: FieldRef<"KnowledgeAssessment", 'String'>
+    readonly motherProfileId: FieldRef<"KnowledgeAssessment", 'String'>
+    readonly followUpScheduleId: FieldRef<"KnowledgeAssessment", 'String'>
+    readonly timePoint: FieldRef<"KnowledgeAssessment", 'String'>
+    readonly responses: FieldRef<"KnowledgeAssessment", 'Json'>
+    readonly score: FieldRef<"KnowledgeAssessment", 'Int'>
+    readonly maxScore: FieldRef<"KnowledgeAssessment", 'Int'>
+    readonly percentage: FieldRef<"KnowledgeAssessment", 'Int'>
+    readonly grade: FieldRef<"KnowledgeAssessment", 'String'>
+    readonly submittedAt: FieldRef<"KnowledgeAssessment", 'DateTime'>
+    readonly createdAt: FieldRef<"KnowledgeAssessment", 'DateTime'>
+    readonly updatedAt: FieldRef<"KnowledgeAssessment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * KnowledgeAssessment findUnique
+   */
+  export type KnowledgeAssessmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which KnowledgeAssessment to fetch.
+     */
+    where: KnowledgeAssessmentWhereUniqueInput
+  }
+
+  /**
+   * KnowledgeAssessment findUniqueOrThrow
+   */
+  export type KnowledgeAssessmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which KnowledgeAssessment to fetch.
+     */
+    where: KnowledgeAssessmentWhereUniqueInput
+  }
+
+  /**
+   * KnowledgeAssessment findFirst
+   */
+  export type KnowledgeAssessmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which KnowledgeAssessment to fetch.
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnowledgeAssessments to fetch.
+     */
+    orderBy?: KnowledgeAssessmentOrderByWithRelationInput | KnowledgeAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KnowledgeAssessments.
+     */
+    cursor?: KnowledgeAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnowledgeAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnowledgeAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnowledgeAssessments.
+     */
+    distinct?: KnowledgeAssessmentScalarFieldEnum | KnowledgeAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * KnowledgeAssessment findFirstOrThrow
+   */
+  export type KnowledgeAssessmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which KnowledgeAssessment to fetch.
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnowledgeAssessments to fetch.
+     */
+    orderBy?: KnowledgeAssessmentOrderByWithRelationInput | KnowledgeAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for KnowledgeAssessments.
+     */
+    cursor?: KnowledgeAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnowledgeAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnowledgeAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnowledgeAssessments.
+     */
+    distinct?: KnowledgeAssessmentScalarFieldEnum | KnowledgeAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * KnowledgeAssessment findMany
+   */
+  export type KnowledgeAssessmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which KnowledgeAssessments to fetch.
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of KnowledgeAssessments to fetch.
+     */
+    orderBy?: KnowledgeAssessmentOrderByWithRelationInput | KnowledgeAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing KnowledgeAssessments.
+     */
+    cursor?: KnowledgeAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` KnowledgeAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` KnowledgeAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of KnowledgeAssessments.
+     */
+    distinct?: KnowledgeAssessmentScalarFieldEnum | KnowledgeAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * KnowledgeAssessment create
+   */
+  export type KnowledgeAssessmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a KnowledgeAssessment.
+     */
+    data: XOR<KnowledgeAssessmentCreateInput, KnowledgeAssessmentUncheckedCreateInput>
+  }
+
+  /**
+   * KnowledgeAssessment createMany
+   */
+  export type KnowledgeAssessmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many KnowledgeAssessments.
+     */
+    data: KnowledgeAssessmentCreateManyInput | KnowledgeAssessmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * KnowledgeAssessment createManyAndReturn
+   */
+  export type KnowledgeAssessmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many KnowledgeAssessments.
+     */
+    data: KnowledgeAssessmentCreateManyInput | KnowledgeAssessmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KnowledgeAssessment update
+   */
+  export type KnowledgeAssessmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a KnowledgeAssessment.
+     */
+    data: XOR<KnowledgeAssessmentUpdateInput, KnowledgeAssessmentUncheckedUpdateInput>
+    /**
+     * Choose, which KnowledgeAssessment to update.
+     */
+    where: KnowledgeAssessmentWhereUniqueInput
+  }
+
+  /**
+   * KnowledgeAssessment updateMany
+   */
+  export type KnowledgeAssessmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update KnowledgeAssessments.
+     */
+    data: XOR<KnowledgeAssessmentUpdateManyMutationInput, KnowledgeAssessmentUncheckedUpdateManyInput>
+    /**
+     * Filter which KnowledgeAssessments to update
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * Limit how many KnowledgeAssessments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * KnowledgeAssessment updateManyAndReturn
+   */
+  export type KnowledgeAssessmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * The data used to update KnowledgeAssessments.
+     */
+    data: XOR<KnowledgeAssessmentUpdateManyMutationInput, KnowledgeAssessmentUncheckedUpdateManyInput>
+    /**
+     * Filter which KnowledgeAssessments to update
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * Limit how many KnowledgeAssessments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * KnowledgeAssessment upsert
+   */
+  export type KnowledgeAssessmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the KnowledgeAssessment to update in case it exists.
+     */
+    where: KnowledgeAssessmentWhereUniqueInput
+    /**
+     * In case the KnowledgeAssessment found by the `where` argument doesn't exist, create a new KnowledgeAssessment with this data.
+     */
+    create: XOR<KnowledgeAssessmentCreateInput, KnowledgeAssessmentUncheckedCreateInput>
+    /**
+     * In case the KnowledgeAssessment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KnowledgeAssessmentUpdateInput, KnowledgeAssessmentUncheckedUpdateInput>
+  }
+
+  /**
+   * KnowledgeAssessment delete
+   */
+  export type KnowledgeAssessmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter which KnowledgeAssessment to delete.
+     */
+    where: KnowledgeAssessmentWhereUniqueInput
+  }
+
+  /**
+   * KnowledgeAssessment deleteMany
+   */
+  export type KnowledgeAssessmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which KnowledgeAssessments to delete
+     */
+    where?: KnowledgeAssessmentWhereInput
+    /**
+     * Limit how many KnowledgeAssessments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * KnowledgeAssessment.followUpSchedule
+   */
+  export type KnowledgeAssessment$followUpScheduleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpSchedule
+     */
+    select?: FollowUpScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpSchedule
+     */
+    omit?: FollowUpScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpScheduleInclude<ExtArgs> | null
+    where?: FollowUpScheduleWhereInput
+  }
+
+  /**
+   * KnowledgeAssessment without action
+   */
+  export type KnowledgeAssessmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KnowledgeAssessment
+     */
+    select?: KnowledgeAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the KnowledgeAssessment
+     */
+    omit?: KnowledgeAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KnowledgeAssessmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Who5Assessment
+   */
+
+  export type AggregateWho5Assessment = {
+    _count: Who5AssessmentCountAggregateOutputType | null
+    _avg: Who5AssessmentAvgAggregateOutputType | null
+    _sum: Who5AssessmentSumAggregateOutputType | null
+    _min: Who5AssessmentMinAggregateOutputType | null
+    _max: Who5AssessmentMaxAggregateOutputType | null
+  }
+
+  export type Who5AssessmentAvgAggregateOutputType = {
+    rawScore: number | null
+    maxScore: number | null
+    percentageScore: number | null
+  }
+
+  export type Who5AssessmentSumAggregateOutputType = {
+    rawScore: number | null
+    maxScore: number | null
+    percentageScore: number | null
+  }
+
+  export type Who5AssessmentMinAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    followUpScheduleId: string | null
+    timePoint: string | null
+    rawScore: number | null
+    maxScore: number | null
+    percentageScore: number | null
+    poorWellbeingFlag: boolean | null
+    interpretation: string | null
+    submittedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type Who5AssessmentMaxAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    followUpScheduleId: string | null
+    timePoint: string | null
+    rawScore: number | null
+    maxScore: number | null
+    percentageScore: number | null
+    poorWellbeingFlag: boolean | null
+    interpretation: string | null
+    submittedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type Who5AssessmentCountAggregateOutputType = {
+    id: number
+    motherProfileId: number
+    followUpScheduleId: number
+    timePoint: number
+    responses: number
+    rawScore: number
+    maxScore: number
+    percentageScore: number
+    poorWellbeingFlag: number
+    interpretation: number
+    submittedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type Who5AssessmentAvgAggregateInputType = {
+    rawScore?: true
+    maxScore?: true
+    percentageScore?: true
+  }
+
+  export type Who5AssessmentSumAggregateInputType = {
+    rawScore?: true
+    maxScore?: true
+    percentageScore?: true
+  }
+
+  export type Who5AssessmentMinAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    rawScore?: true
+    maxScore?: true
+    percentageScore?: true
+    poorWellbeingFlag?: true
+    interpretation?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type Who5AssessmentMaxAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    rawScore?: true
+    maxScore?: true
+    percentageScore?: true
+    poorWellbeingFlag?: true
+    interpretation?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type Who5AssessmentCountAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    responses?: true
+    rawScore?: true
+    maxScore?: true
+    percentageScore?: true
+    poorWellbeingFlag?: true
+    interpretation?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type Who5AssessmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Who5Assessment to aggregate.
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Who5Assessments to fetch.
+     */
+    orderBy?: Who5AssessmentOrderByWithRelationInput | Who5AssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Who5AssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Who5Assessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Who5Assessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Who5Assessments
+    **/
+    _count?: true | Who5AssessmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Who5AssessmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Who5AssessmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Who5AssessmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Who5AssessmentMaxAggregateInputType
+  }
+
+  export type GetWho5AssessmentAggregateType<T extends Who5AssessmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateWho5Assessment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWho5Assessment[P]>
+      : GetScalarType<T[P], AggregateWho5Assessment[P]>
+  }
+
+
+
+
+  export type Who5AssessmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Who5AssessmentWhereInput
+    orderBy?: Who5AssessmentOrderByWithAggregationInput | Who5AssessmentOrderByWithAggregationInput[]
+    by: Who5AssessmentScalarFieldEnum[] | Who5AssessmentScalarFieldEnum
+    having?: Who5AssessmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Who5AssessmentCountAggregateInputType | true
+    _avg?: Who5AssessmentAvgAggregateInputType
+    _sum?: Who5AssessmentSumAggregateInputType
+    _min?: Who5AssessmentMinAggregateInputType
+    _max?: Who5AssessmentMaxAggregateInputType
+  }
+
+  export type Who5AssessmentGroupByOutputType = {
+    id: string
+    motherProfileId: string
+    followUpScheduleId: string | null
+    timePoint: string
+    responses: JsonValue
+    rawScore: number
+    maxScore: number
+    percentageScore: number
+    poorWellbeingFlag: boolean
+    interpretation: string
+    submittedAt: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: Who5AssessmentCountAggregateOutputType | null
+    _avg: Who5AssessmentAvgAggregateOutputType | null
+    _sum: Who5AssessmentSumAggregateOutputType | null
+    _min: Who5AssessmentMinAggregateOutputType | null
+    _max: Who5AssessmentMaxAggregateOutputType | null
+  }
+
+  type GetWho5AssessmentGroupByPayload<T extends Who5AssessmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Who5AssessmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Who5AssessmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Who5AssessmentGroupByOutputType[P]>
+            : GetScalarType<T[P], Who5AssessmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Who5AssessmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    rawScore?: boolean
+    maxScore?: boolean
+    percentageScore?: boolean
+    poorWellbeingFlag?: boolean
+    interpretation?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | Who5Assessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["who5Assessment"]>
+
+  export type Who5AssessmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    rawScore?: boolean
+    maxScore?: boolean
+    percentageScore?: boolean
+    poorWellbeingFlag?: boolean
+    interpretation?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | Who5Assessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["who5Assessment"]>
+
+  export type Who5AssessmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    rawScore?: boolean
+    maxScore?: boolean
+    percentageScore?: boolean
+    poorWellbeingFlag?: boolean
+    interpretation?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | Who5Assessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["who5Assessment"]>
+
+  export type Who5AssessmentSelectScalar = {
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    responses?: boolean
+    rawScore?: boolean
+    maxScore?: boolean
+    percentageScore?: boolean
+    poorWellbeingFlag?: boolean
+    interpretation?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type Who5AssessmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "motherProfileId" | "followUpScheduleId" | "timePoint" | "responses" | "rawScore" | "maxScore" | "percentageScore" | "poorWellbeingFlag" | "interpretation" | "submittedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["who5Assessment"]>
+  export type Who5AssessmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | Who5Assessment$followUpScheduleArgs<ExtArgs>
+  }
+  export type Who5AssessmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | Who5Assessment$followUpScheduleArgs<ExtArgs>
+  }
+  export type Who5AssessmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | Who5Assessment$followUpScheduleArgs<ExtArgs>
+  }
+
+  export type $Who5AssessmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Who5Assessment"
+    objects: {
+      motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+      followUpSchedule: Prisma.$FollowUpSchedulePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      motherProfileId: string
+      followUpScheduleId: string | null
+      timePoint: string
+      responses: Prisma.JsonValue
+      rawScore: number
+      maxScore: number
+      percentageScore: number
+      poorWellbeingFlag: boolean
+      interpretation: string
+      submittedAt: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["who5Assessment"]>
+    composites: {}
+  }
+
+  type Who5AssessmentGetPayload<S extends boolean | null | undefined | Who5AssessmentDefaultArgs> = $Result.GetResult<Prisma.$Who5AssessmentPayload, S>
+
+  type Who5AssessmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Who5AssessmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Who5AssessmentCountAggregateInputType | true
+    }
+
+  export interface Who5AssessmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Who5Assessment'], meta: { name: 'Who5Assessment' } }
+    /**
+     * Find zero or one Who5Assessment that matches the filter.
+     * @param {Who5AssessmentFindUniqueArgs} args - Arguments to find a Who5Assessment
+     * @example
+     * // Get one Who5Assessment
+     * const who5Assessment = await prisma.who5Assessment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Who5AssessmentFindUniqueArgs>(args: SelectSubset<T, Who5AssessmentFindUniqueArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Who5Assessment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {Who5AssessmentFindUniqueOrThrowArgs} args - Arguments to find a Who5Assessment
+     * @example
+     * // Get one Who5Assessment
+     * const who5Assessment = await prisma.who5Assessment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Who5AssessmentFindUniqueOrThrowArgs>(args: SelectSubset<T, Who5AssessmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Who5Assessment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentFindFirstArgs} args - Arguments to find a Who5Assessment
+     * @example
+     * // Get one Who5Assessment
+     * const who5Assessment = await prisma.who5Assessment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Who5AssessmentFindFirstArgs>(args?: SelectSubset<T, Who5AssessmentFindFirstArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Who5Assessment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentFindFirstOrThrowArgs} args - Arguments to find a Who5Assessment
+     * @example
+     * // Get one Who5Assessment
+     * const who5Assessment = await prisma.who5Assessment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Who5AssessmentFindFirstOrThrowArgs>(args?: SelectSubset<T, Who5AssessmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Who5Assessments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Who5Assessments
+     * const who5Assessments = await prisma.who5Assessment.findMany()
+     * 
+     * // Get first 10 Who5Assessments
+     * const who5Assessments = await prisma.who5Assessment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const who5AssessmentWithIdOnly = await prisma.who5Assessment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Who5AssessmentFindManyArgs>(args?: SelectSubset<T, Who5AssessmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Who5Assessment.
+     * @param {Who5AssessmentCreateArgs} args - Arguments to create a Who5Assessment.
+     * @example
+     * // Create one Who5Assessment
+     * const Who5Assessment = await prisma.who5Assessment.create({
+     *   data: {
+     *     // ... data to create a Who5Assessment
+     *   }
+     * })
+     * 
+     */
+    create<T extends Who5AssessmentCreateArgs>(args: SelectSubset<T, Who5AssessmentCreateArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Who5Assessments.
+     * @param {Who5AssessmentCreateManyArgs} args - Arguments to create many Who5Assessments.
+     * @example
+     * // Create many Who5Assessments
+     * const who5Assessment = await prisma.who5Assessment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Who5AssessmentCreateManyArgs>(args?: SelectSubset<T, Who5AssessmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Who5Assessments and returns the data saved in the database.
+     * @param {Who5AssessmentCreateManyAndReturnArgs} args - Arguments to create many Who5Assessments.
+     * @example
+     * // Create many Who5Assessments
+     * const who5Assessment = await prisma.who5Assessment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Who5Assessments and only return the `id`
+     * const who5AssessmentWithIdOnly = await prisma.who5Assessment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends Who5AssessmentCreateManyAndReturnArgs>(args?: SelectSubset<T, Who5AssessmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Who5Assessment.
+     * @param {Who5AssessmentDeleteArgs} args - Arguments to delete one Who5Assessment.
+     * @example
+     * // Delete one Who5Assessment
+     * const Who5Assessment = await prisma.who5Assessment.delete({
+     *   where: {
+     *     // ... filter to delete one Who5Assessment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Who5AssessmentDeleteArgs>(args: SelectSubset<T, Who5AssessmentDeleteArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Who5Assessment.
+     * @param {Who5AssessmentUpdateArgs} args - Arguments to update one Who5Assessment.
+     * @example
+     * // Update one Who5Assessment
+     * const who5Assessment = await prisma.who5Assessment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Who5AssessmentUpdateArgs>(args: SelectSubset<T, Who5AssessmentUpdateArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Who5Assessments.
+     * @param {Who5AssessmentDeleteManyArgs} args - Arguments to filter Who5Assessments to delete.
+     * @example
+     * // Delete a few Who5Assessments
+     * const { count } = await prisma.who5Assessment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Who5AssessmentDeleteManyArgs>(args?: SelectSubset<T, Who5AssessmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Who5Assessments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Who5Assessments
+     * const who5Assessment = await prisma.who5Assessment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Who5AssessmentUpdateManyArgs>(args: SelectSubset<T, Who5AssessmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Who5Assessments and returns the data updated in the database.
+     * @param {Who5AssessmentUpdateManyAndReturnArgs} args - Arguments to update many Who5Assessments.
+     * @example
+     * // Update many Who5Assessments
+     * const who5Assessment = await prisma.who5Assessment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Who5Assessments and only return the `id`
+     * const who5AssessmentWithIdOnly = await prisma.who5Assessment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends Who5AssessmentUpdateManyAndReturnArgs>(args: SelectSubset<T, Who5AssessmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Who5Assessment.
+     * @param {Who5AssessmentUpsertArgs} args - Arguments to update or create a Who5Assessment.
+     * @example
+     * // Update or create a Who5Assessment
+     * const who5Assessment = await prisma.who5Assessment.upsert({
+     *   create: {
+     *     // ... data to create a Who5Assessment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Who5Assessment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Who5AssessmentUpsertArgs>(args: SelectSubset<T, Who5AssessmentUpsertArgs<ExtArgs>>): Prisma__Who5AssessmentClient<$Result.GetResult<Prisma.$Who5AssessmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Who5Assessments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentCountArgs} args - Arguments to filter Who5Assessments to count.
+     * @example
+     * // Count the number of Who5Assessments
+     * const count = await prisma.who5Assessment.count({
+     *   where: {
+     *     // ... the filter for the Who5Assessments we want to count
+     *   }
+     * })
+    **/
+    count<T extends Who5AssessmentCountArgs>(
+      args?: Subset<T, Who5AssessmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Who5AssessmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Who5Assessment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Who5AssessmentAggregateArgs>(args: Subset<T, Who5AssessmentAggregateArgs>): Prisma.PrismaPromise<GetWho5AssessmentAggregateType<T>>
+
+    /**
+     * Group by Who5Assessment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Who5AssessmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Who5AssessmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Who5AssessmentGroupByArgs['orderBy'] }
+        : { orderBy?: Who5AssessmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Who5AssessmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWho5AssessmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Who5Assessment model
+   */
+  readonly fields: Who5AssessmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Who5Assessment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Who5AssessmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    followUpSchedule<T extends Who5Assessment$followUpScheduleArgs<ExtArgs> = {}>(args?: Subset<T, Who5Assessment$followUpScheduleArgs<ExtArgs>>): Prisma__FollowUpScheduleClient<$Result.GetResult<Prisma.$FollowUpSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Who5Assessment model
+   */
+  interface Who5AssessmentFieldRefs {
+    readonly id: FieldRef<"Who5Assessment", 'String'>
+    readonly motherProfileId: FieldRef<"Who5Assessment", 'String'>
+    readonly followUpScheduleId: FieldRef<"Who5Assessment", 'String'>
+    readonly timePoint: FieldRef<"Who5Assessment", 'String'>
+    readonly responses: FieldRef<"Who5Assessment", 'Json'>
+    readonly rawScore: FieldRef<"Who5Assessment", 'Int'>
+    readonly maxScore: FieldRef<"Who5Assessment", 'Int'>
+    readonly percentageScore: FieldRef<"Who5Assessment", 'Int'>
+    readonly poorWellbeingFlag: FieldRef<"Who5Assessment", 'Boolean'>
+    readonly interpretation: FieldRef<"Who5Assessment", 'String'>
+    readonly submittedAt: FieldRef<"Who5Assessment", 'DateTime'>
+    readonly createdAt: FieldRef<"Who5Assessment", 'DateTime'>
+    readonly updatedAt: FieldRef<"Who5Assessment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Who5Assessment findUnique
+   */
+  export type Who5AssessmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Who5Assessment to fetch.
+     */
+    where: Who5AssessmentWhereUniqueInput
+  }
+
+  /**
+   * Who5Assessment findUniqueOrThrow
+   */
+  export type Who5AssessmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Who5Assessment to fetch.
+     */
+    where: Who5AssessmentWhereUniqueInput
+  }
+
+  /**
+   * Who5Assessment findFirst
+   */
+  export type Who5AssessmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Who5Assessment to fetch.
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Who5Assessments to fetch.
+     */
+    orderBy?: Who5AssessmentOrderByWithRelationInput | Who5AssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Who5Assessments.
+     */
+    cursor?: Who5AssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Who5Assessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Who5Assessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Who5Assessments.
+     */
+    distinct?: Who5AssessmentScalarFieldEnum | Who5AssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * Who5Assessment findFirstOrThrow
+   */
+  export type Who5AssessmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Who5Assessment to fetch.
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Who5Assessments to fetch.
+     */
+    orderBy?: Who5AssessmentOrderByWithRelationInput | Who5AssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Who5Assessments.
+     */
+    cursor?: Who5AssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Who5Assessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Who5Assessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Who5Assessments.
+     */
+    distinct?: Who5AssessmentScalarFieldEnum | Who5AssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * Who5Assessment findMany
+   */
+  export type Who5AssessmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which Who5Assessments to fetch.
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Who5Assessments to fetch.
+     */
+    orderBy?: Who5AssessmentOrderByWithRelationInput | Who5AssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Who5Assessments.
+     */
+    cursor?: Who5AssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Who5Assessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Who5Assessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Who5Assessments.
+     */
+    distinct?: Who5AssessmentScalarFieldEnum | Who5AssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * Who5Assessment create
+   */
+  export type Who5AssessmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Who5Assessment.
+     */
+    data: XOR<Who5AssessmentCreateInput, Who5AssessmentUncheckedCreateInput>
+  }
+
+  /**
+   * Who5Assessment createMany
+   */
+  export type Who5AssessmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Who5Assessments.
+     */
+    data: Who5AssessmentCreateManyInput | Who5AssessmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Who5Assessment createManyAndReturn
+   */
+  export type Who5AssessmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many Who5Assessments.
+     */
+    data: Who5AssessmentCreateManyInput | Who5AssessmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Who5Assessment update
+   */
+  export type Who5AssessmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Who5Assessment.
+     */
+    data: XOR<Who5AssessmentUpdateInput, Who5AssessmentUncheckedUpdateInput>
+    /**
+     * Choose, which Who5Assessment to update.
+     */
+    where: Who5AssessmentWhereUniqueInput
+  }
+
+  /**
+   * Who5Assessment updateMany
+   */
+  export type Who5AssessmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Who5Assessments.
+     */
+    data: XOR<Who5AssessmentUpdateManyMutationInput, Who5AssessmentUncheckedUpdateManyInput>
+    /**
+     * Filter which Who5Assessments to update
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * Limit how many Who5Assessments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Who5Assessment updateManyAndReturn
+   */
+  export type Who5AssessmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * The data used to update Who5Assessments.
+     */
+    data: XOR<Who5AssessmentUpdateManyMutationInput, Who5AssessmentUncheckedUpdateManyInput>
+    /**
+     * Filter which Who5Assessments to update
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * Limit how many Who5Assessments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Who5Assessment upsert
+   */
+  export type Who5AssessmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Who5Assessment to update in case it exists.
+     */
+    where: Who5AssessmentWhereUniqueInput
+    /**
+     * In case the Who5Assessment found by the `where` argument doesn't exist, create a new Who5Assessment with this data.
+     */
+    create: XOR<Who5AssessmentCreateInput, Who5AssessmentUncheckedCreateInput>
+    /**
+     * In case the Who5Assessment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Who5AssessmentUpdateInput, Who5AssessmentUncheckedUpdateInput>
+  }
+
+  /**
+   * Who5Assessment delete
+   */
+  export type Who5AssessmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+    /**
+     * Filter which Who5Assessment to delete.
+     */
+    where: Who5AssessmentWhereUniqueInput
+  }
+
+  /**
+   * Who5Assessment deleteMany
+   */
+  export type Who5AssessmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Who5Assessments to delete
+     */
+    where?: Who5AssessmentWhereInput
+    /**
+     * Limit how many Who5Assessments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Who5Assessment.followUpSchedule
+   */
+  export type Who5Assessment$followUpScheduleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpSchedule
+     */
+    select?: FollowUpScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpSchedule
+     */
+    omit?: FollowUpScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpScheduleInclude<ExtArgs> | null
+    where?: FollowUpScheduleWhereInput
+  }
+
+  /**
+   * Who5Assessment without action
+   */
+  export type Who5AssessmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Who5Assessment
+     */
+    select?: Who5AssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Who5Assessment
+     */
+    omit?: Who5AssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Who5AssessmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PsocAssessment
+   */
+
+  export type AggregatePsocAssessment = {
+    _count: PsocAssessmentCountAggregateOutputType | null
+    _avg: PsocAssessmentAvgAggregateOutputType | null
+    _sum: PsocAssessmentSumAggregateOutputType | null
+    _min: PsocAssessmentMinAggregateOutputType | null
+    _max: PsocAssessmentMaxAggregateOutputType | null
+  }
+
+  export type PsocAssessmentAvgAggregateOutputType = {
+    efficacyScore: number | null
+    satisfactionScore: number | null
+    totalScore: number | null
+    maxScore: number | null
+  }
+
+  export type PsocAssessmentSumAggregateOutputType = {
+    efficacyScore: number | null
+    satisfactionScore: number | null
+    totalScore: number | null
+    maxScore: number | null
+  }
+
+  export type PsocAssessmentMinAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    followUpScheduleId: string | null
+    timePoint: string | null
+    efficacyScore: number | null
+    satisfactionScore: number | null
+    totalScore: number | null
+    maxScore: number | null
+    classification: string | null
+    classificationMethod: string | null
+    submittedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PsocAssessmentMaxAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    followUpScheduleId: string | null
+    timePoint: string | null
+    efficacyScore: number | null
+    satisfactionScore: number | null
+    totalScore: number | null
+    maxScore: number | null
+    classification: string | null
+    classificationMethod: string | null
+    submittedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PsocAssessmentCountAggregateOutputType = {
+    id: number
+    motherProfileId: number
+    followUpScheduleId: number
+    timePoint: number
+    rawResponses: number
+    scoredResponses: number
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore: number
+    classification: number
+    classificationMethod: number
+    submittedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PsocAssessmentAvgAggregateInputType = {
+    efficacyScore?: true
+    satisfactionScore?: true
+    totalScore?: true
+    maxScore?: true
+  }
+
+  export type PsocAssessmentSumAggregateInputType = {
+    efficacyScore?: true
+    satisfactionScore?: true
+    totalScore?: true
+    maxScore?: true
+  }
+
+  export type PsocAssessmentMinAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    efficacyScore?: true
+    satisfactionScore?: true
+    totalScore?: true
+    maxScore?: true
+    classification?: true
+    classificationMethod?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PsocAssessmentMaxAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    efficacyScore?: true
+    satisfactionScore?: true
+    totalScore?: true
+    maxScore?: true
+    classification?: true
+    classificationMethod?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PsocAssessmentCountAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    followUpScheduleId?: true
+    timePoint?: true
+    rawResponses?: true
+    scoredResponses?: true
+    efficacyScore?: true
+    satisfactionScore?: true
+    totalScore?: true
+    maxScore?: true
+    classification?: true
+    classificationMethod?: true
+    submittedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PsocAssessmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PsocAssessment to aggregate.
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PsocAssessments to fetch.
+     */
+    orderBy?: PsocAssessmentOrderByWithRelationInput | PsocAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PsocAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PsocAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PsocAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PsocAssessments
+    **/
+    _count?: true | PsocAssessmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PsocAssessmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PsocAssessmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PsocAssessmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PsocAssessmentMaxAggregateInputType
+  }
+
+  export type GetPsocAssessmentAggregateType<T extends PsocAssessmentAggregateArgs> = {
+        [P in keyof T & keyof AggregatePsocAssessment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePsocAssessment[P]>
+      : GetScalarType<T[P], AggregatePsocAssessment[P]>
+  }
+
+
+
+
+  export type PsocAssessmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PsocAssessmentWhereInput
+    orderBy?: PsocAssessmentOrderByWithAggregationInput | PsocAssessmentOrderByWithAggregationInput[]
+    by: PsocAssessmentScalarFieldEnum[] | PsocAssessmentScalarFieldEnum
+    having?: PsocAssessmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PsocAssessmentCountAggregateInputType | true
+    _avg?: PsocAssessmentAvgAggregateInputType
+    _sum?: PsocAssessmentSumAggregateInputType
+    _min?: PsocAssessmentMinAggregateInputType
+    _max?: PsocAssessmentMaxAggregateInputType
+  }
+
+  export type PsocAssessmentGroupByOutputType = {
+    id: string
+    motherProfileId: string
+    followUpScheduleId: string | null
+    timePoint: string
+    rawResponses: JsonValue
+    scoredResponses: JsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore: number
+    classification: string | null
+    classificationMethod: string | null
+    submittedAt: Date
+    createdAt: Date
+    updatedAt: Date
+    _count: PsocAssessmentCountAggregateOutputType | null
+    _avg: PsocAssessmentAvgAggregateOutputType | null
+    _sum: PsocAssessmentSumAggregateOutputType | null
+    _min: PsocAssessmentMinAggregateOutputType | null
+    _max: PsocAssessmentMaxAggregateOutputType | null
+  }
+
+  type GetPsocAssessmentGroupByPayload<T extends PsocAssessmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PsocAssessmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PsocAssessmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PsocAssessmentGroupByOutputType[P]>
+            : GetScalarType<T[P], PsocAssessmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PsocAssessmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    rawResponses?: boolean
+    scoredResponses?: boolean
+    efficacyScore?: boolean
+    satisfactionScore?: boolean
+    totalScore?: boolean
+    maxScore?: boolean
+    classification?: boolean
+    classificationMethod?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | PsocAssessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["psocAssessment"]>
+
+  export type PsocAssessmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    rawResponses?: boolean
+    scoredResponses?: boolean
+    efficacyScore?: boolean
+    satisfactionScore?: boolean
+    totalScore?: boolean
+    maxScore?: boolean
+    classification?: boolean
+    classificationMethod?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | PsocAssessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["psocAssessment"]>
+
+  export type PsocAssessmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    rawResponses?: boolean
+    scoredResponses?: boolean
+    efficacyScore?: boolean
+    satisfactionScore?: boolean
+    totalScore?: boolean
+    maxScore?: boolean
+    classification?: boolean
+    classificationMethod?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | PsocAssessment$followUpScheduleArgs<ExtArgs>
+  }, ExtArgs["result"]["psocAssessment"]>
+
+  export type PsocAssessmentSelectScalar = {
+    id?: boolean
+    motherProfileId?: boolean
+    followUpScheduleId?: boolean
+    timePoint?: boolean
+    rawResponses?: boolean
+    scoredResponses?: boolean
+    efficacyScore?: boolean
+    satisfactionScore?: boolean
+    totalScore?: boolean
+    maxScore?: boolean
+    classification?: boolean
+    classificationMethod?: boolean
+    submittedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PsocAssessmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "motherProfileId" | "followUpScheduleId" | "timePoint" | "rawResponses" | "scoredResponses" | "efficacyScore" | "satisfactionScore" | "totalScore" | "maxScore" | "classification" | "classificationMethod" | "submittedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["psocAssessment"]>
+  export type PsocAssessmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | PsocAssessment$followUpScheduleArgs<ExtArgs>
+  }
+  export type PsocAssessmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | PsocAssessment$followUpScheduleArgs<ExtArgs>
+  }
+  export type PsocAssessmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    followUpSchedule?: boolean | PsocAssessment$followUpScheduleArgs<ExtArgs>
+  }
+
+  export type $PsocAssessmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PsocAssessment"
+    objects: {
+      motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+      followUpSchedule: Prisma.$FollowUpSchedulePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      motherProfileId: string
+      followUpScheduleId: string | null
+      timePoint: string
+      rawResponses: Prisma.JsonValue
+      scoredResponses: Prisma.JsonValue
+      efficacyScore: number
+      satisfactionScore: number
+      totalScore: number
+      maxScore: number
+      classification: string | null
+      classificationMethod: string | null
+      submittedAt: Date
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["psocAssessment"]>
+    composites: {}
+  }
+
+  type PsocAssessmentGetPayload<S extends boolean | null | undefined | PsocAssessmentDefaultArgs> = $Result.GetResult<Prisma.$PsocAssessmentPayload, S>
+
+  type PsocAssessmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PsocAssessmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PsocAssessmentCountAggregateInputType | true
+    }
+
+  export interface PsocAssessmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PsocAssessment'], meta: { name: 'PsocAssessment' } }
+    /**
+     * Find zero or one PsocAssessment that matches the filter.
+     * @param {PsocAssessmentFindUniqueArgs} args - Arguments to find a PsocAssessment
+     * @example
+     * // Get one PsocAssessment
+     * const psocAssessment = await prisma.psocAssessment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PsocAssessmentFindUniqueArgs>(args: SelectSubset<T, PsocAssessmentFindUniqueArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PsocAssessment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PsocAssessmentFindUniqueOrThrowArgs} args - Arguments to find a PsocAssessment
+     * @example
+     * // Get one PsocAssessment
+     * const psocAssessment = await prisma.psocAssessment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PsocAssessmentFindUniqueOrThrowArgs>(args: SelectSubset<T, PsocAssessmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PsocAssessment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentFindFirstArgs} args - Arguments to find a PsocAssessment
+     * @example
+     * // Get one PsocAssessment
+     * const psocAssessment = await prisma.psocAssessment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PsocAssessmentFindFirstArgs>(args?: SelectSubset<T, PsocAssessmentFindFirstArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PsocAssessment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentFindFirstOrThrowArgs} args - Arguments to find a PsocAssessment
+     * @example
+     * // Get one PsocAssessment
+     * const psocAssessment = await prisma.psocAssessment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PsocAssessmentFindFirstOrThrowArgs>(args?: SelectSubset<T, PsocAssessmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PsocAssessments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PsocAssessments
+     * const psocAssessments = await prisma.psocAssessment.findMany()
+     * 
+     * // Get first 10 PsocAssessments
+     * const psocAssessments = await prisma.psocAssessment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const psocAssessmentWithIdOnly = await prisma.psocAssessment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PsocAssessmentFindManyArgs>(args?: SelectSubset<T, PsocAssessmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PsocAssessment.
+     * @param {PsocAssessmentCreateArgs} args - Arguments to create a PsocAssessment.
+     * @example
+     * // Create one PsocAssessment
+     * const PsocAssessment = await prisma.psocAssessment.create({
+     *   data: {
+     *     // ... data to create a PsocAssessment
+     *   }
+     * })
+     * 
+     */
+    create<T extends PsocAssessmentCreateArgs>(args: SelectSubset<T, PsocAssessmentCreateArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PsocAssessments.
+     * @param {PsocAssessmentCreateManyArgs} args - Arguments to create many PsocAssessments.
+     * @example
+     * // Create many PsocAssessments
+     * const psocAssessment = await prisma.psocAssessment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PsocAssessmentCreateManyArgs>(args?: SelectSubset<T, PsocAssessmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PsocAssessments and returns the data saved in the database.
+     * @param {PsocAssessmentCreateManyAndReturnArgs} args - Arguments to create many PsocAssessments.
+     * @example
+     * // Create many PsocAssessments
+     * const psocAssessment = await prisma.psocAssessment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PsocAssessments and only return the `id`
+     * const psocAssessmentWithIdOnly = await prisma.psocAssessment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PsocAssessmentCreateManyAndReturnArgs>(args?: SelectSubset<T, PsocAssessmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PsocAssessment.
+     * @param {PsocAssessmentDeleteArgs} args - Arguments to delete one PsocAssessment.
+     * @example
+     * // Delete one PsocAssessment
+     * const PsocAssessment = await prisma.psocAssessment.delete({
+     *   where: {
+     *     // ... filter to delete one PsocAssessment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PsocAssessmentDeleteArgs>(args: SelectSubset<T, PsocAssessmentDeleteArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PsocAssessment.
+     * @param {PsocAssessmentUpdateArgs} args - Arguments to update one PsocAssessment.
+     * @example
+     * // Update one PsocAssessment
+     * const psocAssessment = await prisma.psocAssessment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PsocAssessmentUpdateArgs>(args: SelectSubset<T, PsocAssessmentUpdateArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PsocAssessments.
+     * @param {PsocAssessmentDeleteManyArgs} args - Arguments to filter PsocAssessments to delete.
+     * @example
+     * // Delete a few PsocAssessments
+     * const { count } = await prisma.psocAssessment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PsocAssessmentDeleteManyArgs>(args?: SelectSubset<T, PsocAssessmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PsocAssessments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PsocAssessments
+     * const psocAssessment = await prisma.psocAssessment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PsocAssessmentUpdateManyArgs>(args: SelectSubset<T, PsocAssessmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PsocAssessments and returns the data updated in the database.
+     * @param {PsocAssessmentUpdateManyAndReturnArgs} args - Arguments to update many PsocAssessments.
+     * @example
+     * // Update many PsocAssessments
+     * const psocAssessment = await prisma.psocAssessment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PsocAssessments and only return the `id`
+     * const psocAssessmentWithIdOnly = await prisma.psocAssessment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PsocAssessmentUpdateManyAndReturnArgs>(args: SelectSubset<T, PsocAssessmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PsocAssessment.
+     * @param {PsocAssessmentUpsertArgs} args - Arguments to update or create a PsocAssessment.
+     * @example
+     * // Update or create a PsocAssessment
+     * const psocAssessment = await prisma.psocAssessment.upsert({
+     *   create: {
+     *     // ... data to create a PsocAssessment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PsocAssessment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PsocAssessmentUpsertArgs>(args: SelectSubset<T, PsocAssessmentUpsertArgs<ExtArgs>>): Prisma__PsocAssessmentClient<$Result.GetResult<Prisma.$PsocAssessmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PsocAssessments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentCountArgs} args - Arguments to filter PsocAssessments to count.
+     * @example
+     * // Count the number of PsocAssessments
+     * const count = await prisma.psocAssessment.count({
+     *   where: {
+     *     // ... the filter for the PsocAssessments we want to count
+     *   }
+     * })
+    **/
+    count<T extends PsocAssessmentCountArgs>(
+      args?: Subset<T, PsocAssessmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PsocAssessmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PsocAssessment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PsocAssessmentAggregateArgs>(args: Subset<T, PsocAssessmentAggregateArgs>): Prisma.PrismaPromise<GetPsocAssessmentAggregateType<T>>
+
+    /**
+     * Group by PsocAssessment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PsocAssessmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PsocAssessmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PsocAssessmentGroupByArgs['orderBy'] }
+        : { orderBy?: PsocAssessmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PsocAssessmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPsocAssessmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PsocAssessment model
+   */
+  readonly fields: PsocAssessmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PsocAssessment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PsocAssessmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    followUpSchedule<T extends PsocAssessment$followUpScheduleArgs<ExtArgs> = {}>(args?: Subset<T, PsocAssessment$followUpScheduleArgs<ExtArgs>>): Prisma__FollowUpScheduleClient<$Result.GetResult<Prisma.$FollowUpSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PsocAssessment model
+   */
+  interface PsocAssessmentFieldRefs {
+    readonly id: FieldRef<"PsocAssessment", 'String'>
+    readonly motherProfileId: FieldRef<"PsocAssessment", 'String'>
+    readonly followUpScheduleId: FieldRef<"PsocAssessment", 'String'>
+    readonly timePoint: FieldRef<"PsocAssessment", 'String'>
+    readonly rawResponses: FieldRef<"PsocAssessment", 'Json'>
+    readonly scoredResponses: FieldRef<"PsocAssessment", 'Json'>
+    readonly efficacyScore: FieldRef<"PsocAssessment", 'Int'>
+    readonly satisfactionScore: FieldRef<"PsocAssessment", 'Int'>
+    readonly totalScore: FieldRef<"PsocAssessment", 'Int'>
+    readonly maxScore: FieldRef<"PsocAssessment", 'Int'>
+    readonly classification: FieldRef<"PsocAssessment", 'String'>
+    readonly classificationMethod: FieldRef<"PsocAssessment", 'String'>
+    readonly submittedAt: FieldRef<"PsocAssessment", 'DateTime'>
+    readonly createdAt: FieldRef<"PsocAssessment", 'DateTime'>
+    readonly updatedAt: FieldRef<"PsocAssessment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PsocAssessment findUnique
+   */
+  export type PsocAssessmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which PsocAssessment to fetch.
+     */
+    where: PsocAssessmentWhereUniqueInput
+  }
+
+  /**
+   * PsocAssessment findUniqueOrThrow
+   */
+  export type PsocAssessmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which PsocAssessment to fetch.
+     */
+    where: PsocAssessmentWhereUniqueInput
+  }
+
+  /**
+   * PsocAssessment findFirst
+   */
+  export type PsocAssessmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which PsocAssessment to fetch.
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PsocAssessments to fetch.
+     */
+    orderBy?: PsocAssessmentOrderByWithRelationInput | PsocAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PsocAssessments.
+     */
+    cursor?: PsocAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PsocAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PsocAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PsocAssessments.
+     */
+    distinct?: PsocAssessmentScalarFieldEnum | PsocAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * PsocAssessment findFirstOrThrow
+   */
+  export type PsocAssessmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which PsocAssessment to fetch.
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PsocAssessments to fetch.
+     */
+    orderBy?: PsocAssessmentOrderByWithRelationInput | PsocAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PsocAssessments.
+     */
+    cursor?: PsocAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PsocAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PsocAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PsocAssessments.
+     */
+    distinct?: PsocAssessmentScalarFieldEnum | PsocAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * PsocAssessment findMany
+   */
+  export type PsocAssessmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter, which PsocAssessments to fetch.
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PsocAssessments to fetch.
+     */
+    orderBy?: PsocAssessmentOrderByWithRelationInput | PsocAssessmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PsocAssessments.
+     */
+    cursor?: PsocAssessmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PsocAssessments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PsocAssessments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PsocAssessments.
+     */
+    distinct?: PsocAssessmentScalarFieldEnum | PsocAssessmentScalarFieldEnum[]
+  }
+
+  /**
+   * PsocAssessment create
+   */
+  export type PsocAssessmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PsocAssessment.
+     */
+    data: XOR<PsocAssessmentCreateInput, PsocAssessmentUncheckedCreateInput>
+  }
+
+  /**
+   * PsocAssessment createMany
+   */
+  export type PsocAssessmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PsocAssessments.
+     */
+    data: PsocAssessmentCreateManyInput | PsocAssessmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PsocAssessment createManyAndReturn
+   */
+  export type PsocAssessmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many PsocAssessments.
+     */
+    data: PsocAssessmentCreateManyInput | PsocAssessmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PsocAssessment update
+   */
+  export type PsocAssessmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PsocAssessment.
+     */
+    data: XOR<PsocAssessmentUpdateInput, PsocAssessmentUncheckedUpdateInput>
+    /**
+     * Choose, which PsocAssessment to update.
+     */
+    where: PsocAssessmentWhereUniqueInput
+  }
+
+  /**
+   * PsocAssessment updateMany
+   */
+  export type PsocAssessmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PsocAssessments.
+     */
+    data: XOR<PsocAssessmentUpdateManyMutationInput, PsocAssessmentUncheckedUpdateManyInput>
+    /**
+     * Filter which PsocAssessments to update
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * Limit how many PsocAssessments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PsocAssessment updateManyAndReturn
+   */
+  export type PsocAssessmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * The data used to update PsocAssessments.
+     */
+    data: XOR<PsocAssessmentUpdateManyMutationInput, PsocAssessmentUncheckedUpdateManyInput>
+    /**
+     * Filter which PsocAssessments to update
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * Limit how many PsocAssessments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PsocAssessment upsert
+   */
+  export type PsocAssessmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PsocAssessment to update in case it exists.
+     */
+    where: PsocAssessmentWhereUniqueInput
+    /**
+     * In case the PsocAssessment found by the `where` argument doesn't exist, create a new PsocAssessment with this data.
+     */
+    create: XOR<PsocAssessmentCreateInput, PsocAssessmentUncheckedCreateInput>
+    /**
+     * In case the PsocAssessment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PsocAssessmentUpdateInput, PsocAssessmentUncheckedUpdateInput>
+  }
+
+  /**
+   * PsocAssessment delete
+   */
+  export type PsocAssessmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+    /**
+     * Filter which PsocAssessment to delete.
+     */
+    where: PsocAssessmentWhereUniqueInput
+  }
+
+  /**
+   * PsocAssessment deleteMany
+   */
+  export type PsocAssessmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PsocAssessments to delete
+     */
+    where?: PsocAssessmentWhereInput
+    /**
+     * Limit how many PsocAssessments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PsocAssessment.followUpSchedule
+   */
+  export type PsocAssessment$followUpScheduleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpSchedule
+     */
+    select?: FollowUpScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpSchedule
+     */
+    omit?: FollowUpScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpScheduleInclude<ExtArgs> | null
+    where?: FollowUpScheduleWhereInput
+  }
+
+  /**
+   * PsocAssessment without action
+   */
+  export type PsocAssessmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PsocAssessment
+     */
+    select?: PsocAssessmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PsocAssessment
+     */
+    omit?: PsocAssessmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PsocAssessmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GrowthReading
+   */
+
+  export type AggregateGrowthReading = {
+    _count: GrowthReadingCountAggregateOutputType | null
+    _avg: GrowthReadingAvgAggregateOutputType | null
+    _sum: GrowthReadingSumAggregateOutputType | null
+    _min: GrowthReadingMinAggregateOutputType | null
+    _max: GrowthReadingMaxAggregateOutputType | null
+  }
+
+  export type GrowthReadingAvgAggregateOutputType = {
+    weightGrams: number | null
+    lengthCm: Decimal | null
+    headCircumferenceCm: Decimal | null
+    chronologicalAgeDays: number | null
+    chronologicalAgeWeeks: Decimal | null
+    correctedAgeDays: number | null
+    correctedAgeWeeks: Decimal | null
+  }
+
+  export type GrowthReadingSumAggregateOutputType = {
+    weightGrams: number | null
+    lengthCm: Decimal | null
+    headCircumferenceCm: Decimal | null
+    chronologicalAgeDays: number | null
+    chronologicalAgeWeeks: Decimal | null
+    correctedAgeDays: number | null
+    correctedAgeWeeks: Decimal | null
+  }
+
+  export type GrowthReadingMinAggregateOutputType = {
+    id: string | null
+    babyProfileId: string | null
+    motherProfileId: string | null
+    recordedByUserId: string | null
+    readingDate: Date | null
+    weightGrams: number | null
+    lengthCm: Decimal | null
+    headCircumferenceCm: Decimal | null
+    chronologicalAgeDays: number | null
+    chronologicalAgeWeeks: Decimal | null
+    correctedAgeDays: number | null
+    correctedAgeWeeks: Decimal | null
+    timePoint: string | null
+    source: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GrowthReadingMaxAggregateOutputType = {
+    id: string | null
+    babyProfileId: string | null
+    motherProfileId: string | null
+    recordedByUserId: string | null
+    readingDate: Date | null
+    weightGrams: number | null
+    lengthCm: Decimal | null
+    headCircumferenceCm: Decimal | null
+    chronologicalAgeDays: number | null
+    chronologicalAgeWeeks: Decimal | null
+    correctedAgeDays: number | null
+    correctedAgeWeeks: Decimal | null
+    timePoint: string | null
+    source: string | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GrowthReadingCountAggregateOutputType = {
+    id: number
+    babyProfileId: number
+    motherProfileId: number
+    recordedByUserId: number
+    readingDate: number
+    weightGrams: number
+    lengthCm: number
+    headCircumferenceCm: number
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: number
+    correctedAgeDays: number
+    correctedAgeWeeks: number
+    timePoint: number
+    source: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GrowthReadingAvgAggregateInputType = {
+    weightGrams?: true
+    lengthCm?: true
+    headCircumferenceCm?: true
+    chronologicalAgeDays?: true
+    chronologicalAgeWeeks?: true
+    correctedAgeDays?: true
+    correctedAgeWeeks?: true
+  }
+
+  export type GrowthReadingSumAggregateInputType = {
+    weightGrams?: true
+    lengthCm?: true
+    headCircumferenceCm?: true
+    chronologicalAgeDays?: true
+    chronologicalAgeWeeks?: true
+    correctedAgeDays?: true
+    correctedAgeWeeks?: true
+  }
+
+  export type GrowthReadingMinAggregateInputType = {
+    id?: true
+    babyProfileId?: true
+    motherProfileId?: true
+    recordedByUserId?: true
+    readingDate?: true
+    weightGrams?: true
+    lengthCm?: true
+    headCircumferenceCm?: true
+    chronologicalAgeDays?: true
+    chronologicalAgeWeeks?: true
+    correctedAgeDays?: true
+    correctedAgeWeeks?: true
+    timePoint?: true
+    source?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GrowthReadingMaxAggregateInputType = {
+    id?: true
+    babyProfileId?: true
+    motherProfileId?: true
+    recordedByUserId?: true
+    readingDate?: true
+    weightGrams?: true
+    lengthCm?: true
+    headCircumferenceCm?: true
+    chronologicalAgeDays?: true
+    chronologicalAgeWeeks?: true
+    correctedAgeDays?: true
+    correctedAgeWeeks?: true
+    timePoint?: true
+    source?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GrowthReadingCountAggregateInputType = {
+    id?: true
+    babyProfileId?: true
+    motherProfileId?: true
+    recordedByUserId?: true
+    readingDate?: true
+    weightGrams?: true
+    lengthCm?: true
+    headCircumferenceCm?: true
+    chronologicalAgeDays?: true
+    chronologicalAgeWeeks?: true
+    correctedAgeDays?: true
+    correctedAgeWeeks?: true
+    timePoint?: true
+    source?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GrowthReadingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GrowthReading to aggregate.
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrowthReadings to fetch.
+     */
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GrowthReadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrowthReadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrowthReadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GrowthReadings
+    **/
+    _count?: true | GrowthReadingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GrowthReadingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GrowthReadingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GrowthReadingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GrowthReadingMaxAggregateInputType
+  }
+
+  export type GetGrowthReadingAggregateType<T extends GrowthReadingAggregateArgs> = {
+        [P in keyof T & keyof AggregateGrowthReading]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGrowthReading[P]>
+      : GetScalarType<T[P], AggregateGrowthReading[P]>
+  }
+
+
+
+
+  export type GrowthReadingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GrowthReadingWhereInput
+    orderBy?: GrowthReadingOrderByWithAggregationInput | GrowthReadingOrderByWithAggregationInput[]
+    by: GrowthReadingScalarFieldEnum[] | GrowthReadingScalarFieldEnum
+    having?: GrowthReadingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GrowthReadingCountAggregateInputType | true
+    _avg?: GrowthReadingAvgAggregateInputType
+    _sum?: GrowthReadingSumAggregateInputType
+    _min?: GrowthReadingMinAggregateInputType
+    _max?: GrowthReadingMaxAggregateInputType
+  }
+
+  export type GrowthReadingGroupByOutputType = {
+    id: string
+    babyProfileId: string
+    motherProfileId: string
+    recordedByUserId: string
+    readingDate: Date
+    weightGrams: number
+    lengthCm: Decimal
+    headCircumferenceCm: Decimal
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal
+    timePoint: string | null
+    source: string
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: GrowthReadingCountAggregateOutputType | null
+    _avg: GrowthReadingAvgAggregateOutputType | null
+    _sum: GrowthReadingSumAggregateOutputType | null
+    _min: GrowthReadingMinAggregateOutputType | null
+    _max: GrowthReadingMaxAggregateOutputType | null
+  }
+
+  type GetGrowthReadingGroupByPayload<T extends GrowthReadingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GrowthReadingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GrowthReadingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GrowthReadingGroupByOutputType[P]>
+            : GetScalarType<T[P], GrowthReadingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GrowthReadingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    babyProfileId?: boolean
+    motherProfileId?: boolean
+    recordedByUserId?: boolean
+    readingDate?: boolean
+    weightGrams?: boolean
+    lengthCm?: boolean
+    headCircumferenceCm?: boolean
+    chronologicalAgeDays?: boolean
+    chronologicalAgeWeeks?: boolean
+    correctedAgeDays?: boolean
+    correctedAgeWeeks?: boolean
+    timePoint?: boolean
+    source?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    babyProfile?: boolean | BabyProfileDefaultArgs<ExtArgs>
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    recordedByUser?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["growthReading"]>
+
+  export type GrowthReadingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    babyProfileId?: boolean
+    motherProfileId?: boolean
+    recordedByUserId?: boolean
+    readingDate?: boolean
+    weightGrams?: boolean
+    lengthCm?: boolean
+    headCircumferenceCm?: boolean
+    chronologicalAgeDays?: boolean
+    chronologicalAgeWeeks?: boolean
+    correctedAgeDays?: boolean
+    correctedAgeWeeks?: boolean
+    timePoint?: boolean
+    source?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    babyProfile?: boolean | BabyProfileDefaultArgs<ExtArgs>
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    recordedByUser?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["growthReading"]>
+
+  export type GrowthReadingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    babyProfileId?: boolean
+    motherProfileId?: boolean
+    recordedByUserId?: boolean
+    readingDate?: boolean
+    weightGrams?: boolean
+    lengthCm?: boolean
+    headCircumferenceCm?: boolean
+    chronologicalAgeDays?: boolean
+    chronologicalAgeWeeks?: boolean
+    correctedAgeDays?: boolean
+    correctedAgeWeeks?: boolean
+    timePoint?: boolean
+    source?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    babyProfile?: boolean | BabyProfileDefaultArgs<ExtArgs>
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    recordedByUser?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["growthReading"]>
+
+  export type GrowthReadingSelectScalar = {
+    id?: boolean
+    babyProfileId?: boolean
+    motherProfileId?: boolean
+    recordedByUserId?: boolean
+    readingDate?: boolean
+    weightGrams?: boolean
+    lengthCm?: boolean
+    headCircumferenceCm?: boolean
+    chronologicalAgeDays?: boolean
+    chronologicalAgeWeeks?: boolean
+    correctedAgeDays?: boolean
+    correctedAgeWeeks?: boolean
+    timePoint?: boolean
+    source?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GrowthReadingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "babyProfileId" | "motherProfileId" | "recordedByUserId" | "readingDate" | "weightGrams" | "lengthCm" | "headCircumferenceCm" | "chronologicalAgeDays" | "chronologicalAgeWeeks" | "correctedAgeDays" | "correctedAgeWeeks" | "timePoint" | "source" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["growthReading"]>
+  export type GrowthReadingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    babyProfile?: boolean | BabyProfileDefaultArgs<ExtArgs>
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    recordedByUser?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type GrowthReadingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    babyProfile?: boolean | BabyProfileDefaultArgs<ExtArgs>
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    recordedByUser?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type GrowthReadingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    babyProfile?: boolean | BabyProfileDefaultArgs<ExtArgs>
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+    recordedByUser?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $GrowthReadingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GrowthReading"
+    objects: {
+      babyProfile: Prisma.$BabyProfilePayload<ExtArgs>
+      motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+      recordedByUser: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      babyProfileId: string
+      motherProfileId: string
+      recordedByUserId: string
+      readingDate: Date
+      weightGrams: number
+      lengthCm: Prisma.Decimal
+      headCircumferenceCm: Prisma.Decimal
+      chronologicalAgeDays: number
+      chronologicalAgeWeeks: Prisma.Decimal
+      correctedAgeDays: number
+      correctedAgeWeeks: Prisma.Decimal
+      timePoint: string | null
+      source: string
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["growthReading"]>
+    composites: {}
+  }
+
+  type GrowthReadingGetPayload<S extends boolean | null | undefined | GrowthReadingDefaultArgs> = $Result.GetResult<Prisma.$GrowthReadingPayload, S>
+
+  type GrowthReadingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GrowthReadingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GrowthReadingCountAggregateInputType | true
+    }
+
+  export interface GrowthReadingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GrowthReading'], meta: { name: 'GrowthReading' } }
+    /**
+     * Find zero or one GrowthReading that matches the filter.
+     * @param {GrowthReadingFindUniqueArgs} args - Arguments to find a GrowthReading
+     * @example
+     * // Get one GrowthReading
+     * const growthReading = await prisma.growthReading.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GrowthReadingFindUniqueArgs>(args: SelectSubset<T, GrowthReadingFindUniqueArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GrowthReading that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GrowthReadingFindUniqueOrThrowArgs} args - Arguments to find a GrowthReading
+     * @example
+     * // Get one GrowthReading
+     * const growthReading = await prisma.growthReading.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GrowthReadingFindUniqueOrThrowArgs>(args: SelectSubset<T, GrowthReadingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GrowthReading that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingFindFirstArgs} args - Arguments to find a GrowthReading
+     * @example
+     * // Get one GrowthReading
+     * const growthReading = await prisma.growthReading.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GrowthReadingFindFirstArgs>(args?: SelectSubset<T, GrowthReadingFindFirstArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GrowthReading that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingFindFirstOrThrowArgs} args - Arguments to find a GrowthReading
+     * @example
+     * // Get one GrowthReading
+     * const growthReading = await prisma.growthReading.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GrowthReadingFindFirstOrThrowArgs>(args?: SelectSubset<T, GrowthReadingFindFirstOrThrowArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GrowthReadings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GrowthReadings
+     * const growthReadings = await prisma.growthReading.findMany()
+     * 
+     * // Get first 10 GrowthReadings
+     * const growthReadings = await prisma.growthReading.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const growthReadingWithIdOnly = await prisma.growthReading.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GrowthReadingFindManyArgs>(args?: SelectSubset<T, GrowthReadingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GrowthReading.
+     * @param {GrowthReadingCreateArgs} args - Arguments to create a GrowthReading.
+     * @example
+     * // Create one GrowthReading
+     * const GrowthReading = await prisma.growthReading.create({
+     *   data: {
+     *     // ... data to create a GrowthReading
+     *   }
+     * })
+     * 
+     */
+    create<T extends GrowthReadingCreateArgs>(args: SelectSubset<T, GrowthReadingCreateArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GrowthReadings.
+     * @param {GrowthReadingCreateManyArgs} args - Arguments to create many GrowthReadings.
+     * @example
+     * // Create many GrowthReadings
+     * const growthReading = await prisma.growthReading.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GrowthReadingCreateManyArgs>(args?: SelectSubset<T, GrowthReadingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GrowthReadings and returns the data saved in the database.
+     * @param {GrowthReadingCreateManyAndReturnArgs} args - Arguments to create many GrowthReadings.
+     * @example
+     * // Create many GrowthReadings
+     * const growthReading = await prisma.growthReading.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GrowthReadings and only return the `id`
+     * const growthReadingWithIdOnly = await prisma.growthReading.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GrowthReadingCreateManyAndReturnArgs>(args?: SelectSubset<T, GrowthReadingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GrowthReading.
+     * @param {GrowthReadingDeleteArgs} args - Arguments to delete one GrowthReading.
+     * @example
+     * // Delete one GrowthReading
+     * const GrowthReading = await prisma.growthReading.delete({
+     *   where: {
+     *     // ... filter to delete one GrowthReading
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GrowthReadingDeleteArgs>(args: SelectSubset<T, GrowthReadingDeleteArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GrowthReading.
+     * @param {GrowthReadingUpdateArgs} args - Arguments to update one GrowthReading.
+     * @example
+     * // Update one GrowthReading
+     * const growthReading = await prisma.growthReading.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GrowthReadingUpdateArgs>(args: SelectSubset<T, GrowthReadingUpdateArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GrowthReadings.
+     * @param {GrowthReadingDeleteManyArgs} args - Arguments to filter GrowthReadings to delete.
+     * @example
+     * // Delete a few GrowthReadings
+     * const { count } = await prisma.growthReading.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GrowthReadingDeleteManyArgs>(args?: SelectSubset<T, GrowthReadingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GrowthReadings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GrowthReadings
+     * const growthReading = await prisma.growthReading.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GrowthReadingUpdateManyArgs>(args: SelectSubset<T, GrowthReadingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GrowthReadings and returns the data updated in the database.
+     * @param {GrowthReadingUpdateManyAndReturnArgs} args - Arguments to update many GrowthReadings.
+     * @example
+     * // Update many GrowthReadings
+     * const growthReading = await prisma.growthReading.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GrowthReadings and only return the `id`
+     * const growthReadingWithIdOnly = await prisma.growthReading.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GrowthReadingUpdateManyAndReturnArgs>(args: SelectSubset<T, GrowthReadingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GrowthReading.
+     * @param {GrowthReadingUpsertArgs} args - Arguments to update or create a GrowthReading.
+     * @example
+     * // Update or create a GrowthReading
+     * const growthReading = await prisma.growthReading.upsert({
+     *   create: {
+     *     // ... data to create a GrowthReading
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GrowthReading we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GrowthReadingUpsertArgs>(args: SelectSubset<T, GrowthReadingUpsertArgs<ExtArgs>>): Prisma__GrowthReadingClient<$Result.GetResult<Prisma.$GrowthReadingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GrowthReadings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingCountArgs} args - Arguments to filter GrowthReadings to count.
+     * @example
+     * // Count the number of GrowthReadings
+     * const count = await prisma.growthReading.count({
+     *   where: {
+     *     // ... the filter for the GrowthReadings we want to count
+     *   }
+     * })
+    **/
+    count<T extends GrowthReadingCountArgs>(
+      args?: Subset<T, GrowthReadingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GrowthReadingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GrowthReading.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GrowthReadingAggregateArgs>(args: Subset<T, GrowthReadingAggregateArgs>): Prisma.PrismaPromise<GetGrowthReadingAggregateType<T>>
+
+    /**
+     * Group by GrowthReading.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GrowthReadingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GrowthReadingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GrowthReadingGroupByArgs['orderBy'] }
+        : { orderBy?: GrowthReadingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GrowthReadingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGrowthReadingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GrowthReading model
+   */
+  readonly fields: GrowthReadingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GrowthReading.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GrowthReadingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    babyProfile<T extends BabyProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BabyProfileDefaultArgs<ExtArgs>>): Prisma__BabyProfileClient<$Result.GetResult<Prisma.$BabyProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    recordedByUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GrowthReading model
+   */
+  interface GrowthReadingFieldRefs {
+    readonly id: FieldRef<"GrowthReading", 'String'>
+    readonly babyProfileId: FieldRef<"GrowthReading", 'String'>
+    readonly motherProfileId: FieldRef<"GrowthReading", 'String'>
+    readonly recordedByUserId: FieldRef<"GrowthReading", 'String'>
+    readonly readingDate: FieldRef<"GrowthReading", 'DateTime'>
+    readonly weightGrams: FieldRef<"GrowthReading", 'Int'>
+    readonly lengthCm: FieldRef<"GrowthReading", 'Decimal'>
+    readonly headCircumferenceCm: FieldRef<"GrowthReading", 'Decimal'>
+    readonly chronologicalAgeDays: FieldRef<"GrowthReading", 'Int'>
+    readonly chronologicalAgeWeeks: FieldRef<"GrowthReading", 'Decimal'>
+    readonly correctedAgeDays: FieldRef<"GrowthReading", 'Int'>
+    readonly correctedAgeWeeks: FieldRef<"GrowthReading", 'Decimal'>
+    readonly timePoint: FieldRef<"GrowthReading", 'String'>
+    readonly source: FieldRef<"GrowthReading", 'String'>
+    readonly notes: FieldRef<"GrowthReading", 'String'>
+    readonly createdAt: FieldRef<"GrowthReading", 'DateTime'>
+    readonly updatedAt: FieldRef<"GrowthReading", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GrowthReading findUnique
+   */
+  export type GrowthReadingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * Filter, which GrowthReading to fetch.
+     */
+    where: GrowthReadingWhereUniqueInput
+  }
+
+  /**
+   * GrowthReading findUniqueOrThrow
+   */
+  export type GrowthReadingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * Filter, which GrowthReading to fetch.
+     */
+    where: GrowthReadingWhereUniqueInput
+  }
+
+  /**
+   * GrowthReading findFirst
+   */
+  export type GrowthReadingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * Filter, which GrowthReading to fetch.
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrowthReadings to fetch.
+     */
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GrowthReadings.
+     */
+    cursor?: GrowthReadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrowthReadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrowthReadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrowthReadings.
+     */
+    distinct?: GrowthReadingScalarFieldEnum | GrowthReadingScalarFieldEnum[]
+  }
+
+  /**
+   * GrowthReading findFirstOrThrow
+   */
+  export type GrowthReadingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * Filter, which GrowthReading to fetch.
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrowthReadings to fetch.
+     */
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GrowthReadings.
+     */
+    cursor?: GrowthReadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrowthReadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrowthReadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrowthReadings.
+     */
+    distinct?: GrowthReadingScalarFieldEnum | GrowthReadingScalarFieldEnum[]
+  }
+
+  /**
+   * GrowthReading findMany
+   */
+  export type GrowthReadingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * Filter, which GrowthReadings to fetch.
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GrowthReadings to fetch.
+     */
+    orderBy?: GrowthReadingOrderByWithRelationInput | GrowthReadingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GrowthReadings.
+     */
+    cursor?: GrowthReadingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GrowthReadings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GrowthReadings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GrowthReadings.
+     */
+    distinct?: GrowthReadingScalarFieldEnum | GrowthReadingScalarFieldEnum[]
+  }
+
+  /**
+   * GrowthReading create
+   */
+  export type GrowthReadingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GrowthReading.
+     */
+    data: XOR<GrowthReadingCreateInput, GrowthReadingUncheckedCreateInput>
+  }
+
+  /**
+   * GrowthReading createMany
+   */
+  export type GrowthReadingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GrowthReadings.
+     */
+    data: GrowthReadingCreateManyInput | GrowthReadingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GrowthReading createManyAndReturn
+   */
+  export type GrowthReadingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * The data used to create many GrowthReadings.
+     */
+    data: GrowthReadingCreateManyInput | GrowthReadingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GrowthReading update
+   */
+  export type GrowthReadingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GrowthReading.
+     */
+    data: XOR<GrowthReadingUpdateInput, GrowthReadingUncheckedUpdateInput>
+    /**
+     * Choose, which GrowthReading to update.
+     */
+    where: GrowthReadingWhereUniqueInput
+  }
+
+  /**
+   * GrowthReading updateMany
+   */
+  export type GrowthReadingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GrowthReadings.
+     */
+    data: XOR<GrowthReadingUpdateManyMutationInput, GrowthReadingUncheckedUpdateManyInput>
+    /**
+     * Filter which GrowthReadings to update
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * Limit how many GrowthReadings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GrowthReading updateManyAndReturn
+   */
+  export type GrowthReadingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * The data used to update GrowthReadings.
+     */
+    data: XOR<GrowthReadingUpdateManyMutationInput, GrowthReadingUncheckedUpdateManyInput>
+    /**
+     * Filter which GrowthReadings to update
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * Limit how many GrowthReadings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GrowthReading upsert
+   */
+  export type GrowthReadingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GrowthReading to update in case it exists.
+     */
+    where: GrowthReadingWhereUniqueInput
+    /**
+     * In case the GrowthReading found by the `where` argument doesn't exist, create a new GrowthReading with this data.
+     */
+    create: XOR<GrowthReadingCreateInput, GrowthReadingUncheckedCreateInput>
+    /**
+     * In case the GrowthReading was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GrowthReadingUpdateInput, GrowthReadingUncheckedUpdateInput>
+  }
+
+  /**
+   * GrowthReading delete
+   */
+  export type GrowthReadingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+    /**
+     * Filter which GrowthReading to delete.
+     */
+    where: GrowthReadingWhereUniqueInput
+  }
+
+  /**
+   * GrowthReading deleteMany
+   */
+  export type GrowthReadingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GrowthReadings to delete
+     */
+    where?: GrowthReadingWhereInput
+    /**
+     * Limit how many GrowthReadings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GrowthReading without action
+   */
+  export type GrowthReadingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GrowthReading
+     */
+    select?: GrowthReadingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GrowthReading
+     */
+    omit?: GrowthReadingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GrowthReadingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DailyLog
+   */
+
+  export type AggregateDailyLog = {
+    _count: DailyLogCountAggregateOutputType | null
+    _avg: DailyLogAvgAggregateOutputType | null
+    _sum: DailyLogSumAggregateOutputType | null
+    _min: DailyLogMinAggregateOutputType | null
+    _max: DailyLogMaxAggregateOutputType | null
+  }
+
+  export type DailyLogAvgAggregateOutputType = {
+    breastfeedingFeedsCount: number | null
+    breastfeedingVolumeMl: number | null
+    kmcMinutes: number | null
+    temperatureMorningC: Decimal | null
+    temperatureEveningC: Decimal | null
+    weightGrams: number | null
+  }
+
+  export type DailyLogSumAggregateOutputType = {
+    breastfeedingFeedsCount: number | null
+    breastfeedingVolumeMl: number | null
+    kmcMinutes: number | null
+    temperatureMorningC: Decimal | null
+    temperatureEveningC: Decimal | null
+    weightGrams: number | null
+  }
+
+  export type DailyLogMinAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    careDate: Date | null
+    breastfeedingDone: boolean | null
+    breastfeedingFeedsCount: number | null
+    breastfeedingVolumeMl: number | null
+    kmcDone: boolean | null
+    kmcMinutes: number | null
+    temperatureMorningC: Decimal | null
+    temperatureEveningC: Decimal | null
+    temperatureDone: boolean | null
+    weightCheckDone: boolean | null
+    weightGrams: number | null
+    skinCordCareDone: boolean | null
+    medicationDone: boolean | null
+    medicationNotes: string | null
+    dangerSignsReviewed: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DailyLogMaxAggregateOutputType = {
+    id: string | null
+    motherProfileId: string | null
+    careDate: Date | null
+    breastfeedingDone: boolean | null
+    breastfeedingFeedsCount: number | null
+    breastfeedingVolumeMl: number | null
+    kmcDone: boolean | null
+    kmcMinutes: number | null
+    temperatureMorningC: Decimal | null
+    temperatureEveningC: Decimal | null
+    temperatureDone: boolean | null
+    weightCheckDone: boolean | null
+    weightGrams: number | null
+    skinCordCareDone: boolean | null
+    medicationDone: boolean | null
+    medicationNotes: string | null
+    dangerSignsReviewed: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DailyLogCountAggregateOutputType = {
+    id: number
+    motherProfileId: number
+    careDate: number
+    breastfeedingDone: number
+    breastfeedingFeedsCount: number
+    breastfeedingVolumeMl: number
+    kmcDone: number
+    kmcMinutes: number
+    temperatureMorningC: number
+    temperatureEveningC: number
+    temperatureDone: number
+    weightCheckDone: number
+    weightGrams: number
+    skinCordCareDone: number
+    medicationDone: number
+    medicationNotes: number
+    dangerSignsReviewed: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DailyLogAvgAggregateInputType = {
+    breastfeedingFeedsCount?: true
+    breastfeedingVolumeMl?: true
+    kmcMinutes?: true
+    temperatureMorningC?: true
+    temperatureEveningC?: true
+    weightGrams?: true
+  }
+
+  export type DailyLogSumAggregateInputType = {
+    breastfeedingFeedsCount?: true
+    breastfeedingVolumeMl?: true
+    kmcMinutes?: true
+    temperatureMorningC?: true
+    temperatureEveningC?: true
+    weightGrams?: true
+  }
+
+  export type DailyLogMinAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    careDate?: true
+    breastfeedingDone?: true
+    breastfeedingFeedsCount?: true
+    breastfeedingVolumeMl?: true
+    kmcDone?: true
+    kmcMinutes?: true
+    temperatureMorningC?: true
+    temperatureEveningC?: true
+    temperatureDone?: true
+    weightCheckDone?: true
+    weightGrams?: true
+    skinCordCareDone?: true
+    medicationDone?: true
+    medicationNotes?: true
+    dangerSignsReviewed?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DailyLogMaxAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    careDate?: true
+    breastfeedingDone?: true
+    breastfeedingFeedsCount?: true
+    breastfeedingVolumeMl?: true
+    kmcDone?: true
+    kmcMinutes?: true
+    temperatureMorningC?: true
+    temperatureEveningC?: true
+    temperatureDone?: true
+    weightCheckDone?: true
+    weightGrams?: true
+    skinCordCareDone?: true
+    medicationDone?: true
+    medicationNotes?: true
+    dangerSignsReviewed?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DailyLogCountAggregateInputType = {
+    id?: true
+    motherProfileId?: true
+    careDate?: true
+    breastfeedingDone?: true
+    breastfeedingFeedsCount?: true
+    breastfeedingVolumeMl?: true
+    kmcDone?: true
+    kmcMinutes?: true
+    temperatureMorningC?: true
+    temperatureEveningC?: true
+    temperatureDone?: true
+    weightCheckDone?: true
+    weightGrams?: true
+    skinCordCareDone?: true
+    medicationDone?: true
+    medicationNotes?: true
+    dangerSignsReviewed?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DailyLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLog to aggregate.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DailyLogs
+    **/
+    _count?: true | DailyLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DailyLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DailyLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DailyLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DailyLogMaxAggregateInputType
+  }
+
+  export type GetDailyLogAggregateType<T extends DailyLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateDailyLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDailyLog[P]>
+      : GetScalarType<T[P], AggregateDailyLog[P]>
+  }
+
+
+
+
+  export type DailyLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyLogWhereInput
+    orderBy?: DailyLogOrderByWithAggregationInput | DailyLogOrderByWithAggregationInput[]
+    by: DailyLogScalarFieldEnum[] | DailyLogScalarFieldEnum
+    having?: DailyLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DailyLogCountAggregateInputType | true
+    _avg?: DailyLogAvgAggregateInputType
+    _sum?: DailyLogSumAggregateInputType
+    _min?: DailyLogMinAggregateInputType
+    _max?: DailyLogMaxAggregateInputType
+  }
+
+  export type DailyLogGroupByOutputType = {
+    id: string
+    motherProfileId: string
+    careDate: Date
+    breastfeedingDone: boolean
+    breastfeedingFeedsCount: number | null
+    breastfeedingVolumeMl: number | null
+    kmcDone: boolean
+    kmcMinutes: number | null
+    temperatureMorningC: Decimal | null
+    temperatureEveningC: Decimal | null
+    temperatureDone: boolean
+    weightCheckDone: boolean
+    weightGrams: number | null
+    skinCordCareDone: boolean
+    medicationDone: boolean | null
+    medicationNotes: string | null
+    dangerSignsReviewed: boolean
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: DailyLogCountAggregateOutputType | null
+    _avg: DailyLogAvgAggregateOutputType | null
+    _sum: DailyLogSumAggregateOutputType | null
+    _min: DailyLogMinAggregateOutputType | null
+    _max: DailyLogMaxAggregateOutputType | null
+  }
+
+  type GetDailyLogGroupByPayload<T extends DailyLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DailyLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DailyLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
+            : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DailyLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    careDate?: boolean
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: boolean
+    breastfeedingVolumeMl?: boolean
+    kmcDone?: boolean
+    kmcMinutes?: boolean
+    temperatureMorningC?: boolean
+    temperatureEveningC?: boolean
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: boolean
+    skinCordCareDone?: boolean
+    medicationDone?: boolean
+    medicationNotes?: boolean
+    dangerSignsReviewed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    careDate?: boolean
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: boolean
+    breastfeedingVolumeMl?: boolean
+    kmcDone?: boolean
+    kmcMinutes?: boolean
+    temperatureMorningC?: boolean
+    temperatureEveningC?: boolean
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: boolean
+    skinCordCareDone?: boolean
+    medicationDone?: boolean
+    medicationNotes?: boolean
+    dangerSignsReviewed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    motherProfileId?: boolean
+    careDate?: boolean
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: boolean
+    breastfeedingVolumeMl?: boolean
+    kmcDone?: boolean
+    kmcMinutes?: boolean
+    temperatureMorningC?: boolean
+    temperatureEveningC?: boolean
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: boolean
+    skinCordCareDone?: boolean
+    medicationDone?: boolean
+    medicationNotes?: boolean
+    dangerSignsReviewed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectScalar = {
+    id?: boolean
+    motherProfileId?: boolean
+    careDate?: boolean
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: boolean
+    breastfeedingVolumeMl?: boolean
+    kmcDone?: boolean
+    kmcMinutes?: boolean
+    temperatureMorningC?: boolean
+    temperatureEveningC?: boolean
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: boolean
+    skinCordCareDone?: boolean
+    medicationDone?: boolean
+    medicationNotes?: boolean
+    dangerSignsReviewed?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DailyLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "motherProfileId" | "careDate" | "breastfeedingDone" | "breastfeedingFeedsCount" | "breastfeedingVolumeMl" | "kmcDone" | "kmcMinutes" | "temperatureMorningC" | "temperatureEveningC" | "temperatureDone" | "weightCheckDone" | "weightGrams" | "skinCordCareDone" | "medicationDone" | "medicationNotes" | "dangerSignsReviewed" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["dailyLog"]>
+  export type DailyLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+  }
+  export type DailyLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+  }
+  export type DailyLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    motherProfile?: boolean | MotherProfileDefaultArgs<ExtArgs>
+  }
+
+  export type $DailyLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DailyLog"
+    objects: {
+      motherProfile: Prisma.$MotherProfilePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      motherProfileId: string
+      careDate: Date
+      breastfeedingDone: boolean
+      breastfeedingFeedsCount: number | null
+      breastfeedingVolumeMl: number | null
+      kmcDone: boolean
+      kmcMinutes: number | null
+      temperatureMorningC: Prisma.Decimal | null
+      temperatureEveningC: Prisma.Decimal | null
+      temperatureDone: boolean
+      weightCheckDone: boolean
+      weightGrams: number | null
+      skinCordCareDone: boolean
+      medicationDone: boolean | null
+      medicationNotes: string | null
+      dangerSignsReviewed: boolean
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["dailyLog"]>
+    composites: {}
+  }
+
+  type DailyLogGetPayload<S extends boolean | null | undefined | DailyLogDefaultArgs> = $Result.GetResult<Prisma.$DailyLogPayload, S>
+
+  type DailyLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DailyLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DailyLogCountAggregateInputType | true
+    }
+
+  export interface DailyLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyLog'], meta: { name: 'DailyLog' } }
+    /**
+     * Find zero or one DailyLog that matches the filter.
+     * @param {DailyLogFindUniqueArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DailyLogFindUniqueArgs>(args: SelectSubset<T, DailyLogFindUniqueArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DailyLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DailyLogFindUniqueOrThrowArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DailyLogFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindFirstArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DailyLogFindFirstArgs>(args?: SelectSubset<T, DailyLogFindFirstArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindFirstOrThrowArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DailyLogFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DailyLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DailyLogs
+     * const dailyLogs = await prisma.dailyLog.findMany()
+     * 
+     * // Get first 10 DailyLogs
+     * const dailyLogs = await prisma.dailyLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DailyLogFindManyArgs>(args?: SelectSubset<T, DailyLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DailyLog.
+     * @param {DailyLogCreateArgs} args - Arguments to create a DailyLog.
+     * @example
+     * // Create one DailyLog
+     * const DailyLog = await prisma.dailyLog.create({
+     *   data: {
+     *     // ... data to create a DailyLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends DailyLogCreateArgs>(args: SelectSubset<T, DailyLogCreateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DailyLogs.
+     * @param {DailyLogCreateManyArgs} args - Arguments to create many DailyLogs.
+     * @example
+     * // Create many DailyLogs
+     * const dailyLog = await prisma.dailyLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DailyLogCreateManyArgs>(args?: SelectSubset<T, DailyLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DailyLogs and returns the data saved in the database.
+     * @param {DailyLogCreateManyAndReturnArgs} args - Arguments to create many DailyLogs.
+     * @example
+     * // Create many DailyLogs
+     * const dailyLog = await prisma.dailyLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DailyLogs and only return the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DailyLogCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DailyLog.
+     * @param {DailyLogDeleteArgs} args - Arguments to delete one DailyLog.
+     * @example
+     * // Delete one DailyLog
+     * const DailyLog = await prisma.dailyLog.delete({
+     *   where: {
+     *     // ... filter to delete one DailyLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DailyLogDeleteArgs>(args: SelectSubset<T, DailyLogDeleteArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DailyLog.
+     * @param {DailyLogUpdateArgs} args - Arguments to update one DailyLog.
+     * @example
+     * // Update one DailyLog
+     * const dailyLog = await prisma.dailyLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DailyLogUpdateArgs>(args: SelectSubset<T, DailyLogUpdateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DailyLogs.
+     * @param {DailyLogDeleteManyArgs} args - Arguments to filter DailyLogs to delete.
+     * @example
+     * // Delete a few DailyLogs
+     * const { count } = await prisma.dailyLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DailyLogDeleteManyArgs>(args?: SelectSubset<T, DailyLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DailyLogs
+     * const dailyLog = await prisma.dailyLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DailyLogUpdateManyArgs>(args: SelectSubset<T, DailyLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLogs and returns the data updated in the database.
+     * @param {DailyLogUpdateManyAndReturnArgs} args - Arguments to update many DailyLogs.
+     * @example
+     * // Update many DailyLogs
+     * const dailyLog = await prisma.dailyLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DailyLogs and only return the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DailyLogUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DailyLog.
+     * @param {DailyLogUpsertArgs} args - Arguments to update or create a DailyLog.
+     * @example
+     * // Update or create a DailyLog
+     * const dailyLog = await prisma.dailyLog.upsert({
+     *   create: {
+     *     // ... data to create a DailyLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DailyLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DailyLogUpsertArgs>(args: SelectSubset<T, DailyLogUpsertArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DailyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogCountArgs} args - Arguments to filter DailyLogs to count.
+     * @example
+     * // Count the number of DailyLogs
+     * const count = await prisma.dailyLog.count({
+     *   where: {
+     *     // ... the filter for the DailyLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends DailyLogCountArgs>(
+      args?: Subset<T, DailyLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DailyLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DailyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DailyLogAggregateArgs>(args: Subset<T, DailyLogAggregateArgs>): Prisma.PrismaPromise<GetDailyLogAggregateType<T>>
+
+    /**
+     * Group by DailyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DailyLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DailyLogGroupByArgs['orderBy'] }
+        : { orderBy?: DailyLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DailyLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DailyLog model
+   */
+  readonly fields: DailyLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DailyLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DailyLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    motherProfile<T extends MotherProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MotherProfileDefaultArgs<ExtArgs>>): Prisma__MotherProfileClient<$Result.GetResult<Prisma.$MotherProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DailyLog model
+   */
+  interface DailyLogFieldRefs {
+    readonly id: FieldRef<"DailyLog", 'String'>
+    readonly motherProfileId: FieldRef<"DailyLog", 'String'>
+    readonly careDate: FieldRef<"DailyLog", 'DateTime'>
+    readonly breastfeedingDone: FieldRef<"DailyLog", 'Boolean'>
+    readonly breastfeedingFeedsCount: FieldRef<"DailyLog", 'Int'>
+    readonly breastfeedingVolumeMl: FieldRef<"DailyLog", 'Int'>
+    readonly kmcDone: FieldRef<"DailyLog", 'Boolean'>
+    readonly kmcMinutes: FieldRef<"DailyLog", 'Int'>
+    readonly temperatureMorningC: FieldRef<"DailyLog", 'Decimal'>
+    readonly temperatureEveningC: FieldRef<"DailyLog", 'Decimal'>
+    readonly temperatureDone: FieldRef<"DailyLog", 'Boolean'>
+    readonly weightCheckDone: FieldRef<"DailyLog", 'Boolean'>
+    readonly weightGrams: FieldRef<"DailyLog", 'Int'>
+    readonly skinCordCareDone: FieldRef<"DailyLog", 'Boolean'>
+    readonly medicationDone: FieldRef<"DailyLog", 'Boolean'>
+    readonly medicationNotes: FieldRef<"DailyLog", 'String'>
+    readonly dangerSignsReviewed: FieldRef<"DailyLog", 'Boolean'>
+    readonly notes: FieldRef<"DailyLog", 'String'>
+    readonly createdAt: FieldRef<"DailyLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"DailyLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DailyLog findUnique
+   */
+  export type DailyLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog findUniqueOrThrow
+   */
+  export type DailyLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog findFirst
+   */
+  export type DailyLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog findFirstOrThrow
+   */
+  export type DailyLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog findMany
+   */
+  export type DailyLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLogs to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog create
+   */
+  export type DailyLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DailyLog.
+     */
+    data: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
+  }
+
+  /**
+   * DailyLog createMany
+   */
+  export type DailyLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DailyLogs.
+     */
+    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DailyLog createManyAndReturn
+   */
+  export type DailyLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many DailyLogs.
+     */
+    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyLog update
+   */
+  export type DailyLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DailyLog.
+     */
+    data: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
+    /**
+     * Choose, which DailyLog to update.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog updateMany
+   */
+  export type DailyLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DailyLogs.
+     */
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLogs to update
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyLog updateManyAndReturn
+   */
+  export type DailyLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * The data used to update DailyLogs.
+     */
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLogs to update
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyLog upsert
+   */
+  export type DailyLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DailyLog to update in case it exists.
+     */
+    where: DailyLogWhereUniqueInput
+    /**
+     * In case the DailyLog found by the `where` argument doesn't exist, create a new DailyLog with this data.
+     */
+    create: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
+    /**
+     * In case the DailyLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
+  }
+
+  /**
+   * DailyLog delete
+   */
+  export type DailyLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter which DailyLog to delete.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog deleteMany
+   */
+  export type DailyLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLogs to delete
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyLog without action
+   */
+  export type DailyLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
   }
 
 
@@ -12690,12 +19877,126 @@ export namespace Prisma {
   export type FollowUpScheduleScalarFieldEnum = (typeof FollowUpScheduleScalarFieldEnum)[keyof typeof FollowUpScheduleScalarFieldEnum]
 
 
+  export const KnowledgeAssessmentScalarFieldEnum: {
+    id: 'id',
+    motherProfileId: 'motherProfileId',
+    followUpScheduleId: 'followUpScheduleId',
+    timePoint: 'timePoint',
+    responses: 'responses',
+    score: 'score',
+    maxScore: 'maxScore',
+    percentage: 'percentage',
+    grade: 'grade',
+    submittedAt: 'submittedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type KnowledgeAssessmentScalarFieldEnum = (typeof KnowledgeAssessmentScalarFieldEnum)[keyof typeof KnowledgeAssessmentScalarFieldEnum]
+
+
+  export const Who5AssessmentScalarFieldEnum: {
+    id: 'id',
+    motherProfileId: 'motherProfileId',
+    followUpScheduleId: 'followUpScheduleId',
+    timePoint: 'timePoint',
+    responses: 'responses',
+    rawScore: 'rawScore',
+    maxScore: 'maxScore',
+    percentageScore: 'percentageScore',
+    poorWellbeingFlag: 'poorWellbeingFlag',
+    interpretation: 'interpretation',
+    submittedAt: 'submittedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type Who5AssessmentScalarFieldEnum = (typeof Who5AssessmentScalarFieldEnum)[keyof typeof Who5AssessmentScalarFieldEnum]
+
+
+  export const PsocAssessmentScalarFieldEnum: {
+    id: 'id',
+    motherProfileId: 'motherProfileId',
+    followUpScheduleId: 'followUpScheduleId',
+    timePoint: 'timePoint',
+    rawResponses: 'rawResponses',
+    scoredResponses: 'scoredResponses',
+    efficacyScore: 'efficacyScore',
+    satisfactionScore: 'satisfactionScore',
+    totalScore: 'totalScore',
+    maxScore: 'maxScore',
+    classification: 'classification',
+    classificationMethod: 'classificationMethod',
+    submittedAt: 'submittedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PsocAssessmentScalarFieldEnum = (typeof PsocAssessmentScalarFieldEnum)[keyof typeof PsocAssessmentScalarFieldEnum]
+
+
+  export const GrowthReadingScalarFieldEnum: {
+    id: 'id',
+    babyProfileId: 'babyProfileId',
+    motherProfileId: 'motherProfileId',
+    recordedByUserId: 'recordedByUserId',
+    readingDate: 'readingDate',
+    weightGrams: 'weightGrams',
+    lengthCm: 'lengthCm',
+    headCircumferenceCm: 'headCircumferenceCm',
+    chronologicalAgeDays: 'chronologicalAgeDays',
+    chronologicalAgeWeeks: 'chronologicalAgeWeeks',
+    correctedAgeDays: 'correctedAgeDays',
+    correctedAgeWeeks: 'correctedAgeWeeks',
+    timePoint: 'timePoint',
+    source: 'source',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GrowthReadingScalarFieldEnum = (typeof GrowthReadingScalarFieldEnum)[keyof typeof GrowthReadingScalarFieldEnum]
+
+
+  export const DailyLogScalarFieldEnum: {
+    id: 'id',
+    motherProfileId: 'motherProfileId',
+    careDate: 'careDate',
+    breastfeedingDone: 'breastfeedingDone',
+    breastfeedingFeedsCount: 'breastfeedingFeedsCount',
+    breastfeedingVolumeMl: 'breastfeedingVolumeMl',
+    kmcDone: 'kmcDone',
+    kmcMinutes: 'kmcMinutes',
+    temperatureMorningC: 'temperatureMorningC',
+    temperatureEveningC: 'temperatureEveningC',
+    temperatureDone: 'temperatureDone',
+    weightCheckDone: 'weightCheckDone',
+    weightGrams: 'weightGrams',
+    skinCordCareDone: 'skinCordCareDone',
+    medicationDone: 'medicationDone',
+    medicationNotes: 'medicationNotes',
+    dangerSignsReviewed: 'dangerSignsReviewed',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DailyLogScalarFieldEnum = (typeof DailyLogScalarFieldEnum)[keyof typeof DailyLogScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -12712,6 +20013,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -12779,6 +20089,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -12919,6 +20243,7 @@ export namespace Prisma {
     nurseProfile?: XOR<NurseProfileNullableScalarRelationFilter, NurseProfileWhereInput> | null
     researcherProfile?: XOR<ResearcherProfileNullableScalarRelationFilter, ResearcherProfileWhereInput> | null
     refreshTokens?: RefreshTokenListRelationFilter
+    recordedGrowthReadings?: GrowthReadingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12945,6 +20270,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileOrderByWithRelationInput
     researcherProfile?: ResearcherProfileOrderByWithRelationInput
     refreshTokens?: RefreshTokenOrderByRelationAggregateInput
+    recordedGrowthReadings?: GrowthReadingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12974,6 +20300,7 @@ export namespace Prisma {
     nurseProfile?: XOR<NurseProfileNullableScalarRelationFilter, NurseProfileWhereInput> | null
     researcherProfile?: XOR<ResearcherProfileNullableScalarRelationFilter, ResearcherProfileWhereInput> | null
     refreshTokens?: RefreshTokenListRelationFilter
+    recordedGrowthReadings?: GrowthReadingListRelationFilter
   }, "id" | "phone" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -13196,6 +20523,11 @@ export namespace Prisma {
     hospital?: XOR<HospitalNullableScalarRelationFilter, HospitalWhereInput> | null
     babyProfile?: XOR<BabyProfileNullableScalarRelationFilter, BabyProfileWhereInput> | null
     followUpSchedules?: FollowUpScheduleListRelationFilter
+    dailyLogs?: DailyLogListRelationFilter
+    knowledgeAssessments?: KnowledgeAssessmentListRelationFilter
+    who5Assessments?: Who5AssessmentListRelationFilter
+    psocAssessments?: PsocAssessmentListRelationFilter
+    growthReadings?: GrowthReadingListRelationFilter
   }
 
   export type MotherProfileOrderByWithRelationInput = {
@@ -13226,6 +20558,11 @@ export namespace Prisma {
     hospital?: HospitalOrderByWithRelationInput
     babyProfile?: BabyProfileOrderByWithRelationInput
     followUpSchedules?: FollowUpScheduleOrderByRelationAggregateInput
+    dailyLogs?: DailyLogOrderByRelationAggregateInput
+    knowledgeAssessments?: KnowledgeAssessmentOrderByRelationAggregateInput
+    who5Assessments?: Who5AssessmentOrderByRelationAggregateInput
+    psocAssessments?: PsocAssessmentOrderByRelationAggregateInput
+    growthReadings?: GrowthReadingOrderByRelationAggregateInput
   }
 
   export type MotherProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -13259,6 +20596,11 @@ export namespace Prisma {
     hospital?: XOR<HospitalNullableScalarRelationFilter, HospitalWhereInput> | null
     babyProfile?: XOR<BabyProfileNullableScalarRelationFilter, BabyProfileWhereInput> | null
     followUpSchedules?: FollowUpScheduleListRelationFilter
+    dailyLogs?: DailyLogListRelationFilter
+    knowledgeAssessments?: KnowledgeAssessmentListRelationFilter
+    who5Assessments?: Who5AssessmentListRelationFilter
+    psocAssessments?: PsocAssessmentListRelationFilter
+    growthReadings?: GrowthReadingListRelationFilter
   }, "id" | "userId" | "participantCode">
 
   export type MotherProfileOrderByWithAggregationInput = {
@@ -13343,6 +20685,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"BabyProfile"> | Date | string
     updatedAt?: DateTimeFilter<"BabyProfile"> | Date | string
     motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    growthReadings?: GrowthReadingListRelationFilter
   }
 
   export type BabyProfileOrderByWithRelationInput = {
@@ -13366,6 +20709,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     motherProfile?: MotherProfileOrderByWithRelationInput
+    growthReadings?: GrowthReadingOrderByRelationAggregateInput
   }
 
   export type BabyProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -13392,6 +20736,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"BabyProfile"> | Date | string
     updatedAt?: DateTimeFilter<"BabyProfile"> | Date | string
     motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    growthReadings?: GrowthReadingListRelationFilter
   }, "id" | "motherProfileId">
 
   export type BabyProfileOrderByWithAggregationInput = {
@@ -13595,6 +20940,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
     updatedAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
     motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    knowledgeAssessments?: KnowledgeAssessmentListRelationFilter
+    who5Assessments?: Who5AssessmentListRelationFilter
+    psocAssessments?: PsocAssessmentListRelationFilter
   }
 
   export type FollowUpScheduleOrderByWithRelationInput = {
@@ -13610,6 +20958,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     motherProfile?: MotherProfileOrderByWithRelationInput
+    knowledgeAssessments?: KnowledgeAssessmentOrderByRelationAggregateInput
+    who5Assessments?: Who5AssessmentOrderByRelationAggregateInput
+    psocAssessments?: PsocAssessmentOrderByRelationAggregateInput
   }
 
   export type FollowUpScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -13629,6 +20980,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
     updatedAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
     motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    knowledgeAssessments?: KnowledgeAssessmentListRelationFilter
+    who5Assessments?: Who5AssessmentListRelationFilter
+    psocAssessments?: PsocAssessmentListRelationFilter
   }, "id" | "motherProfileId_timePoint">
 
   export type FollowUpScheduleOrderByWithAggregationInput = {
@@ -13663,6 +21017,571 @@ export namespace Prisma {
     notes?: StringNullableWithAggregatesFilter<"FollowUpSchedule"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"FollowUpSchedule"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"FollowUpSchedule"> | Date | string
+  }
+
+  export type KnowledgeAssessmentWhereInput = {
+    AND?: KnowledgeAssessmentWhereInput | KnowledgeAssessmentWhereInput[]
+    OR?: KnowledgeAssessmentWhereInput[]
+    NOT?: KnowledgeAssessmentWhereInput | KnowledgeAssessmentWhereInput[]
+    id?: UuidFilter<"KnowledgeAssessment"> | string
+    motherProfileId?: UuidFilter<"KnowledgeAssessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"KnowledgeAssessment"> | string | null
+    timePoint?: StringFilter<"KnowledgeAssessment"> | string
+    responses?: JsonFilter<"KnowledgeAssessment">
+    score?: IntFilter<"KnowledgeAssessment"> | number
+    maxScore?: IntFilter<"KnowledgeAssessment"> | number
+    percentage?: IntFilter<"KnowledgeAssessment"> | number
+    grade?: StringFilter<"KnowledgeAssessment"> | string
+    submittedAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    createdAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    updatedAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    followUpSchedule?: XOR<FollowUpScheduleNullableScalarRelationFilter, FollowUpScheduleWhereInput> | null
+  }
+
+  export type KnowledgeAssessmentOrderByWithRelationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrderInput | SortOrder
+    timePoint?: SortOrder
+    responses?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+    grade?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    motherProfile?: MotherProfileOrderByWithRelationInput
+    followUpSchedule?: FollowUpScheduleOrderByWithRelationInput
+  }
+
+  export type KnowledgeAssessmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    motherProfileId_timePoint?: KnowledgeAssessmentMotherProfileIdTimePointCompoundUniqueInput
+    AND?: KnowledgeAssessmentWhereInput | KnowledgeAssessmentWhereInput[]
+    OR?: KnowledgeAssessmentWhereInput[]
+    NOT?: KnowledgeAssessmentWhereInput | KnowledgeAssessmentWhereInput[]
+    motherProfileId?: UuidFilter<"KnowledgeAssessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"KnowledgeAssessment"> | string | null
+    timePoint?: StringFilter<"KnowledgeAssessment"> | string
+    responses?: JsonFilter<"KnowledgeAssessment">
+    score?: IntFilter<"KnowledgeAssessment"> | number
+    maxScore?: IntFilter<"KnowledgeAssessment"> | number
+    percentage?: IntFilter<"KnowledgeAssessment"> | number
+    grade?: StringFilter<"KnowledgeAssessment"> | string
+    submittedAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    createdAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    updatedAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    followUpSchedule?: XOR<FollowUpScheduleNullableScalarRelationFilter, FollowUpScheduleWhereInput> | null
+  }, "id" | "motherProfileId_timePoint">
+
+  export type KnowledgeAssessmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrderInput | SortOrder
+    timePoint?: SortOrder
+    responses?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+    grade?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: KnowledgeAssessmentCountOrderByAggregateInput
+    _avg?: KnowledgeAssessmentAvgOrderByAggregateInput
+    _max?: KnowledgeAssessmentMaxOrderByAggregateInput
+    _min?: KnowledgeAssessmentMinOrderByAggregateInput
+    _sum?: KnowledgeAssessmentSumOrderByAggregateInput
+  }
+
+  export type KnowledgeAssessmentScalarWhereWithAggregatesInput = {
+    AND?: KnowledgeAssessmentScalarWhereWithAggregatesInput | KnowledgeAssessmentScalarWhereWithAggregatesInput[]
+    OR?: KnowledgeAssessmentScalarWhereWithAggregatesInput[]
+    NOT?: KnowledgeAssessmentScalarWhereWithAggregatesInput | KnowledgeAssessmentScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"KnowledgeAssessment"> | string
+    motherProfileId?: UuidWithAggregatesFilter<"KnowledgeAssessment"> | string
+    followUpScheduleId?: UuidNullableWithAggregatesFilter<"KnowledgeAssessment"> | string | null
+    timePoint?: StringWithAggregatesFilter<"KnowledgeAssessment"> | string
+    responses?: JsonWithAggregatesFilter<"KnowledgeAssessment">
+    score?: IntWithAggregatesFilter<"KnowledgeAssessment"> | number
+    maxScore?: IntWithAggregatesFilter<"KnowledgeAssessment"> | number
+    percentage?: IntWithAggregatesFilter<"KnowledgeAssessment"> | number
+    grade?: StringWithAggregatesFilter<"KnowledgeAssessment"> | string
+    submittedAt?: DateTimeWithAggregatesFilter<"KnowledgeAssessment"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"KnowledgeAssessment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"KnowledgeAssessment"> | Date | string
+  }
+
+  export type Who5AssessmentWhereInput = {
+    AND?: Who5AssessmentWhereInput | Who5AssessmentWhereInput[]
+    OR?: Who5AssessmentWhereInput[]
+    NOT?: Who5AssessmentWhereInput | Who5AssessmentWhereInput[]
+    id?: UuidFilter<"Who5Assessment"> | string
+    motherProfileId?: UuidFilter<"Who5Assessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"Who5Assessment"> | string | null
+    timePoint?: StringFilter<"Who5Assessment"> | string
+    responses?: JsonFilter<"Who5Assessment">
+    rawScore?: IntFilter<"Who5Assessment"> | number
+    maxScore?: IntFilter<"Who5Assessment"> | number
+    percentageScore?: IntFilter<"Who5Assessment"> | number
+    poorWellbeingFlag?: BoolFilter<"Who5Assessment"> | boolean
+    interpretation?: StringFilter<"Who5Assessment"> | string
+    submittedAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    createdAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    updatedAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    followUpSchedule?: XOR<FollowUpScheduleNullableScalarRelationFilter, FollowUpScheduleWhereInput> | null
+  }
+
+  export type Who5AssessmentOrderByWithRelationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrderInput | SortOrder
+    timePoint?: SortOrder
+    responses?: SortOrder
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+    poorWellbeingFlag?: SortOrder
+    interpretation?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    motherProfile?: MotherProfileOrderByWithRelationInput
+    followUpSchedule?: FollowUpScheduleOrderByWithRelationInput
+  }
+
+  export type Who5AssessmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    motherProfileId_timePoint?: Who5AssessmentMotherProfileIdTimePointCompoundUniqueInput
+    AND?: Who5AssessmentWhereInput | Who5AssessmentWhereInput[]
+    OR?: Who5AssessmentWhereInput[]
+    NOT?: Who5AssessmentWhereInput | Who5AssessmentWhereInput[]
+    motherProfileId?: UuidFilter<"Who5Assessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"Who5Assessment"> | string | null
+    timePoint?: StringFilter<"Who5Assessment"> | string
+    responses?: JsonFilter<"Who5Assessment">
+    rawScore?: IntFilter<"Who5Assessment"> | number
+    maxScore?: IntFilter<"Who5Assessment"> | number
+    percentageScore?: IntFilter<"Who5Assessment"> | number
+    poorWellbeingFlag?: BoolFilter<"Who5Assessment"> | boolean
+    interpretation?: StringFilter<"Who5Assessment"> | string
+    submittedAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    createdAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    updatedAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    followUpSchedule?: XOR<FollowUpScheduleNullableScalarRelationFilter, FollowUpScheduleWhereInput> | null
+  }, "id" | "motherProfileId_timePoint">
+
+  export type Who5AssessmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrderInput | SortOrder
+    timePoint?: SortOrder
+    responses?: SortOrder
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+    poorWellbeingFlag?: SortOrder
+    interpretation?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: Who5AssessmentCountOrderByAggregateInput
+    _avg?: Who5AssessmentAvgOrderByAggregateInput
+    _max?: Who5AssessmentMaxOrderByAggregateInput
+    _min?: Who5AssessmentMinOrderByAggregateInput
+    _sum?: Who5AssessmentSumOrderByAggregateInput
+  }
+
+  export type Who5AssessmentScalarWhereWithAggregatesInput = {
+    AND?: Who5AssessmentScalarWhereWithAggregatesInput | Who5AssessmentScalarWhereWithAggregatesInput[]
+    OR?: Who5AssessmentScalarWhereWithAggregatesInput[]
+    NOT?: Who5AssessmentScalarWhereWithAggregatesInput | Who5AssessmentScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Who5Assessment"> | string
+    motherProfileId?: UuidWithAggregatesFilter<"Who5Assessment"> | string
+    followUpScheduleId?: UuidNullableWithAggregatesFilter<"Who5Assessment"> | string | null
+    timePoint?: StringWithAggregatesFilter<"Who5Assessment"> | string
+    responses?: JsonWithAggregatesFilter<"Who5Assessment">
+    rawScore?: IntWithAggregatesFilter<"Who5Assessment"> | number
+    maxScore?: IntWithAggregatesFilter<"Who5Assessment"> | number
+    percentageScore?: IntWithAggregatesFilter<"Who5Assessment"> | number
+    poorWellbeingFlag?: BoolWithAggregatesFilter<"Who5Assessment"> | boolean
+    interpretation?: StringWithAggregatesFilter<"Who5Assessment"> | string
+    submittedAt?: DateTimeWithAggregatesFilter<"Who5Assessment"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Who5Assessment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Who5Assessment"> | Date | string
+  }
+
+  export type PsocAssessmentWhereInput = {
+    AND?: PsocAssessmentWhereInput | PsocAssessmentWhereInput[]
+    OR?: PsocAssessmentWhereInput[]
+    NOT?: PsocAssessmentWhereInput | PsocAssessmentWhereInput[]
+    id?: UuidFilter<"PsocAssessment"> | string
+    motherProfileId?: UuidFilter<"PsocAssessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"PsocAssessment"> | string | null
+    timePoint?: StringFilter<"PsocAssessment"> | string
+    rawResponses?: JsonFilter<"PsocAssessment">
+    scoredResponses?: JsonFilter<"PsocAssessment">
+    efficacyScore?: IntFilter<"PsocAssessment"> | number
+    satisfactionScore?: IntFilter<"PsocAssessment"> | number
+    totalScore?: IntFilter<"PsocAssessment"> | number
+    maxScore?: IntFilter<"PsocAssessment"> | number
+    classification?: StringNullableFilter<"PsocAssessment"> | string | null
+    classificationMethod?: StringNullableFilter<"PsocAssessment"> | string | null
+    submittedAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    createdAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    updatedAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    followUpSchedule?: XOR<FollowUpScheduleNullableScalarRelationFilter, FollowUpScheduleWhereInput> | null
+  }
+
+  export type PsocAssessmentOrderByWithRelationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrderInput | SortOrder
+    timePoint?: SortOrder
+    rawResponses?: SortOrder
+    scoredResponses?: SortOrder
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+    classification?: SortOrderInput | SortOrder
+    classificationMethod?: SortOrderInput | SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    motherProfile?: MotherProfileOrderByWithRelationInput
+    followUpSchedule?: FollowUpScheduleOrderByWithRelationInput
+  }
+
+  export type PsocAssessmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    motherProfileId_timePoint?: PsocAssessmentMotherProfileIdTimePointCompoundUniqueInput
+    AND?: PsocAssessmentWhereInput | PsocAssessmentWhereInput[]
+    OR?: PsocAssessmentWhereInput[]
+    NOT?: PsocAssessmentWhereInput | PsocAssessmentWhereInput[]
+    motherProfileId?: UuidFilter<"PsocAssessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"PsocAssessment"> | string | null
+    timePoint?: StringFilter<"PsocAssessment"> | string
+    rawResponses?: JsonFilter<"PsocAssessment">
+    scoredResponses?: JsonFilter<"PsocAssessment">
+    efficacyScore?: IntFilter<"PsocAssessment"> | number
+    satisfactionScore?: IntFilter<"PsocAssessment"> | number
+    totalScore?: IntFilter<"PsocAssessment"> | number
+    maxScore?: IntFilter<"PsocAssessment"> | number
+    classification?: StringNullableFilter<"PsocAssessment"> | string | null
+    classificationMethod?: StringNullableFilter<"PsocAssessment"> | string | null
+    submittedAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    createdAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    updatedAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    followUpSchedule?: XOR<FollowUpScheduleNullableScalarRelationFilter, FollowUpScheduleWhereInput> | null
+  }, "id" | "motherProfileId_timePoint">
+
+  export type PsocAssessmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrderInput | SortOrder
+    timePoint?: SortOrder
+    rawResponses?: SortOrder
+    scoredResponses?: SortOrder
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+    classification?: SortOrderInput | SortOrder
+    classificationMethod?: SortOrderInput | SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PsocAssessmentCountOrderByAggregateInput
+    _avg?: PsocAssessmentAvgOrderByAggregateInput
+    _max?: PsocAssessmentMaxOrderByAggregateInput
+    _min?: PsocAssessmentMinOrderByAggregateInput
+    _sum?: PsocAssessmentSumOrderByAggregateInput
+  }
+
+  export type PsocAssessmentScalarWhereWithAggregatesInput = {
+    AND?: PsocAssessmentScalarWhereWithAggregatesInput | PsocAssessmentScalarWhereWithAggregatesInput[]
+    OR?: PsocAssessmentScalarWhereWithAggregatesInput[]
+    NOT?: PsocAssessmentScalarWhereWithAggregatesInput | PsocAssessmentScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"PsocAssessment"> | string
+    motherProfileId?: UuidWithAggregatesFilter<"PsocAssessment"> | string
+    followUpScheduleId?: UuidNullableWithAggregatesFilter<"PsocAssessment"> | string | null
+    timePoint?: StringWithAggregatesFilter<"PsocAssessment"> | string
+    rawResponses?: JsonWithAggregatesFilter<"PsocAssessment">
+    scoredResponses?: JsonWithAggregatesFilter<"PsocAssessment">
+    efficacyScore?: IntWithAggregatesFilter<"PsocAssessment"> | number
+    satisfactionScore?: IntWithAggregatesFilter<"PsocAssessment"> | number
+    totalScore?: IntWithAggregatesFilter<"PsocAssessment"> | number
+    maxScore?: IntWithAggregatesFilter<"PsocAssessment"> | number
+    classification?: StringNullableWithAggregatesFilter<"PsocAssessment"> | string | null
+    classificationMethod?: StringNullableWithAggregatesFilter<"PsocAssessment"> | string | null
+    submittedAt?: DateTimeWithAggregatesFilter<"PsocAssessment"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"PsocAssessment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PsocAssessment"> | Date | string
+  }
+
+  export type GrowthReadingWhereInput = {
+    AND?: GrowthReadingWhereInput | GrowthReadingWhereInput[]
+    OR?: GrowthReadingWhereInput[]
+    NOT?: GrowthReadingWhereInput | GrowthReadingWhereInput[]
+    id?: UuidFilter<"GrowthReading"> | string
+    babyProfileId?: UuidFilter<"GrowthReading"> | string
+    motherProfileId?: UuidFilter<"GrowthReading"> | string
+    recordedByUserId?: UuidFilter<"GrowthReading"> | string
+    readingDate?: DateTimeFilter<"GrowthReading"> | Date | string
+    weightGrams?: IntFilter<"GrowthReading"> | number
+    lengthCm?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFilter<"GrowthReading"> | number
+    chronologicalAgeWeeks?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFilter<"GrowthReading"> | number
+    correctedAgeWeeks?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    timePoint?: StringNullableFilter<"GrowthReading"> | string | null
+    source?: StringFilter<"GrowthReading"> | string
+    notes?: StringNullableFilter<"GrowthReading"> | string | null
+    createdAt?: DateTimeFilter<"GrowthReading"> | Date | string
+    updatedAt?: DateTimeFilter<"GrowthReading"> | Date | string
+    babyProfile?: XOR<BabyProfileScalarRelationFilter, BabyProfileWhereInput>
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    recordedByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type GrowthReadingOrderByWithRelationInput = {
+    id?: SortOrder
+    babyProfileId?: SortOrder
+    motherProfileId?: SortOrder
+    recordedByUserId?: SortOrder
+    readingDate?: SortOrder
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+    timePoint?: SortOrderInput | SortOrder
+    source?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    babyProfile?: BabyProfileOrderByWithRelationInput
+    motherProfile?: MotherProfileOrderByWithRelationInput
+    recordedByUser?: UserOrderByWithRelationInput
+  }
+
+  export type GrowthReadingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    babyProfileId_readingDate?: GrowthReadingBabyProfileIdReadingDateCompoundUniqueInput
+    AND?: GrowthReadingWhereInput | GrowthReadingWhereInput[]
+    OR?: GrowthReadingWhereInput[]
+    NOT?: GrowthReadingWhereInput | GrowthReadingWhereInput[]
+    babyProfileId?: UuidFilter<"GrowthReading"> | string
+    motherProfileId?: UuidFilter<"GrowthReading"> | string
+    recordedByUserId?: UuidFilter<"GrowthReading"> | string
+    readingDate?: DateTimeFilter<"GrowthReading"> | Date | string
+    weightGrams?: IntFilter<"GrowthReading"> | number
+    lengthCm?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFilter<"GrowthReading"> | number
+    chronologicalAgeWeeks?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFilter<"GrowthReading"> | number
+    correctedAgeWeeks?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    timePoint?: StringNullableFilter<"GrowthReading"> | string | null
+    source?: StringFilter<"GrowthReading"> | string
+    notes?: StringNullableFilter<"GrowthReading"> | string | null
+    createdAt?: DateTimeFilter<"GrowthReading"> | Date | string
+    updatedAt?: DateTimeFilter<"GrowthReading"> | Date | string
+    babyProfile?: XOR<BabyProfileScalarRelationFilter, BabyProfileWhereInput>
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+    recordedByUser?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "babyProfileId_readingDate">
+
+  export type GrowthReadingOrderByWithAggregationInput = {
+    id?: SortOrder
+    babyProfileId?: SortOrder
+    motherProfileId?: SortOrder
+    recordedByUserId?: SortOrder
+    readingDate?: SortOrder
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+    timePoint?: SortOrderInput | SortOrder
+    source?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GrowthReadingCountOrderByAggregateInput
+    _avg?: GrowthReadingAvgOrderByAggregateInput
+    _max?: GrowthReadingMaxOrderByAggregateInput
+    _min?: GrowthReadingMinOrderByAggregateInput
+    _sum?: GrowthReadingSumOrderByAggregateInput
+  }
+
+  export type GrowthReadingScalarWhereWithAggregatesInput = {
+    AND?: GrowthReadingScalarWhereWithAggregatesInput | GrowthReadingScalarWhereWithAggregatesInput[]
+    OR?: GrowthReadingScalarWhereWithAggregatesInput[]
+    NOT?: GrowthReadingScalarWhereWithAggregatesInput | GrowthReadingScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"GrowthReading"> | string
+    babyProfileId?: UuidWithAggregatesFilter<"GrowthReading"> | string
+    motherProfileId?: UuidWithAggregatesFilter<"GrowthReading"> | string
+    recordedByUserId?: UuidWithAggregatesFilter<"GrowthReading"> | string
+    readingDate?: DateTimeWithAggregatesFilter<"GrowthReading"> | Date | string
+    weightGrams?: IntWithAggregatesFilter<"GrowthReading"> | number
+    lengthCm?: DecimalWithAggregatesFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalWithAggregatesFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntWithAggregatesFilter<"GrowthReading"> | number
+    chronologicalAgeWeeks?: DecimalWithAggregatesFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntWithAggregatesFilter<"GrowthReading"> | number
+    correctedAgeWeeks?: DecimalWithAggregatesFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    timePoint?: StringNullableWithAggregatesFilter<"GrowthReading"> | string | null
+    source?: StringWithAggregatesFilter<"GrowthReading"> | string
+    notes?: StringNullableWithAggregatesFilter<"GrowthReading"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"GrowthReading"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GrowthReading"> | Date | string
+  }
+
+  export type DailyLogWhereInput = {
+    AND?: DailyLogWhereInput | DailyLogWhereInput[]
+    OR?: DailyLogWhereInput[]
+    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
+    id?: UuidFilter<"DailyLog"> | string
+    motherProfileId?: UuidFilter<"DailyLog"> | string
+    careDate?: DateTimeFilter<"DailyLog"> | Date | string
+    breastfeedingDone?: BoolFilter<"DailyLog"> | boolean
+    breastfeedingFeedsCount?: IntNullableFilter<"DailyLog"> | number | null
+    breastfeedingVolumeMl?: IntNullableFilter<"DailyLog"> | number | null
+    kmcDone?: BoolFilter<"DailyLog"> | boolean
+    kmcMinutes?: IntNullableFilter<"DailyLog"> | number | null
+    temperatureMorningC?: DecimalNullableFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: DecimalNullableFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFilter<"DailyLog"> | boolean
+    weightCheckDone?: BoolFilter<"DailyLog"> | boolean
+    weightGrams?: IntNullableFilter<"DailyLog"> | number | null
+    skinCordCareDone?: BoolFilter<"DailyLog"> | boolean
+    medicationDone?: BoolNullableFilter<"DailyLog"> | boolean | null
+    medicationNotes?: StringNullableFilter<"DailyLog"> | string | null
+    dangerSignsReviewed?: BoolFilter<"DailyLog"> | boolean
+    notes?: StringNullableFilter<"DailyLog"> | string | null
+    createdAt?: DateTimeFilter<"DailyLog"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyLog"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+  }
+
+  export type DailyLogOrderByWithRelationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    careDate?: SortOrder
+    breastfeedingDone?: SortOrder
+    breastfeedingFeedsCount?: SortOrderInput | SortOrder
+    breastfeedingVolumeMl?: SortOrderInput | SortOrder
+    kmcDone?: SortOrder
+    kmcMinutes?: SortOrderInput | SortOrder
+    temperatureMorningC?: SortOrderInput | SortOrder
+    temperatureEveningC?: SortOrderInput | SortOrder
+    temperatureDone?: SortOrder
+    weightCheckDone?: SortOrder
+    weightGrams?: SortOrderInput | SortOrder
+    skinCordCareDone?: SortOrder
+    medicationDone?: SortOrderInput | SortOrder
+    medicationNotes?: SortOrderInput | SortOrder
+    dangerSignsReviewed?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    motherProfile?: MotherProfileOrderByWithRelationInput
+  }
+
+  export type DailyLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    motherProfileId_careDate?: DailyLogMotherProfileIdCareDateCompoundUniqueInput
+    AND?: DailyLogWhereInput | DailyLogWhereInput[]
+    OR?: DailyLogWhereInput[]
+    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
+    motherProfileId?: UuidFilter<"DailyLog"> | string
+    careDate?: DateTimeFilter<"DailyLog"> | Date | string
+    breastfeedingDone?: BoolFilter<"DailyLog"> | boolean
+    breastfeedingFeedsCount?: IntNullableFilter<"DailyLog"> | number | null
+    breastfeedingVolumeMl?: IntNullableFilter<"DailyLog"> | number | null
+    kmcDone?: BoolFilter<"DailyLog"> | boolean
+    kmcMinutes?: IntNullableFilter<"DailyLog"> | number | null
+    temperatureMorningC?: DecimalNullableFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: DecimalNullableFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFilter<"DailyLog"> | boolean
+    weightCheckDone?: BoolFilter<"DailyLog"> | boolean
+    weightGrams?: IntNullableFilter<"DailyLog"> | number | null
+    skinCordCareDone?: BoolFilter<"DailyLog"> | boolean
+    medicationDone?: BoolNullableFilter<"DailyLog"> | boolean | null
+    medicationNotes?: StringNullableFilter<"DailyLog"> | string | null
+    dangerSignsReviewed?: BoolFilter<"DailyLog"> | boolean
+    notes?: StringNullableFilter<"DailyLog"> | string | null
+    createdAt?: DateTimeFilter<"DailyLog"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyLog"> | Date | string
+    motherProfile?: XOR<MotherProfileScalarRelationFilter, MotherProfileWhereInput>
+  }, "id" | "motherProfileId_careDate">
+
+  export type DailyLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    careDate?: SortOrder
+    breastfeedingDone?: SortOrder
+    breastfeedingFeedsCount?: SortOrderInput | SortOrder
+    breastfeedingVolumeMl?: SortOrderInput | SortOrder
+    kmcDone?: SortOrder
+    kmcMinutes?: SortOrderInput | SortOrder
+    temperatureMorningC?: SortOrderInput | SortOrder
+    temperatureEveningC?: SortOrderInput | SortOrder
+    temperatureDone?: SortOrder
+    weightCheckDone?: SortOrder
+    weightGrams?: SortOrderInput | SortOrder
+    skinCordCareDone?: SortOrder
+    medicationDone?: SortOrderInput | SortOrder
+    medicationNotes?: SortOrderInput | SortOrder
+    dangerSignsReviewed?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DailyLogCountOrderByAggregateInput
+    _avg?: DailyLogAvgOrderByAggregateInput
+    _max?: DailyLogMaxOrderByAggregateInput
+    _min?: DailyLogMinOrderByAggregateInput
+    _sum?: DailyLogSumOrderByAggregateInput
+  }
+
+  export type DailyLogScalarWhereWithAggregatesInput = {
+    AND?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
+    OR?: DailyLogScalarWhereWithAggregatesInput[]
+    NOT?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"DailyLog"> | string
+    motherProfileId?: UuidWithAggregatesFilter<"DailyLog"> | string
+    careDate?: DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
+    breastfeedingDone?: BoolWithAggregatesFilter<"DailyLog"> | boolean
+    breastfeedingFeedsCount?: IntNullableWithAggregatesFilter<"DailyLog"> | number | null
+    breastfeedingVolumeMl?: IntNullableWithAggregatesFilter<"DailyLog"> | number | null
+    kmcDone?: BoolWithAggregatesFilter<"DailyLog"> | boolean
+    kmcMinutes?: IntNullableWithAggregatesFilter<"DailyLog"> | number | null
+    temperatureMorningC?: DecimalNullableWithAggregatesFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: DecimalNullableWithAggregatesFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolWithAggregatesFilter<"DailyLog"> | boolean
+    weightCheckDone?: BoolWithAggregatesFilter<"DailyLog"> | boolean
+    weightGrams?: IntNullableWithAggregatesFilter<"DailyLog"> | number | null
+    skinCordCareDone?: BoolWithAggregatesFilter<"DailyLog"> | boolean
+    medicationDone?: BoolNullableWithAggregatesFilter<"DailyLog"> | boolean | null
+    medicationNotes?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
+    dangerSignsReviewed?: BoolWithAggregatesFilter<"DailyLog"> | boolean
+    notes?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
   }
 
   export type HospitalCreateInput = {
@@ -13798,6 +21717,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -13823,6 +21743,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUncheckedCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUpdateInput = {
@@ -13848,6 +21769,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -13873,6 +21795,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUncheckedUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -14116,6 +22039,11 @@ export namespace Prisma {
     hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
     babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
     followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileUncheckedCreateInput = {
@@ -14144,6 +22072,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
     followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileUpdateInput = {
@@ -14172,6 +22105,11 @@ export namespace Prisma {
     hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
     babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
     followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileUncheckedUpdateInput = {
@@ -14200,6 +22138,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
     followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileCreateManyInput = {
@@ -14298,6 +22241,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     motherProfile: MotherProfileCreateNestedOneWithoutBabyProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutBabyProfileInput
   }
 
   export type BabyProfileUncheckedCreateInput = {
@@ -14320,6 +22264,7 @@ export namespace Prisma {
     dischargeDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutBabyProfileInput
   }
 
   export type BabyProfileUpdateInput = {
@@ -14342,6 +22287,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     motherProfile?: MotherProfileUpdateOneRequiredWithoutBabyProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutBabyProfileNestedInput
   }
 
   export type BabyProfileUncheckedUpdateInput = {
@@ -14364,6 +22310,7 @@ export namespace Prisma {
     dischargeDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutBabyProfileNestedInput
   }
 
   export type BabyProfileCreateManyInput = {
@@ -14580,6 +22527,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     motherProfile: MotherProfileCreateNestedOneWithoutFollowUpSchedulesInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutFollowUpScheduleInput
   }
 
   export type FollowUpScheduleUncheckedCreateInput = {
@@ -14594,6 +22544,9 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
   }
 
   export type FollowUpScheduleUpdateInput = {
@@ -14608,6 +22561,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     motherProfile?: MotherProfileUpdateOneRequiredWithoutFollowUpSchedulesNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
   }
 
   export type FollowUpScheduleUncheckedUpdateInput = {
@@ -14622,6 +22578,9 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
   }
 
   export type FollowUpScheduleCreateManyInput = {
@@ -14660,6 +22619,640 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     dataComplete?: BoolFieldUpdateOperationsInput | boolean
     collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentCreateInput = {
+    id?: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutKnowledgeAssessmentsInput
+    followUpSchedule?: FollowUpScheduleCreateNestedOneWithoutKnowledgeAssessmentsInput
+  }
+
+  export type KnowledgeAssessmentUncheckedCreateInput = {
+    id?: string
+    motherProfileId: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KnowledgeAssessmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutKnowledgeAssessmentsNestedInput
+    followUpSchedule?: FollowUpScheduleUpdateOneWithoutKnowledgeAssessmentsNestedInput
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentCreateManyInput = {
+    id?: string
+    motherProfileId: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KnowledgeAssessmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentCreateInput = {
+    id?: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutWho5AssessmentsInput
+    followUpSchedule?: FollowUpScheduleCreateNestedOneWithoutWho5AssessmentsInput
+  }
+
+  export type Who5AssessmentUncheckedCreateInput = {
+    id?: string
+    motherProfileId: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Who5AssessmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutWho5AssessmentsNestedInput
+    followUpSchedule?: FollowUpScheduleUpdateOneWithoutWho5AssessmentsNestedInput
+  }
+
+  export type Who5AssessmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentCreateManyInput = {
+    id?: string
+    motherProfileId: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Who5AssessmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentCreateInput = {
+    id?: string
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutPsocAssessmentsInput
+    followUpSchedule?: FollowUpScheduleCreateNestedOneWithoutPsocAssessmentsInput
+  }
+
+  export type PsocAssessmentUncheckedCreateInput = {
+    id?: string
+    motherProfileId: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PsocAssessmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutPsocAssessmentsNestedInput
+    followUpSchedule?: FollowUpScheduleUpdateOneWithoutPsocAssessmentsNestedInput
+  }
+
+  export type PsocAssessmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentCreateManyInput = {
+    id?: string
+    motherProfileId: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PsocAssessmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingCreateInput = {
+    id?: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile: BabyProfileCreateNestedOneWithoutGrowthReadingsInput
+    motherProfile: MotherProfileCreateNestedOneWithoutGrowthReadingsInput
+    recordedByUser: UserCreateNestedOneWithoutRecordedGrowthReadingsInput
+  }
+
+  export type GrowthReadingUncheckedCreateInput = {
+    id?: string
+    babyProfileId: string
+    motherProfileId: string
+    recordedByUserId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput
+    recordedByUser?: UserUpdateOneRequiredWithoutRecordedGrowthReadingsNestedInput
+  }
+
+  export type GrowthReadingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyProfileId?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    recordedByUserId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingCreateManyInput = {
+    id?: string
+    babyProfileId: string
+    motherProfileId: string
+    recordedByUserId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyProfileId?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    recordedByUserId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogCreateInput = {
+    id?: string
+    careDate: Date | string
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: number | null
+    breastfeedingVolumeMl?: number | null
+    kmcDone?: boolean
+    kmcMinutes?: number | null
+    temperatureMorningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: number | null
+    skinCordCareDone?: boolean
+    medicationDone?: boolean | null
+    medicationNotes?: string | null
+    dangerSignsReviewed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutDailyLogsInput
+  }
+
+  export type DailyLogUncheckedCreateInput = {
+    id?: string
+    motherProfileId: string
+    careDate: Date | string
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: number | null
+    breastfeedingVolumeMl?: number | null
+    kmcDone?: boolean
+    kmcMinutes?: number | null
+    temperatureMorningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: number | null
+    skinCordCareDone?: boolean
+    medicationDone?: boolean | null
+    medicationNotes?: string | null
+    dangerSignsReviewed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutDailyLogsNestedInput
+  }
+
+  export type DailyLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogCreateManyInput = {
+    id?: string
+    motherProfileId: string
+    careDate: Date | string
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: number | null
+    breastfeedingVolumeMl?: number | null
+    kmcDone?: boolean
+    kmcMinutes?: number | null
+    temperatureMorningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: number | null
+    skinCordCareDone?: boolean
+    medicationDone?: boolean | null
+    medicationNotes?: string | null
+    dangerSignsReviewed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14957,7 +23550,17 @@ export namespace Prisma {
     none?: RefreshTokenWhereInput
   }
 
+  export type GrowthReadingListRelationFilter = {
+    every?: GrowthReadingWhereInput
+    some?: GrowthReadingWhereInput
+    none?: GrowthReadingWhereInput
+  }
+
   export type RefreshTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GrowthReadingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15161,7 +23764,47 @@ export namespace Prisma {
     none?: FollowUpScheduleWhereInput
   }
 
+  export type DailyLogListRelationFilter = {
+    every?: DailyLogWhereInput
+    some?: DailyLogWhereInput
+    none?: DailyLogWhereInput
+  }
+
+  export type KnowledgeAssessmentListRelationFilter = {
+    every?: KnowledgeAssessmentWhereInput
+    some?: KnowledgeAssessmentWhereInput
+    none?: KnowledgeAssessmentWhereInput
+  }
+
+  export type Who5AssessmentListRelationFilter = {
+    every?: Who5AssessmentWhereInput
+    some?: Who5AssessmentWhereInput
+    none?: Who5AssessmentWhereInput
+  }
+
+  export type PsocAssessmentListRelationFilter = {
+    every?: PsocAssessmentWhereInput
+    some?: PsocAssessmentWhereInput
+    none?: PsocAssessmentWhereInput
+  }
+
   export type FollowUpScheduleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DailyLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type KnowledgeAssessmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type Who5AssessmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PsocAssessmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15464,6 +24107,501 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type FollowUpScheduleNullableScalarRelationFilter = {
+    is?: FollowUpScheduleWhereInput | null
+    isNot?: FollowUpScheduleWhereInput | null
+  }
+
+  export type KnowledgeAssessmentMotherProfileIdTimePointCompoundUniqueInput = {
+    motherProfileId: string
+    timePoint: string
+  }
+
+  export type KnowledgeAssessmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    responses?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+    grade?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KnowledgeAssessmentAvgOrderByAggregateInput = {
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+  }
+
+  export type KnowledgeAssessmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+    grade?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KnowledgeAssessmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+    grade?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KnowledgeAssessmentSumOrderByAggregateInput = {
+    score?: SortOrder
+    maxScore?: SortOrder
+    percentage?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type Who5AssessmentMotherProfileIdTimePointCompoundUniqueInput = {
+    motherProfileId: string
+    timePoint: string
+  }
+
+  export type Who5AssessmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    responses?: SortOrder
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+    poorWellbeingFlag?: SortOrder
+    interpretation?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Who5AssessmentAvgOrderByAggregateInput = {
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+  }
+
+  export type Who5AssessmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+    poorWellbeingFlag?: SortOrder
+    interpretation?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Who5AssessmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+    poorWellbeingFlag?: SortOrder
+    interpretation?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type Who5AssessmentSumOrderByAggregateInput = {
+    rawScore?: SortOrder
+    maxScore?: SortOrder
+    percentageScore?: SortOrder
+  }
+
+  export type PsocAssessmentMotherProfileIdTimePointCompoundUniqueInput = {
+    motherProfileId: string
+    timePoint: string
+  }
+
+  export type PsocAssessmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    rawResponses?: SortOrder
+    scoredResponses?: SortOrder
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+    classification?: SortOrder
+    classificationMethod?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PsocAssessmentAvgOrderByAggregateInput = {
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+  }
+
+  export type PsocAssessmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+    classification?: SortOrder
+    classificationMethod?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PsocAssessmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    followUpScheduleId?: SortOrder
+    timePoint?: SortOrder
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+    classification?: SortOrder
+    classificationMethod?: SortOrder
+    submittedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PsocAssessmentSumOrderByAggregateInput = {
+    efficacyScore?: SortOrder
+    satisfactionScore?: SortOrder
+    totalScore?: SortOrder
+    maxScore?: SortOrder
+  }
+
+  export type BabyProfileScalarRelationFilter = {
+    is?: BabyProfileWhereInput
+    isNot?: BabyProfileWhereInput
+  }
+
+  export type GrowthReadingBabyProfileIdReadingDateCompoundUniqueInput = {
+    babyProfileId: string
+    readingDate: Date | string
+  }
+
+  export type GrowthReadingCountOrderByAggregateInput = {
+    id?: SortOrder
+    babyProfileId?: SortOrder
+    motherProfileId?: SortOrder
+    recordedByUserId?: SortOrder
+    readingDate?: SortOrder
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+    timePoint?: SortOrder
+    source?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GrowthReadingAvgOrderByAggregateInput = {
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+  }
+
+  export type GrowthReadingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    babyProfileId?: SortOrder
+    motherProfileId?: SortOrder
+    recordedByUserId?: SortOrder
+    readingDate?: SortOrder
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+    timePoint?: SortOrder
+    source?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GrowthReadingMinOrderByAggregateInput = {
+    id?: SortOrder
+    babyProfileId?: SortOrder
+    motherProfileId?: SortOrder
+    recordedByUserId?: SortOrder
+    readingDate?: SortOrder
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+    timePoint?: SortOrder
+    source?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GrowthReadingSumOrderByAggregateInput = {
+    weightGrams?: SortOrder
+    lengthCm?: SortOrder
+    headCircumferenceCm?: SortOrder
+    chronologicalAgeDays?: SortOrder
+    chronologicalAgeWeeks?: SortOrder
+    correctedAgeDays?: SortOrder
+    correctedAgeWeeks?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type DailyLogMotherProfileIdCareDateCompoundUniqueInput = {
+    motherProfileId: string
+    careDate: Date | string
+  }
+
+  export type DailyLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    careDate?: SortOrder
+    breastfeedingDone?: SortOrder
+    breastfeedingFeedsCount?: SortOrder
+    breastfeedingVolumeMl?: SortOrder
+    kmcDone?: SortOrder
+    kmcMinutes?: SortOrder
+    temperatureMorningC?: SortOrder
+    temperatureEveningC?: SortOrder
+    temperatureDone?: SortOrder
+    weightCheckDone?: SortOrder
+    weightGrams?: SortOrder
+    skinCordCareDone?: SortOrder
+    medicationDone?: SortOrder
+    medicationNotes?: SortOrder
+    dangerSignsReviewed?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyLogAvgOrderByAggregateInput = {
+    breastfeedingFeedsCount?: SortOrder
+    breastfeedingVolumeMl?: SortOrder
+    kmcMinutes?: SortOrder
+    temperatureMorningC?: SortOrder
+    temperatureEveningC?: SortOrder
+    weightGrams?: SortOrder
+  }
+
+  export type DailyLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    careDate?: SortOrder
+    breastfeedingDone?: SortOrder
+    breastfeedingFeedsCount?: SortOrder
+    breastfeedingVolumeMl?: SortOrder
+    kmcDone?: SortOrder
+    kmcMinutes?: SortOrder
+    temperatureMorningC?: SortOrder
+    temperatureEveningC?: SortOrder
+    temperatureDone?: SortOrder
+    weightCheckDone?: SortOrder
+    weightGrams?: SortOrder
+    skinCordCareDone?: SortOrder
+    medicationDone?: SortOrder
+    medicationNotes?: SortOrder
+    dangerSignsReviewed?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    motherProfileId?: SortOrder
+    careDate?: SortOrder
+    breastfeedingDone?: SortOrder
+    breastfeedingFeedsCount?: SortOrder
+    breastfeedingVolumeMl?: SortOrder
+    kmcDone?: SortOrder
+    kmcMinutes?: SortOrder
+    temperatureMorningC?: SortOrder
+    temperatureEveningC?: SortOrder
+    temperatureDone?: SortOrder
+    weightCheckDone?: SortOrder
+    weightGrams?: SortOrder
+    skinCordCareDone?: SortOrder
+    medicationDone?: SortOrder
+    medicationNotes?: SortOrder
+    dangerSignsReviewed?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DailyLogSumOrderByAggregateInput = {
+    breastfeedingFeedsCount?: SortOrder
+    breastfeedingVolumeMl?: SortOrder
+    kmcMinutes?: SortOrder
+    temperatureMorningC?: SortOrder
+    temperatureEveningC?: SortOrder
+    weightGrams?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
 
   export type UserCreateNestedManyWithoutHospitalInput = {
     create?: XOR<UserCreateWithoutHospitalInput, UserUncheckedCreateWithoutHospitalInput> | UserCreateWithoutHospitalInput[] | UserUncheckedCreateWithoutHospitalInput[]
@@ -15646,6 +24784,13 @@ export namespace Prisma {
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
+  export type GrowthReadingCreateNestedManyWithoutRecordedByUserInput = {
+    create?: XOR<GrowthReadingCreateWithoutRecordedByUserInput, GrowthReadingUncheckedCreateWithoutRecordedByUserInput> | GrowthReadingCreateWithoutRecordedByUserInput[] | GrowthReadingUncheckedCreateWithoutRecordedByUserInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutRecordedByUserInput | GrowthReadingCreateOrConnectWithoutRecordedByUserInput[]
+    createMany?: GrowthReadingCreateManyRecordedByUserInputEnvelope
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+  }
+
   export type MotherProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<MotherProfileCreateWithoutUserInput, MotherProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: MotherProfileCreateOrConnectWithoutUserInput
@@ -15669,6 +24814,13 @@ export namespace Prisma {
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
     createMany?: RefreshTokenCreateManyUserInputEnvelope
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
+  export type GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput = {
+    create?: XOR<GrowthReadingCreateWithoutRecordedByUserInput, GrowthReadingUncheckedCreateWithoutRecordedByUserInput> | GrowthReadingCreateWithoutRecordedByUserInput[] | GrowthReadingUncheckedCreateWithoutRecordedByUserInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutRecordedByUserInput | GrowthReadingCreateOrConnectWithoutRecordedByUserInput[]
+    createMany?: GrowthReadingCreateManyRecordedByUserInputEnvelope
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -15729,6 +24881,20 @@ export namespace Prisma {
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
+  export type GrowthReadingUpdateManyWithoutRecordedByUserNestedInput = {
+    create?: XOR<GrowthReadingCreateWithoutRecordedByUserInput, GrowthReadingUncheckedCreateWithoutRecordedByUserInput> | GrowthReadingCreateWithoutRecordedByUserInput[] | GrowthReadingUncheckedCreateWithoutRecordedByUserInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutRecordedByUserInput | GrowthReadingCreateOrConnectWithoutRecordedByUserInput[]
+    upsert?: GrowthReadingUpsertWithWhereUniqueWithoutRecordedByUserInput | GrowthReadingUpsertWithWhereUniqueWithoutRecordedByUserInput[]
+    createMany?: GrowthReadingCreateManyRecordedByUserInputEnvelope
+    set?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    disconnect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    delete?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    update?: GrowthReadingUpdateWithWhereUniqueWithoutRecordedByUserInput | GrowthReadingUpdateWithWhereUniqueWithoutRecordedByUserInput[]
+    updateMany?: GrowthReadingUpdateManyWithWhereWithoutRecordedByUserInput | GrowthReadingUpdateManyWithWhereWithoutRecordedByUserInput[]
+    deleteMany?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
+  }
+
   export type MotherProfileUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<MotherProfileCreateWithoutUserInput, MotherProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: MotherProfileCreateOrConnectWithoutUserInput
@@ -15771,6 +24937,20 @@ export namespace Prisma {
     update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
+  export type GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput = {
+    create?: XOR<GrowthReadingCreateWithoutRecordedByUserInput, GrowthReadingUncheckedCreateWithoutRecordedByUserInput> | GrowthReadingCreateWithoutRecordedByUserInput[] | GrowthReadingUncheckedCreateWithoutRecordedByUserInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutRecordedByUserInput | GrowthReadingCreateOrConnectWithoutRecordedByUserInput[]
+    upsert?: GrowthReadingUpsertWithWhereUniqueWithoutRecordedByUserInput | GrowthReadingUpsertWithWhereUniqueWithoutRecordedByUserInput[]
+    createMany?: GrowthReadingCreateManyRecordedByUserInputEnvelope
+    set?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    disconnect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    delete?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    update?: GrowthReadingUpdateWithWhereUniqueWithoutRecordedByUserInput | GrowthReadingUpdateWithWhereUniqueWithoutRecordedByUserInput[]
+    updateMany?: GrowthReadingUpdateManyWithWhereWithoutRecordedByUserInput | GrowthReadingUpdateManyWithWhereWithoutRecordedByUserInput[]
+    deleteMany?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutRefreshTokensInput = {
@@ -15816,6 +24996,41 @@ export namespace Prisma {
     connect?: FollowUpScheduleWhereUniqueInput | FollowUpScheduleWhereUniqueInput[]
   }
 
+  export type DailyLogCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<DailyLogCreateWithoutMotherProfileInput, DailyLogUncheckedCreateWithoutMotherProfileInput> | DailyLogCreateWithoutMotherProfileInput[] | DailyLogUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutMotherProfileInput | DailyLogCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: DailyLogCreateManyMotherProfileInputEnvelope
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+  }
+
+  export type KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput> | KnowledgeAssessmentCreateWithoutMotherProfileInput[] | KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput | KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: KnowledgeAssessmentCreateManyMotherProfileInputEnvelope
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+  }
+
+  export type Who5AssessmentCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<Who5AssessmentCreateWithoutMotherProfileInput, Who5AssessmentUncheckedCreateWithoutMotherProfileInput> | Who5AssessmentCreateWithoutMotherProfileInput[] | Who5AssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutMotherProfileInput | Who5AssessmentCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: Who5AssessmentCreateManyMotherProfileInputEnvelope
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+  }
+
+  export type PsocAssessmentCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<PsocAssessmentCreateWithoutMotherProfileInput, PsocAssessmentUncheckedCreateWithoutMotherProfileInput> | PsocAssessmentCreateWithoutMotherProfileInput[] | PsocAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutMotherProfileInput | PsocAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: PsocAssessmentCreateManyMotherProfileInputEnvelope
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+  }
+
+  export type GrowthReadingCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<GrowthReadingCreateWithoutMotherProfileInput, GrowthReadingUncheckedCreateWithoutMotherProfileInput> | GrowthReadingCreateWithoutMotherProfileInput[] | GrowthReadingUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutMotherProfileInput | GrowthReadingCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: GrowthReadingCreateManyMotherProfileInputEnvelope
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+  }
+
   export type BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput = {
     create?: XOR<BabyProfileCreateWithoutMotherProfileInput, BabyProfileUncheckedCreateWithoutMotherProfileInput>
     connectOrCreate?: BabyProfileCreateOrConnectWithoutMotherProfileInput
@@ -15827,6 +25042,41 @@ export namespace Prisma {
     connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutMotherProfileInput | FollowUpScheduleCreateOrConnectWithoutMotherProfileInput[]
     createMany?: FollowUpScheduleCreateManyMotherProfileInputEnvelope
     connect?: FollowUpScheduleWhereUniqueInput | FollowUpScheduleWhereUniqueInput[]
+  }
+
+  export type DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<DailyLogCreateWithoutMotherProfileInput, DailyLogUncheckedCreateWithoutMotherProfileInput> | DailyLogCreateWithoutMotherProfileInput[] | DailyLogUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutMotherProfileInput | DailyLogCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: DailyLogCreateManyMotherProfileInputEnvelope
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+  }
+
+  export type KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput> | KnowledgeAssessmentCreateWithoutMotherProfileInput[] | KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput | KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: KnowledgeAssessmentCreateManyMotherProfileInputEnvelope
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+  }
+
+  export type Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<Who5AssessmentCreateWithoutMotherProfileInput, Who5AssessmentUncheckedCreateWithoutMotherProfileInput> | Who5AssessmentCreateWithoutMotherProfileInput[] | Who5AssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutMotherProfileInput | Who5AssessmentCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: Who5AssessmentCreateManyMotherProfileInputEnvelope
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+  }
+
+  export type PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<PsocAssessmentCreateWithoutMotherProfileInput, PsocAssessmentUncheckedCreateWithoutMotherProfileInput> | PsocAssessmentCreateWithoutMotherProfileInput[] | PsocAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutMotherProfileInput | PsocAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: PsocAssessmentCreateManyMotherProfileInputEnvelope
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+  }
+
+  export type GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput = {
+    create?: XOR<GrowthReadingCreateWithoutMotherProfileInput, GrowthReadingUncheckedCreateWithoutMotherProfileInput> | GrowthReadingCreateWithoutMotherProfileInput[] | GrowthReadingUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutMotherProfileInput | GrowthReadingCreateOrConnectWithoutMotherProfileInput[]
+    createMany?: GrowthReadingCreateManyMotherProfileInputEnvelope
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
   }
 
   export type MotherProfileUpdateeducationSourceInput = {
@@ -15876,6 +25126,76 @@ export namespace Prisma {
     deleteMany?: FollowUpScheduleScalarWhereInput | FollowUpScheduleScalarWhereInput[]
   }
 
+  export type DailyLogUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<DailyLogCreateWithoutMotherProfileInput, DailyLogUncheckedCreateWithoutMotherProfileInput> | DailyLogCreateWithoutMotherProfileInput[] | DailyLogUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutMotherProfileInput | DailyLogCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: DailyLogUpsertWithWhereUniqueWithoutMotherProfileInput | DailyLogUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: DailyLogCreateManyMotherProfileInputEnvelope
+    set?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    disconnect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    delete?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    update?: DailyLogUpdateWithWhereUniqueWithoutMotherProfileInput | DailyLogUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: DailyLogUpdateManyWithWhereWithoutMotherProfileInput | DailyLogUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+  }
+
+  export type KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput> | KnowledgeAssessmentCreateWithoutMotherProfileInput[] | KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput | KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: KnowledgeAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput | KnowledgeAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: KnowledgeAssessmentCreateManyMotherProfileInputEnvelope
+    set?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    disconnect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    delete?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    update?: KnowledgeAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput | KnowledgeAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: KnowledgeAssessmentUpdateManyWithWhereWithoutMotherProfileInput | KnowledgeAssessmentUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: KnowledgeAssessmentScalarWhereInput | KnowledgeAssessmentScalarWhereInput[]
+  }
+
+  export type Who5AssessmentUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<Who5AssessmentCreateWithoutMotherProfileInput, Who5AssessmentUncheckedCreateWithoutMotherProfileInput> | Who5AssessmentCreateWithoutMotherProfileInput[] | Who5AssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutMotherProfileInput | Who5AssessmentCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: Who5AssessmentUpsertWithWhereUniqueWithoutMotherProfileInput | Who5AssessmentUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: Who5AssessmentCreateManyMotherProfileInputEnvelope
+    set?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    disconnect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    delete?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    update?: Who5AssessmentUpdateWithWhereUniqueWithoutMotherProfileInput | Who5AssessmentUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: Who5AssessmentUpdateManyWithWhereWithoutMotherProfileInput | Who5AssessmentUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: Who5AssessmentScalarWhereInput | Who5AssessmentScalarWhereInput[]
+  }
+
+  export type PsocAssessmentUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<PsocAssessmentCreateWithoutMotherProfileInput, PsocAssessmentUncheckedCreateWithoutMotherProfileInput> | PsocAssessmentCreateWithoutMotherProfileInput[] | PsocAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutMotherProfileInput | PsocAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: PsocAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput | PsocAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: PsocAssessmentCreateManyMotherProfileInputEnvelope
+    set?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    disconnect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    delete?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    update?: PsocAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput | PsocAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: PsocAssessmentUpdateManyWithWhereWithoutMotherProfileInput | PsocAssessmentUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: PsocAssessmentScalarWhereInput | PsocAssessmentScalarWhereInput[]
+  }
+
+  export type GrowthReadingUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<GrowthReadingCreateWithoutMotherProfileInput, GrowthReadingUncheckedCreateWithoutMotherProfileInput> | GrowthReadingCreateWithoutMotherProfileInput[] | GrowthReadingUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutMotherProfileInput | GrowthReadingCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: GrowthReadingUpsertWithWhereUniqueWithoutMotherProfileInput | GrowthReadingUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: GrowthReadingCreateManyMotherProfileInputEnvelope
+    set?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    disconnect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    delete?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    update?: GrowthReadingUpdateWithWhereUniqueWithoutMotherProfileInput | GrowthReadingUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: GrowthReadingUpdateManyWithWhereWithoutMotherProfileInput | GrowthReadingUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
+  }
+
   export type BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput = {
     create?: XOR<BabyProfileCreateWithoutMotherProfileInput, BabyProfileUncheckedCreateWithoutMotherProfileInput>
     connectOrCreate?: BabyProfileCreateOrConnectWithoutMotherProfileInput
@@ -15900,10 +25220,94 @@ export namespace Prisma {
     deleteMany?: FollowUpScheduleScalarWhereInput | FollowUpScheduleScalarWhereInput[]
   }
 
+  export type DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<DailyLogCreateWithoutMotherProfileInput, DailyLogUncheckedCreateWithoutMotherProfileInput> | DailyLogCreateWithoutMotherProfileInput[] | DailyLogUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutMotherProfileInput | DailyLogCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: DailyLogUpsertWithWhereUniqueWithoutMotherProfileInput | DailyLogUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: DailyLogCreateManyMotherProfileInputEnvelope
+    set?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    disconnect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    delete?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    update?: DailyLogUpdateWithWhereUniqueWithoutMotherProfileInput | DailyLogUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: DailyLogUpdateManyWithWhereWithoutMotherProfileInput | DailyLogUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput> | KnowledgeAssessmentCreateWithoutMotherProfileInput[] | KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput | KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: KnowledgeAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput | KnowledgeAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: KnowledgeAssessmentCreateManyMotherProfileInputEnvelope
+    set?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    disconnect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    delete?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    update?: KnowledgeAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput | KnowledgeAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: KnowledgeAssessmentUpdateManyWithWhereWithoutMotherProfileInput | KnowledgeAssessmentUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: KnowledgeAssessmentScalarWhereInput | KnowledgeAssessmentScalarWhereInput[]
+  }
+
+  export type Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<Who5AssessmentCreateWithoutMotherProfileInput, Who5AssessmentUncheckedCreateWithoutMotherProfileInput> | Who5AssessmentCreateWithoutMotherProfileInput[] | Who5AssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutMotherProfileInput | Who5AssessmentCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: Who5AssessmentUpsertWithWhereUniqueWithoutMotherProfileInput | Who5AssessmentUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: Who5AssessmentCreateManyMotherProfileInputEnvelope
+    set?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    disconnect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    delete?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    update?: Who5AssessmentUpdateWithWhereUniqueWithoutMotherProfileInput | Who5AssessmentUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: Who5AssessmentUpdateManyWithWhereWithoutMotherProfileInput | Who5AssessmentUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: Who5AssessmentScalarWhereInput | Who5AssessmentScalarWhereInput[]
+  }
+
+  export type PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<PsocAssessmentCreateWithoutMotherProfileInput, PsocAssessmentUncheckedCreateWithoutMotherProfileInput> | PsocAssessmentCreateWithoutMotherProfileInput[] | PsocAssessmentUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutMotherProfileInput | PsocAssessmentCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: PsocAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput | PsocAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: PsocAssessmentCreateManyMotherProfileInputEnvelope
+    set?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    disconnect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    delete?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    update?: PsocAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput | PsocAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: PsocAssessmentUpdateManyWithWhereWithoutMotherProfileInput | PsocAssessmentUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: PsocAssessmentScalarWhereInput | PsocAssessmentScalarWhereInput[]
+  }
+
+  export type GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput = {
+    create?: XOR<GrowthReadingCreateWithoutMotherProfileInput, GrowthReadingUncheckedCreateWithoutMotherProfileInput> | GrowthReadingCreateWithoutMotherProfileInput[] | GrowthReadingUncheckedCreateWithoutMotherProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutMotherProfileInput | GrowthReadingCreateOrConnectWithoutMotherProfileInput[]
+    upsert?: GrowthReadingUpsertWithWhereUniqueWithoutMotherProfileInput | GrowthReadingUpsertWithWhereUniqueWithoutMotherProfileInput[]
+    createMany?: GrowthReadingCreateManyMotherProfileInputEnvelope
+    set?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    disconnect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    delete?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    update?: GrowthReadingUpdateWithWhereUniqueWithoutMotherProfileInput | GrowthReadingUpdateWithWhereUniqueWithoutMotherProfileInput[]
+    updateMany?: GrowthReadingUpdateManyWithWhereWithoutMotherProfileInput | GrowthReadingUpdateManyWithWhereWithoutMotherProfileInput[]
+    deleteMany?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
+  }
+
   export type MotherProfileCreateNestedOneWithoutBabyProfileInput = {
     create?: XOR<MotherProfileCreateWithoutBabyProfileInput, MotherProfileUncheckedCreateWithoutBabyProfileInput>
     connectOrCreate?: MotherProfileCreateOrConnectWithoutBabyProfileInput
     connect?: MotherProfileWhereUniqueInput
+  }
+
+  export type GrowthReadingCreateNestedManyWithoutBabyProfileInput = {
+    create?: XOR<GrowthReadingCreateWithoutBabyProfileInput, GrowthReadingUncheckedCreateWithoutBabyProfileInput> | GrowthReadingCreateWithoutBabyProfileInput[] | GrowthReadingUncheckedCreateWithoutBabyProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutBabyProfileInput | GrowthReadingCreateOrConnectWithoutBabyProfileInput[]
+    createMany?: GrowthReadingCreateManyBabyProfileInputEnvelope
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+  }
+
+  export type GrowthReadingUncheckedCreateNestedManyWithoutBabyProfileInput = {
+    create?: XOR<GrowthReadingCreateWithoutBabyProfileInput, GrowthReadingUncheckedCreateWithoutBabyProfileInput> | GrowthReadingCreateWithoutBabyProfileInput[] | GrowthReadingUncheckedCreateWithoutBabyProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutBabyProfileInput | GrowthReadingCreateOrConnectWithoutBabyProfileInput[]
+    createMany?: GrowthReadingCreateManyBabyProfileInputEnvelope
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -15920,6 +25324,34 @@ export namespace Prisma {
     upsert?: MotherProfileUpsertWithoutBabyProfileInput
     connect?: MotherProfileWhereUniqueInput
     update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutBabyProfileInput, MotherProfileUpdateWithoutBabyProfileInput>, MotherProfileUncheckedUpdateWithoutBabyProfileInput>
+  }
+
+  export type GrowthReadingUpdateManyWithoutBabyProfileNestedInput = {
+    create?: XOR<GrowthReadingCreateWithoutBabyProfileInput, GrowthReadingUncheckedCreateWithoutBabyProfileInput> | GrowthReadingCreateWithoutBabyProfileInput[] | GrowthReadingUncheckedCreateWithoutBabyProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutBabyProfileInput | GrowthReadingCreateOrConnectWithoutBabyProfileInput[]
+    upsert?: GrowthReadingUpsertWithWhereUniqueWithoutBabyProfileInput | GrowthReadingUpsertWithWhereUniqueWithoutBabyProfileInput[]
+    createMany?: GrowthReadingCreateManyBabyProfileInputEnvelope
+    set?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    disconnect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    delete?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    update?: GrowthReadingUpdateWithWhereUniqueWithoutBabyProfileInput | GrowthReadingUpdateWithWhereUniqueWithoutBabyProfileInput[]
+    updateMany?: GrowthReadingUpdateManyWithWhereWithoutBabyProfileInput | GrowthReadingUpdateManyWithWhereWithoutBabyProfileInput[]
+    deleteMany?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
+  }
+
+  export type GrowthReadingUncheckedUpdateManyWithoutBabyProfileNestedInput = {
+    create?: XOR<GrowthReadingCreateWithoutBabyProfileInput, GrowthReadingUncheckedCreateWithoutBabyProfileInput> | GrowthReadingCreateWithoutBabyProfileInput[] | GrowthReadingUncheckedCreateWithoutBabyProfileInput[]
+    connectOrCreate?: GrowthReadingCreateOrConnectWithoutBabyProfileInput | GrowthReadingCreateOrConnectWithoutBabyProfileInput[]
+    upsert?: GrowthReadingUpsertWithWhereUniqueWithoutBabyProfileInput | GrowthReadingUpsertWithWhereUniqueWithoutBabyProfileInput[]
+    createMany?: GrowthReadingCreateManyBabyProfileInputEnvelope
+    set?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    disconnect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    delete?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    connect?: GrowthReadingWhereUniqueInput | GrowthReadingWhereUniqueInput[]
+    update?: GrowthReadingUpdateWithWhereUniqueWithoutBabyProfileInput | GrowthReadingUpdateWithWhereUniqueWithoutBabyProfileInput[]
+    updateMany?: GrowthReadingUpdateManyWithWhereWithoutBabyProfileInput | GrowthReadingUpdateManyWithWhereWithoutBabyProfileInput[]
+    deleteMany?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutNurseProfileInput = {
@@ -15970,12 +25402,304 @@ export namespace Prisma {
     connect?: MotherProfileWhereUniqueInput
   }
 
+  export type KnowledgeAssessmentCreateNestedManyWithoutFollowUpScheduleInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | KnowledgeAssessmentCreateWithoutFollowUpScheduleInput[] | KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput | KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    createMany?: KnowledgeAssessmentCreateManyFollowUpScheduleInputEnvelope
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+  }
+
+  export type Who5AssessmentCreateNestedManyWithoutFollowUpScheduleInput = {
+    create?: XOR<Who5AssessmentCreateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput> | Who5AssessmentCreateWithoutFollowUpScheduleInput[] | Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput | Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    createMany?: Who5AssessmentCreateManyFollowUpScheduleInputEnvelope
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+  }
+
+  export type PsocAssessmentCreateNestedManyWithoutFollowUpScheduleInput = {
+    create?: XOR<PsocAssessmentCreateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | PsocAssessmentCreateWithoutFollowUpScheduleInput[] | PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput | PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    createMany?: PsocAssessmentCreateManyFollowUpScheduleInputEnvelope
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+  }
+
+  export type KnowledgeAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | KnowledgeAssessmentCreateWithoutFollowUpScheduleInput[] | KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput | KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    createMany?: KnowledgeAssessmentCreateManyFollowUpScheduleInputEnvelope
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+  }
+
+  export type Who5AssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput = {
+    create?: XOR<Who5AssessmentCreateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput> | Who5AssessmentCreateWithoutFollowUpScheduleInput[] | Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput | Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    createMany?: Who5AssessmentCreateManyFollowUpScheduleInputEnvelope
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+  }
+
+  export type PsocAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput = {
+    create?: XOR<PsocAssessmentCreateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | PsocAssessmentCreateWithoutFollowUpScheduleInput[] | PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput | PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    createMany?: PsocAssessmentCreateManyFollowUpScheduleInputEnvelope
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+  }
+
   export type MotherProfileUpdateOneRequiredWithoutFollowUpSchedulesNestedInput = {
     create?: XOR<MotherProfileCreateWithoutFollowUpSchedulesInput, MotherProfileUncheckedCreateWithoutFollowUpSchedulesInput>
     connectOrCreate?: MotherProfileCreateOrConnectWithoutFollowUpSchedulesInput
     upsert?: MotherProfileUpsertWithoutFollowUpSchedulesInput
     connect?: MotherProfileWhereUniqueInput
     update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutFollowUpSchedulesInput, MotherProfileUpdateWithoutFollowUpSchedulesInput>, MotherProfileUncheckedUpdateWithoutFollowUpSchedulesInput>
+  }
+
+  export type KnowledgeAssessmentUpdateManyWithoutFollowUpScheduleNestedInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | KnowledgeAssessmentCreateWithoutFollowUpScheduleInput[] | KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput | KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    upsert?: KnowledgeAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput | KnowledgeAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput[]
+    createMany?: KnowledgeAssessmentCreateManyFollowUpScheduleInputEnvelope
+    set?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    disconnect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    delete?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    update?: KnowledgeAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput | KnowledgeAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput[]
+    updateMany?: KnowledgeAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput | KnowledgeAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput[]
+    deleteMany?: KnowledgeAssessmentScalarWhereInput | KnowledgeAssessmentScalarWhereInput[]
+  }
+
+  export type Who5AssessmentUpdateManyWithoutFollowUpScheduleNestedInput = {
+    create?: XOR<Who5AssessmentCreateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput> | Who5AssessmentCreateWithoutFollowUpScheduleInput[] | Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput | Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    upsert?: Who5AssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput | Who5AssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput[]
+    createMany?: Who5AssessmentCreateManyFollowUpScheduleInputEnvelope
+    set?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    disconnect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    delete?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    update?: Who5AssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput | Who5AssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput[]
+    updateMany?: Who5AssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput | Who5AssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput[]
+    deleteMany?: Who5AssessmentScalarWhereInput | Who5AssessmentScalarWhereInput[]
+  }
+
+  export type PsocAssessmentUpdateManyWithoutFollowUpScheduleNestedInput = {
+    create?: XOR<PsocAssessmentCreateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | PsocAssessmentCreateWithoutFollowUpScheduleInput[] | PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput | PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    upsert?: PsocAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput | PsocAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput[]
+    createMany?: PsocAssessmentCreateManyFollowUpScheduleInputEnvelope
+    set?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    disconnect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    delete?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    update?: PsocAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput | PsocAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput[]
+    updateMany?: PsocAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput | PsocAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput[]
+    deleteMany?: PsocAssessmentScalarWhereInput | PsocAssessmentScalarWhereInput[]
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput = {
+    create?: XOR<KnowledgeAssessmentCreateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | KnowledgeAssessmentCreateWithoutFollowUpScheduleInput[] | KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput | KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    upsert?: KnowledgeAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput | KnowledgeAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput[]
+    createMany?: KnowledgeAssessmentCreateManyFollowUpScheduleInputEnvelope
+    set?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    disconnect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    delete?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    connect?: KnowledgeAssessmentWhereUniqueInput | KnowledgeAssessmentWhereUniqueInput[]
+    update?: KnowledgeAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput | KnowledgeAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput[]
+    updateMany?: KnowledgeAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput | KnowledgeAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput[]
+    deleteMany?: KnowledgeAssessmentScalarWhereInput | KnowledgeAssessmentScalarWhereInput[]
+  }
+
+  export type Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput = {
+    create?: XOR<Who5AssessmentCreateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput> | Who5AssessmentCreateWithoutFollowUpScheduleInput[] | Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput | Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    upsert?: Who5AssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput | Who5AssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput[]
+    createMany?: Who5AssessmentCreateManyFollowUpScheduleInputEnvelope
+    set?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    disconnect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    delete?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    connect?: Who5AssessmentWhereUniqueInput | Who5AssessmentWhereUniqueInput[]
+    update?: Who5AssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput | Who5AssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput[]
+    updateMany?: Who5AssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput | Who5AssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput[]
+    deleteMany?: Who5AssessmentScalarWhereInput | Who5AssessmentScalarWhereInput[]
+  }
+
+  export type PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput = {
+    create?: XOR<PsocAssessmentCreateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput> | PsocAssessmentCreateWithoutFollowUpScheduleInput[] | PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput[]
+    connectOrCreate?: PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput | PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput[]
+    upsert?: PsocAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput | PsocAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput[]
+    createMany?: PsocAssessmentCreateManyFollowUpScheduleInputEnvelope
+    set?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    disconnect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    delete?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    connect?: PsocAssessmentWhereUniqueInput | PsocAssessmentWhereUniqueInput[]
+    update?: PsocAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput | PsocAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput[]
+    updateMany?: PsocAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput | PsocAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput[]
+    deleteMany?: PsocAssessmentScalarWhereInput | PsocAssessmentScalarWhereInput[]
+  }
+
+  export type MotherProfileCreateNestedOneWithoutKnowledgeAssessmentsInput = {
+    create?: XOR<MotherProfileCreateWithoutKnowledgeAssessmentsInput, MotherProfileUncheckedCreateWithoutKnowledgeAssessmentsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutKnowledgeAssessmentsInput
+    connect?: MotherProfileWhereUniqueInput
+  }
+
+  export type FollowUpScheduleCreateNestedOneWithoutKnowledgeAssessmentsInput = {
+    create?: XOR<FollowUpScheduleCreateWithoutKnowledgeAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutKnowledgeAssessmentsInput>
+    connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutKnowledgeAssessmentsInput
+    connect?: FollowUpScheduleWhereUniqueInput
+  }
+
+  export type MotherProfileUpdateOneRequiredWithoutKnowledgeAssessmentsNestedInput = {
+    create?: XOR<MotherProfileCreateWithoutKnowledgeAssessmentsInput, MotherProfileUncheckedCreateWithoutKnowledgeAssessmentsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutKnowledgeAssessmentsInput
+    upsert?: MotherProfileUpsertWithoutKnowledgeAssessmentsInput
+    connect?: MotherProfileWhereUniqueInput
+    update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutKnowledgeAssessmentsInput, MotherProfileUpdateWithoutKnowledgeAssessmentsInput>, MotherProfileUncheckedUpdateWithoutKnowledgeAssessmentsInput>
+  }
+
+  export type FollowUpScheduleUpdateOneWithoutKnowledgeAssessmentsNestedInput = {
+    create?: XOR<FollowUpScheduleCreateWithoutKnowledgeAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutKnowledgeAssessmentsInput>
+    connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutKnowledgeAssessmentsInput
+    upsert?: FollowUpScheduleUpsertWithoutKnowledgeAssessmentsInput
+    disconnect?: FollowUpScheduleWhereInput | boolean
+    delete?: FollowUpScheduleWhereInput | boolean
+    connect?: FollowUpScheduleWhereUniqueInput
+    update?: XOR<XOR<FollowUpScheduleUpdateToOneWithWhereWithoutKnowledgeAssessmentsInput, FollowUpScheduleUpdateWithoutKnowledgeAssessmentsInput>, FollowUpScheduleUncheckedUpdateWithoutKnowledgeAssessmentsInput>
+  }
+
+  export type MotherProfileCreateNestedOneWithoutWho5AssessmentsInput = {
+    create?: XOR<MotherProfileCreateWithoutWho5AssessmentsInput, MotherProfileUncheckedCreateWithoutWho5AssessmentsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutWho5AssessmentsInput
+    connect?: MotherProfileWhereUniqueInput
+  }
+
+  export type FollowUpScheduleCreateNestedOneWithoutWho5AssessmentsInput = {
+    create?: XOR<FollowUpScheduleCreateWithoutWho5AssessmentsInput, FollowUpScheduleUncheckedCreateWithoutWho5AssessmentsInput>
+    connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutWho5AssessmentsInput
+    connect?: FollowUpScheduleWhereUniqueInput
+  }
+
+  export type MotherProfileUpdateOneRequiredWithoutWho5AssessmentsNestedInput = {
+    create?: XOR<MotherProfileCreateWithoutWho5AssessmentsInput, MotherProfileUncheckedCreateWithoutWho5AssessmentsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutWho5AssessmentsInput
+    upsert?: MotherProfileUpsertWithoutWho5AssessmentsInput
+    connect?: MotherProfileWhereUniqueInput
+    update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutWho5AssessmentsInput, MotherProfileUpdateWithoutWho5AssessmentsInput>, MotherProfileUncheckedUpdateWithoutWho5AssessmentsInput>
+  }
+
+  export type FollowUpScheduleUpdateOneWithoutWho5AssessmentsNestedInput = {
+    create?: XOR<FollowUpScheduleCreateWithoutWho5AssessmentsInput, FollowUpScheduleUncheckedCreateWithoutWho5AssessmentsInput>
+    connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutWho5AssessmentsInput
+    upsert?: FollowUpScheduleUpsertWithoutWho5AssessmentsInput
+    disconnect?: FollowUpScheduleWhereInput | boolean
+    delete?: FollowUpScheduleWhereInput | boolean
+    connect?: FollowUpScheduleWhereUniqueInput
+    update?: XOR<XOR<FollowUpScheduleUpdateToOneWithWhereWithoutWho5AssessmentsInput, FollowUpScheduleUpdateWithoutWho5AssessmentsInput>, FollowUpScheduleUncheckedUpdateWithoutWho5AssessmentsInput>
+  }
+
+  export type MotherProfileCreateNestedOneWithoutPsocAssessmentsInput = {
+    create?: XOR<MotherProfileCreateWithoutPsocAssessmentsInput, MotherProfileUncheckedCreateWithoutPsocAssessmentsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutPsocAssessmentsInput
+    connect?: MotherProfileWhereUniqueInput
+  }
+
+  export type FollowUpScheduleCreateNestedOneWithoutPsocAssessmentsInput = {
+    create?: XOR<FollowUpScheduleCreateWithoutPsocAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutPsocAssessmentsInput>
+    connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutPsocAssessmentsInput
+    connect?: FollowUpScheduleWhereUniqueInput
+  }
+
+  export type MotherProfileUpdateOneRequiredWithoutPsocAssessmentsNestedInput = {
+    create?: XOR<MotherProfileCreateWithoutPsocAssessmentsInput, MotherProfileUncheckedCreateWithoutPsocAssessmentsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutPsocAssessmentsInput
+    upsert?: MotherProfileUpsertWithoutPsocAssessmentsInput
+    connect?: MotherProfileWhereUniqueInput
+    update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutPsocAssessmentsInput, MotherProfileUpdateWithoutPsocAssessmentsInput>, MotherProfileUncheckedUpdateWithoutPsocAssessmentsInput>
+  }
+
+  export type FollowUpScheduleUpdateOneWithoutPsocAssessmentsNestedInput = {
+    create?: XOR<FollowUpScheduleCreateWithoutPsocAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutPsocAssessmentsInput>
+    connectOrCreate?: FollowUpScheduleCreateOrConnectWithoutPsocAssessmentsInput
+    upsert?: FollowUpScheduleUpsertWithoutPsocAssessmentsInput
+    disconnect?: FollowUpScheduleWhereInput | boolean
+    delete?: FollowUpScheduleWhereInput | boolean
+    connect?: FollowUpScheduleWhereUniqueInput
+    update?: XOR<XOR<FollowUpScheduleUpdateToOneWithWhereWithoutPsocAssessmentsInput, FollowUpScheduleUpdateWithoutPsocAssessmentsInput>, FollowUpScheduleUncheckedUpdateWithoutPsocAssessmentsInput>
+  }
+
+  export type BabyProfileCreateNestedOneWithoutGrowthReadingsInput = {
+    create?: XOR<BabyProfileCreateWithoutGrowthReadingsInput, BabyProfileUncheckedCreateWithoutGrowthReadingsInput>
+    connectOrCreate?: BabyProfileCreateOrConnectWithoutGrowthReadingsInput
+    connect?: BabyProfileWhereUniqueInput
+  }
+
+  export type MotherProfileCreateNestedOneWithoutGrowthReadingsInput = {
+    create?: XOR<MotherProfileCreateWithoutGrowthReadingsInput, MotherProfileUncheckedCreateWithoutGrowthReadingsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutGrowthReadingsInput
+    connect?: MotherProfileWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutRecordedGrowthReadingsInput = {
+    create?: XOR<UserCreateWithoutRecordedGrowthReadingsInput, UserUncheckedCreateWithoutRecordedGrowthReadingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecordedGrowthReadingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BabyProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput = {
+    create?: XOR<BabyProfileCreateWithoutGrowthReadingsInput, BabyProfileUncheckedCreateWithoutGrowthReadingsInput>
+    connectOrCreate?: BabyProfileCreateOrConnectWithoutGrowthReadingsInput
+    upsert?: BabyProfileUpsertWithoutGrowthReadingsInput
+    connect?: BabyProfileWhereUniqueInput
+    update?: XOR<XOR<BabyProfileUpdateToOneWithWhereWithoutGrowthReadingsInput, BabyProfileUpdateWithoutGrowthReadingsInput>, BabyProfileUncheckedUpdateWithoutGrowthReadingsInput>
+  }
+
+  export type MotherProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput = {
+    create?: XOR<MotherProfileCreateWithoutGrowthReadingsInput, MotherProfileUncheckedCreateWithoutGrowthReadingsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutGrowthReadingsInput
+    upsert?: MotherProfileUpsertWithoutGrowthReadingsInput
+    connect?: MotherProfileWhereUniqueInput
+    update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutGrowthReadingsInput, MotherProfileUpdateWithoutGrowthReadingsInput>, MotherProfileUncheckedUpdateWithoutGrowthReadingsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutRecordedGrowthReadingsNestedInput = {
+    create?: XOR<UserCreateWithoutRecordedGrowthReadingsInput, UserUncheckedCreateWithoutRecordedGrowthReadingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRecordedGrowthReadingsInput
+    upsert?: UserUpsertWithoutRecordedGrowthReadingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRecordedGrowthReadingsInput, UserUpdateWithoutRecordedGrowthReadingsInput>, UserUncheckedUpdateWithoutRecordedGrowthReadingsInput>
+  }
+
+  export type MotherProfileCreateNestedOneWithoutDailyLogsInput = {
+    create?: XOR<MotherProfileCreateWithoutDailyLogsInput, MotherProfileUncheckedCreateWithoutDailyLogsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutDailyLogsInput
+    connect?: MotherProfileWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type MotherProfileUpdateOneRequiredWithoutDailyLogsNestedInput = {
+    create?: XOR<MotherProfileCreateWithoutDailyLogsInput, MotherProfileUncheckedCreateWithoutDailyLogsInput>
+    connectOrCreate?: MotherProfileCreateOrConnectWithoutDailyLogsInput
+    upsert?: MotherProfileUpsertWithoutDailyLogsInput
+    connect?: MotherProfileWhereUniqueInput
+    update?: XOR<XOR<MotherProfileUpdateToOneWithWhereWithoutDailyLogsInput, MotherProfileUpdateWithoutDailyLogsInput>, MotherProfileUncheckedUpdateWithoutDailyLogsInput>
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -16228,6 +25952,96 @@ export namespace Prisma {
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
 
   export type UserCreateWithoutHospitalInput = {
     id?: string
@@ -16251,6 +26065,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUncheckedCreateWithoutHospitalInput = {
@@ -16275,6 +26090,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUncheckedCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserCreateOrConnectWithoutHospitalInput = {
@@ -16312,6 +26128,11 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutMotherProfileInput
     babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
     followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileUncheckedCreateWithoutHospitalInput = {
@@ -16339,6 +26160,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
     followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileCreateOrConnectWithoutHospitalInput = {
@@ -16555,6 +26381,11 @@ export namespace Prisma {
     hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
     babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
     followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileUncheckedCreateWithoutUserInput = {
@@ -16582,6 +26413,11 @@ export namespace Prisma {
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
     followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileCreateOrConnectWithoutUserInput = {
@@ -16660,6 +26496,54 @@ export namespace Prisma {
 
   export type RefreshTokenCreateManyUserInputEnvelope = {
     data: RefreshTokenCreateManyUserInput | RefreshTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GrowthReadingCreateWithoutRecordedByUserInput = {
+    id?: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile: BabyProfileCreateNestedOneWithoutGrowthReadingsInput
+    motherProfile: MotherProfileCreateNestedOneWithoutGrowthReadingsInput
+  }
+
+  export type GrowthReadingUncheckedCreateWithoutRecordedByUserInput = {
+    id?: string
+    babyProfileId: string
+    motherProfileId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingCreateOrConnectWithoutRecordedByUserInput = {
+    where: GrowthReadingWhereUniqueInput
+    create: XOR<GrowthReadingCreateWithoutRecordedByUserInput, GrowthReadingUncheckedCreateWithoutRecordedByUserInput>
+  }
+
+  export type GrowthReadingCreateManyRecordedByUserInputEnvelope = {
+    data: GrowthReadingCreateManyRecordedByUserInput | GrowthReadingCreateManyRecordedByUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -16742,6 +26626,11 @@ export namespace Prisma {
     hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
     babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
     followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileUncheckedUpdateWithoutUserInput = {
@@ -16769,6 +26658,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
     followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type NurseProfileUpsertWithoutUserInput = {
@@ -16858,6 +26752,45 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
   }
 
+  export type GrowthReadingUpsertWithWhereUniqueWithoutRecordedByUserInput = {
+    where: GrowthReadingWhereUniqueInput
+    update: XOR<GrowthReadingUpdateWithoutRecordedByUserInput, GrowthReadingUncheckedUpdateWithoutRecordedByUserInput>
+    create: XOR<GrowthReadingCreateWithoutRecordedByUserInput, GrowthReadingUncheckedCreateWithoutRecordedByUserInput>
+  }
+
+  export type GrowthReadingUpdateWithWhereUniqueWithoutRecordedByUserInput = {
+    where: GrowthReadingWhereUniqueInput
+    data: XOR<GrowthReadingUpdateWithoutRecordedByUserInput, GrowthReadingUncheckedUpdateWithoutRecordedByUserInput>
+  }
+
+  export type GrowthReadingUpdateManyWithWhereWithoutRecordedByUserInput = {
+    where: GrowthReadingScalarWhereInput
+    data: XOR<GrowthReadingUpdateManyMutationInput, GrowthReadingUncheckedUpdateManyWithoutRecordedByUserInput>
+  }
+
+  export type GrowthReadingScalarWhereInput = {
+    AND?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
+    OR?: GrowthReadingScalarWhereInput[]
+    NOT?: GrowthReadingScalarWhereInput | GrowthReadingScalarWhereInput[]
+    id?: UuidFilter<"GrowthReading"> | string
+    babyProfileId?: UuidFilter<"GrowthReading"> | string
+    motherProfileId?: UuidFilter<"GrowthReading"> | string
+    recordedByUserId?: UuidFilter<"GrowthReading"> | string
+    readingDate?: DateTimeFilter<"GrowthReading"> | Date | string
+    weightGrams?: IntFilter<"GrowthReading"> | number
+    lengthCm?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFilter<"GrowthReading"> | number
+    chronologicalAgeWeeks?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFilter<"GrowthReading"> | number
+    correctedAgeWeeks?: DecimalFilter<"GrowthReading"> | Decimal | DecimalJsLike | number | string
+    timePoint?: StringNullableFilter<"GrowthReading"> | string | null
+    source?: StringFilter<"GrowthReading"> | string
+    notes?: StringNullableFilter<"GrowthReading"> | string | null
+    createdAt?: DateTimeFilter<"GrowthReading"> | Date | string
+    updatedAt?: DateTimeFilter<"GrowthReading"> | Date | string
+  }
+
   export type UserCreateWithoutRefreshTokensInput = {
     id?: string
     phone: string
@@ -16880,6 +26813,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileCreateNestedOneWithoutUserInput
     nurseProfile?: NurseProfileCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileCreateNestedOneWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -16904,6 +26838,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUncheckedCreateNestedOneWithoutUserInput
     nurseProfile?: NurseProfileUncheckedCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileUncheckedCreateNestedOneWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -16944,6 +26879,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUpdateOneWithoutUserNestedInput
     nurseProfile?: NurseProfileUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUpdateOneWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -16968,6 +26904,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUncheckedUpdateOneWithoutUserNestedInput
     nurseProfile?: NurseProfileUncheckedUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUncheckedUpdateOneWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserCreateWithoutMotherProfileInput = {
@@ -16992,6 +26929,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUncheckedCreateWithoutMotherProfileInput = {
@@ -17016,6 +26954,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUncheckedCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserCreateOrConnectWithoutMotherProfileInput = {
@@ -17079,6 +27018,7 @@ export namespace Prisma {
     dischargeDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    growthReadings?: GrowthReadingCreateNestedManyWithoutBabyProfileInput
   }
 
   export type BabyProfileUncheckedCreateWithoutMotherProfileInput = {
@@ -17100,6 +27040,7 @@ export namespace Prisma {
     dischargeDate: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutBabyProfileInput
   }
 
   export type BabyProfileCreateOrConnectWithoutMotherProfileInput = {
@@ -17118,6 +27059,9 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutFollowUpScheduleInput
   }
 
   export type FollowUpScheduleUncheckedCreateWithoutMotherProfileInput = {
@@ -17131,6 +27075,9 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
   }
 
   export type FollowUpScheduleCreateOrConnectWithoutMotherProfileInput = {
@@ -17140,6 +27087,230 @@ export namespace Prisma {
 
   export type FollowUpScheduleCreateManyMotherProfileInputEnvelope = {
     data: FollowUpScheduleCreateManyMotherProfileInput | FollowUpScheduleCreateManyMotherProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DailyLogCreateWithoutMotherProfileInput = {
+    id?: string
+    careDate: Date | string
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: number | null
+    breastfeedingVolumeMl?: number | null
+    kmcDone?: boolean
+    kmcMinutes?: number | null
+    temperatureMorningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: number | null
+    skinCordCareDone?: boolean
+    medicationDone?: boolean | null
+    medicationNotes?: string | null
+    dangerSignsReviewed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyLogUncheckedCreateWithoutMotherProfileInput = {
+    id?: string
+    careDate: Date | string
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: number | null
+    breastfeedingVolumeMl?: number | null
+    kmcDone?: boolean
+    kmcMinutes?: number | null
+    temperatureMorningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: number | null
+    skinCordCareDone?: boolean
+    medicationDone?: boolean | null
+    medicationNotes?: string | null
+    dangerSignsReviewed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyLogCreateOrConnectWithoutMotherProfileInput = {
+    where: DailyLogWhereUniqueInput
+    create: XOR<DailyLogCreateWithoutMotherProfileInput, DailyLogUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type DailyLogCreateManyMotherProfileInputEnvelope = {
+    data: DailyLogCreateManyMotherProfileInput | DailyLogCreateManyMotherProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type KnowledgeAssessmentCreateWithoutMotherProfileInput = {
+    id?: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    followUpSchedule?: FollowUpScheduleCreateNestedOneWithoutKnowledgeAssessmentsInput
+  }
+
+  export type KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput = {
+    id?: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KnowledgeAssessmentCreateOrConnectWithoutMotherProfileInput = {
+    where: KnowledgeAssessmentWhereUniqueInput
+    create: XOR<KnowledgeAssessmentCreateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type KnowledgeAssessmentCreateManyMotherProfileInputEnvelope = {
+    data: KnowledgeAssessmentCreateManyMotherProfileInput | KnowledgeAssessmentCreateManyMotherProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type Who5AssessmentCreateWithoutMotherProfileInput = {
+    id?: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    followUpSchedule?: FollowUpScheduleCreateNestedOneWithoutWho5AssessmentsInput
+  }
+
+  export type Who5AssessmentUncheckedCreateWithoutMotherProfileInput = {
+    id?: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Who5AssessmentCreateOrConnectWithoutMotherProfileInput = {
+    where: Who5AssessmentWhereUniqueInput
+    create: XOR<Who5AssessmentCreateWithoutMotherProfileInput, Who5AssessmentUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type Who5AssessmentCreateManyMotherProfileInputEnvelope = {
+    data: Who5AssessmentCreateManyMotherProfileInput | Who5AssessmentCreateManyMotherProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PsocAssessmentCreateWithoutMotherProfileInput = {
+    id?: string
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    followUpSchedule?: FollowUpScheduleCreateNestedOneWithoutPsocAssessmentsInput
+  }
+
+  export type PsocAssessmentUncheckedCreateWithoutMotherProfileInput = {
+    id?: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PsocAssessmentCreateOrConnectWithoutMotherProfileInput = {
+    where: PsocAssessmentWhereUniqueInput
+    create: XOR<PsocAssessmentCreateWithoutMotherProfileInput, PsocAssessmentUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type PsocAssessmentCreateManyMotherProfileInputEnvelope = {
+    data: PsocAssessmentCreateManyMotherProfileInput | PsocAssessmentCreateManyMotherProfileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GrowthReadingCreateWithoutMotherProfileInput = {
+    id?: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile: BabyProfileCreateNestedOneWithoutGrowthReadingsInput
+    recordedByUser: UserCreateNestedOneWithoutRecordedGrowthReadingsInput
+  }
+
+  export type GrowthReadingUncheckedCreateWithoutMotherProfileInput = {
+    id?: string
+    babyProfileId: string
+    recordedByUserId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingCreateOrConnectWithoutMotherProfileInput = {
+    where: GrowthReadingWhereUniqueInput
+    create: XOR<GrowthReadingCreateWithoutMotherProfileInput, GrowthReadingUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type GrowthReadingCreateManyMotherProfileInputEnvelope = {
+    data: GrowthReadingCreateManyMotherProfileInput | GrowthReadingCreateManyMotherProfileInput[]
     skipDuplicates?: boolean
   }
 
@@ -17176,6 +27347,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMotherProfileInput = {
@@ -17200,6 +27372,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUncheckedUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type HospitalUpsertWithoutMotherProfilesInput = {
@@ -17275,6 +27448,7 @@ export namespace Prisma {
     dischargeDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    growthReadings?: GrowthReadingUpdateManyWithoutBabyProfileNestedInput
   }
 
   export type BabyProfileUncheckedUpdateWithoutMotherProfileInput = {
@@ -17296,6 +27470,7 @@ export namespace Prisma {
     dischargeDate?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutBabyProfileNestedInput
   }
 
   export type FollowUpScheduleUpsertWithWhereUniqueWithoutMotherProfileInput = {
@@ -17331,6 +27506,170 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"FollowUpSchedule"> | Date | string
   }
 
+  export type DailyLogUpsertWithWhereUniqueWithoutMotherProfileInput = {
+    where: DailyLogWhereUniqueInput
+    update: XOR<DailyLogUpdateWithoutMotherProfileInput, DailyLogUncheckedUpdateWithoutMotherProfileInput>
+    create: XOR<DailyLogCreateWithoutMotherProfileInput, DailyLogUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type DailyLogUpdateWithWhereUniqueWithoutMotherProfileInput = {
+    where: DailyLogWhereUniqueInput
+    data: XOR<DailyLogUpdateWithoutMotherProfileInput, DailyLogUncheckedUpdateWithoutMotherProfileInput>
+  }
+
+  export type DailyLogUpdateManyWithWhereWithoutMotherProfileInput = {
+    where: DailyLogScalarWhereInput
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyWithoutMotherProfileInput>
+  }
+
+  export type DailyLogScalarWhereInput = {
+    AND?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+    OR?: DailyLogScalarWhereInput[]
+    NOT?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+    id?: UuidFilter<"DailyLog"> | string
+    motherProfileId?: UuidFilter<"DailyLog"> | string
+    careDate?: DateTimeFilter<"DailyLog"> | Date | string
+    breastfeedingDone?: BoolFilter<"DailyLog"> | boolean
+    breastfeedingFeedsCount?: IntNullableFilter<"DailyLog"> | number | null
+    breastfeedingVolumeMl?: IntNullableFilter<"DailyLog"> | number | null
+    kmcDone?: BoolFilter<"DailyLog"> | boolean
+    kmcMinutes?: IntNullableFilter<"DailyLog"> | number | null
+    temperatureMorningC?: DecimalNullableFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: DecimalNullableFilter<"DailyLog"> | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFilter<"DailyLog"> | boolean
+    weightCheckDone?: BoolFilter<"DailyLog"> | boolean
+    weightGrams?: IntNullableFilter<"DailyLog"> | number | null
+    skinCordCareDone?: BoolFilter<"DailyLog"> | boolean
+    medicationDone?: BoolNullableFilter<"DailyLog"> | boolean | null
+    medicationNotes?: StringNullableFilter<"DailyLog"> | string | null
+    dangerSignsReviewed?: BoolFilter<"DailyLog"> | boolean
+    notes?: StringNullableFilter<"DailyLog"> | string | null
+    createdAt?: DateTimeFilter<"DailyLog"> | Date | string
+    updatedAt?: DateTimeFilter<"DailyLog"> | Date | string
+  }
+
+  export type KnowledgeAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput = {
+    where: KnowledgeAssessmentWhereUniqueInput
+    update: XOR<KnowledgeAssessmentUpdateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedUpdateWithoutMotherProfileInput>
+    create: XOR<KnowledgeAssessmentCreateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type KnowledgeAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput = {
+    where: KnowledgeAssessmentWhereUniqueInput
+    data: XOR<KnowledgeAssessmentUpdateWithoutMotherProfileInput, KnowledgeAssessmentUncheckedUpdateWithoutMotherProfileInput>
+  }
+
+  export type KnowledgeAssessmentUpdateManyWithWhereWithoutMotherProfileInput = {
+    where: KnowledgeAssessmentScalarWhereInput
+    data: XOR<KnowledgeAssessmentUpdateManyMutationInput, KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileInput>
+  }
+
+  export type KnowledgeAssessmentScalarWhereInput = {
+    AND?: KnowledgeAssessmentScalarWhereInput | KnowledgeAssessmentScalarWhereInput[]
+    OR?: KnowledgeAssessmentScalarWhereInput[]
+    NOT?: KnowledgeAssessmentScalarWhereInput | KnowledgeAssessmentScalarWhereInput[]
+    id?: UuidFilter<"KnowledgeAssessment"> | string
+    motherProfileId?: UuidFilter<"KnowledgeAssessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"KnowledgeAssessment"> | string | null
+    timePoint?: StringFilter<"KnowledgeAssessment"> | string
+    responses?: JsonFilter<"KnowledgeAssessment">
+    score?: IntFilter<"KnowledgeAssessment"> | number
+    maxScore?: IntFilter<"KnowledgeAssessment"> | number
+    percentage?: IntFilter<"KnowledgeAssessment"> | number
+    grade?: StringFilter<"KnowledgeAssessment"> | string
+    submittedAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    createdAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+    updatedAt?: DateTimeFilter<"KnowledgeAssessment"> | Date | string
+  }
+
+  export type Who5AssessmentUpsertWithWhereUniqueWithoutMotherProfileInput = {
+    where: Who5AssessmentWhereUniqueInput
+    update: XOR<Who5AssessmentUpdateWithoutMotherProfileInput, Who5AssessmentUncheckedUpdateWithoutMotherProfileInput>
+    create: XOR<Who5AssessmentCreateWithoutMotherProfileInput, Who5AssessmentUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type Who5AssessmentUpdateWithWhereUniqueWithoutMotherProfileInput = {
+    where: Who5AssessmentWhereUniqueInput
+    data: XOR<Who5AssessmentUpdateWithoutMotherProfileInput, Who5AssessmentUncheckedUpdateWithoutMotherProfileInput>
+  }
+
+  export type Who5AssessmentUpdateManyWithWhereWithoutMotherProfileInput = {
+    where: Who5AssessmentScalarWhereInput
+    data: XOR<Who5AssessmentUpdateManyMutationInput, Who5AssessmentUncheckedUpdateManyWithoutMotherProfileInput>
+  }
+
+  export type Who5AssessmentScalarWhereInput = {
+    AND?: Who5AssessmentScalarWhereInput | Who5AssessmentScalarWhereInput[]
+    OR?: Who5AssessmentScalarWhereInput[]
+    NOT?: Who5AssessmentScalarWhereInput | Who5AssessmentScalarWhereInput[]
+    id?: UuidFilter<"Who5Assessment"> | string
+    motherProfileId?: UuidFilter<"Who5Assessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"Who5Assessment"> | string | null
+    timePoint?: StringFilter<"Who5Assessment"> | string
+    responses?: JsonFilter<"Who5Assessment">
+    rawScore?: IntFilter<"Who5Assessment"> | number
+    maxScore?: IntFilter<"Who5Assessment"> | number
+    percentageScore?: IntFilter<"Who5Assessment"> | number
+    poorWellbeingFlag?: BoolFilter<"Who5Assessment"> | boolean
+    interpretation?: StringFilter<"Who5Assessment"> | string
+    submittedAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    createdAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+    updatedAt?: DateTimeFilter<"Who5Assessment"> | Date | string
+  }
+
+  export type PsocAssessmentUpsertWithWhereUniqueWithoutMotherProfileInput = {
+    where: PsocAssessmentWhereUniqueInput
+    update: XOR<PsocAssessmentUpdateWithoutMotherProfileInput, PsocAssessmentUncheckedUpdateWithoutMotherProfileInput>
+    create: XOR<PsocAssessmentCreateWithoutMotherProfileInput, PsocAssessmentUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type PsocAssessmentUpdateWithWhereUniqueWithoutMotherProfileInput = {
+    where: PsocAssessmentWhereUniqueInput
+    data: XOR<PsocAssessmentUpdateWithoutMotherProfileInput, PsocAssessmentUncheckedUpdateWithoutMotherProfileInput>
+  }
+
+  export type PsocAssessmentUpdateManyWithWhereWithoutMotherProfileInput = {
+    where: PsocAssessmentScalarWhereInput
+    data: XOR<PsocAssessmentUpdateManyMutationInput, PsocAssessmentUncheckedUpdateManyWithoutMotherProfileInput>
+  }
+
+  export type PsocAssessmentScalarWhereInput = {
+    AND?: PsocAssessmentScalarWhereInput | PsocAssessmentScalarWhereInput[]
+    OR?: PsocAssessmentScalarWhereInput[]
+    NOT?: PsocAssessmentScalarWhereInput | PsocAssessmentScalarWhereInput[]
+    id?: UuidFilter<"PsocAssessment"> | string
+    motherProfileId?: UuidFilter<"PsocAssessment"> | string
+    followUpScheduleId?: UuidNullableFilter<"PsocAssessment"> | string | null
+    timePoint?: StringFilter<"PsocAssessment"> | string
+    rawResponses?: JsonFilter<"PsocAssessment">
+    scoredResponses?: JsonFilter<"PsocAssessment">
+    efficacyScore?: IntFilter<"PsocAssessment"> | number
+    satisfactionScore?: IntFilter<"PsocAssessment"> | number
+    totalScore?: IntFilter<"PsocAssessment"> | number
+    maxScore?: IntFilter<"PsocAssessment"> | number
+    classification?: StringNullableFilter<"PsocAssessment"> | string | null
+    classificationMethod?: StringNullableFilter<"PsocAssessment"> | string | null
+    submittedAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    createdAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+    updatedAt?: DateTimeFilter<"PsocAssessment"> | Date | string
+  }
+
+  export type GrowthReadingUpsertWithWhereUniqueWithoutMotherProfileInput = {
+    where: GrowthReadingWhereUniqueInput
+    update: XOR<GrowthReadingUpdateWithoutMotherProfileInput, GrowthReadingUncheckedUpdateWithoutMotherProfileInput>
+    create: XOR<GrowthReadingCreateWithoutMotherProfileInput, GrowthReadingUncheckedCreateWithoutMotherProfileInput>
+  }
+
+  export type GrowthReadingUpdateWithWhereUniqueWithoutMotherProfileInput = {
+    where: GrowthReadingWhereUniqueInput
+    data: XOR<GrowthReadingUpdateWithoutMotherProfileInput, GrowthReadingUncheckedUpdateWithoutMotherProfileInput>
+  }
+
+  export type GrowthReadingUpdateManyWithWhereWithoutMotherProfileInput = {
+    where: GrowthReadingScalarWhereInput
+    data: XOR<GrowthReadingUpdateManyMutationInput, GrowthReadingUncheckedUpdateManyWithoutMotherProfileInput>
+  }
+
   export type MotherProfileCreateWithoutBabyProfileInput = {
     id?: string
     participantCode?: string | null
@@ -17356,6 +27695,11 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutMotherProfileInput
     hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
     followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileUncheckedCreateWithoutBabyProfileInput = {
@@ -17383,11 +27727,64 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileCreateOrConnectWithoutBabyProfileInput = {
     where: MotherProfileWhereUniqueInput
     create: XOR<MotherProfileCreateWithoutBabyProfileInput, MotherProfileUncheckedCreateWithoutBabyProfileInput>
+  }
+
+  export type GrowthReadingCreateWithoutBabyProfileInput = {
+    id?: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutGrowthReadingsInput
+    recordedByUser: UserCreateNestedOneWithoutRecordedGrowthReadingsInput
+  }
+
+  export type GrowthReadingUncheckedCreateWithoutBabyProfileInput = {
+    id?: string
+    motherProfileId: string
+    recordedByUserId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingCreateOrConnectWithoutBabyProfileInput = {
+    where: GrowthReadingWhereUniqueInput
+    create: XOR<GrowthReadingCreateWithoutBabyProfileInput, GrowthReadingUncheckedCreateWithoutBabyProfileInput>
+  }
+
+  export type GrowthReadingCreateManyBabyProfileInputEnvelope = {
+    data: GrowthReadingCreateManyBabyProfileInput | GrowthReadingCreateManyBabyProfileInput[]
+    skipDuplicates?: boolean
   }
 
   export type MotherProfileUpsertWithoutBabyProfileInput = {
@@ -17426,6 +27823,11 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
     hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
     followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileUncheckedUpdateWithoutBabyProfileInput = {
@@ -17453,6 +27855,27 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type GrowthReadingUpsertWithWhereUniqueWithoutBabyProfileInput = {
+    where: GrowthReadingWhereUniqueInput
+    update: XOR<GrowthReadingUpdateWithoutBabyProfileInput, GrowthReadingUncheckedUpdateWithoutBabyProfileInput>
+    create: XOR<GrowthReadingCreateWithoutBabyProfileInput, GrowthReadingUncheckedCreateWithoutBabyProfileInput>
+  }
+
+  export type GrowthReadingUpdateWithWhereUniqueWithoutBabyProfileInput = {
+    where: GrowthReadingWhereUniqueInput
+    data: XOR<GrowthReadingUpdateWithoutBabyProfileInput, GrowthReadingUncheckedUpdateWithoutBabyProfileInput>
+  }
+
+  export type GrowthReadingUpdateManyWithWhereWithoutBabyProfileInput = {
+    where: GrowthReadingScalarWhereInput
+    data: XOR<GrowthReadingUpdateManyMutationInput, GrowthReadingUncheckedUpdateManyWithoutBabyProfileInput>
   }
 
   export type UserCreateWithoutNurseProfileInput = {
@@ -17477,6 +27900,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUncheckedCreateWithoutNurseProfileInput = {
@@ -17501,6 +27925,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUncheckedCreateNestedOneWithoutUserInput
     researcherProfile?: ResearcherProfileUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserCreateOrConnectWithoutNurseProfileInput = {
@@ -17578,6 +28003,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNurseProfileInput = {
@@ -17602,6 +28028,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUncheckedUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type HospitalUpsertWithoutNurseProfilesInput = {
@@ -17669,6 +28096,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileCreateNestedOneWithoutUserInput
     nurseProfile?: NurseProfileCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserUncheckedCreateWithoutResearcherProfileInput = {
@@ -17693,6 +28121,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUncheckedCreateNestedOneWithoutUserInput
     nurseProfile?: NurseProfileUncheckedCreateNestedOneWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    recordedGrowthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutRecordedByUserInput
   }
 
   export type UserCreateOrConnectWithoutResearcherProfileInput = {
@@ -17733,6 +28162,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUpdateOneWithoutUserNestedInput
     nurseProfile?: NurseProfileUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutResearcherProfileInput = {
@@ -17757,6 +28187,7 @@ export namespace Prisma {
     motherProfile?: MotherProfileUncheckedUpdateOneWithoutUserNestedInput
     nurseProfile?: NurseProfileUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type MotherProfileCreateWithoutFollowUpSchedulesInput = {
@@ -17784,6 +28215,11 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutMotherProfileInput
     hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
     babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileUncheckedCreateWithoutFollowUpSchedulesInput = {
@@ -17811,11 +28247,138 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
   }
 
   export type MotherProfileCreateOrConnectWithoutFollowUpSchedulesInput = {
     where: MotherProfileWhereUniqueInput
     create: XOR<MotherProfileCreateWithoutFollowUpSchedulesInput, MotherProfileUncheckedCreateWithoutFollowUpSchedulesInput>
+  }
+
+  export type KnowledgeAssessmentCreateWithoutFollowUpScheduleInput = {
+    id?: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutKnowledgeAssessmentsInput
+  }
+
+  export type KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KnowledgeAssessmentCreateOrConnectWithoutFollowUpScheduleInput = {
+    where: KnowledgeAssessmentWhereUniqueInput
+    create: XOR<KnowledgeAssessmentCreateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput>
+  }
+
+  export type KnowledgeAssessmentCreateManyFollowUpScheduleInputEnvelope = {
+    data: KnowledgeAssessmentCreateManyFollowUpScheduleInput | KnowledgeAssessmentCreateManyFollowUpScheduleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type Who5AssessmentCreateWithoutFollowUpScheduleInput = {
+    id?: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutWho5AssessmentsInput
+  }
+
+  export type Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Who5AssessmentCreateOrConnectWithoutFollowUpScheduleInput = {
+    where: Who5AssessmentWhereUniqueInput
+    create: XOR<Who5AssessmentCreateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput>
+  }
+
+  export type Who5AssessmentCreateManyFollowUpScheduleInputEnvelope = {
+    data: Who5AssessmentCreateManyFollowUpScheduleInput | Who5AssessmentCreateManyFollowUpScheduleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PsocAssessmentCreateWithoutFollowUpScheduleInput = {
+    id?: string
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutPsocAssessmentsInput
+  }
+
+  export type PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PsocAssessmentCreateOrConnectWithoutFollowUpScheduleInput = {
+    where: PsocAssessmentWhereUniqueInput
+    create: XOR<PsocAssessmentCreateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput>
+  }
+
+  export type PsocAssessmentCreateManyFollowUpScheduleInputEnvelope = {
+    data: PsocAssessmentCreateManyFollowUpScheduleInput | PsocAssessmentCreateManyFollowUpScheduleInput[]
+    skipDuplicates?: boolean
   }
 
   export type MotherProfileUpsertWithoutFollowUpSchedulesInput = {
@@ -17854,6 +28417,11 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
     hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
     babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileUncheckedUpdateWithoutFollowUpSchedulesInput = {
@@ -17881,6 +28449,1239 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type KnowledgeAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput = {
+    where: KnowledgeAssessmentWhereUniqueInput
+    update: XOR<KnowledgeAssessmentUpdateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedUpdateWithoutFollowUpScheduleInput>
+    create: XOR<KnowledgeAssessmentCreateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedCreateWithoutFollowUpScheduleInput>
+  }
+
+  export type KnowledgeAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput = {
+    where: KnowledgeAssessmentWhereUniqueInput
+    data: XOR<KnowledgeAssessmentUpdateWithoutFollowUpScheduleInput, KnowledgeAssessmentUncheckedUpdateWithoutFollowUpScheduleInput>
+  }
+
+  export type KnowledgeAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput = {
+    where: KnowledgeAssessmentScalarWhereInput
+    data: XOR<KnowledgeAssessmentUpdateManyMutationInput, KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleInput>
+  }
+
+  export type Who5AssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput = {
+    where: Who5AssessmentWhereUniqueInput
+    update: XOR<Who5AssessmentUpdateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedUpdateWithoutFollowUpScheduleInput>
+    create: XOR<Who5AssessmentCreateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedCreateWithoutFollowUpScheduleInput>
+  }
+
+  export type Who5AssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput = {
+    where: Who5AssessmentWhereUniqueInput
+    data: XOR<Who5AssessmentUpdateWithoutFollowUpScheduleInput, Who5AssessmentUncheckedUpdateWithoutFollowUpScheduleInput>
+  }
+
+  export type Who5AssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput = {
+    where: Who5AssessmentScalarWhereInput
+    data: XOR<Who5AssessmentUpdateManyMutationInput, Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleInput>
+  }
+
+  export type PsocAssessmentUpsertWithWhereUniqueWithoutFollowUpScheduleInput = {
+    where: PsocAssessmentWhereUniqueInput
+    update: XOR<PsocAssessmentUpdateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedUpdateWithoutFollowUpScheduleInput>
+    create: XOR<PsocAssessmentCreateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedCreateWithoutFollowUpScheduleInput>
+  }
+
+  export type PsocAssessmentUpdateWithWhereUniqueWithoutFollowUpScheduleInput = {
+    where: PsocAssessmentWhereUniqueInput
+    data: XOR<PsocAssessmentUpdateWithoutFollowUpScheduleInput, PsocAssessmentUncheckedUpdateWithoutFollowUpScheduleInput>
+  }
+
+  export type PsocAssessmentUpdateManyWithWhereWithoutFollowUpScheduleInput = {
+    where: PsocAssessmentScalarWhereInput
+    data: XOR<PsocAssessmentUpdateManyMutationInput, PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleInput>
+  }
+
+  export type MotherProfileCreateWithoutKnowledgeAssessmentsInput = {
+    id?: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMotherProfileInput
+    hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
+    babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileUncheckedCreateWithoutKnowledgeAssessmentsInput = {
+    id?: string
+    userId: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    hospitalId?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileCreateOrConnectWithoutKnowledgeAssessmentsInput = {
+    where: MotherProfileWhereUniqueInput
+    create: XOR<MotherProfileCreateWithoutKnowledgeAssessmentsInput, MotherProfileUncheckedCreateWithoutKnowledgeAssessmentsInput>
+  }
+
+  export type FollowUpScheduleCreateWithoutKnowledgeAssessmentsInput = {
+    id?: string
+    timePoint: string
+    scheduledDate: Date | string
+    actualDate?: Date | string | null
+    status?: string
+    dataComplete?: boolean
+    collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutFollowUpSchedulesInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutFollowUpScheduleInput
+  }
+
+  export type FollowUpScheduleUncheckedCreateWithoutKnowledgeAssessmentsInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    scheduledDate: Date | string
+    actualDate?: Date | string | null
+    status?: string
+    dataComplete?: boolean
+    collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+  }
+
+  export type FollowUpScheduleCreateOrConnectWithoutKnowledgeAssessmentsInput = {
+    where: FollowUpScheduleWhereUniqueInput
+    create: XOR<FollowUpScheduleCreateWithoutKnowledgeAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutKnowledgeAssessmentsInput>
+  }
+
+  export type MotherProfileUpsertWithoutKnowledgeAssessmentsInput = {
+    update: XOR<MotherProfileUpdateWithoutKnowledgeAssessmentsInput, MotherProfileUncheckedUpdateWithoutKnowledgeAssessmentsInput>
+    create: XOR<MotherProfileCreateWithoutKnowledgeAssessmentsInput, MotherProfileUncheckedCreateWithoutKnowledgeAssessmentsInput>
+    where?: MotherProfileWhereInput
+  }
+
+  export type MotherProfileUpdateToOneWithWhereWithoutKnowledgeAssessmentsInput = {
+    where?: MotherProfileWhereInput
+    data: XOR<MotherProfileUpdateWithoutKnowledgeAssessmentsInput, MotherProfileUncheckedUpdateWithoutKnowledgeAssessmentsInput>
+  }
+
+  export type MotherProfileUpdateWithoutKnowledgeAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
+    hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
+    babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type MotherProfileUncheckedUpdateWithoutKnowledgeAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    hospitalId?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type FollowUpScheduleUpsertWithoutKnowledgeAssessmentsInput = {
+    update: XOR<FollowUpScheduleUpdateWithoutKnowledgeAssessmentsInput, FollowUpScheduleUncheckedUpdateWithoutKnowledgeAssessmentsInput>
+    create: XOR<FollowUpScheduleCreateWithoutKnowledgeAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutKnowledgeAssessmentsInput>
+    where?: FollowUpScheduleWhereInput
+  }
+
+  export type FollowUpScheduleUpdateToOneWithWhereWithoutKnowledgeAssessmentsInput = {
+    where?: FollowUpScheduleWhereInput
+    data: XOR<FollowUpScheduleUpdateWithoutKnowledgeAssessmentsInput, FollowUpScheduleUncheckedUpdateWithoutKnowledgeAssessmentsInput>
+  }
+
+  export type FollowUpScheduleUpdateWithoutKnowledgeAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    scheduledDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    dataComplete?: BoolFieldUpdateOperationsInput | boolean
+    collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutFollowUpSchedulesNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+  }
+
+  export type FollowUpScheduleUncheckedUpdateWithoutKnowledgeAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    scheduledDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    dataComplete?: BoolFieldUpdateOperationsInput | boolean
+    collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+  }
+
+  export type MotherProfileCreateWithoutWho5AssessmentsInput = {
+    id?: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMotherProfileInput
+    hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
+    babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileUncheckedCreateWithoutWho5AssessmentsInput = {
+    id?: string
+    userId: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    hospitalId?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileCreateOrConnectWithoutWho5AssessmentsInput = {
+    where: MotherProfileWhereUniqueInput
+    create: XOR<MotherProfileCreateWithoutWho5AssessmentsInput, MotherProfileUncheckedCreateWithoutWho5AssessmentsInput>
+  }
+
+  export type FollowUpScheduleCreateWithoutWho5AssessmentsInput = {
+    id?: string
+    timePoint: string
+    scheduledDate: Date | string
+    actualDate?: Date | string | null
+    status?: string
+    dataComplete?: boolean
+    collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutFollowUpSchedulesInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutFollowUpScheduleInput
+  }
+
+  export type FollowUpScheduleUncheckedCreateWithoutWho5AssessmentsInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    scheduledDate: Date | string
+    actualDate?: Date | string | null
+    status?: string
+    dataComplete?: boolean
+    collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+  }
+
+  export type FollowUpScheduleCreateOrConnectWithoutWho5AssessmentsInput = {
+    where: FollowUpScheduleWhereUniqueInput
+    create: XOR<FollowUpScheduleCreateWithoutWho5AssessmentsInput, FollowUpScheduleUncheckedCreateWithoutWho5AssessmentsInput>
+  }
+
+  export type MotherProfileUpsertWithoutWho5AssessmentsInput = {
+    update: XOR<MotherProfileUpdateWithoutWho5AssessmentsInput, MotherProfileUncheckedUpdateWithoutWho5AssessmentsInput>
+    create: XOR<MotherProfileCreateWithoutWho5AssessmentsInput, MotherProfileUncheckedCreateWithoutWho5AssessmentsInput>
+    where?: MotherProfileWhereInput
+  }
+
+  export type MotherProfileUpdateToOneWithWhereWithoutWho5AssessmentsInput = {
+    where?: MotherProfileWhereInput
+    data: XOR<MotherProfileUpdateWithoutWho5AssessmentsInput, MotherProfileUncheckedUpdateWithoutWho5AssessmentsInput>
+  }
+
+  export type MotherProfileUpdateWithoutWho5AssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
+    hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
+    babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type MotherProfileUncheckedUpdateWithoutWho5AssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    hospitalId?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type FollowUpScheduleUpsertWithoutWho5AssessmentsInput = {
+    update: XOR<FollowUpScheduleUpdateWithoutWho5AssessmentsInput, FollowUpScheduleUncheckedUpdateWithoutWho5AssessmentsInput>
+    create: XOR<FollowUpScheduleCreateWithoutWho5AssessmentsInput, FollowUpScheduleUncheckedCreateWithoutWho5AssessmentsInput>
+    where?: FollowUpScheduleWhereInput
+  }
+
+  export type FollowUpScheduleUpdateToOneWithWhereWithoutWho5AssessmentsInput = {
+    where?: FollowUpScheduleWhereInput
+    data: XOR<FollowUpScheduleUpdateWithoutWho5AssessmentsInput, FollowUpScheduleUncheckedUpdateWithoutWho5AssessmentsInput>
+  }
+
+  export type FollowUpScheduleUpdateWithoutWho5AssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    scheduledDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    dataComplete?: BoolFieldUpdateOperationsInput | boolean
+    collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutFollowUpSchedulesNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+  }
+
+  export type FollowUpScheduleUncheckedUpdateWithoutWho5AssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    scheduledDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    dataComplete?: BoolFieldUpdateOperationsInput | boolean
+    collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+  }
+
+  export type MotherProfileCreateWithoutPsocAssessmentsInput = {
+    id?: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMotherProfileInput
+    hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
+    babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileUncheckedCreateWithoutPsocAssessmentsInput = {
+    id?: string
+    userId: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    hospitalId?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileCreateOrConnectWithoutPsocAssessmentsInput = {
+    where: MotherProfileWhereUniqueInput
+    create: XOR<MotherProfileCreateWithoutPsocAssessmentsInput, MotherProfileUncheckedCreateWithoutPsocAssessmentsInput>
+  }
+
+  export type FollowUpScheduleCreateWithoutPsocAssessmentsInput = {
+    id?: string
+    timePoint: string
+    scheduledDate: Date | string
+    actualDate?: Date | string | null
+    status?: string
+    dataComplete?: boolean
+    collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutFollowUpSchedulesInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutFollowUpScheduleInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutFollowUpScheduleInput
+  }
+
+  export type FollowUpScheduleUncheckedCreateWithoutPsocAssessmentsInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    scheduledDate: Date | string
+    actualDate?: Date | string | null
+    status?: string
+    dataComplete?: boolean
+    collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutFollowUpScheduleInput
+  }
+
+  export type FollowUpScheduleCreateOrConnectWithoutPsocAssessmentsInput = {
+    where: FollowUpScheduleWhereUniqueInput
+    create: XOR<FollowUpScheduleCreateWithoutPsocAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutPsocAssessmentsInput>
+  }
+
+  export type MotherProfileUpsertWithoutPsocAssessmentsInput = {
+    update: XOR<MotherProfileUpdateWithoutPsocAssessmentsInput, MotherProfileUncheckedUpdateWithoutPsocAssessmentsInput>
+    create: XOR<MotherProfileCreateWithoutPsocAssessmentsInput, MotherProfileUncheckedCreateWithoutPsocAssessmentsInput>
+    where?: MotherProfileWhereInput
+  }
+
+  export type MotherProfileUpdateToOneWithWhereWithoutPsocAssessmentsInput = {
+    where?: MotherProfileWhereInput
+    data: XOR<MotherProfileUpdateWithoutPsocAssessmentsInput, MotherProfileUncheckedUpdateWithoutPsocAssessmentsInput>
+  }
+
+  export type MotherProfileUpdateWithoutPsocAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
+    hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
+    babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type MotherProfileUncheckedUpdateWithoutPsocAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    hospitalId?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type FollowUpScheduleUpsertWithoutPsocAssessmentsInput = {
+    update: XOR<FollowUpScheduleUpdateWithoutPsocAssessmentsInput, FollowUpScheduleUncheckedUpdateWithoutPsocAssessmentsInput>
+    create: XOR<FollowUpScheduleCreateWithoutPsocAssessmentsInput, FollowUpScheduleUncheckedCreateWithoutPsocAssessmentsInput>
+    where?: FollowUpScheduleWhereInput
+  }
+
+  export type FollowUpScheduleUpdateToOneWithWhereWithoutPsocAssessmentsInput = {
+    where?: FollowUpScheduleWhereInput
+    data: XOR<FollowUpScheduleUpdateWithoutPsocAssessmentsInput, FollowUpScheduleUncheckedUpdateWithoutPsocAssessmentsInput>
+  }
+
+  export type FollowUpScheduleUpdateWithoutPsocAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    scheduledDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    dataComplete?: BoolFieldUpdateOperationsInput | boolean
+    collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutFollowUpSchedulesNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+  }
+
+  export type FollowUpScheduleUncheckedUpdateWithoutPsocAssessmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    scheduledDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    actualDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    dataComplete?: BoolFieldUpdateOperationsInput | boolean
+    collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+  }
+
+  export type BabyProfileCreateWithoutGrowthReadingsInput = {
+    id?: string
+    babyName?: string | null
+    sex: string
+    dateOfBirth: Date | string
+    gestationalAgeWeeks: Decimal | DecimalJsLike | number | string
+    birthWeightGrams: number
+    weightAtDischargeGrams: number
+    placeOfDelivery: string
+    nicuStayDays: number
+    skinToSkinAtBirth: boolean
+    kmcInNicu: boolean
+    feedingAtDischarge: string
+    criedAtBirth: boolean
+    neededResuscitation: boolean
+    birthWeightStratum: string
+    dischargeDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    motherProfile: MotherProfileCreateNestedOneWithoutBabyProfileInput
+  }
+
+  export type BabyProfileUncheckedCreateWithoutGrowthReadingsInput = {
+    id?: string
+    motherProfileId: string
+    babyName?: string | null
+    sex: string
+    dateOfBirth: Date | string
+    gestationalAgeWeeks: Decimal | DecimalJsLike | number | string
+    birthWeightGrams: number
+    weightAtDischargeGrams: number
+    placeOfDelivery: string
+    nicuStayDays: number
+    skinToSkinAtBirth: boolean
+    kmcInNicu: boolean
+    feedingAtDischarge: string
+    criedAtBirth: boolean
+    neededResuscitation: boolean
+    birthWeightStratum: string
+    dischargeDate: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BabyProfileCreateOrConnectWithoutGrowthReadingsInput = {
+    where: BabyProfileWhereUniqueInput
+    create: XOR<BabyProfileCreateWithoutGrowthReadingsInput, BabyProfileUncheckedCreateWithoutGrowthReadingsInput>
+  }
+
+  export type MotherProfileCreateWithoutGrowthReadingsInput = {
+    id?: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMotherProfileInput
+    hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
+    babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileUncheckedCreateWithoutGrowthReadingsInput = {
+    id?: string
+    userId: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    hospitalId?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    dailyLogs?: DailyLogUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileCreateOrConnectWithoutGrowthReadingsInput = {
+    where: MotherProfileWhereUniqueInput
+    create: XOR<MotherProfileCreateWithoutGrowthReadingsInput, MotherProfileUncheckedCreateWithoutGrowthReadingsInput>
+  }
+
+  export type UserCreateWithoutRecordedGrowthReadingsInput = {
+    id?: string
+    phone: string
+    phoneVerified?: boolean
+    email?: string | null
+    passwordHash: string
+    pinHash?: string | null
+    role: string
+    preferredLanguage?: string
+    isActive?: boolean
+    lastLoginAt?: Date | string | null
+    failedPasswordAttempts?: number
+    passwordLockedUntil?: Date | string | null
+    failedPinAttempts?: number
+    pinLockedUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    hospital?: HospitalCreateNestedOneWithoutUsersInput
+    motherProfile?: MotherProfileCreateNestedOneWithoutUserInput
+    nurseProfile?: NurseProfileCreateNestedOneWithoutUserInput
+    researcherProfile?: ResearcherProfileCreateNestedOneWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRecordedGrowthReadingsInput = {
+    id?: string
+    phone: string
+    phoneVerified?: boolean
+    email?: string | null
+    passwordHash: string
+    pinHash?: string | null
+    role: string
+    preferredLanguage?: string
+    hospitalId?: string | null
+    isActive?: boolean
+    lastLoginAt?: Date | string | null
+    failedPasswordAttempts?: number
+    passwordLockedUntil?: Date | string | null
+    failedPinAttempts?: number
+    pinLockedUntil?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    motherProfile?: MotherProfileUncheckedCreateNestedOneWithoutUserInput
+    nurseProfile?: NurseProfileUncheckedCreateNestedOneWithoutUserInput
+    researcherProfile?: ResearcherProfileUncheckedCreateNestedOneWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRecordedGrowthReadingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRecordedGrowthReadingsInput, UserUncheckedCreateWithoutRecordedGrowthReadingsInput>
+  }
+
+  export type BabyProfileUpsertWithoutGrowthReadingsInput = {
+    update: XOR<BabyProfileUpdateWithoutGrowthReadingsInput, BabyProfileUncheckedUpdateWithoutGrowthReadingsInput>
+    create: XOR<BabyProfileCreateWithoutGrowthReadingsInput, BabyProfileUncheckedCreateWithoutGrowthReadingsInput>
+    where?: BabyProfileWhereInput
+  }
+
+  export type BabyProfileUpdateToOneWithWhereWithoutGrowthReadingsInput = {
+    where?: BabyProfileWhereInput
+    data: XOR<BabyProfileUpdateWithoutGrowthReadingsInput, BabyProfileUncheckedUpdateWithoutGrowthReadingsInput>
+  }
+
+  export type BabyProfileUpdateWithoutGrowthReadingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyName?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: StringFieldUpdateOperationsInput | string
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    gestationalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    birthWeightGrams?: IntFieldUpdateOperationsInput | number
+    weightAtDischargeGrams?: IntFieldUpdateOperationsInput | number
+    placeOfDelivery?: StringFieldUpdateOperationsInput | string
+    nicuStayDays?: IntFieldUpdateOperationsInput | number
+    skinToSkinAtBirth?: BoolFieldUpdateOperationsInput | boolean
+    kmcInNicu?: BoolFieldUpdateOperationsInput | boolean
+    feedingAtDischarge?: StringFieldUpdateOperationsInput | string
+    criedAtBirth?: BoolFieldUpdateOperationsInput | boolean
+    neededResuscitation?: BoolFieldUpdateOperationsInput | boolean
+    birthWeightStratum?: StringFieldUpdateOperationsInput | string
+    dischargeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutBabyProfileNestedInput
+  }
+
+  export type BabyProfileUncheckedUpdateWithoutGrowthReadingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    babyName?: NullableStringFieldUpdateOperationsInput | string | null
+    sex?: StringFieldUpdateOperationsInput | string
+    dateOfBirth?: DateTimeFieldUpdateOperationsInput | Date | string
+    gestationalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    birthWeightGrams?: IntFieldUpdateOperationsInput | number
+    weightAtDischargeGrams?: IntFieldUpdateOperationsInput | number
+    placeOfDelivery?: StringFieldUpdateOperationsInput | string
+    nicuStayDays?: IntFieldUpdateOperationsInput | number
+    skinToSkinAtBirth?: BoolFieldUpdateOperationsInput | boolean
+    kmcInNicu?: BoolFieldUpdateOperationsInput | boolean
+    feedingAtDischarge?: StringFieldUpdateOperationsInput | string
+    criedAtBirth?: BoolFieldUpdateOperationsInput | boolean
+    neededResuscitation?: BoolFieldUpdateOperationsInput | boolean
+    birthWeightStratum?: StringFieldUpdateOperationsInput | string
+    dischargeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MotherProfileUpsertWithoutGrowthReadingsInput = {
+    update: XOR<MotherProfileUpdateWithoutGrowthReadingsInput, MotherProfileUncheckedUpdateWithoutGrowthReadingsInput>
+    create: XOR<MotherProfileCreateWithoutGrowthReadingsInput, MotherProfileUncheckedCreateWithoutGrowthReadingsInput>
+    where?: MotherProfileWhereInput
+  }
+
+  export type MotherProfileUpdateToOneWithWhereWithoutGrowthReadingsInput = {
+    where?: MotherProfileWhereInput
+    data: XOR<MotherProfileUpdateWithoutGrowthReadingsInput, MotherProfileUncheckedUpdateWithoutGrowthReadingsInput>
+  }
+
+  export type MotherProfileUpdateWithoutGrowthReadingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
+    hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
+    babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type MotherProfileUncheckedUpdateWithoutGrowthReadingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    hospitalId?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type UserUpsertWithoutRecordedGrowthReadingsInput = {
+    update: XOR<UserUpdateWithoutRecordedGrowthReadingsInput, UserUncheckedUpdateWithoutRecordedGrowthReadingsInput>
+    create: XOR<UserCreateWithoutRecordedGrowthReadingsInput, UserUncheckedCreateWithoutRecordedGrowthReadingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRecordedGrowthReadingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRecordedGrowthReadingsInput, UserUncheckedUpdateWithoutRecordedGrowthReadingsInput>
+  }
+
+  export type UserUpdateWithoutRecordedGrowthReadingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    pinHash?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    failedPasswordAttempts?: IntFieldUpdateOperationsInput | number
+    passwordLockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    failedPinAttempts?: IntFieldUpdateOperationsInput | number
+    pinLockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hospital?: HospitalUpdateOneWithoutUsersNestedInput
+    motherProfile?: MotherProfileUpdateOneWithoutUserNestedInput
+    nurseProfile?: NurseProfileUpdateOneWithoutUserNestedInput
+    researcherProfile?: ResearcherProfileUpdateOneWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRecordedGrowthReadingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    pinHash?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    preferredLanguage?: StringFieldUpdateOperationsInput | string
+    hospitalId?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    failedPasswordAttempts?: IntFieldUpdateOperationsInput | number
+    passwordLockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    failedPinAttempts?: IntFieldUpdateOperationsInput | number
+    pinLockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motherProfile?: MotherProfileUncheckedUpdateOneWithoutUserNestedInput
+    nurseProfile?: NurseProfileUncheckedUpdateOneWithoutUserNestedInput
+    researcherProfile?: ResearcherProfileUncheckedUpdateOneWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MotherProfileCreateWithoutDailyLogsInput = {
+    id?: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutMotherProfileInput
+    hospital?: HospitalCreateNestedOneWithoutMotherProfilesInput
+    babyProfile?: BabyProfileCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileUncheckedCreateWithoutDailyLogsInput = {
+    id?: string
+    userId: string
+    participantCode?: string | null
+    studyGroup?: string | null
+    hospitalId?: string | null
+    fullName?: string | null
+    ageRange: string
+    educationMother: string
+    educationFather: string
+    occupationMother: string
+    occupationFather: string
+    incomeClass: string
+    familyType: string
+    familyMembersCount: string
+    religion: string
+    residenceType: string
+    contactNumber?: string | null
+    prevPretermEducation?: boolean
+    educationSource?: MotherProfileCreateeducationSourceInput | string[]
+    enrolledAt?: Date | string
+    onboardingCompletedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    babyProfile?: BabyProfileUncheckedCreateNestedOneWithoutMotherProfileInput
+    followUpSchedules?: FollowUpScheduleUncheckedCreateNestedManyWithoutMotherProfileInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    who5Assessments?: Who5AssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    psocAssessments?: PsocAssessmentUncheckedCreateNestedManyWithoutMotherProfileInput
+    growthReadings?: GrowthReadingUncheckedCreateNestedManyWithoutMotherProfileInput
+  }
+
+  export type MotherProfileCreateOrConnectWithoutDailyLogsInput = {
+    where: MotherProfileWhereUniqueInput
+    create: XOR<MotherProfileCreateWithoutDailyLogsInput, MotherProfileUncheckedCreateWithoutDailyLogsInput>
+  }
+
+  export type MotherProfileUpsertWithoutDailyLogsInput = {
+    update: XOR<MotherProfileUpdateWithoutDailyLogsInput, MotherProfileUncheckedUpdateWithoutDailyLogsInput>
+    create: XOR<MotherProfileCreateWithoutDailyLogsInput, MotherProfileUncheckedCreateWithoutDailyLogsInput>
+    where?: MotherProfileWhereInput
+  }
+
+  export type MotherProfileUpdateToOneWithWhereWithoutDailyLogsInput = {
+    where?: MotherProfileWhereInput
+    data: XOR<MotherProfileUpdateWithoutDailyLogsInput, MotherProfileUncheckedUpdateWithoutDailyLogsInput>
+  }
+
+  export type MotherProfileUpdateWithoutDailyLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
+    hospital?: HospitalUpdateOneWithoutMotherProfilesNestedInput
+    babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
+  }
+
+  export type MotherProfileUncheckedUpdateWithoutDailyLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    participantCode?: NullableStringFieldUpdateOperationsInput | string | null
+    studyGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    hospitalId?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    ageRange?: StringFieldUpdateOperationsInput | string
+    educationMother?: StringFieldUpdateOperationsInput | string
+    educationFather?: StringFieldUpdateOperationsInput | string
+    occupationMother?: StringFieldUpdateOperationsInput | string
+    occupationFather?: StringFieldUpdateOperationsInput | string
+    incomeClass?: StringFieldUpdateOperationsInput | string
+    familyType?: StringFieldUpdateOperationsInput | string
+    familyMembersCount?: StringFieldUpdateOperationsInput | string
+    religion?: StringFieldUpdateOperationsInput | string
+    residenceType?: StringFieldUpdateOperationsInput | string
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    prevPretermEducation?: BoolFieldUpdateOperationsInput | boolean
+    educationSource?: MotherProfileUpdateeducationSourceInput | string[]
+    enrolledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
+    followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type UserCreateManyHospitalInput = {
@@ -17959,6 +29760,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHospitalInput = {
@@ -17983,6 +29785,7 @@ export namespace Prisma {
     nurseProfile?: NurseProfileUncheckedUpdateOneWithoutUserNestedInput
     researcherProfile?: ResearcherProfileUncheckedUpdateOneWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    recordedGrowthReadings?: GrowthReadingUncheckedUpdateManyWithoutRecordedByUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutHospitalInput = {
@@ -18030,6 +29833,11 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutMotherProfileNestedInput
     babyProfile?: BabyProfileUpdateOneWithoutMotherProfileNestedInput
     followUpSchedules?: FollowUpScheduleUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileUncheckedUpdateWithoutHospitalInput = {
@@ -18057,6 +29865,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     babyProfile?: BabyProfileUncheckedUpdateOneWithoutMotherProfileNestedInput
     followUpSchedules?: FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileNestedInput
+    dailyLogs?: DailyLogUncheckedUpdateManyWithoutMotherProfileNestedInput
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutMotherProfileNestedInput
+    growthReadings?: GrowthReadingUncheckedUpdateManyWithoutMotherProfileNestedInput
   }
 
   export type MotherProfileUncheckedUpdateManyWithoutHospitalInput = {
@@ -18120,6 +29933,25 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type GrowthReadingCreateManyRecordedByUserInput = {
+    id?: string
+    babyProfileId: string
+    motherProfileId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type RefreshTokenUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     tokenHash?: StringFieldUpdateOperationsInput | string
@@ -18147,6 +29979,63 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GrowthReadingUpdateWithoutRecordedByUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput
+  }
+
+  export type GrowthReadingUncheckedUpdateWithoutRecordedByUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyProfileId?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingUncheckedUpdateManyWithoutRecordedByUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyProfileId?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type FollowUpScheduleCreateManyMotherProfileInput = {
     id?: string
     timePoint: string
@@ -18155,6 +30044,93 @@ export namespace Prisma {
     status?: string
     dataComplete?: boolean
     collectedByUserId?: string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DailyLogCreateManyMotherProfileInput = {
+    id?: string
+    careDate: Date | string
+    breastfeedingDone?: boolean
+    breastfeedingFeedsCount?: number | null
+    breastfeedingVolumeMl?: number | null
+    kmcDone?: boolean
+    kmcMinutes?: number | null
+    temperatureMorningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: boolean
+    weightCheckDone?: boolean
+    weightGrams?: number | null
+    skinCordCareDone?: boolean
+    medicationDone?: boolean | null
+    medicationNotes?: string | null
+    dangerSignsReviewed?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KnowledgeAssessmentCreateManyMotherProfileInput = {
+    id?: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Who5AssessmentCreateManyMotherProfileInput = {
+    id?: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PsocAssessmentCreateManyMotherProfileInput = {
+    id?: string
+    followUpScheduleId?: string | null
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingCreateManyMotherProfileInput = {
+    id?: string
+    babyProfileId: string
+    recordedByUserId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18171,6 +30147,9 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    who5Assessments?: Who5AssessmentUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUpdateManyWithoutFollowUpScheduleNestedInput
   }
 
   export type FollowUpScheduleUncheckedUpdateWithoutMotherProfileInput = {
@@ -18184,6 +30163,9 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    knowledgeAssessments?: KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    who5Assessments?: Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
+    psocAssessments?: PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleNestedInput
   }
 
   export type FollowUpScheduleUncheckedUpdateManyWithoutMotherProfileInput = {
@@ -18195,6 +30177,527 @@ export namespace Prisma {
     dataComplete?: BoolFieldUpdateOperationsInput | boolean
     collectedByUserId?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogUncheckedUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogUncheckedUpdateManyWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    careDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    breastfeedingDone?: BoolFieldUpdateOperationsInput | boolean
+    breastfeedingFeedsCount?: NullableIntFieldUpdateOperationsInput | number | null
+    breastfeedingVolumeMl?: NullableIntFieldUpdateOperationsInput | number | null
+    kmcDone?: BoolFieldUpdateOperationsInput | boolean
+    kmcMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    temperatureMorningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureEveningC?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    temperatureDone?: BoolFieldUpdateOperationsInput | boolean
+    weightCheckDone?: BoolFieldUpdateOperationsInput | boolean
+    weightGrams?: NullableIntFieldUpdateOperationsInput | number | null
+    skinCordCareDone?: BoolFieldUpdateOperationsInput | boolean
+    medicationDone?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    medicationNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    dangerSignsReviewed?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    followUpSchedule?: FollowUpScheduleUpdateOneWithoutKnowledgeAssessmentsNestedInput
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateManyWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    followUpSchedule?: FollowUpScheduleUpdateOneWithoutWho5AssessmentsNestedInput
+  }
+
+  export type Who5AssessmentUncheckedUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentUncheckedUpdateManyWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    followUpSchedule?: FollowUpScheduleUpdateOneWithoutPsocAssessmentsNestedInput
+  }
+
+  export type PsocAssessmentUncheckedUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentUncheckedUpdateManyWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followUpScheduleId?: NullableStringFieldUpdateOperationsInput | string | null
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    babyProfile?: BabyProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput
+    recordedByUser?: UserUpdateOneRequiredWithoutRecordedGrowthReadingsNestedInput
+  }
+
+  export type GrowthReadingUncheckedUpdateWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyProfileId?: StringFieldUpdateOperationsInput | string
+    recordedByUserId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingUncheckedUpdateManyWithoutMotherProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    babyProfileId?: StringFieldUpdateOperationsInput | string
+    recordedByUserId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingCreateManyBabyProfileInput = {
+    id?: string
+    motherProfileId: string
+    recordedByUserId: string
+    readingDate: Date | string
+    weightGrams: number
+    lengthCm: Decimal | DecimalJsLike | number | string
+    headCircumferenceCm: Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays: number
+    chronologicalAgeWeeks: Decimal | DecimalJsLike | number | string
+    correctedAgeDays: number
+    correctedAgeWeeks: Decimal | DecimalJsLike | number | string
+    timePoint?: string | null
+    source?: string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GrowthReadingUpdateWithoutBabyProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutGrowthReadingsNestedInput
+    recordedByUser?: UserUpdateOneRequiredWithoutRecordedGrowthReadingsNestedInput
+  }
+
+  export type GrowthReadingUncheckedUpdateWithoutBabyProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    recordedByUserId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GrowthReadingUncheckedUpdateManyWithoutBabyProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    recordedByUserId?: StringFieldUpdateOperationsInput | string
+    readingDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightGrams?: IntFieldUpdateOperationsInput | number
+    lengthCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    headCircumferenceCm?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    chronologicalAgeDays?: IntFieldUpdateOperationsInput | number
+    chronologicalAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    correctedAgeDays?: IntFieldUpdateOperationsInput | number
+    correctedAgeWeeks?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    timePoint?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentCreateManyFollowUpScheduleInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    score: number
+    maxScore?: number
+    percentage: number
+    grade: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type Who5AssessmentCreateManyFollowUpScheduleInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    responses: JsonNullValueInput | InputJsonValue
+    rawScore: number
+    maxScore?: number
+    percentageScore: number
+    poorWellbeingFlag?: boolean
+    interpretation: string
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PsocAssessmentCreateManyFollowUpScheduleInput = {
+    id?: string
+    motherProfileId: string
+    timePoint: string
+    rawResponses: JsonNullValueInput | InputJsonValue
+    scoredResponses: JsonNullValueInput | InputJsonValue
+    efficacyScore: number
+    satisfactionScore: number
+    totalScore: number
+    maxScore?: number
+    classification?: string | null
+    classificationMethod?: string | null
+    submittedAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KnowledgeAssessmentUpdateWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutKnowledgeAssessmentsNestedInput
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KnowledgeAssessmentUncheckedUpdateManyWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    score?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentage?: IntFieldUpdateOperationsInput | number
+    grade?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentUpdateWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutWho5AssessmentsNestedInput
+  }
+
+  export type Who5AssessmentUncheckedUpdateWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type Who5AssessmentUncheckedUpdateManyWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    responses?: JsonNullValueInput | InputJsonValue
+    rawScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    percentageScore?: IntFieldUpdateOperationsInput | number
+    poorWellbeingFlag?: BoolFieldUpdateOperationsInput | boolean
+    interpretation?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentUpdateWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    motherProfile?: MotherProfileUpdateOneRequiredWithoutPsocAssessmentsNestedInput
+  }
+
+  export type PsocAssessmentUncheckedUpdateWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PsocAssessmentUncheckedUpdateManyWithoutFollowUpScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    motherProfileId?: StringFieldUpdateOperationsInput | string
+    timePoint?: StringFieldUpdateOperationsInput | string
+    rawResponses?: JsonNullValueInput | InputJsonValue
+    scoredResponses?: JsonNullValueInput | InputJsonValue
+    efficacyScore?: IntFieldUpdateOperationsInput | number
+    satisfactionScore?: IntFieldUpdateOperationsInput | number
+    totalScore?: IntFieldUpdateOperationsInput | number
+    maxScore?: IntFieldUpdateOperationsInput | number
+    classification?: NullableStringFieldUpdateOperationsInput | string | null
+    classificationMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

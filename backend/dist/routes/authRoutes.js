@@ -19,7 +19,7 @@
  */
 import { Router } from 'express';
 import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
-import { register, login, createPin, loginPin, changePin, removePin, } from '../controllers/authController.js';
+import { register, login, createPin, loginPin, changePin, removePin, refresh, logout, } from '../controllers/authController.js';
 import { requireAuth } from '../middlewares/authMiddleware.js';
 import { normalizePhone } from '../utils/phoneNumber.js';
 const router = Router();
@@ -109,4 +109,8 @@ router.post('/login-pin', pinLoginIpLimiter, pinLoginPhoneLimiter, loginPin);
 router.post('/change-pin', requireAuth, changePin);
 // DELETE /api/auth/remove-pin
 router.delete('/remove-pin', requireAuth, removePin);
+// POST /api/auth/refresh
+router.post('/refresh', refresh);
+// POST /api/auth/logout
+router.post('/logout', logout);
 export default router;

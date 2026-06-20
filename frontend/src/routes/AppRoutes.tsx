@@ -15,6 +15,16 @@ import { MotherProfileForm } from '../pages/MotherProfileForm';
 import { BabyProfileForm } from '../pages/BabyProfileForm';
 import { HospitalCodeEntry } from '../pages/HospitalCodeEntry';
 import { SignupComplete } from '../pages/SignupComplete';
+import { Dashboard } from '../pages/Dashboard';
+import { Checklist } from '../pages/Checklist';
+import { KnowledgeMCQ } from '../pages/assessments/KnowledgeMCQ';
+import { Who5Assessment } from '../pages/assessments/Who5Assessment';
+import { PsocAssessment } from '../pages/assessments/PsocAssessment';
+import { Growth } from '../pages/Growth';
+import { AddReading } from '../pages/growth/AddReading';
+import { LearningHub } from '../pages/LearningHub';
+import { Profile } from '../pages/Profile';
+import { DangerSigns } from '../pages/DangerSigns';
 
 const NotFound: React.FC = () => {
   return (
@@ -33,12 +43,6 @@ const NotFound: React.FC = () => {
     </div>
   );
 };
-
-const DashboardPlaceholder: React.FC = () => (
-  <div className="flex h-screen items-center justify-center bg-background text-text">
-    <p>Dashboard Page Placeholder</p>
-  </div>
-);
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -99,7 +103,79 @@ export const AppRoutes: React.FC = () => {
           path={ROUTES.DASHBOARD}
           element={
             <RequireAuth>
-              <DashboardPlaceholder />
+              <Dashboard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.CHECKLIST}
+          element={
+            <RequireAuth>
+              <Checklist />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.KNOWLEDGE_ASSESSMENT}
+          element={
+            <RequireAuth>
+              <KnowledgeMCQ />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.WHO5_ASSESSMENT}
+          element={
+            <RequireAuth>
+              <Who5Assessment />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.PSOC_ASSESSMENT}
+          element={
+            <RequireAuth>
+              <PsocAssessment />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.GROWTH}
+          element={
+            <RequireAuth>
+              <Growth />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.ADD_GROWTH_READING}
+          element={
+            <RequireAuth>
+              <AddReading />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.LEARN}
+          element={
+            <RequireAuth>
+              <LearningHub />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.PROFILE}
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.DANGER_SIGNS}
+          element={
+            <RequireAuth>
+              <DangerSigns />
             </RequireAuth>
           }
         />

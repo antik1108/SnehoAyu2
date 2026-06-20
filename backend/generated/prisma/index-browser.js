@@ -259,9 +259,105 @@ exports.Prisma.FollowUpScheduleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.KnowledgeAssessmentScalarFieldEnum = {
+  id: 'id',
+  motherProfileId: 'motherProfileId',
+  followUpScheduleId: 'followUpScheduleId',
+  timePoint: 'timePoint',
+  responses: 'responses',
+  score: 'score',
+  maxScore: 'maxScore',
+  percentage: 'percentage',
+  grade: 'grade',
+  submittedAt: 'submittedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.Who5AssessmentScalarFieldEnum = {
+  id: 'id',
+  motherProfileId: 'motherProfileId',
+  followUpScheduleId: 'followUpScheduleId',
+  timePoint: 'timePoint',
+  responses: 'responses',
+  rawScore: 'rawScore',
+  maxScore: 'maxScore',
+  percentageScore: 'percentageScore',
+  poorWellbeingFlag: 'poorWellbeingFlag',
+  interpretation: 'interpretation',
+  submittedAt: 'submittedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PsocAssessmentScalarFieldEnum = {
+  id: 'id',
+  motherProfileId: 'motherProfileId',
+  followUpScheduleId: 'followUpScheduleId',
+  timePoint: 'timePoint',
+  rawResponses: 'rawResponses',
+  scoredResponses: 'scoredResponses',
+  efficacyScore: 'efficacyScore',
+  satisfactionScore: 'satisfactionScore',
+  totalScore: 'totalScore',
+  maxScore: 'maxScore',
+  classification: 'classification',
+  classificationMethod: 'classificationMethod',
+  submittedAt: 'submittedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GrowthReadingScalarFieldEnum = {
+  id: 'id',
+  babyProfileId: 'babyProfileId',
+  motherProfileId: 'motherProfileId',
+  recordedByUserId: 'recordedByUserId',
+  readingDate: 'readingDate',
+  weightGrams: 'weightGrams',
+  lengthCm: 'lengthCm',
+  headCircumferenceCm: 'headCircumferenceCm',
+  chronologicalAgeDays: 'chronologicalAgeDays',
+  chronologicalAgeWeeks: 'chronologicalAgeWeeks',
+  correctedAgeDays: 'correctedAgeDays',
+  correctedAgeWeeks: 'correctedAgeWeeks',
+  timePoint: 'timePoint',
+  source: 'source',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DailyLogScalarFieldEnum = {
+  id: 'id',
+  motherProfileId: 'motherProfileId',
+  careDate: 'careDate',
+  breastfeedingDone: 'breastfeedingDone',
+  breastfeedingFeedsCount: 'breastfeedingFeedsCount',
+  breastfeedingVolumeMl: 'breastfeedingVolumeMl',
+  kmcDone: 'kmcDone',
+  kmcMinutes: 'kmcMinutes',
+  temperatureMorningC: 'temperatureMorningC',
+  temperatureEveningC: 'temperatureEveningC',
+  temperatureDone: 'temperatureDone',
+  weightCheckDone: 'weightCheckDone',
+  weightGrams: 'weightGrams',
+  skinCordCareDone: 'skinCordCareDone',
+  medicationDone: 'medicationDone',
+  medicationNotes: 'medicationNotes',
+  dangerSignsReviewed: 'dangerSignsReviewed',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -274,6 +370,12 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
   Hospital: 'Hospital',
@@ -284,7 +386,12 @@ exports.Prisma.ModelName = {
   BabyProfile: 'BabyProfile',
   NurseProfile: 'NurseProfile',
   ResearcherProfile: 'ResearcherProfile',
-  FollowUpSchedule: 'FollowUpSchedule'
+  FollowUpSchedule: 'FollowUpSchedule',
+  KnowledgeAssessment: 'KnowledgeAssessment',
+  Who5Assessment: 'Who5Assessment',
+  PsocAssessment: 'PsocAssessment',
+  GrowthReading: 'GrowthReading',
+  DailyLog: 'DailyLog'
 };
 
 /**

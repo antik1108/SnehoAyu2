@@ -6,6 +6,7 @@ import { linkHospital, getParticipantCode, completeOnboarding } from '../feature
 import { HospitalInfo, ParticipantCodeAllocation } from '../features/onboarding/types';
 import { ROUTES } from '../routes/paths';
 import { InlineFormError } from '../components/feedback/InlineFormError';
+import { normalizeApiError } from '../lib/apiError';
 
 type StepStatus = 'idle' | 'verifying' | 'verified' | 'allocating' | 'completing' | 'error';
 
@@ -96,13 +97,15 @@ export const HospitalCodeEntry: React.FC = () => {
       });
     } catch (err: unknown) {
       setStatus('error');
-      const apiErr = err as { message?: string; code?: string };
-      if (apiErr.code === 'INVALID_HOSPITAL_CODE' || apiErr.code === 'HOSPITAL_NOT_FOUND') {
+      const apiErr = normalizeApiError(err);
+      if (apiErr.code === 'INVALID_HOSPITAL_CODE' || apiErr.code === 'HOSPITAL_NOT_FOUND' || apiErr.code === 'HOSPITAL_CODE_INVALID') {
         setError(t('onboarding.errors.invalidHospitalCode', 'The hospital code is invalid.'));
-      } else if (apiErr.code === 'ENROLLMENT_CLOSED') {
+      } else if (apiErr.code === 'HOSPITAL_ENROLLMENT_CLOSED' || apiErr.code === 'ENROLLMENT_CLOSED') {
         setError(t('onboarding.errors.hospitalEnrollmentClosed', 'Enrolment at this hospital is currently closed.'));
       } else if (apiErr.code === 'STUDY_GROUP_REQUIRED') {
         setError(t('onboarding.errors.studyGroupRequired', 'The researcher must assign the study group before onboarding can be completed.'));
+      } else if (apiErr.code === 'HOSPITAL_LINK_LOCKED') {
+        setError(t('onboarding.errors.hospitalLinkLocked', 'The hospital cannot be changed after the participant code has been assigned.'));
       } else {
         setError(apiErr.message || t('auth.errors.unexpected', 'Something went wrong. Please try again.'));
       }
@@ -144,7 +147,7 @@ export const HospitalCodeEntry: React.FC = () => {
       });
     } catch (err: unknown) {
       setStatus('error');
-      const apiErr = err as { message?: string; code?: string };
+      const apiErr = normalizeApiError(err);
       if (apiErr.code === 'STUDY_GROUP_REQUIRED') {
         setError(t('onboarding.errors.studyGroupRequired', 'The researcher must assign the study group before onboarding can be completed.'));
       } else {

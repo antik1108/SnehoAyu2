@@ -21,7 +21,7 @@
 import bcrypt from 'bcrypt';
 import prisma from '../lib/prisma.js';
 import { normalizePhone } from '../utils/phoneNumber.js';
-import { generateTokenPair } from '../utils/token.js';
+import { generateTokenPair, hashRefreshToken } from '../utils/token.js';
 import { env } from '../config/env.js';
 import { createError } from '../middlewares/errorHandler.js';
 // ---------------------------------------------------------------------------
@@ -365,4 +365,46 @@ export async function loginWithPin(rawPhone, pin) {
         user: toPublicUser(user),
         nextStep: 'DASHBOARD',
     };
+}
+export async function refreshSessionToken(rawRefreshToken) {
+    const hash = hashRefreshToken(rawRefreshToken);
+    const tokenRecord = await prisma.refreshToken.findUnique({
+        where: { tokenHash: hash },
+        include: { user: true },
+    });
+    if (!tokenRecord || tokenRecord.revokedAt || tokenRecord.expiresAt < new Date()) {
+        throw createError(401, 'INVALID_REFRESH_TOKEN', 'Your session has expired. Please log in again.');
+    }
+    const tokens = generateTokenPair({
+        sub: tokenRecord.user.id,
+        phone: tokenRecord.user.phone ?? '',
+        role: tokenRecord.user.role,
+    });
+    await prisma.$transaction(async (tx) => {
+        await tx.refreshToken.update({
+            where: { id: tokenRecord.id },
+            data: { revokedAt: new Date() },
+        });
+        await tx.refreshToken.create({
+            data: {
+                userId: tokenRecord.userId,
+                tokenHash: tokens.tokenHash,
+                expiresAt: tokens.refreshExpiresAt,
+            },
+        });
+    });
+    const publicUser = toPublicUser(tokenRecord.user);
+    return {
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.rawRefreshToken,
+        user: publicUser,
+        nextStep: publicUser.hasPin ? 'DASHBOARD' : 'CREATE_PIN',
+    };
+}
+export async function logoutUser(rawRefreshToken) {
+    const hash = hashRefreshToken(rawRefreshToken);
+    await prisma.refreshToken.updateMany({
+        where: { tokenHash: hash },
+        data: { revokedAt: new Date() },
+    });
 }
