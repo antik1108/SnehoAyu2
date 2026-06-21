@@ -26,6 +26,8 @@ import { LearningHub } from '../pages/LearningHub';
 import { Profile } from '../pages/Profile';
 import { DangerSigns } from '../pages/DangerSigns';
 import { ParticipantList } from '../pages/admin/ParticipantList';
+import { NurseHome } from '../pages/NurseHome';
+import { NurseParticipantDetail } from '../pages/NurseParticipantDetail';
 import { ParticipantDetail } from '../pages/admin/ParticipantDetail';
 import { HospitalManagement } from '../pages/admin/HospitalManagement';
 import { RequireRole } from './RequireRole';
@@ -216,6 +218,26 @@ export const AppRoutes: React.FC = () => {
           element={
             <RequireAuth>
               <ImmunizationTracker />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.NURSE_HOME}
+          element={
+            <RequireAuth>
+              <RequireRole roles={['nurse']}>
+                <NurseHome />
+              </RequireRole>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={ROUTES.NURSE_PARTICIPANT_DETAIL}
+          element={
+            <RequireAuth>
+              <RequireRole roles={['nurse']}>
+                <NurseParticipantDetail />
+              </RequireRole>
             </RequireAuth>
           }
         />

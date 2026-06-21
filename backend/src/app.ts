@@ -30,6 +30,8 @@ import contentRouter from './routes/contentRoutes.js';
 import messageRouter from './routes/messageRoutes.js';
 import telehealthRouter from './routes/telehealthRoutes.js';
 import insightsRouter from './routes/insightsRoutes.js';
+import nurseRouter from './routes/nurseRoutes.js';
+import staffRouter from './routes/staffRoutes.js';
 
 const app = express();
 
@@ -66,6 +68,8 @@ app.use('/api/content', contentRouter);
 app.use('/api/messages', messageRouter);
 app.use('/api/telehealth', telehealthRouter);
 app.use('/api/insights', insightsRouter);
+app.use('/api/nurse', nurseRouter);
+app.use('/api/staff', staffRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);

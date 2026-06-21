@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Dashboard } from '../pages/Dashboard';
+import { AuthProvider } from '../context/AuthContext';
 import i18n from '../i18n';
 
 const dashboardMock = vi.hoisted(() => ({
@@ -13,13 +14,15 @@ vi.mock('../features/dashboard/api', () => dashboardMock);
 function renderDashboard() {
   return render(
     <MemoryRouter initialEntries={['/dashboard']}>
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/checklist" element={<div>Checklist Page</div>} />
-        <Route path="/signup/mother-profile" element={<div>Mother Profile Page</div>} />
-        <Route path="/signup/baby-profile" element={<div>Baby Profile Page</div>} />
-        <Route path="/signup/hospital-code" element={<div>Hospital Code Page</div>} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/checklist" element={<div>Checklist Page</div>} />
+          <Route path="/signup/mother-profile" element={<div>Mother Profile Page</div>} />
+          <Route path="/signup/baby-profile" element={<div>Baby Profile Page</div>} />
+          <Route path="/signup/hospital-code" element={<div>Hospital Code Page</div>} />
+        </Routes>
+      </AuthProvider>
     </MemoryRouter>
   );
 }

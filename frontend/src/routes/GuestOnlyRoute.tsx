@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { ROUTES } from './paths';
+import { getHomeRouteForRole } from './paths';
 
 export const GuestOnlyRoute: React.FC = () => {
-  const { status, isLoading } = useAuth();
+  const { status, isLoading, user } = useAuth();
 
   if (isLoading || status === 'loading') {
     return (
@@ -21,7 +21,7 @@ export const GuestOnlyRoute: React.FC = () => {
   }
 
   if (status === 'authenticated') {
-    return <Navigate to={ROUTES.DASHBOARD} replace />;
+    return <Navigate to={getHomeRouteForRole(user?.role)} replace />;
   }
 
   return <Outlet />;

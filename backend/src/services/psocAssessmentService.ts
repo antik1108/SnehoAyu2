@@ -8,7 +8,9 @@ import {
   assertMotherAssessmentUser,
   resolveAssessmentFollowUpSchedule,
   resolveAssessmentMotherContext,
+  resolveStaffMotherContext,
   type AssessmentRequestUser,
+  type StaffUser,
 } from './assessmentPrerequisites.js';
 
 function textForLanguage(text: Partial<Record<KnowledgeLanguage, string>>, language: KnowledgeLanguage): string | null {
@@ -55,6 +57,11 @@ function mapPsocRecord(record: {
     submittedAt: record.submittedAt.toISOString(),
     locked: true,
   };
+}
+
+/** Static question content — same for every participant, so no mother/staff context is needed. */
+export function getPublicPsocQuestions(language: KnowledgeLanguage) {
+  return { contentReady: isPsocContentReady(), questions: publicQuestions(language), scale: publicScale(language) };
 }
 
 export async function getPsocQuestionsForMother(user: AssessmentRequestUser, timePoint: KnowledgeTimePoint, language: KnowledgeLanguage) {
@@ -156,6 +163,59 @@ export async function submitPsocAssessmentForMother(user: AssessmentRequestUser,
     return {
       success: true,
       message: 'PSOC assessment submitted successfully.',
+      data: mapPsocRecord(record),
+    };
+  } catch (error) {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code?: string }).code === 'P2002') {
+      throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This PSOC assessment has already been submitted and is locked.');
+    }
+    throw error;
+  }
+}
+
+/** Staff (nurse/researcher) variant — see knowledgeAssessmentService.ts for the pattern this follows. */
+export async function submitPsocAssessmentForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  input: PsocSubmitInput
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const followUpSchedule = await resolveAssessmentFollowUpSchedule(motherProfile.id, input.timePoint);
+
+  if (!isPsocContentReady()) {
+    throw createError(400, 'ASSESSMENT_CONTENT_NOT_CONFIGURED', 'Approved PSOC assessment content and translations are required before submission.');
+  }
+
+  const existing = await prisma.psocAssessment.findUnique({
+    where: { motherProfileId_timePoint: { motherProfileId: motherProfile.id, timePoint: input.timePoint } },
+  });
+
+  if (existing) {
+    throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This PSOC assessment has already been submitted and is locked.');
+  }
+
+  const scored = scorePsoc(input.responses);
+
+  try {
+    const record = await prisma.psocAssessment.create({
+      data: {
+        motherProfileId: motherProfile.id,
+        followUpScheduleId: followUpSchedule.id,
+        timePoint: input.timePoint,
+        rawResponses: input.responses,
+        scoredResponses: scored.scoredResponses,
+        efficacyScore: scored.efficacyScore,
+        satisfactionScore: scored.satisfactionScore,
+        totalScore: scored.totalScore,
+        maxScore: scored.maxScore,
+        classification: scored.classification,
+        classificationMethod: scored.classificationMethod,
+      },
+    });
+
+    return {
+      success: true,
+      message: 'PSOC assessment recorded successfully.',
       data: mapPsocRecord(record),
     };
   } catch (error) {

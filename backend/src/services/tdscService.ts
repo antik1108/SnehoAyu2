@@ -4,6 +4,7 @@ import { calculateCorrectedAge } from '../utils/age.js';
 import { getTodayDateOnlyInIST, parseDateOnlyToUTCDate, formatDateOnly } from '../utils/dateOnly.js';
 import { tdscItems, getApplicableTdscItems } from '../content/tdscItems.js';
 import { recordAudit } from './auditService.js';
+import { resolveStaffMotherContext, type StaffUser } from './assessmentPrerequisites.js';
 
 type RequestUser = { id: string; role: string };
 
@@ -99,6 +100,90 @@ export async function submitTdscAssessment(user: RequestUser, input: TdscSubmiss
   return {
     success: true,
     message: 'TDSC assessment submitted successfully.',
+    data: {
+      timePoint: record.timePoint,
+      assessmentDate: formatDateOnly(record.assessmentDate),
+      suspectedDelay: record.suspectedDelay,
+      results: record.results,
+      locked: true,
+    },
+  };
+}
+
+/** Staff (nurse/researcher) variant — see knowledgeAssessmentService.ts for the pattern this follows. */
+export async function getTdscItemsForStaff(staffUser: StaffUser | undefined, motherProfileId: string) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const babyProfile = motherProfile.babyProfile!;
+
+  const age = calculateCorrectedAge({
+    dateOfBirth: babyProfile.dateOfBirth,
+    gestationalAgeWeeks: Number(babyProfile.gestationalAgeWeeks.toString()),
+    referenceDate: getTodayDateOnlyInIST(),
+  });
+
+  return {
+    success: true,
+    data: {
+      correctedAgeDays: age.correctedAgeDays,
+      items: getApplicableTdscItems(age.correctedAgeDays),
+    },
+  };
+}
+
+export async function submitTdscAssessmentForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  input: TdscSubmissionInput
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const babyProfile = motherProfile.babyProfile!;
+
+  const today = getTodayDateOnlyInIST();
+  const age = calculateCorrectedAge({
+    dateOfBirth: babyProfile.dateOfBirth,
+    gestationalAgeWeeks: Number(babyProfile.gestationalAgeWeeks.toString()),
+    referenceDate: today,
+  });
+
+  const existing = await prisma.tdscAssessment.findUnique({
+    where: { motherProfileId_timePoint: { motherProfileId: motherProfile.id, timePoint: input.timePoint } },
+  });
+  if (existing) {
+    throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This TDSC assessment has already been submitted and is locked.');
+  }
+
+  let suspectedDelay = false;
+  for (const item of tdscItems) {
+    const result = input.results[String(item.id)];
+    if (result === 'fail' && age.correctedAgeDays > item.upperLimitDays) {
+      suspectedDelay = true;
+      break;
+    }
+  }
+
+  const record = await prisma.tdscAssessment.create({
+    data: {
+      motherProfileId: motherProfile.id,
+      timePoint: input.timePoint,
+      assessmentDate: parseDateOnlyToUTCDate(today),
+      correctedAgeDays: age.correctedAgeDays,
+      results: input.results,
+      suspectedDelay,
+    },
+  });
+
+  void recordAudit({
+    actorId: staffUser?.id,
+    actorRole: staffUser?.role,
+    action: 'tdsc.recorded_by_staff',
+    entityType: 'TdscAssessment',
+    entityId: record.id,
+    metadata: { motherProfileId, timePoint: input.timePoint, suspectedDelay },
+  });
+
+  return {
+    success: true,
+    message: 'TDSC assessment recorded successfully.',
     data: {
       timePoint: record.timePoint,
       assessmentDate: formatDateOnly(record.assessmentDate),

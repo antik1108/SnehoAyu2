@@ -298,7 +298,8 @@ flowchart TD
 | Content | `/api/content` | Learning Hub view tracking |
 | Messages | `/api/messages` | daily SMS / weekly audio history |
 | Telehealth | `/api/telehealth` | video call session scheduling |
-| Admin | `/api/admin` | researcher-only: participants, study-group, export |
+| AI Insights | `/api/insights` | Groq-powered care summary / Q&A, scoped to baby care only |
+| Admin | `/api/admin` | researcher-only: participants, study-group, hospitals (incl. per-hospital nurses + participants), export |
 
 All routes except `/api/health` and `/api/auth/*` require a `Bearer` JWT
 access token. Admin routes additionally require `role: researcher`.
@@ -334,6 +335,8 @@ npm run dev              # http://localhost:5173
 | `ACCESS_TOKEN_EXPIRES_IN` / `REFRESH_TOKEN_EXPIRES_IN_DAYS` | No | Token lifetimes. |
 | `ENABLE_DEV_RANDOM_GROUP_ASSIGNMENT` | No | Dev-only escape hatch that randomly assigns study/control group instead of requiring a researcher to do it. **Never enable in production** — it breaks randomization integrity. |
 | `BCRYPT_PASSWORD_ROUNDS` | No (default `12`) | |
+| `GROQ_API_KEY` | No — only for AI Care Assistant | Get one at [console.groq.com/keys](https://console.groq.com/keys). Without it, `/api/insights/generate` returns `503 AI_NOT_CONFIGURED`; the rest of the app works normally. |
+| `GROQ_MODEL` | No (default `llama-3.3-70b-versatile`) | |
 
 `backend/.env` and `frontend/.env` are git-ignored — only the `.env.example`
 templates are committed. Never commit a real `.env`; if a real credential
@@ -349,12 +352,33 @@ commit still has it).
   without an explicit `@@map(...)` use their **PascalCase model name** as
   the table name (e.g. `MotherProfile`, not `mother_profiles`), which is an
   easy mismatch to introduce in raw SQL.
-- `npx prisma db seed` (`backend/prisma/seed.ts`) creates the `BNK` and
-  `BWN` test hospitals. Onboarding's hospital-code step will fail with
-  `HOSPITAL_CODE_INVALID` until this has been run at least once.
+- `npx prisma db seed` (`backend/prisma/seed.ts`) creates 3 test hospitals,
+  3 researcher/admin accounts, 9 nurses, and 24 fully-onboarded mother
+  participants — see **Test Accounts (Seed Data)** below. It's idempotent
+  (uses `upsert`), so re-running it is always safe. Onboarding's
+  hospital-code step will fail with `HOSPITAL_CODE_INVALID` until this has
+  been run at least once.
 - `npx prisma migrate status` tells you whether your database is in sync
   with the committed migrations — run this first whenever you see
   unexplained 500 errors after pulling new backend code.
+
+### Test Accounts (Seed Data)
+
+After running `npx prisma db seed`, every account below uses the password
+**`TestPass123`** (set a PIN on first login when prompted).
+
+| Role | Phone(s) | Notes |
+| --- | --- | --- |
+| Researcher / Admin | `9000000001`, `9000000003`, `9000000004` | Full access — assign study groups, manage hospitals, export data. `9000000001` is the principal investigator account. Lands on `/admin/participants` after login. |
+| Nurse | `9000001001` – `9000001009` | 3 per hospital (Bankura, Burdwan, Purulia pilot site). |
+| Mother (participant) | `9000002001` – `9000002024` | 8 per hospital, fully onboarded with baby profiles, mixed study/control groups and birth-weight strata, 4 follow-up schedules each (baseline already marked complete). |
+
+Hospitals seeded: `BNK` (Bankura Medical College), `BWN` (Burdwan Medical
+College), `DBN` (Deban Mahato Medical College, Purulia — pilot site).
+
+To check the new hospital drill-down: log in as a researcher → Hospital
+Management → click any hospital card to expand its nurse roster and a link
+to view only that hospital's participants.
 
 ## Testing
 

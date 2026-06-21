@@ -10,6 +10,7 @@ import {
   type KnowledgeTimePoint,
 } from '../content/knowledgeQuestions.js';
 import type { KnowledgeSubmitInput } from '../validators/knowledgeAssessmentValidator.js';
+import { resolveStaffMotherContext, type StaffUser } from './assessmentPrerequisites.js';
 
 type RequestUser = {
   id: string;
@@ -136,6 +137,11 @@ function mapAssessment(record: {
     submittedAt: record.submittedAt.toISOString(),
     locked: true,
   };
+}
+
+/** Static question content — same for every participant, so no mother/staff context is needed. */
+export function getPublicKnowledgeQuestions(language: KnowledgeLanguage) {
+  return { contentReady: isKnowledgeContentReady(), questions: publicQuestions(language) };
 }
 
 export async function getKnowledgeQuestionsForMother(
@@ -279,6 +285,68 @@ export async function submitKnowledgeAssessmentForMother(user: RequestUser, inpu
       throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This knowledge assessment has already been submitted and is locked.');
     }
 
+    throw error;
+  }
+}
+
+/**
+ * Staff (nurse/researcher) variant of submission — used at follow-up visits
+ * where the nurse interviews the mother and enters her answers on the
+ * hospital device, per PRD §8.3. Same scoring/locking rules apply; only the
+ * authorization and mother-resolution path differs (by participant id
+ * rather than the caller's own account).
+ */
+export async function submitKnowledgeAssessmentForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  input: KnowledgeSubmitInput
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const followUpSchedule = await resolveFollowUpSchedule(motherProfile.id, input.timePoint);
+
+  if (!isKnowledgeContentReady()) {
+    throw createError(
+      400,
+      'KNOWLEDGE_CONTENT_NOT_CONFIGURED',
+      'Approved Knowledge Assessment Tool III question wording and answer options are required before submission.'
+    );
+  }
+
+  const existing = await prisma.knowledgeAssessment.findUnique({
+    where: { motherProfileId_timePoint: { motherProfileId: motherProfile.id, timePoint: input.timePoint } },
+  });
+
+  if (existing) {
+    throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This knowledge assessment has already been submitted and is locked.');
+  }
+
+  const score = calculateScore(input.responses);
+  const percentage = Math.round((score / KNOWLEDGE_MAX_SCORE) * 100);
+  const grade = calculateGrade(score);
+
+  try {
+    const record = await prisma.knowledgeAssessment.create({
+      data: {
+        motherProfileId: motherProfile.id,
+        followUpScheduleId: followUpSchedule.id,
+        timePoint: input.timePoint,
+        responses: input.responses,
+        score,
+        maxScore: KNOWLEDGE_MAX_SCORE,
+        percentage,
+        grade,
+      },
+    });
+
+    return {
+      success: true,
+      message: 'Knowledge assessment recorded successfully.',
+      data: mapAssessment(record),
+    };
+  } catch (error) {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code?: string }).code === 'P2002') {
+      throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This knowledge assessment has already been submitted and is locked.');
+    }
     throw error;
   }
 }

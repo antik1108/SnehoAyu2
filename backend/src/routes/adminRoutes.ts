@@ -5,6 +5,7 @@ import {
   getParticipantDetail,
   assignStudyGroup,
   getHospitals,
+  getHospitalDetail,
   postHospital,
   patchHospital,
 } from '../controllers/adminController.js';
@@ -19,6 +20,7 @@ router.get('/participants/:id', getParticipantDetail);
 router.post('/participants/:id/study-group', assignStudyGroup);
 router.get('/hospitals', getHospitals);
 router.post('/hospitals', postHospital);
+router.get('/hospitals/:id', getHospitalDetail);
 router.patch('/hospitals/:id', patchHospital);
 router.get('/export', getExport);
 

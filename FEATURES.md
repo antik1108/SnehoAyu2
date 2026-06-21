@@ -263,6 +263,84 @@ intentionally not applied here).
   - `GET /api/admin/hospitals`, `POST /api/admin/hospitals`, `PATCH /api/admin/hospitals/:id`
   - `GET /api/admin/export?anonymize=true|false` — streams an `.xlsx` via `exceljs`
     (`src/services/exportService.ts`)
+  - `GET /api/admin/hospitals/:id` — single hospital + its nurses + its
+    participants in one call, powering the click-to-expand hospital cards
+
+---
+
+## Nurse Panel
+
+**What:** Per the PRD, a nurse's job is sitting with the mother during
+onboarding and follow-up visits at the hospital, not running a separate
+admin tool — so this is scoped to the nurse's own hospital only (never
+cross-hospital, never study-group assignment, never export — those stay
+researcher-only). Viewing a participant's record is read-only, but
+follow-up data entry (see **Staff Follow-Up Data Entry** below) is writable.
+
+- Backend: `src/services/nurseService.ts` — `assertNurseUser()` derives the
+  hospital scope from `req.user.hospitalId` (set on the JWT at login), then
+  reuses `adminService.listParticipants()`/`getParticipantDetail()`
+  internally. `getNurseParticipantDetail()` adds an ownership check
+  (`detail.hospitalId !== nurse.hospitalId` → `404`, not `403`, so a nurse
+  can't even tell whether a participant exists at another hospital).
+- Endpoints (`src/routes/nurseRoutes.ts`, all behind
+  `requireAuth, requireRole('nurse')`):
+  - `GET /api/nurse/dashboard` — hospital info, enrollment stats
+    (total/onboarded/pending), and the participant list
+  - `GET /api/nurse/participants/:id` — full detail, hospital-scoped
+- Frontend: `src/pages/NurseHome.tsx` (stats + participant list + **Enrol
+  New Participant**, which logs the nurse out and opens the real signup
+  wizard at `/welcome` — onboarding is the mother's own self-service flow,
+  so it requires no nurse session active), `src/pages/NurseParticipantDetail.tsx`.
+  Both render outside `AppShell` (a nurse has no use for the mother-facing
+  bottom nav) and reuse `components/admin/ParticipantDetailView.tsx`, which
+  was extracted from the admin panel specifically so this view isn't
+  duplicated between the researcher and nurse panels.
+
+---
+
+## Staff Follow-Up Data Entry
+
+**What:** PRD §8.3 ("Follow-Up Data Collection Flow") — at a follow-up
+visit a nurse or researcher meets the mother, takes physical measurements,
+administers the TDSC screen, reviews/updates immunization, and either
+interviews the mother for or assists her with the Knowledge MCQ (Tool III),
+WHO-5 (Tool IV), and PSOC (Tool V). This feature makes all seven research
+instruments writable by staff on a participant's behalf, not just
+viewable — previously the nurse/researcher panels were read-only.
+
+- Backend: every mother-facing submission service
+  (`knowledgeAssessmentService.ts`, `who5AssessmentService.ts`,
+  `psocAssessmentService.ts`, `tdscService.ts`, `growthService.ts`,
+  `immunizationService.ts`, `breastfeedingService.ts`) gained a parallel
+  `submitXForStaff(staffUser, motherProfileId, input)` function. All of them
+  resolve and authorize the target participant through one shared helper,
+  `resolveStaffMotherContext()` in `src/services/assessmentPrerequisites.ts`
+  — nurse: own hospital only (404, not 403, on a cross-hospital attempt, so
+  existence isn't leaked); researcher: any participant. Each instrument
+  keeps its own one-submission-per-time-point lock
+  (`409 ASSESSMENT_ALREADY_SUBMITTED`), identical to the mother-facing path.
+  Staff-entered audit log actions are suffixed `_by_staff` /
+  `_recorded_by_staff` to distinguish them from mother self-entries.
+- Endpoints (`src/routes/staffRoutes.ts`, all behind
+  `requireAuth, requireRole('nurse', 'researcher')`, mounted at `/api/staff`):
+  - `GET /api/staff/content/{knowledge,who5,psoc}` — static question/scale
+    content (language via `?lang=`), independent of any participant
+  - `POST /api/staff/participants/:motherProfileId/{knowledge,who5,psoc,breastfeeding}`
+  - `GET|POST /api/staff/participants/:motherProfileId/tdsc`
+  - `POST /api/staff/participants/:motherProfileId/growth`
+  - `GET /api/staff/participants/:motherProfileId/immunization`
+  - `POST /api/staff/participants/:motherProfileId/immunization/mark-complete`
+- Frontend: `components/admin/StaffDataEntryPanel.tsx` — a collapsible
+  per-instrument form (time-point selector up top; growth/breastfeeding as
+  plain fields, TDSC as pass/fail buttons per item, immunization as a
+  mark-done list, and Knowledge/WHO-5/PSOC as compact dropdown grids rather
+  than the mother's one-question wizard, since a nurse entering answers
+  during a live interview benefits more from density than pacing). Mounted
+  at the top of both `pages/admin/ParticipantDetail.tsx` and
+  `pages/NurseParticipantDetail.tsx`, so the same component serves both
+  roles; a successful submission triggers `onRefresh()` to refetch the
+  participant detail beneath it. API client: `features/staff/api.ts`.
 
 ---
 
@@ -332,6 +410,33 @@ checklist queue (see Daily Care Checklist above).
 
 ---
 
+## Server-Down Resilience
+
+**What:** If the backend becomes unreachable (crash, restart, deploy), the
+whole app shows one calm full-screen message instead of every page
+independently rendering its own broken "Something went wrong" error — and
+recovers automatically with no user action once the server is back.
+
+- `src/lib/serverStatus.ts` — a minimal external store (subscribe/get/set,
+  no dependency needed) read via React's `useSyncExternalStore`. Set from
+  outside React (the axios interceptor has no component context).
+- `src/lib/api.ts` — the response interceptor flips this store based on the
+  *kind* of failure: a missing response, `ERR_NETWORK`, `ECONNABORTED`
+  (timeout), or `502`/`503`/`504` means the server itself is unreachable;
+  anything else (401, 403, 404, validation errors, etc.) is a normal
+  application response and leaves the store untouched. Any successful
+  response always clears it.
+- `src/components/ServerDownOverlay.tsx` — mounted once at the root in
+  `App.tsx`. While the store is "down", it polls `GET /api/health` every 5s
+  in the background; on the first successful poll it clears the store,
+  navigates to `/` (home), and shows a brief "We're back!" transition. No
+  page needs its own retry logic for this case — only true connectivity
+  failures reach the overlay, so existing per-page error states (e.g.
+  Dashboard's "could not load" with a Try Again button) still handle
+  ordinary request failures the way they always have.
+
+---
+
 ## Layout & Scrolling
 
 The app shell (`html`, `body`, `#root` in `frontend/src/index.css`) is set
@@ -366,8 +471,8 @@ These are real, not hidden — see prior session summaries for full context:
 - Push notifications (PWA caches assets but doesn't request push permission
   or send pushes)
 - DPDPA consent capture flow
-- Nurse self-service login/enrollment UI (nurse accounts must be created
-  manually via Prisma Studio — see USER_GUIDE.md Part B)
+- Nurse self-service signup (nurse accounts must still be created via the
+  seed script or Prisma Studio — see USER_GUIDE.md Part B)
 - Badge/gamification gallery, community peer-posts screen
 - Full WHO LMS clinical-grade growth percentile tables (current
   implementation interpolates between mean/SD checkpoints — fine for an

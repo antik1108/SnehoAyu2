@@ -4,6 +4,7 @@ import { calculateCorrectedAge } from '../utils/age.js';
 import { compareDateOnly, formatDateOnly, getTodayDateOnlyInIST, parseDateOnlyToUTCDate } from '../utils/dateOnly.js';
 import type { CreateGrowthReadingInput } from '../validators/growthValidator.js';
 import { calculateZScore, getPercentileCurve, type Sex } from '../content/whoGrowthStandards.js';
+import { resolveStaffMotherContext, type StaffUser } from './assessmentPrerequisites.js';
 
 type RequestUser = {
   id: string;
@@ -165,6 +166,57 @@ export async function createGrowthReadingForMother(user: RequestUser, input: Cre
     return {
       success: true,
       message: 'Growth reading saved successfully.',
+      data: mapGrowthReading(record, babyProfile.sex as Sex),
+    };
+  } catch (error) {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code?: string }).code === 'P2002') {
+      throw createError(409, 'GROWTH_READING_ALREADY_EXISTS', 'A growth reading already exists for this date.');
+    }
+
+    throw error;
+  }
+}
+
+/** Staff (nurse/researcher) variant — taking physical measurements at a follow-up visit, per PRD §8.3. */
+export async function createGrowthReadingForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  input: CreateGrowthReadingInput
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const babyProfile = motherProfile.babyProfile!;
+  const readingDateString = resolveReadingDate(input.readingDate);
+  validateReadingDateAgainstBaby(readingDateString, babyProfile);
+
+  const age = calculateCorrectedAge({
+    dateOfBirth: babyProfile.dateOfBirth,
+    gestationalAgeWeeks: Number(babyProfile.gestationalAgeWeeks.toString()),
+    referenceDate: readingDateString,
+  });
+
+  try {
+    const record = await prisma.growthReading.create({
+      data: {
+        motherProfileId: motherProfile.id,
+        babyProfileId: babyProfile.id,
+        recordedByUserId: staffUser!.id,
+        readingDate: parseDateOnlyToUTCDate(readingDateString),
+        weightGrams: input.weightGrams,
+        lengthCm: input.lengthCm,
+        headCircumferenceCm: input.headCircumferenceCm,
+        chronologicalAgeDays: age.chronologicalAgeDays,
+        chronologicalAgeWeeks: age.chronologicalAgeWeeks,
+        correctedAgeDays: age.correctedAgeDays,
+        correctedAgeWeeks: age.correctedAgeWeeks,
+        timePoint: input.timePoint ?? null,
+        source: 'manual',
+        notes: input.notes?.trim() ? input.notes.trim() : null,
+      },
+    });
+
+    return {
+      success: true,
+      message: 'Growth reading recorded successfully.',
       data: mapGrowthReading(record, babyProfile.sex as Sex),
     };
   } catch (error) {

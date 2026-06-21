@@ -71,9 +71,15 @@ const isDev = process.env['NODE_ENV'] !== 'production';
  * @see https://www.prisma.io/docs/reference/api-reference/error-reference
  */
 function parsePrismaError(err: AppError): { status: number; code: string; message: string } | null {
-  // Duck-type check for Prisma errors (avoids importing @prisma/client here)
+  // Duck-type check for Prisma errors (avoids importing @prisma/client here).
+  // Prisma's own codes are always "P" + 4 digits (e.g. P2002, P2025) — this
+  // MUST be specific, not just "is err.code a string", because every
+  // operational AppError from createError() also has a string `.code`
+  // (e.g. 'PARTICIPANT_NOT_FOUND'). A loose check here would swallow every
+  // operational error into this branch's generic 500 fallback, before it
+  // ever reaches the `isOperational` handler below.
   const prismaCode: unknown = (err as unknown as Record<string, unknown>)['code'];
-  if (typeof prismaCode !== 'string') return null;
+  if (typeof prismaCode !== 'string' || !/^P\d{4}$/.test(prismaCode)) return null;
 
   const map: Record<string, { status: number; message: string }> = {
     P2000: { status: 400, message: 'Input value is too long for the field.' },

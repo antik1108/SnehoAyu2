@@ -1,4 +1,5 @@
 import axios, { type InternalAxiosRequestConfig, type AxiosRequestConfig } from 'axios';
+import { setServerDown } from './serverStatus';
 
 export interface RetryableAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
@@ -42,8 +43,26 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    setServerDown(false);
+    return response;
+  },
   async (error) => {
+    // Only treat genuine connectivity/server failures as "the server is
+    // down" — not ordinary 4xx application errors (wrong password, 404,
+    // validation, etc.), which mean the server is working fine.
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      const isConnectivityFailure =
+        !error.response || // no response at all = network/CORS/DNS failure
+        error.code === 'ERR_NETWORK' ||
+        error.code === 'ECONNABORTED' || // timeout
+        status === 502 ||
+        status === 503 ||
+        status === 504;
+      setServerDown(isConnectivityFailure);
+    }
+
     const originalRequest = error.config as RetryableAxiosRequestConfig | undefined;
 
     if (

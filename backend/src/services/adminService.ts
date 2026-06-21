@@ -81,7 +81,45 @@ export async function assignStudyGroup(motherProfileId: string, studyGroup: 'stu
 }
 
 export async function listHospitals() {
-  return prisma.hospital.findMany({ orderBy: { name: 'asc' } });
+  const hospitals = await prisma.hospital.findMany({
+    orderBy: { name: 'asc' },
+    include: { _count: { select: { motherProfiles: true, nurseProfiles: true } } },
+  });
+
+  return hospitals.map((h) => ({
+    ...h,
+    participantCount: h._count.motherProfiles,
+    nurseCount: h._count.nurseProfiles,
+    _count: undefined,
+  }));
+}
+
+export async function getHospitalDetail(hospitalId: string) {
+  const hospital = await prisma.hospital.findUnique({ where: { id: hospitalId } });
+  if (!hospital) {
+    throw createError(404, 'HOSPITAL_NOT_FOUND', 'Hospital not found.');
+  }
+
+  const nurses = await prisma.nurseProfile.findMany({
+    where: { hospitalId },
+    include: { user: { select: { phone: true, isActive: true, lastLoginAt: true } } },
+    orderBy: { fullName: 'asc' },
+  });
+
+  const participants = await listParticipants({ hospitalId });
+
+  return {
+    hospital,
+    nurses: nurses.map((n) => ({
+      id: n.id,
+      fullName: n.fullName,
+      employeeId: n.employeeId,
+      phone: n.user.phone,
+      isActive: n.isActive && n.user.isActive,
+      lastLoginAt: n.user.lastLoginAt,
+    })),
+    participants,
+  };
 }
 
 export interface CreateHospitalInput {

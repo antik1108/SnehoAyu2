@@ -151,8 +151,11 @@ export const Profile: React.FC = () => {
   const [showChangePin, setShowChangePin] = useState(false);
 
   useEffect(() => {
+    // Only mothers have data behind /dashboard/home — researchers/nurses
+    // would always get a 403 here, so skip the call entirely for them.
+    if (user?.role !== 'mother') return;
     getDashboardHome().then((res) => setData(res.data)).catch(() => undefined);
-  }, []);
+  }, [user]);
 
   const handleSelectLanguage = async (lang: SupportedLanguage) => {
     setStoredLanguage(lang);

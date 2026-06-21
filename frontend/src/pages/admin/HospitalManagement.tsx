@@ -1,10 +1,102 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchHospitals, createHospital, updateHospital, downloadExport } from '../../features/admin/api';
-import type { Hospital } from '../../features/admin/types';
+import { ChevronDown, Stethoscope, Users, Phone } from 'lucide-react';
+import { fetchHospitals, createHospital, updateHospital, downloadExport, fetchHospitalDetail } from '../../features/admin/api';
+import type { Hospital, HospitalDetail } from '../../features/admin/types';
 import { normalizeApiError } from '../../lib/apiError';
 import { InlineFormError } from '../../components/feedback/InlineFormError';
 import { ROUTES } from '../../routes/paths';
+import { AdminHeader } from '../../components/admin/AdminHeader';
+
+const HospitalCard: React.FC<{ hospital: Hospital; onToggleActive: () => void }> = ({ hospital, onToggleActive }) => {
+  const [expanded, setExpanded] = useState(false);
+  const [detail, setDetail] = useState<HospitalDetail | null>(null);
+  const [loadingDetail, setLoadingDetail] = useState(false);
+  const [detailError, setDetailError] = useState<string | null>(null);
+
+  const toggleExpand = async () => {
+    const next = !expanded;
+    setExpanded(next);
+    if (next && !detail) {
+      setLoadingDetail(true);
+      setDetailError(null);
+      try {
+        setDetail(await fetchHospitalDetail(hospital.id));
+      } catch (err) {
+        setDetailError(normalizeApiError(err).message);
+      } finally {
+        setLoadingDetail(false);
+      }
+    }
+  };
+
+  return (
+    <div className="rounded-xl border border-border bg-surface">
+      <button type="button" onClick={toggleExpand} className="flex w-full items-center justify-between gap-3 p-4 text-left">
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-text">{hospital.name} ({hospital.code})</p>
+          <p className="text-xs text-text-muted">
+            {hospital.district} · {hospital.emergencyPhone ?? 'No emergency phone set'}
+            {typeof hospital.participantCount === 'number' && (
+              <> · {hospital.participantCount} participants · {hospital.nurseCount ?? 0} nurses</>
+            )}
+          </p>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={(e) => { e.stopPropagation(); onToggleActive(); }}
+            onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); onToggleActive(); } }}
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${hospital.isActive ? 'bg-teal-100 text-teal-800' : 'bg-slate-200 text-slate-600'}`}
+          >
+            {hospital.isActive ? 'Enrolling' : 'Closed'}
+          </span>
+          <ChevronDown className={`h-4 w-4 text-text-muted transition-transform ${expanded ? 'rotate-180' : ''}`} aria-hidden="true" />
+        </div>
+      </button>
+
+      {expanded && (
+        <div className="border-t border-border p-4">
+          {loadingDetail && <p className="text-sm text-text-muted">Loading…</p>}
+          {detailError && <InlineFormError message={detailError} />}
+          {detail && (
+            <div className="space-y-4">
+              <div>
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-text-muted">
+                  <Stethoscope className="h-3.5 w-3.5" aria-hidden="true" />
+                  Nurses ({detail.nurses.length})
+                </div>
+                {detail.nurses.length === 0 ? (
+                  <p className="text-sm text-text-muted">No nurses assigned to this hospital yet.</p>
+                ) : (
+                  <div className="space-y-1.5">
+                    {detail.nurses.map((n) => (
+                      <div key={n.id} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 text-sm">
+                        <span className="text-text">{n.fullName} {n.employeeId ? `(${n.employeeId})` : ''}</span>
+                        <span className="flex items-center gap-1 text-xs text-text-muted">
+                          <Phone className="h-3 w-3" aria-hidden="true" /> {n.phone}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <Link
+                to={`${ROUTES.ADMIN_PARTICIPANTS}?hospitalId=${hospital.id}&hospitalName=${encodeURIComponent(hospital.name)}`}
+                className="flex items-center justify-center gap-1.5 rounded-lg border border-primary px-3 py-2 text-xs font-semibold text-primary hover:bg-primary/5"
+              >
+                <Users className="h-3.5 w-3.5" aria-hidden="true" />
+                View {detail.participants.length} participants at this hospital
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const emptyForm = { name: '', code: '', district: '', type: 'primary_site', emergencyPhone: '' };
 
@@ -68,13 +160,10 @@ export const HospitalManagement: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="mx-auto max-w-4xl">
-        <Link to={ROUTES.ADMIN_PARTICIPANTS} className="text-sm font-semibold text-primary">
-          ← Back to participants
-        </Link>
-
-        <div className="flex items-center justify-between mt-2 mb-6">
+    <div className="min-h-screen bg-background">
+      <AdminHeader />
+      <div className="mx-auto max-w-4xl p-6">
+        <div className="flex items-center justify-between mb-6">
           <h1 className="font-sans text-2xl font-bold text-text">Hospital Management</h1>
           <div className="flex gap-2">
             <button
@@ -148,19 +237,7 @@ export const HospitalManagement: React.FC = () => {
         ) : (
           <div className="space-y-2">
             {hospitals.map((h) => (
-              <div key={h.id} className="flex items-center justify-between rounded-xl border border-border bg-surface p-4">
-                <div>
-                  <p className="text-sm font-semibold text-text">{h.name} ({h.code})</p>
-                  <p className="text-xs text-text-muted">{h.district} · {h.emergencyPhone ?? 'No emergency phone set'}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleToggleActive(h)}
-                  className={`rounded-full px-3 py-1 text-xs font-semibold ${h.isActive ? 'bg-teal-100 text-teal-800' : 'bg-slate-200 text-slate-600'}`}
-                >
-                  {h.isActive ? 'Enrolling' : 'Closed'}
-                </button>
-              </div>
+              <HospitalCard key={h.id} hospital={h} onToggleActive={() => handleToggleActive(h)} />
             ))}
           </div>
         )}

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
 import { markAuthenticatedPreviously } from '../lib/authStorage';
 import { getSafeInternalRedirect } from '../lib/redirect';
-import { ROUTES } from '../routes/paths';
+import { ROUTES, getHomeRouteForRole } from '../routes/paths';
 import { AuthPageShell } from '../components/auth/AuthPageShell';
 import { PhoneNumberField } from '../components/auth/PhoneNumberField';
 import { PasswordField } from '../components/auth/PasswordField';
@@ -49,13 +49,13 @@ export const Login: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      await loginWithPassword(phone, password);
+      const loggedInUser = await loginWithPassword(phone, password);
       markAuthenticatedPreviously();
 
       // Retrieve post-login redirect destination
       const state = location.state as { from?: string | { pathname: string } } | null;
       const from = state?.from;
-      const targetPath = getSafeInternalRedirect(from, ROUTES.DASHBOARD);
+      const targetPath = getSafeInternalRedirect(from, getHomeRouteForRole(loggedInUser.role));
 
       navigate(targetPath, { replace: true });
     } catch (err: unknown) {

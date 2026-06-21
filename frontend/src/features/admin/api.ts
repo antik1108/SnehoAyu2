@@ -1,8 +1,10 @@
 import api from '../../lib/api';
-import type { ParticipantListItem, ParticipantDetail, Hospital } from './types';
+import type { ParticipantListItem, ParticipantDetail, Hospital, HospitalDetail } from './types';
 
-export async function fetchParticipants(): Promise<ParticipantListItem[]> {
-  const res = await api.get<{ success: boolean; data: ParticipantListItem[] }>('/admin/participants');
+export async function fetchParticipants(filters?: { hospitalId?: string }): Promise<ParticipantListItem[]> {
+  const res = await api.get<{ success: boolean; data: ParticipantListItem[] }>('/admin/participants', {
+    params: filters,
+  });
   return res.data.data;
 }
 
@@ -20,6 +22,11 @@ export async function assignStudyGroup(
 
 export async function fetchHospitals(): Promise<Hospital[]> {
   const res = await api.get<{ success: boolean; data: Hospital[] }>('/admin/hospitals');
+  return res.data.data;
+}
+
+export async function fetchHospitalDetail(id: string): Promise<HospitalDetail> {
+  const res = await api.get<{ success: boolean; data: HospitalDetail }>(`/admin/hospitals/${id}`);
   return res.data.data;
 }
 

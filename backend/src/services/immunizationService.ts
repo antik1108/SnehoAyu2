@@ -3,6 +3,7 @@ import { createError } from '../middlewares/errorHandler.js';
 import { addUtcDays, formatDateOnly } from '../utils/dateOnly.js';
 import { immunizationSchedule } from '../content/immunizationSchedule.js';
 import { recordAudit } from './auditService.js';
+import { resolveStaffMotherContext, type StaffUser } from './assessmentPrerequisites.js';
 
 type RequestUser = { id: string; role: string };
 
@@ -116,5 +117,85 @@ export async function markVaccineComplete(user: RequestUser, input: MarkVaccineD
     success: true,
     message: 'Vaccine marked as completed.',
     data: { vaccineId: updated.vaccineId, status: updated.status, completedDate: formatDateOnly(updated.completedDate!) },
+  };
+}
+
+/** Staff (nurse/researcher) variant — reviewing/updating the immunization record at a follow-up visit, per PRD §8.3. */
+export async function markVaccineCompleteForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  input: MarkVaccineDoneInput
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const babyProfile = motherProfile.babyProfile!;
+  await ensureScheduleGenerated(motherProfile.id, babyProfile.dateOfBirth);
+
+  const record = await prisma.vaccineRecord.findUnique({
+    where: { motherProfileId_vaccineId: { motherProfileId: motherProfile.id, vaccineId: input.vaccineId } },
+  });
+
+  if (!record) {
+    throw createError(404, 'VACCINE_NOT_FOUND', 'Vaccine record not found.');
+  }
+
+  const updated = await prisma.vaccineRecord.update({
+    where: { id: record.id },
+    data: {
+      status: 'completed',
+      completedDate: input.completedDate ? new Date(input.completedDate) : new Date(),
+      batchNumber: input.batchNumber ?? null,
+      administeredBy: input.administeredBy ?? null,
+    },
+  });
+
+  void recordAudit({
+    actorId: staffUser?.id,
+    actorRole: staffUser?.role,
+    action: 'immunization.marked_complete_by_staff',
+    entityType: 'VaccineRecord',
+    entityId: updated.id,
+    metadata: { motherProfileId, vaccineId: input.vaccineId },
+  });
+
+  return {
+    success: true,
+    message: 'Vaccine marked as completed.',
+    data: { vaccineId: updated.vaccineId, status: updated.status, completedDate: formatDateOnly(updated.completedDate!) },
+  };
+}
+
+/** Staff (nurse/researcher) variant of the schedule view, for a chosen participant. */
+export async function getImmunizationScheduleForStaff(staffUser: StaffUser | undefined, motherProfileId: string) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const babyProfile = motherProfile.babyProfile!;
+
+  await ensureScheduleGenerated(motherProfile.id, babyProfile.dateOfBirth);
+
+  const records = await prisma.vaccineRecord.findMany({
+    where: { motherProfileId: motherProfile.id },
+    orderBy: { dueDate: 'asc' },
+  });
+
+  const definitionMap = new Map(immunizationSchedule.map((v) => [v.id, v]));
+  const completed = records.filter((r) => r.status === 'completed');
+
+  return {
+    success: true,
+    data: {
+      progressPercent: records.length ? Math.round((completed.length / records.length) * 100) : 0,
+      totalCount: records.length,
+      completedCount: completed.length,
+      vaccines: records.map((r) => ({
+        vaccineId: r.vaccineId,
+        name: r.vaccineName,
+        dueDate: formatDateOnly(r.dueDate),
+        completedDate: r.completedDate ? formatDateOnly(r.completedDate) : null,
+        batchNumber: r.batchNumber,
+        administeredBy: r.administeredBy,
+        status: r.status,
+        description: definitionMap.get(r.vaccineId)?.description ?? '',
+        sideEffects: definitionMap.get(r.vaccineId)?.sideEffects ?? '',
+      })),
+    },
   };
 }

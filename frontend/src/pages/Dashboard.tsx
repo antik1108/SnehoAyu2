@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../hooks/useAuth';
 import { AppShell } from '../components/layout/AppShell';
 import { DashboardSkeleton } from '../components/dashboard/DashboardSkeleton';
 import { DashboardErrorState } from '../components/dashboard/DashboardErrorState';
@@ -15,7 +16,7 @@ import { DailyMessageCard } from '../components/dashboard/DailyMessageCard';
 import { TelehealthCard } from '../components/dashboard/TelehealthCard';
 import { getDashboardHome } from '../features/dashboard/api';
 import type { DashboardHomeData } from '../features/dashboard/types';
-import { ROUTES } from '../routes/paths';
+import { ROUTES, getHomeRouteForRole } from '../routes/paths';
 import type { AppApiError } from '../lib/apiError';
 import { ChecklistStateCard } from '../components/dashboard/ChecklistStateCard';
 
@@ -37,6 +38,7 @@ function mapRecoveryRoute(code?: string): string {
 export const Dashboard: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [data, setData] = useState<DashboardHomeData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -68,6 +70,12 @@ export const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
+    // Skip the fetch entirely for non-mother roles — this endpoint always
+    // 403s for them. The redirect guard below handles navigating away, but
+    // hooks run unconditionally before that return, so without this check
+    // the request would still fire once on every mount.
+    if (user && user.role !== 'mother') return;
+
     const timeoutId = window.setTimeout(() => {
       void loadDashboardInitial();
     }, 0);
@@ -75,11 +83,18 @@ export const Dashboard: React.FC = () => {
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, []);
+  }, [user]);
 
   const handleQuickAction = (focus: 'feeding' | 'temperature' | 'kmc') => {
     navigate(`${ROUTES.CHECKLIST}?focus=${focus}`);
   };
+
+  // This dashboard calls mother-only endpoints. A researcher/nurse account
+  // landing here (stale bookmark, back button) would otherwise see a
+  // confusing "could not load" error — send them to their real home instead.
+  if (user && user.role !== 'mother') {
+    return <Navigate to={getHomeRouteForRole(user.role)} replace />;
+  }
 
   if (loading) {
     return (

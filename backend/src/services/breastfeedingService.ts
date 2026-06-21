@@ -2,6 +2,7 @@ import prisma from '../lib/prisma.js';
 import { createError } from '../middlewares/errorHandler.js';
 import { scoreBreastfeedingAssessment, type BreastfeedingResponses } from '../content/breastfeedingAssessment.js';
 import { recordAudit } from './auditService.js';
+import { resolveStaffMotherContext, type StaffUser } from './assessmentPrerequisites.js';
 
 type RequestUser = { id: string; role: string };
 
@@ -56,6 +57,50 @@ export async function submitBreastfeedingAssessment(
   return {
     success: true,
     message: 'Breastfeeding assessment submitted successfully.',
+    data: { timePoint, totalScore, grade, submittedAt: record.submittedAt.toISOString(), locked: true },
+  };
+}
+
+/** Staff (nurse/researcher) variant — see knowledgeAssessmentService.ts for the pattern this follows. */
+export async function submitBreastfeedingAssessmentForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  timePoint: string,
+  responses: BreastfeedingResponses
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+
+  const existing = await prisma.breastfeedingAssessment.findUnique({
+    where: { motherProfileId_timePoint: { motherProfileId: motherProfile.id, timePoint } },
+  });
+  if (existing) {
+    throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This breastfeeding assessment has already been submitted and is locked.');
+  }
+
+  const { totalScore, grade } = scoreBreastfeedingAssessment(responses);
+
+  const record = await prisma.breastfeedingAssessment.create({
+    data: {
+      motherProfileId: motherProfile.id,
+      timePoint,
+      responses: responses as unknown as object,
+      totalScore,
+      grade,
+    },
+  });
+
+  void recordAudit({
+    actorId: staffUser?.id,
+    actorRole: staffUser?.role,
+    action: 'breastfeeding.recorded_by_staff',
+    entityType: 'BreastfeedingAssessment',
+    entityId: record.id,
+    metadata: { motherProfileId, timePoint, totalScore, grade },
+  });
+
+  return {
+    success: true,
+    message: 'Breastfeeding assessment recorded successfully.',
     data: { timePoint, totalScore, grade, submittedAt: record.submittedAt.toISOString(), locked: true },
   };
 }

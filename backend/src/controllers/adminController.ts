@@ -73,6 +73,20 @@ export async function getHospitals(req: Request, res: Response, next: NextFuncti
   }
 }
 
+export async function getHospitalDetail(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      next(createError(400, 'INVALID_REQUEST', 'Hospital id is required.'));
+      return;
+    }
+    const data = await adminService.getHospitalDetail(id);
+    res.status(200).json({ success: true, data });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function postHospital(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const { name, code, district, state, type, emergencyPhone } = req.body as {

@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Video } from 'lucide-react';
 import { fetchParticipants, assignStudyGroup } from '../../features/admin/api';
 import type { ParticipantListItem } from '../../features/admin/types';
 import { normalizeApiError } from '../../lib/apiError';
 import { InlineFormError } from '../../components/feedback/InlineFormError';
 import { scheduleTelehealthSession } from '../../features/telehealth/api';
+import { AdminHeader } from '../../components/admin/AdminHeader';
 
 export const ParticipantList: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const hospitalId = searchParams.get('hospitalId') ?? undefined;
+  const hospitalName = searchParams.get('hospitalName') ?? undefined;
+
   const [participants, setParticipants] = useState<ParticipantListItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -17,14 +22,14 @@ export const ParticipantList: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchParticipants();
+      const data = await fetchParticipants(hospitalId ? { hospitalId } : undefined);
       setParticipants(data);
     } catch (err) {
       setError(normalizeApiError(err).message);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [hospitalId]);
 
   useEffect(() => {
     void load();
@@ -44,13 +49,22 @@ export const ParticipantList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="mx-auto max-w-5xl">
+    <div className="min-h-screen bg-background">
+      <AdminHeader />
+      <div className="mx-auto max-w-5xl p-6">
         <div className="flex items-center justify-between mb-1">
           <h1 className="font-sans text-2xl font-bold text-text">Participants</h1>
-          <Link to="/admin/hospitals" className="text-sm font-semibold text-primary">Manage Hospitals →</Link>
         </div>
-        <p className="text-sm text-text-muted mb-6">Enrolled mothers across all study sites.</p>
+        <p className="text-sm text-text-muted mb-6">
+          {hospitalId ? (
+            <>
+              Showing participants at <strong className="text-text">{hospitalName ?? 'this hospital'}</strong> ·{' '}
+              <Link to="/admin/participants" className="text-primary hover:underline">Clear filter</Link>
+            </>
+          ) : (
+            'Enrolled mothers across all study sites.'
+          )}
+        </p>
 
         {error && <InlineFormError message={error} />}
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks/useAuth';
-import { ROUTES } from '../routes/paths';
+import { ROUTES, getHomeRouteForRole } from '../routes/paths';
 import { AuthPageShell } from '../components/auth/AuthPageShell';
 import { PinDots } from '../components/auth/PinDots';
 import { NumericKeypad } from '../components/auth/NumericKeypad';
@@ -109,7 +109,8 @@ export const CreatePin: React.FC = () => {
     setFormError(null);
     try {
       await createPin(pinValue);
-      navigate(ROUTES.MOTHER_PROFILE, { replace: true });
+      const targetPath = user?.role === 'mother' ? ROUTES.MOTHER_PROFILE : getHomeRouteForRole(user?.role);
+      navigate(targetPath, { replace: true });
     } catch (err: unknown) {
       const error = err as { code?: string; message?: string };
       // Reset input state

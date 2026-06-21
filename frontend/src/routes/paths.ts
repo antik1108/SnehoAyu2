@@ -28,6 +28,20 @@ export const ROUTES = {
   IMMUNIZATION: '/immunization',
   BREASTFEEDING_ASSESSMENT: '/assessments/breastfeeding',
   MESSAGE_HISTORY: '/messages',
+  NURSE_HOME: '/nurse',
+  NURSE_PARTICIPANT_DETAIL: '/nurse/participants/:id',
 } as const;
 
 export type RoutePath = typeof ROUTES[keyof typeof ROUTES];
+
+/**
+ * The mother-facing dashboard calls mother-only endpoints (e.g.
+ * `/dashboard/home`), so researcher/nurse accounts must never land there —
+ * it 403s and shows a generic error. Use this everywhere a post-auth
+ * landing route is chosen (login, PIN login, PIN creation, root redirect).
+ */
+export function getHomeRouteForRole(role: string | undefined): string {
+  if (role === 'researcher') return ROUTES.ADMIN_PARTICIPANTS;
+  if (role === 'nurse') return ROUTES.NURSE_HOME;
+  return ROUTES.DASHBOARD;
+}

@@ -7,6 +7,23 @@ export interface Hospital {
   type: string;
   emergencyPhone: string | null;
   isActive: boolean;
+  participantCount?: number;
+  nurseCount?: number;
+}
+
+export interface HospitalNurse {
+  id: string;
+  fullName: string;
+  employeeId: string | null;
+  phone: string;
+  isActive: boolean;
+  lastLoginAt: string | null;
+}
+
+export interface HospitalDetail {
+  hospital: Hospital;
+  nurses: HospitalNurse[];
+  participants: ParticipantListItem[];
 }
 
 export interface ParticipantListItem {

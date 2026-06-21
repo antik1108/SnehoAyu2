@@ -8,7 +8,9 @@ import {
   assertMotherAssessmentUser,
   resolveAssessmentFollowUpSchedule,
   resolveAssessmentMotherContext,
+  resolveStaffMotherContext,
   type AssessmentRequestUser,
+  type StaffUser,
 } from './assessmentPrerequisites.js';
 
 function textForLanguage(text: Partial<Record<KnowledgeLanguage, string>>, language: KnowledgeLanguage): string | null {
@@ -52,6 +54,11 @@ function mapWho5Record(record: {
     submittedAt: record.submittedAt.toISOString(),
     locked: true,
   };
+}
+
+/** Static question content — same for every participant, so no mother/staff context is needed. */
+export function getPublicWho5Questions(language: KnowledgeLanguage) {
+  return { contentReady: isWho5ContentReady(), questions: publicQuestions(language), scale: publicScale(language) };
 }
 
 export async function getWho5QuestionsForMother(user: AssessmentRequestUser, timePoint: KnowledgeTimePoint, language: KnowledgeLanguage) {
@@ -150,6 +157,57 @@ export async function submitWho5AssessmentForMother(user: AssessmentRequestUser,
     return {
       success: true,
       message: 'WHO-5 assessment submitted successfully.',
+      data: mapWho5Record(record),
+    };
+  } catch (error) {
+    if (typeof error === 'object' && error !== null && 'code' in error && (error as { code?: string }).code === 'P2002') {
+      throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This WHO-5 assessment has already been submitted and is locked.');
+    }
+    throw error;
+  }
+}
+
+/** Staff (nurse/researcher) variant — see knowledgeAssessmentService.ts for the pattern this follows. */
+export async function submitWho5AssessmentForStaff(
+  staffUser: StaffUser | undefined,
+  motherProfileId: string,
+  input: Who5SubmitInput
+) {
+  const motherProfile = await resolveStaffMotherContext(staffUser, motherProfileId);
+  const followUpSchedule = await resolveAssessmentFollowUpSchedule(motherProfile.id, input.timePoint);
+
+  if (!isWho5ContentReady()) {
+    throw createError(400, 'ASSESSMENT_CONTENT_NOT_CONFIGURED', 'Approved WHO-5 assessment content and translations are required before submission.');
+  }
+
+  const existing = await prisma.who5Assessment.findUnique({
+    where: { motherProfileId_timePoint: { motherProfileId: motherProfile.id, timePoint: input.timePoint } },
+  });
+
+  if (existing) {
+    throw createError(409, 'ASSESSMENT_ALREADY_SUBMITTED', 'This WHO-5 assessment has already been submitted and is locked.');
+  }
+
+  const scored = scoreWho5(input.responses);
+
+  try {
+    const record = await prisma.who5Assessment.create({
+      data: {
+        motherProfileId: motherProfile.id,
+        followUpScheduleId: followUpSchedule.id,
+        timePoint: input.timePoint,
+        responses: input.responses,
+        rawScore: scored.rawScore,
+        maxScore: scored.maxScore,
+        percentageScore: scored.percentageScore,
+        poorWellbeingFlag: scored.poorWellbeingFlag,
+        interpretation: scored.interpretation,
+      },
+    });
+
+    return {
+      success: true,
+      message: 'WHO-5 assessment recorded successfully.',
       data: mapWho5Record(record),
     };
   } catch (error) {
