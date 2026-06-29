@@ -49,35 +49,36 @@ export const ParticipantList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="care-canvas min-h-screen">
       <AdminHeader />
-      <div className="mx-auto max-w-5xl p-6">
-        <div className="flex items-center justify-between mb-1">
-          <h1 className="font-sans text-2xl font-bold text-text">Participants</h1>
+      <div className="mx-auto max-w-6xl p-5 lg:p-8">
+        <div className="mb-6 rounded-[28px] bg-[#111] p-6 text-white lg:p-8">
+          <p className="text-xs font-extrabold uppercase text-white/55">Research dashboard</p>
+          <h1 className="mt-2 font-sans text-4xl font-extrabold lg:text-5xl">Participants</h1>
+          <p className="mt-3 max-w-2xl text-sm font-medium leading-6 text-white/70">
+            {hospitalId ? (
+              <>
+                Showing participants at <strong className="text-white">{hospitalName ?? 'this hospital'}</strong> ·{' '}
+                <Link to="/admin/participants" className="text-[#efd35c] hover:underline">Clear filter</Link>
+              </>
+            ) : (
+              'Enrolled mothers across all study sites.'
+            )}
+          </p>
         </div>
-        <p className="text-sm text-text-muted mb-6">
-          {hospitalId ? (
-            <>
-              Showing participants at <strong className="text-text">{hospitalName ?? 'this hospital'}</strong> ·{' '}
-              <Link to="/admin/participants" className="text-primary hover:underline">Clear filter</Link>
-            </>
-          ) : (
-            'Enrolled mothers across all study sites.'
-          )}
-        </p>
 
         {error && <InlineFormError message={error} />}
 
         {loading ? (
           <div className="flex items-center justify-center py-16 text-sm text-text-muted">Loading…</div>
         ) : participants.length === 0 ? (
-          <div className="rounded-xl border border-border bg-surface p-8 text-center text-sm text-text-muted">
+          <div className="rounded-2xl border border-border bg-surface p-8 text-center text-sm text-text-muted">
             No participants enrolled yet.
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-border bg-surface">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-border bg-slate-50 text-xs font-semibold uppercase text-text-muted">
+          <div className="overflow-x-auto rounded-2xl border border-border bg-surface">
+            <table className="care-table w-full text-left text-sm">
+              <thead className="border-b border-border text-xs font-extrabold uppercase text-text-muted">
                 <tr>
                   <th className="px-4 py-3">Code</th>
                   <th className="px-4 py-3">Hospital</th>
@@ -116,7 +117,7 @@ export const ParticipantList: React.FC = () => {
                             type="button"
                             disabled={assigningId === p.id}
                             onClick={() => handleAssign(p.id, 'study')}
-                            className="rounded-lg border border-primary px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/5 disabled:opacity-50"
+                            className="rounded-full border border-primary px-3 py-1.5 text-xs font-extrabold text-primary hover:bg-primary/5 disabled:opacity-50"
                           >
                             Study
                           </button>
@@ -124,7 +125,7 @@ export const ParticipantList: React.FC = () => {
                             type="button"
                             disabled={assigningId === p.id}
                             onClick={() => handleAssign(p.id, 'control')}
-                            className="rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-text hover:bg-slate-50 disabled:opacity-50"
+                            className="rounded-full border border-border px-3 py-1.5 text-xs font-extrabold text-text hover:bg-primary/5 disabled:opacity-50"
                           >
                             Control
                           </button>
@@ -134,7 +135,7 @@ export const ParticipantList: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => void scheduleTelehealthSession(p.id)}
-                          className="flex items-center gap-1.5 rounded-lg border border-teal-600 px-3 py-1.5 text-xs font-semibold text-teal-700 hover:bg-teal-50"
+                          className="flex items-center gap-1.5 rounded-full border border-[#94a45f] px-3 py-1.5 text-xs font-extrabold text-text hover:bg-[#94a45f]/15"
                         >
                           <Video className="h-3.5 w-3.5" aria-hidden="true" />
                           Video Call

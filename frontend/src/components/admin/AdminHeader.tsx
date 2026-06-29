@@ -8,16 +8,16 @@ export const AdminHeader: React.FC = () => {
   const { user, logout } = useAuth();
 
   return (
-    <header className="border-b border-border bg-surface">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3">
-        <div className="flex items-center gap-6">
-          <span className="font-sans text-base font-bold text-primary">SnehoAyu Admin</span>
-          <nav className="flex gap-1">
+    <header className="sticky top-0 z-20 border-b border-border bg-background/88 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+          <span className="font-sans text-lg font-extrabold text-text">SnehoAyu Admin</span>
+          <nav className="flex gap-1 rounded-full border border-border bg-surface p-1">
             <NavLink
               to={ROUTES.ADMIN_PARTICIPANTS}
               className={({ isActive }) =>
-                `flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-                  isActive ? 'bg-primary/10 text-primary' : 'text-text-muted hover:bg-slate-50'
+                `flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-bold transition-colors ${
+                  isActive ? 'bg-secondary text-primary' : 'text-text-muted hover:bg-primary/5'
                 }`
               }
             >
@@ -27,8 +27,8 @@ export const AdminHeader: React.FC = () => {
             <NavLink
               to={ROUTES.ADMIN_HOSPITALS}
               className={({ isActive }) =>
-                `flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-                  isActive ? 'bg-primary/10 text-primary' : 'text-text-muted hover:bg-slate-50'
+                `flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-bold transition-colors ${
+                  isActive ? 'bg-secondary text-primary' : 'text-text-muted hover:bg-primary/5'
                 }`
               }
             >
@@ -38,12 +38,12 @@ export const AdminHeader: React.FC = () => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-3 sm:justify-end">
           {user?.phone && <span className="text-sm text-text-muted">{user.phone}</span>}
           <button
             type="button"
             onClick={() => void logout()}
-            className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-text hover:bg-slate-50"
+            className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-2 text-sm font-bold text-text hover:bg-primary/5"
           >
             <LogOut className="h-4 w-4" aria-hidden="true" />
             Log out

@@ -160,17 +160,20 @@ export const HospitalManagement: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="care-canvas min-h-screen">
       <AdminHeader />
-      <div className="mx-auto max-w-4xl p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="font-sans text-2xl font-bold text-text">Hospital Management</h1>
-          <div className="flex gap-2">
+      <div className="mx-auto max-w-6xl p-5 lg:p-8">
+        <div className="mb-6 rounded-[28px] bg-[#111] p-6 text-white lg:flex lg:items-center lg:justify-between lg:gap-6 lg:p-8">
+          <div>
+            <p className="text-xs font-extrabold uppercase text-white/55">Research sites</p>
+            <h1 className="mt-2 font-sans text-4xl font-extrabold lg:text-5xl">Hospital Management</h1>
+          </div>
+          <div className="mt-5 flex flex-col gap-2 sm:flex-row lg:mt-0">
             <button
               type="button"
               disabled={exporting}
               onClick={() => handleExport(true)}
-              className="rounded-lg border border-primary px-3 py-2 text-xs font-semibold text-primary hover:bg-primary/5 disabled:opacity-50"
+              className="rounded-full border border-white/25 px-4 py-2 text-xs font-extrabold text-white hover:bg-white/10 disabled:opacity-50"
             >
               Export (Anonymized)
             </button>
@@ -178,7 +181,7 @@ export const HospitalManagement: React.FC = () => {
               type="button"
               disabled={exporting}
               onClick={() => handleExport(false)}
-              className="rounded-lg border border-border px-3 py-2 text-xs font-semibold text-text hover:bg-slate-50 disabled:opacity-50"
+              className="rounded-full border border-white/25 px-4 py-2 text-xs font-extrabold text-white hover:bg-white/10 disabled:opacity-50"
             >
               Export (Full)
             </button>
@@ -187,32 +190,32 @@ export const HospitalManagement: React.FC = () => {
 
         {error && <InlineFormError message={error} />}
 
-        <form onSubmit={handleCreate} className="rounded-xl border border-border bg-surface p-4 mb-6 grid grid-cols-2 gap-3">
+        <form onSubmit={handleCreate} className="mb-6 grid grid-cols-1 gap-3 rounded-2xl border border-border bg-surface p-5 sm:grid-cols-2">
           <input
             required
             placeholder="Hospital name"
             value={form.name}
             onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-            className="min-h-10 rounded-lg border border-border px-3 text-sm"
+            className="min-h-11 rounded-xl border border-border px-3 text-sm"
           />
           <input
             required
             placeholder="Code (e.g. BNK)"
             value={form.code}
             onChange={(e) => setForm((f) => ({ ...f, code: e.target.value.toUpperCase() }))}
-            className="min-h-10 rounded-lg border border-border px-3 text-sm uppercase"
+            className="min-h-11 rounded-xl border border-border px-3 text-sm uppercase"
           />
           <input
             required
             placeholder="District"
             value={form.district}
             onChange={(e) => setForm((f) => ({ ...f, district: e.target.value }))}
-            className="min-h-10 rounded-lg border border-border px-3 text-sm"
+            className="min-h-11 rounded-xl border border-border px-3 text-sm"
           />
           <select
             value={form.type}
             onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
-            className="min-h-10 rounded-lg border border-border px-3 text-sm"
+            className="min-h-11 rounded-xl border border-border px-3 text-sm"
           >
             <option value="primary_site">Primary Site</option>
             <option value="pilot_site">Pilot Site</option>
@@ -221,12 +224,12 @@ export const HospitalManagement: React.FC = () => {
             placeholder="Emergency phone"
             value={form.emergencyPhone}
             onChange={(e) => setForm((f) => ({ ...f, emergencyPhone: e.target.value }))}
-            className="min-h-10 rounded-lg border border-border px-3 text-sm col-span-2"
+            className="min-h-11 rounded-xl border border-border px-3 text-sm sm:col-span-2"
           />
           <button
             type="submit"
             disabled={submitting}
-            className="col-span-2 min-h-10 rounded-lg bg-primary text-primary-foreground text-sm font-semibold disabled:opacity-50"
+            className="min-h-11 rounded-full bg-primary text-sm font-extrabold text-primary-foreground disabled:opacity-50 sm:col-span-2"
           >
             {submitting ? 'Adding…' : 'Add Hospital'}
           </button>
@@ -235,7 +238,7 @@ export const HospitalManagement: React.FC = () => {
         {loading ? (
           <div className="py-12 text-center text-sm text-text-muted">Loading…</div>
         ) : (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {hospitals.map((h) => (
               <HospitalCard key={h.id} hospital={h} onToggleActive={() => handleToggleActive(h)} />
             ))}

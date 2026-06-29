@@ -27,12 +27,12 @@ export const NurseParticipantDetail: React.FC = () => {
   }, [load]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50/60 via-background to-background">
-      <header className="border-b border-border bg-surface px-5 py-4">
-        <span className="font-sans text-base font-bold text-primary">SnehoAyu Nurse</span>
+    <div className="care-canvas min-h-screen">
+      <header className="sticky top-0 z-20 border-b border-border bg-background/88 px-5 py-4 backdrop-blur-xl">
+        <span className="font-sans text-lg font-extrabold text-text">SnehoAyu Nurse</span>
       </header>
-      <div className="mx-auto max-w-md p-6">
-        <Link to={ROUTES.NURSE_HOME} className="text-sm font-semibold text-primary">
+      <div className="mx-auto max-w-5xl p-5 lg:p-8">
+        <Link to={ROUTES.NURSE_HOME} className="care-chip">
           ← Back to participants
         </Link>
 
@@ -41,7 +41,7 @@ export const NurseParticipantDetail: React.FC = () => {
         {loading ? (
           <div className="py-16 text-center text-sm text-text-muted">Loading…</div>
         ) : data && id ? (
-          <div className="mt-4 space-y-4">
+          <div className="mt-5 space-y-5">
             <StaffDataEntryPanel motherProfileId={id} onRefresh={load} />
             <ParticipantDetailView data={data} />
           </div>

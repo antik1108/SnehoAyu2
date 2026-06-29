@@ -56,7 +56,7 @@ export const PasswordField: React.FC<PasswordFieldProps> = ({
           onClick={toggleShowPassword}
           disabled={disabled}
           aria-label={showPassword ? 'Hide password' : 'Show password'}
-          className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-lg text-text-muted hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer disabled:opacity-50"
+          className="absolute right-2 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-text-muted transition-colors hover:bg-secondary/15 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50"
         >
           {showPassword ? (
             <svg

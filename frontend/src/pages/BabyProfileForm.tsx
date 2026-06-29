@@ -711,7 +711,7 @@ export const BabyProfileForm: React.FC = () => {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          className="w-full min-h-[48px] mt-4 py-3 bg-primary text-primary-foreground font-semibold rounded-xl text-center transition-all cursor-pointer hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="btn-primary-care mt-4 w-full text-center disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {isSubmitting ? t('onboarding.common.saving', 'Saving…') : t('onboarding.common.saveAndContinue', 'Save and Continue')}
         </button>

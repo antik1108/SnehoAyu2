@@ -28,10 +28,10 @@ export const ParticipantDetail: React.FC = () => {
   }, [load]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="care-canvas min-h-screen">
       <AdminHeader />
-      <div className="mx-auto max-w-4xl p-6">
-        <Link to={ROUTES.ADMIN_PARTICIPANTS} className="text-sm font-semibold text-primary">
+      <div className="mx-auto max-w-5xl p-5 lg:p-8">
+        <Link to={ROUTES.ADMIN_PARTICIPANTS} className="care-chip">
           ← Back to participants
         </Link>
 
@@ -40,7 +40,7 @@ export const ParticipantDetail: React.FC = () => {
         {loading ? (
           <div className="py-16 text-center text-sm text-text-muted">Loading…</div>
         ) : data && id ? (
-          <div className="mt-4 space-y-4">
+          <div className="mt-5 space-y-5">
             <StaffDataEntryPanel motherProfileId={id} onRefresh={load} />
             <ParticipantDetailView data={data} />
           </div>

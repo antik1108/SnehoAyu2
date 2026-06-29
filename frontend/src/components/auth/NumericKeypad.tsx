@@ -55,7 +55,7 @@ export const NumericKeypad: React.FC<NumericKeypadProps> = ({
           type="button"
           onClick={() => handleDigitClick(key.value)}
           disabled={disabled || (maxLengthReached && !disabled)}
-          className="w-full min-h-[56px] flex items-center justify-center rounded-xl bg-surface border border-border text-lg font-semibold text-text active:bg-slate-100 hover:bg-slate-50 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:border-slate-200"
+          className="interactive-card flex min-h-[56px] w-full items-center justify-center rounded-xl border border-border bg-surface text-lg font-extrabold text-text active:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:border-border disabled:bg-background disabled:opacity-50"
         >
           {key.label}
         </button>
@@ -67,7 +67,7 @@ export const NumericKeypad: React.FC<NumericKeypadProps> = ({
         onClick={handleClearClick}
         disabled={disabled || !onClear}
         aria-label={t('auth.pin.keypad.clear', 'Clear PIN')}
-        className="w-full min-h-[56px] flex items-center justify-center rounded-xl bg-surface border border-border text-sm font-medium text-text-muted active:bg-slate-100 hover:bg-slate-50 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        className="interactive-card flex min-h-[56px] w-full items-center justify-center rounded-xl border border-border bg-surface text-sm font-extrabold text-text-muted active:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
       >
         {t('auth.pin.keypad.clearLabel', 'Clear')}
       </button>
@@ -77,7 +77,7 @@ export const NumericKeypad: React.FC<NumericKeypadProps> = ({
         type="button"
         onClick={() => handleDigitClick('0')}
         disabled={disabled || (maxLengthReached && !disabled)}
-        className="w-full min-h-[56px] flex items-center justify-center rounded-xl bg-surface border border-border text-lg font-semibold text-text active:bg-slate-100 hover:bg-slate-50 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:border-slate-200"
+        className="interactive-card flex min-h-[56px] w-full items-center justify-center rounded-xl border border-border bg-surface text-lg font-extrabold text-text active:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:border-border disabled:bg-background disabled:opacity-50"
       >
         0
       </button>
@@ -88,7 +88,7 @@ export const NumericKeypad: React.FC<NumericKeypadProps> = ({
         onClick={handleBackspaceClick}
         disabled={disabled}
         aria-label={t('auth.pin.keypad.backspace', 'Delete last digit')}
-        className="w-full min-h-[56px] flex items-center justify-center rounded-xl bg-surface border border-border text-text-muted active:bg-slate-100 hover:bg-slate-50 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        className="interactive-card flex min-h-[56px] w-full items-center justify-center rounded-xl border border-border bg-surface text-text-muted active:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
       >
         <Delete className="h-5 w-5" />
       </button>

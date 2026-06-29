@@ -81,7 +81,7 @@ export const SignupComplete: React.FC = () => {
                 setLoading(true);
                 setRetryTrigger((prev) => prev + 1);
               }}
-              className="w-full min-h-[48px] py-3 bg-primary text-primary-foreground font-semibold rounded-xl text-center cursor-pointer transition-all hover:bg-teal-800"
+              className="btn-primary-care w-full text-center"
             >
               {t('onboarding.common.retry', 'Retry')}
             </button>
@@ -142,7 +142,7 @@ export const SignupComplete: React.FC = () => {
             <button
               type="button"
               onClick={handleGoHome}
-              className="w-full min-h-[48px] mt-2 py-3 bg-primary text-primary-foreground font-semibold rounded-xl text-center transition-all cursor-pointer hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary shadow-sm"
+              className="btn-primary-care mt-2 w-full text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {t('onboarding.complete.goHome', 'Go to Home')}
             </button>

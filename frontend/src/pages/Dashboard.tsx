@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { CalendarDays, HeartPulse, Sparkles } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { AppShell } from '../components/layout/AppShell';
 import { DashboardSkeleton } from '../components/dashboard/DashboardSkeleton';
@@ -146,7 +147,51 @@ export const Dashboard: React.FC = () => {
 
   return (
     <AppShell title={t('dashboard.title')} subtitle={t('dashboard.subtitle')}>
-      <div className="space-y-4">
+      <section className="mb-5 grid overflow-hidden rounded-[28px] border border-border bg-[#111] text-white lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="p-6 lg:p-8">
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full bg-[#efd35c] px-3 py-1.5 text-xs font-extrabold text-[#111]">
+              {data.participant.participantCode ?? 'Active participant'}
+            </span>
+            <span className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-extrabold text-white/75">
+              {data.hospital.code}
+            </span>
+          </div>
+          <h2 className="mt-5 max-w-2xl text-4xl font-extrabold leading-tight lg:text-6xl">
+            {data.baby.displayName}'s care today
+          </h2>
+          <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-white/68">
+            Quick view of daily care progress, last vitals, feeding, learning and follow-up reminders.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white/8 p-4">
+              <CalendarDays className="h-5 w-5 text-[#efd35c]" aria-hidden="true" />
+              <p className="mt-3 text-xs font-bold text-white/52">Today</p>
+              <p className="text-sm font-extrabold">{new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}</p>
+            </div>
+            <div className="rounded-2xl bg-white/8 p-4">
+              <HeartPulse className="h-5 w-5 text-[#efa8d0]" aria-hidden="true" />
+              <p className="mt-3 text-xs font-bold text-white/52">Care tasks</p>
+              <p className="text-sm font-extrabold">{data.careToday.completedCount}/{data.careToday.totalCount} done</p>
+            </div>
+            <div className="rounded-2xl bg-white/8 p-4">
+              <Sparkles className="h-5 w-5 text-[#aac3e9]" aria-hidden="true" />
+              <p className="mt-3 text-xs font-bold text-white/52">Corrected age</p>
+              <p className="text-sm font-extrabold">{data.baby.correctedAgeDisplay}</p>
+            </div>
+          </div>
+        </div>
+        <div className="relative min-h-64 overflow-hidden lg:min-h-full">
+          <img
+            src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=900&q=80"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div className="care-photo-overlay absolute inset-0" />
+        </div>
+      </section>
+      <div className="grid gap-4 lg:grid-cols-12 lg:items-start">
         <BabyStatusCard baby={data.baby} participant={data.participant} hospital={data.hospital} />
         <CareProgressRing
           percent={data.careToday.completionPercent}

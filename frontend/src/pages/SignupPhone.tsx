@@ -147,7 +147,7 @@ export const SignupPhone: React.FC = () => {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          className="w-full min-h-[48px] mt-2 py-3 bg-primary text-primary-foreground font-semibold rounded-xl text-center transition-all cursor-pointer hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="btn-primary-care mt-2 w-full text-center disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {isSubmitting ? t('auth.register.submitting', 'Creating Account…') : t('auth.register.submit', 'Create Account')}
         </button>
@@ -158,7 +158,7 @@ export const SignupPhone: React.FC = () => {
             type="button"
             onClick={() => navigate(ROUTES.LOGIN)}
             disabled={isSubmitting}
-            className="font-semibold text-primary hover:underline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="rounded-full px-2 py-1 font-extrabold text-primary transition-colors hover:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {t('auth.register.footerLink', 'Log in')}
           </button>

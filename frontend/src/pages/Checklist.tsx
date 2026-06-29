@@ -14,9 +14,11 @@ import {
   ChevronRight,
   PartyPopper,
   CircleAlert,
+  ArrowLeft,
   type LucideIcon,
 } from 'lucide-react';
 import { AiAssistantButton } from '../components/dashboard/AiAssistantButton';
+import { BottomNavigation } from '../components/layout/BottomNavigation';
 import { getTodayChecklist, updateTodayChecklist } from '../features/checklist/api';
 import type {
   TodayChecklist,
@@ -828,6 +830,7 @@ const ChecklistSkeleton: React.FC = () => (
 export const Checklist: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const focusParam = new URLSearchParams(location.search).get('focus') as FocusSection;
 
   const [checklist, setChecklist] = useState<TodayChecklist | null>(null);
@@ -886,17 +889,30 @@ export const Checklist: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="care-canvas min-h-screen pb-24 lg:pl-64">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-border bg-surface/90 backdrop-blur-sm px-4 py-4">
-        <h1 className="text-base font-bold text-text">{t('checklist.title')}</h1>
-        <p className="text-xs text-text-muted">{t('checklist.subtitle')}</p>
+      <header className="sticky top-0 z-10 border-b border-border bg-background/88 px-4 py-5 backdrop-blur-xl lg:static lg:border-0 lg:bg-transparent">
+        <div className="mx-auto flex max-w-5xl items-start gap-4">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            aria-label={t('common.back', 'Go back')}
+            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-text transition-colors hover:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <div className="min-w-0 flex-1">
+            <p className="hidden text-xs font-extrabold uppercase text-secondary lg:block">Daily care</p>
+            <h1 className="text-2xl font-extrabold text-text lg:text-4xl">{t('checklist.title')}</h1>
+            <p className="mt-1 text-sm font-medium text-text-muted">{t('checklist.subtitle')}</p>
+          </div>
+        </div>
       </header>
       {/* Rendered outside the header (backdrop-blur creates a containing
           block for fixed-position descendants) so it positions correctly. */}
       <AiAssistantButton />
 
-      <main className="mx-auto max-w-md px-4 py-5 space-y-4">
+      <main className="mx-auto max-w-md space-y-4 px-4 py-5 lg:max-w-5xl">
         {loading && <ChecklistSkeleton />}
 
         {!loading && loadError && <ChecklistError onRetry={retryLoad} />}
@@ -955,6 +971,7 @@ export const Checklist: React.FC = () => {
           </>
         )}
       </main>
+      <BottomNavigation />
     </div>
   );
 };

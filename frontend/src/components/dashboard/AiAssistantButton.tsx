@@ -56,7 +56,7 @@ const Panel: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-text-muted hover:bg-slate-50"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-text-muted transition-colors hover:bg-secondary/15 hover:text-text"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -67,7 +67,7 @@ const Panel: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             <button
               type="button"
               onClick={() => void run()}
-              className="flex w-full min-h-12 items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 text-sm font-semibold text-primary hover:bg-primary/10"
+              className="interactive-card flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 text-sm font-extrabold text-primary"
             >
               <Sparkles className="h-4 w-4" aria-hidden="true" />
               {t('dashboard.aiInsight.generate', 'Get my AI summary')}

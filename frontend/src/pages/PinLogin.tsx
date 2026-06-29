@@ -206,7 +206,7 @@ export const PinLogin: React.FC = () => {
             type="button"
             onClick={() => navigate(ROUTES.LOGIN, { state: location.state })}
             disabled={isSubmitting}
-            className="text-left text-xs font-semibold text-primary hover:underline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary self-start"
+            className="self-start rounded-full px-2 py-1 text-left text-xs font-extrabold text-primary transition-colors hover:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {t('auth.pin.login.linkPassword', 'Log in with password')}
           </button>
@@ -216,7 +216,7 @@ export const PinLogin: React.FC = () => {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          className="w-full min-h-[48px] py-3 bg-primary text-primary-foreground font-semibold rounded-xl text-center transition-all cursor-pointer hover:bg-teal-800 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          className="btn-primary-care w-full text-center disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           {isSubmitting ? t('auth.pin.login.submitting', 'Logging In…') : t('auth.pin.login.submit', 'Log In')}
         </button>
@@ -237,7 +237,7 @@ export const PinLogin: React.FC = () => {
             type="button"
             onClick={() => navigate(ROUTES.SIGNUP_PHONE)}
             disabled={isSubmitting}
-            className="font-semibold text-primary hover:underline cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="rounded-full px-2 py-1 font-extrabold text-primary transition-colors hover:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {t('auth.login.footerLink', 'Create an account')}
           </button>
