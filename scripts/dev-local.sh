@@ -95,9 +95,47 @@ wait_for_database() {
   fail "PostgreSQL did not become ready on $PGHOST:$PGPORT."
 }
 
+parse_db_url() {
+  if [[ -f "$BACKEND_ENV" ]]; then
+    local db_url
+    db_url=$(grep -E '^\s*DATABASE_URL\s*=' "$BACKEND_ENV" | head -n 1 | cut -d= -f2- | tr -d "'\"[:space:]")
+    if [[ -n "$db_url" ]]; then
+      # Extract host and port using pure bash parameter expansion
+      local temp="${db_url##*://}"
+      temp="${temp%%/*}"
+      temp="${temp%%\?*}"
+      local host_port="${temp##*@}"
+      
+      if [[ "$host_port" == *":"* ]]; then
+        PGHOST="${host_port%%:*}"
+        PGPORT="${host_port##*:}"
+      else
+        PGHOST="$host_port"
+        PGPORT="5432"
+      fi
+    fi
+  fi
+}
+
+is_local_host() {
+  local host="$1"
+  if [[ -z "$host" || "$host" == "localhost" || "$host" == "127.0.0.1" || "$host" == "0.0.0.0" ]]; then
+    return 0
+  fi
+  return 1
+}
+
 start_database() {
+  parse_db_url
+
+  if ! is_local_host "$PGHOST"; then
+    log "Remote database detected in DATABASE_URL ($PGHOST). Skipping local PostgreSQL service check."
+    return 0
+  fi
+
   if ! command_exists pg_isready; then
-    fail "pg_isready was not found. Install PostgreSQL command-line tools or start the DB manually."
+    log "WARNING: pg_isready was not found. Cannot verify if local PostgreSQL is running. Proceeding anyway..."
+    return 0
   fi
 
   if db_ready; then
@@ -109,7 +147,7 @@ start_database() {
   fi
 
   if ! command_exists brew; then
-    fail "PostgreSQL is not running, and Homebrew was not found to start it."
+    fail "PostgreSQL is not running on localhost, and Homebrew was not found to start it. Please start PostgreSQL manually."
   fi
 
   local service
