@@ -39,6 +39,15 @@ export interface ChecklistItemSummary {
   skinCordCare: {
     done: boolean;
   };
+  // Phase 3 — KB §4.4
+  sleep: {
+    done: boolean;
+  };
+  urinationStool: {
+    done: boolean;
+    urinationCount: number | null;
+    stoolAbnormal: boolean;
+  };
   medication: {
     done: boolean | null;
     notes: string | null;
@@ -77,7 +86,7 @@ export interface ChecklistHistoryResponse {
   data: ChecklistHistoryData;
 }
 
-const REQUIRED_TOTAL = 5;
+const REQUIRED_TOTAL = 7; // Phase 3: added sleep + urination/stool (was 5)
 
 function assertMotherUser(user: RequestUser | undefined): RequestUser {
   if (!user) {
@@ -136,6 +145,8 @@ function resolveCompletion(log: {
   kmcDone: boolean;
   temperatureDone: boolean;
   skinCordCareDone: boolean;
+  sleepDone: boolean;
+  urinationDone: boolean;
   dangerSignsReviewed: boolean;
 }): ChecklistCompletionSummary {
   const completedCount = [
@@ -143,6 +154,8 @@ function resolveCompletion(log: {
     log.kmcDone,
     log.temperatureDone,
     log.skinCordCareDone,
+    log.sleepDone,
+    log.urinationDone,
     log.dangerSignsReviewed,
   ].filter(Boolean).length;
 
@@ -214,6 +227,30 @@ function mergeChecklistPatch(existing: Awaited<ReturnType<typeof prisma.dailyLog
     }
   }
 
+  // Phase 3 — Sleep (KB §4.4)
+  if (input.sleep) {
+    if (input.sleep.done !== undefined) {
+      patch.sleepDone = input.sleep.done;
+    }
+  }
+
+  // Phase 3 — Urination/Stool (KB §4.4)
+  if (input.urinationStool) {
+    if (input.urinationStool.done !== undefined || input.urinationStool.urinationCount !== undefined) {
+      patch.urinationDone = inferDone(
+        existing?.urinationDone ?? false,
+        input.urinationStool.done,
+        (input.urinationStool.urinationCount ?? 0) > 0,
+      );
+    }
+    if (input.urinationStool.urinationCount !== undefined) patch.urinationCount = input.urinationStool.urinationCount;
+    if (input.urinationStool.stoolAbnormal !== undefined) patch.stoolAbnormal = input.urinationStool.stoolAbnormal;
+    // stoolDone: true when this section is submitted, regardless of stoolAbnormal value
+    if (input.urinationStool.done !== undefined || input.urinationStool.stoolAbnormal !== undefined) {
+      patch.stoolDone = true;
+    }
+  }
+
   if (input.medication) {
     if (input.medication.done !== undefined) patch.medicationDone = input.medication.done;
     if (input.medication.notes !== undefined) patch.medicationNotes = input.medication.notes;
@@ -232,6 +269,8 @@ function toTodayData(log: Awaited<ReturnType<typeof prisma.dailyLog.findUnique>>
     kmcDone: log?.kmcDone ?? false,
     temperatureDone: log?.temperatureDone ?? false,
     skinCordCareDone: log?.skinCordCareDone ?? false,
+    sleepDone: log?.sleepDone ?? false,
+    urinationDone: log?.urinationDone ?? false,
     dangerSignsReviewed: log?.dangerSignsReviewed ?? false,
   });
 
@@ -260,6 +299,15 @@ function toTodayData(log: Awaited<ReturnType<typeof prisma.dailyLog.findUnique>>
       },
       skinCordCare: {
         done: log?.skinCordCareDone ?? false,
+      },
+      // Phase 3 — KB §4.4
+      sleep: {
+        done: log?.sleepDone ?? false,
+      },
+      urinationStool: {
+        done: log?.urinationDone ?? false,
+        urinationCount: toNumberOrNull(log?.urinationCount ?? null),
+        stoolAbnormal: log?.stoolAbnormal ?? false,
       },
       medication: {
         done: toBooleanDone(log?.medicationDone ?? null),
@@ -324,6 +372,51 @@ export async function logTodayChecklistForMother(user: RequestUser, input: Check
     update: patch,
   });
 
+  // Phase 6: KMC Elevation — Log KMC minutes to KmcDailyLog for history
+  if (motherProfile.babyProfile) {
+    if (record.kmcDone && record.kmcMinutes !== null) {
+      const getKmcDurationCategory = (mins: number): string => {
+        if (mins <= 240) return 'SHORT';
+        if (mins <= 480) return 'EXTENDED';
+        if (mins <= 720) return 'LONG';
+        return 'CONTINUOUS';
+      };
+
+      await prisma.kmcDailyLog.upsert({
+        where: {
+          motherProfileId_logDate: {
+            motherProfileId: motherProfile.id,
+            logDate: careDate,
+          },
+        },
+        create: {
+          motherProfileId: motherProfile.id,
+          babyProfileId: motherProfile.babyProfile.id,
+          logDate: careDate,
+          durationMinutes: record.kmcMinutes,
+          durationCategory: getKmcDurationCategory(record.kmcMinutes),
+        },
+        update: {
+          durationMinutes: record.kmcMinutes,
+          durationCategory: getKmcDurationCategory(record.kmcMinutes),
+        },
+      });
+    } else {
+      try {
+        await prisma.kmcDailyLog.delete({
+          where: {
+            motherProfileId_logDate: {
+              motherProfileId: motherProfile.id,
+              logDate: careDate,
+            },
+          },
+        });
+      } catch {
+        // Ignore if it did not exist
+      }
+    }
+  }
+
   return {
     success: true,
     data: toTodayData(record),
@@ -360,6 +453,8 @@ export async function getChecklistHistoryForMother(user: RequestUser, days: 7 | 
           kmcDone: record.kmcDone,
           temperatureDone: record.temperatureDone,
           skinCordCareDone: record.skinCordCareDone,
+          sleepDone: record.sleepDone,
+          urinationDone: record.urinationDone,
           dangerSignsReviewed: record.dangerSignsReviewed,
         }).completedCount,
         totalCount: REQUIRED_TOTAL,
@@ -368,6 +463,8 @@ export async function getChecklistHistoryForMother(user: RequestUser, days: 7 | 
           kmcDone: record.kmcDone,
           temperatureDone: record.temperatureDone,
           skinCordCareDone: record.skinCordCareDone,
+          sleepDone: record.sleepDone,
+          urinationDone: record.urinationDone,
           dangerSignsReviewed: record.dangerSignsReviewed,
         }).percent,
       })),

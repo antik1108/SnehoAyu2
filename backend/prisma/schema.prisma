@@ -130,6 +130,7 @@ model MotherProfile {
   breastfeedingAssessments BreastfeedingAssessment[]
   contentViews         ContentView[]
   videoCallSessions    VideoCallSession[]
+  kmcDailyLogs         KmcDailyLog[]
 }
 
 model BabyProfile {
@@ -320,6 +321,13 @@ model DailyLog {
 
   skinCordCareDone        Boolean       @default(false) @map("skin_cord_care_done")
 
+  // Phase 3 additions — KB §4.4 Daily Checklist items
+  sleepDone               Boolean       @default(false) @map("sleep_done")
+  urinationDone           Boolean       @default(false) @map("urination_done")
+  urinationCount          Int?          @map("urination_count")
+  stoolDone               Boolean       @default(false) @map("stool_done")
+  stoolAbnormal           Boolean       @default(false) @map("stool_abnormal")
+
   medicationDone          Boolean?      @map("medication_done")
   medicationNotes         String?       @map("medication_notes") @db.Text
 
@@ -461,4 +469,22 @@ model VideoCallSession {
 
   @@index([motherProfileId, createdAt])
   @@map("video_call_sessions")
+}
+
+model KmcDailyLog {
+  id                String        @id @default(uuid()) @db.Uuid
+  motherProfileId   String        @map("mother_profile_id") @db.Uuid
+  babyProfileId     String        @map("baby_profile_id") @db.Uuid
+  logDate           DateTime      @map("log_date") @db.Date
+  durationMinutes   Int           @map("duration_minutes")
+  durationCategory  String        @map("duration_category") @db.VarChar(20) // 'SHORT' | 'EXTENDED' | 'LONG' | 'CONTINUOUS'
+  provider          String?       @db.VarChar(20) // 'MOTHER' | 'FATHER' | 'OTHER_FAMILY'
+  notes             String?       @db.Text
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+
+  motherProfile     MotherProfile @relation(fields: [motherProfileId], references: [id])
+
+  @@unique([motherProfileId, logDate])
+  @@map("kmc_daily_logs")
 }

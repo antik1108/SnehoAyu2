@@ -1,9 +1,16 @@
 import prisma from '../lib/prisma.js';
 import { createError } from '../middlewares/errorHandler.js';
-import { getTodayMessage } from '../content/careMessages.js';
+import { calculateCorrectedAge } from '../utils/age.js';
+import { resolveDailyMessage, getTodayMessage } from '../content/careMessages.js';
 
 type RequestUser = { id: string; role: string; preferredLanguage: string };
 
+/**
+ * @deprecated Retained for the messageScheduler which still uses study-week
+ * bucketing for the CareMessage DB unique key. Phase 2 message selection now
+ * uses corrected age days via resolveDailyMessage(). This function remains
+ * for the scheduler's DB-row keying only — do not use it for message text selection.
+ */
 export function computeStudyWeek(dischargeDate: Date, referenceDate: Date): number {
   const diffMs = referenceDate.getTime() - dischargeDate.getTime();
   const diffDays = Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
@@ -49,7 +56,50 @@ export async function getMessageHistoryForMother(user: RequestUser) {
   };
 }
 
-export function resolveDailyMessageForMother(dischargeDate: Date, referenceDate: Date, language: 'bn' | 'hi' | 'en') {
+/**
+ * Resolves the daily care message for a mother based on the baby's corrected
+ * age — the Phase 2 implementation. Corrected age is calculated from
+ * dateOfBirth + gestationalAgeWeeks so that preterm infants receive
+ * age-appropriate messages from day 1 post-discharge.
+ *
+ * @param dateOfBirth       Baby's date of birth
+ * @param gestationalAgeWeeks  Gestational age at birth (e.g. 32.0)
+ * @param dischargeDate     Discharge date (used as study-start reference for legacy week calc)
+ * @param referenceDate     Today's date
+ * @param language          Preferred language for text
+ */
+export function resolveDailyMessageForMother(
+  dateOfBirth: Date,
+  gestationalAgeWeeks: number,
+  dischargeDate: Date,
+  referenceDate: Date,
+  language: 'bn' | 'hi' | 'en',
+): { correctedAgeDays: number; studyWeek: number; messageId: string | null; text: string | null } {
+  const ageResult = calculateCorrectedAge({
+    dateOfBirth,
+    gestationalAgeWeeks,
+    referenceDate,
+  });
+  const studyWeek = computeStudyWeek(dischargeDate, referenceDate);
+  const resolved = resolveDailyMessage(ageResult.correctedAgeDays, language);
+  return {
+    correctedAgeDays: ageResult.correctedAgeDays,
+    studyWeek,
+    messageId: resolved?.messageId ?? null,
+    text: resolved?.text ?? null,
+  };
+}
+
+/**
+ * @deprecated Phase 1 signature — accepts only dischargeDate.
+ * dashboardService.ts has been updated to call the new signature.
+ * This overload is retained temporarily for any callers not yet migrated.
+ */
+export function resolveDailyMessageLegacy(
+  dischargeDate: Date,
+  referenceDate: Date,
+  language: 'bn' | 'hi' | 'en',
+): { week: number; text: string | null } {
   const week = computeStudyWeek(dischargeDate, referenceDate);
   return { week, text: getTodayMessage(week, language) };
 }

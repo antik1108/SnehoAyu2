@@ -36,6 +36,17 @@ export const CurrentMeasurementsCard: React.FC<CurrentMeasurementsCardProps> = (
           <p className="mt-1 text-xs text-text-muted">{t(`growth.source.${latest.source}`)}</p>
         </div>
         <AgeSummary chronologicalAge={latest.chronologicalAge} correctedAge={latest.correctedAge} />
+        {latest.weightGainNote && (
+          <div className={`mt-2 rounded-xl border p-3 text-xs font-semibold ${
+            latest.weightGainNote.flag === 'REVIEW'
+              ? 'bg-red-50 border-red-200 text-red-700'
+              : latest.weightGainNote.flag === 'INFO'
+              ? 'bg-amber-50 border-amber-200 text-amber-800'
+              : 'bg-green-50 border-green-200 text-green-700'
+          }`}>
+            {t(latest.weightGainNote.messageKey)}
+          </div>
+        )}
       </div>
     </section>
   );

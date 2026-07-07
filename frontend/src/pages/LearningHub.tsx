@@ -6,7 +6,7 @@ import { AudioPlayer } from '../components/AudioPlayer';
 import { learningHubContent, type LearningCategory, type LearningContentItem } from '../content/learningHubContent';
 import { recordContentView, getViewedSlugs } from '../features/content/api';
 
-const CATEGORY_KEYS: (LearningCategory | 'all')[] = ['all', 'feeding', 'kmc', 'growth', 'danger_signs', 'emotional_support', 'immunization'];
+const CATEGORY_KEYS: (LearningCategory | 'all')[] = ['all', 'feeding', 'kmc', 'growth', 'danger_signs', 'emotional_support', 'immunization', 'newborn_care'];
 
 export const LearningHub: React.FC = () => {
   const { t } = useTranslation();

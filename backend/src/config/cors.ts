@@ -68,6 +68,11 @@ export function buildCorsOptions(): CorsOptions {
 
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
+      } else if (
+        process.env['NODE_ENV'] !== 'production' &&
+        (/^https?:\/\/localhost(:\d+)?$/.test(origin) || /^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(origin))
+      ) {
+        callback(null, true);
       } else {
         callback(
           new Error(

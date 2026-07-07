@@ -93,8 +93,19 @@ export function validateWeight(grams: string): { grams?: string; valid: boolean 
   };
 }
 
-export function validateMedication(notes: string): { notes?: string; valid: boolean } {
-  const errors: { notes?: string } = {};
+// Phase 3 — KB §4.4
+export function validateUrinationCount(count: string): { count?: string; valid: boolean } {
+  const errors: { count?: string } = {};
+  if (count.trim() !== '') {
+    const val = Number(count);
+    if (!Number.isInteger(val) || val < 0 || val > 30) {
+      errors.count = 'urinationCount';
+    }
+  }
+  return { ...errors, valid: Object.keys(errors).length === 0 };
+}
+
+export function validateMedication(notes: string): { notes?: string; valid: boolean } {  const errors: { notes?: string } = {};
 
   if (notes.length > 300) {
     errors.notes = 'maxLength';

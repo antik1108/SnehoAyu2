@@ -32,6 +32,7 @@ import telehealthRouter from './routes/telehealthRoutes.js';
 import insightsRouter from './routes/insightsRoutes.js';
 import nurseRouter from './routes/nurseRoutes.js';
 import staffRouter from './routes/staffRoutes.js';
+import dangerSignRouter from './routes/dangerSignRoutes.js';
 
 const app = express();
 
@@ -70,6 +71,7 @@ app.use('/api/telehealth', telehealthRouter);
 app.use('/api/insights', insightsRouter);
 app.use('/api/nurse', nurseRouter);
 app.use('/api/staff', staffRouter);
+app.use('/api/danger-signs', dangerSignRouter);
 
 app.use(notFoundHandler);
 app.use(globalErrorHandler);

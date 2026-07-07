@@ -40,6 +40,11 @@ export interface GrowthLatestResponse {
   headCircumferenceCm: number | null;
   chronologicalAge?: GrowthAge;
   correctedAge?: GrowthAge;
+  /** KB §7 narrative weight-gain validation note. null when source is discharge. */
+  weightGainNote?: {
+    flag: 'NORMAL' | 'REVIEW' | 'INFO';
+    messageKey: string;
+  } | null;
 }
 
 export type GrowthMetric = 'weight' | 'length' | 'headCircumference';

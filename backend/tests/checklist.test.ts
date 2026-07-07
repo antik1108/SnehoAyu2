@@ -14,6 +14,10 @@ const { prismaMock } = vi.hoisted(() => {
       upsert: vi.fn(),
       findMany: vi.fn(),
     },
+    kmcDailyLog: {
+      upsert: vi.fn(),
+      delete: vi.fn(),
+    },
   };
   return { prismaMock: mock };
 });
@@ -137,13 +141,15 @@ describe('Checklist Backend Integration tests', () => {
       expect(res.json).toHaveBeenCalledWith({
         success: true,
         data: expect.objectContaining({
-          completion: { completedCount: 0, totalCount: 5, percent: 0 },
+          completion: { completedCount: 0, totalCount: 7, percent: 0 },
           items: expect.objectContaining({
             breastfeeding: { done: false, feedsCount: null, volumeMl: null },
             kmc: { done: false, minutes: null },
             temperature: { done: false, morningC: null, eveningC: null },
             weight: { done: false, grams: null, optional: true },
             skinCordCare: { done: false },
+            sleep: { done: false },
+            urinationStool: { done: false, urinationCount: null, stoolAbnormal: false },
             medication: { done: null, notes: null, optional: true },
             dangerSigns: { reviewed: false },
           }),
@@ -187,13 +193,15 @@ describe('Checklist Backend Integration tests', () => {
       expect(res.json).toHaveBeenCalledWith({
         success: true,
         data: expect.objectContaining({
-          completion: { completedCount: 4, totalCount: 5, percent: 80 }, // 4 out of 5 required are done: bf, kmc, skin, danger (temp is false)
+          completion: { completedCount: 4, totalCount: 7, percent: 57 }, // 4 out of 7 required are done: bf, kmc, skin, danger (temp, sleep, urinationStool are false)
           items: expect.objectContaining({
             breastfeeding: { done: true, feedsCount: 8, volumeMl: null },
             kmc: { done: true, minutes: 90 },
             temperature: { done: false, morningC: null, eveningC: null },
             weight: { done: true, grams: 2800, optional: true },
             skinCordCare: { done: true },
+            sleep: { done: false },
+            urinationStool: { done: false, urinationCount: null, stoolAbnormal: false },
             medication: { done: true, notes: 'Vitamins', optional: true },
             dangerSigns: { reviewed: true },
           }),
@@ -377,8 +385,8 @@ describe('Checklist Backend Integration tests', () => {
             expect.objectContaining({
               careDate: '2026-06-19',
               completedCount: 5,
-              totalCount: 5,
-              completionPercent: 100,
+              totalCount: 7,
+              completionPercent: 71,
             }),
           ],
         },

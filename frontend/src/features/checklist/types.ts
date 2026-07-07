@@ -31,6 +31,17 @@ export interface SkinCordCareItem {
   done: boolean;
 }
 
+// Phase 3 — KB §4.4
+export interface SleepItem {
+  done: boolean;
+}
+
+export interface UrinationStoolItem {
+  done: boolean;
+  urinationCount: number | null;
+  stoolAbnormal: boolean;
+}
+
 export interface MedicationItem {
   done: boolean | null;
   notes: string | null;
@@ -47,6 +58,8 @@ export interface ChecklistItems {
   temperature: TemperatureItem;
   weight: WeightItem;
   skinCordCare: SkinCordCareItem;
+  sleep: SleepItem;
+  urinationStool: UrinationStoolItem;
   medication: MedicationItem;
   dangerSigns: DangerSignsItem;
 }
@@ -90,6 +103,15 @@ export interface ChecklistLogInput {
   };
   skinCordCare?: {
     done?: boolean;
+  };
+  // Phase 3 — KB §4.4
+  sleep?: {
+    done?: boolean;
+  };
+  urinationStool?: {
+    done?: boolean;
+    urinationCount?: number | null;
+    stoolAbnormal?: boolean;
   };
   medication?: {
     done?: boolean | null;

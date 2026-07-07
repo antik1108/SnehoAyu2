@@ -76,7 +76,8 @@
       "title": "Quick Actions",
       "feeding": "Log Feeding",
       "temperature": "Log Temperature",
-      "kmc": "Log KMC"
+      "kmc": "Log KMC",
+      "checkBaby": "Check My Baby"
     },
     "healthStats": {
       "title": "Health Stats",
@@ -218,6 +219,17 @@
       "load": "We could not load growth readings.",
       "retry": "Try again",
       "duplicate": "A growth reading already exists for this date."
+    },
+    "weightGainNote": {
+      "normalFirstWeek": "Some weight loss in the first week is normal. Weight gain usually starts from around day 7–10.",
+      "excessLossFirstWeek": "Weight loss is more than 10% of birth weight. Mention this at your next visit or contact your health worker.",
+      "regainingWeight": "Your baby is in the weight-recovery phase. By day 14, birth weight should be regained.",
+      "notRegainedByDay14": "Birth weight has not been regained yet by day 14. Please discuss this with your health worker at the next visit.",
+      "weightLossAfterRecovery": "Weight has decreased since the last reading. Consider discussing this at your next visit.",
+      "steadyGain": "Weight gain is progressing. Expected rate is around 25–30 g per day at this age.",
+      "doubleWeightMilestone": "Your baby should double their birth weight around 4–5 months corrected age. Keep tracking at each visit.",
+      "doubledBirthWeight": "Your baby has doubled their birth weight — a great milestone!",
+      "onTrack": "Weight gain is on track. Keep attending follow-up visits."
     },
     "actions": {
       "addNew": "Add New Reading",
@@ -496,6 +508,8 @@
       "temperature": "Temperature",
       "weight": "Weight Check",
       "skinCordCare": "Skin and Cord Care",
+      "sleep": "Sleep",
+      "urinationStool": "Urination & Stool",
       "medication": "Medication",
       "dangerSigns": "Danger Signs Review"
     },
@@ -505,11 +519,27 @@
       "feedingTargetHint": "Target: 8–12 feeds in 24 hours",
       "kmcMinutes": "KMC minutes today",
       "kmcTargetHint": "You can enter total minutes for today.",
+      "kmcCategoryFeedback": "KMC Duration Category: {{category}}",
+      "kmcCategoryShort": "Short (up to 4 hours)",
+      "kmcCategoryExtended": "Extended (5–8 hours)",
+      "kmcCategoryLong": "Long (9–12 hours)",
+      "kmcCategoryContinuous": "Continuous (More than 12 hours)",
       "tempMorning": "Morning temperature (°C)",
       "tempEvening": "Evening temperature (°C)",
       "weightGrams": "Weight today (grams)",
       "optional": "Optional",
       "skinCordCareDone": "Skin and cord care completed",
+      "sleepBetweenFeeds": "Baby sleeps between feeds",
+      "wakesForFeeds": "Baby wakes for feedings",
+      "sleepHint": "Normal: 16–18 hours/day, waking every 2–3 hours to feed.",
+      "urinationCount": "Times urinated in 24 hours",
+      "urinationTargetHint": "Target: at least 6 times in 24 hours",
+      "urinationLowWarning": "Less than 6 times may mean the baby is not feeding enough — check the Danger Signs guide.",
+      "stoolAbnormal": "Was any stool watery or loose today?",
+      "stoolAbnormalHint": "Watery stool (not the normal soft yellow) is a danger sign — check the Danger Signs guide.",
+      "feedingLowWarning": "Fewer than 8 feeds today is below the target. If your baby is also refusing to feed or seems unwell, check the Danger Signs guide now.",
+      "sleepAbnormalWarning": "If your baby is very hard to wake or is missing feeds due to sleepiness, this can be a danger sign — check the Danger Signs guide.",
+      "tempOutOfRangeWarning": "Temperature outside 36–37.5°C is a danger sign (fever or hypothermia). Check the Danger Signs guide and seek help if needed.",
       "medicationDone": "Medication today",
       "medicationNA": "Not applicable",
       "medicationYes": "Done",
@@ -534,7 +564,8 @@
       "morningTemp": "Morning temperature must be between 30.0 and 43.0 °C (at most 1 decimal place).",
       "eveningTemp": "Evening temperature must be between 30.0 and 43.0 °C (at most 1 decimal place).",
       "weightGrams": "Weight must be an integer between 400 and 7000 grams.",
-      "medicationNotes": "Notes must not exceed 300 characters."
+      "medicationNotes": "Notes must not exceed 300 characters.",
+      "urinationCount": "Urination count must be an integer between 0 and 30."
     },
     "errors": {
       "loadFailed": "Could not load today’s checklist.",
@@ -605,7 +636,8 @@
       "growth": "Growth",
       "danger_signs": "Danger Signs",
       "emotional_support": "Emotional Support",
-      "immunization": "Immunization"
+      "immunization": "Immunization",
+      "newborn_care": "Newborn Care"
     }
   },
   "dangerSignsFull": {
@@ -614,7 +646,40 @@
     "observe": "What to observe",
     "action": "What to do",
     "callButton": "Emergency: Call Hospital",
-    "confirmCall": "Tap again to confirm call"
+    "confirmCall": "Tap again to confirm call",
+    "checkerTitle": "Check My Baby",
+    "checkerSubtitle": "Select any signs you are seeing right now",
+    "checkerInstruction": "Tap all the signs that apply, then press Check.",
+    "checkButton": "Check Now",
+    "checking": "Checking…",
+    "clearButton": "Clear & Check Again",
+    "noSymptomsSelected": "Select at least one sign to check.",
+    "referenceTitle": "Full Danger Signs Reference",
+    "referenceSubtitle": "Tap any sign to see what to look for and what to do",
+    "severity": {
+      "CRITICAL": "⚠ Seek care immediately",
+      "HIGH": "Consult a doctor soon",
+      "MEDIUM": "Watch closely",
+      "NORMAL": "No danger signs"
+    },
+    "symptoms": {
+      "cold_and_feeding_poorly": "Baby feels cold AND is feeding poorly",
+      "breathing_abnormal": "Breathing too fast or too slow (not 30–60 breaths/min)",
+      "gasping_noisy_breathing": "Grunting, gasping, chest indrawing, or nostrils flaring",
+      "blue_discoloration": "Lips, tongue, or skin appear blue",
+      "feels_cold": "Body feels cold to touch (temperature below 36°C)",
+      "fever": "Body feels hot (temperature above 37.5°C)",
+      "cord_infection_signs": "Cord: redness, swelling, pus, or bad smell",
+      "convulsions": "Fits or convulsions (jerky, uncontrolled movements)",
+      "limp_floppy": "Body is limp or floppy — arms and legs not flexed",
+      "lethargic": "Very inactive, difficult to wake, not responding",
+      "eye_discharge": "Red or swollen eyelids with pus",
+      "jaundice": "Yellow skin or eyes",
+      "excessive_sleepiness": "Very hard to wake, missing feeds due to sleepiness",
+      "watery_stool": "Watery or liquid stool (not normal soft yellow stool)",
+      "persistent_vomiting": "Vomiting large amounts repeatedly (not normal spit-up)",
+      "poor_feeding": "Unable to suck, tires out quickly, or refuses to feed"
+    }
   },
   "messageHistory": {
     "title": "Message History",

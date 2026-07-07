@@ -31,6 +31,15 @@ export interface ChecklistLogInput {
   skinCordCare?: {
     done?: boolean;
   };
+  // Phase 3 — KB §4.4
+  sleep?: {
+    done?: boolean;
+  };
+  urinationStool?: {
+    done?: boolean;
+    urinationCount?: number | null;
+    stoolAbnormal?: boolean;
+  };
   medication?: {
     done?: boolean | null;
     notes?: string | null;
@@ -46,6 +55,8 @@ const TOP_LEVEL_KEYS = new Set([
   'temperature',
   'weight',
   'skinCordCare',
+  'sleep',
+  'urinationStool',
   'medication',
   'dangerSigns',
 ]);
@@ -232,8 +243,40 @@ export function validateChecklistLogInput(value: unknown): ValidationResult<Chec
     };
   }
 
-  const medication = readSection(value.medication, 'medication');
-  if (medication.error) {
+  // Phase 3 — Sleep section (KB §4.4)
+  const sleep = readSection(value.sleep, 'sleep');
+  if (sleep.error) {
+    errors.push(sleep.error);
+  } else if (sleep.value) {
+    errors.push(...validateSectionUnknownKeys(sleep.value, ['done'], 'sleep'));
+    const done = readBoolean(sleep.value.done, 'sleep.done');
+    if (done.error) errors.push(done.error);
+    data.sleep = {
+      ...(done.value !== undefined ? { done: done.value } : {}),
+    };
+  }
+
+  // Phase 3 — Urination/Stool section (KB §4.4)
+  const urinationStool = readSection(value.urinationStool, 'urinationStool');
+  if (urinationStool.error) {
+    errors.push(urinationStool.error);
+  } else if (urinationStool.value) {
+    errors.push(...validateSectionUnknownKeys(urinationStool.value, ['done', 'urinationCount', 'stoolAbnormal'], 'urinationStool'));
+    const done = readBoolean(urinationStool.value.done, 'urinationStool.done');
+    // urinationCount: 0–30 times/day; null means not recorded
+    const urinationCount = readNullableInteger(urinationStool.value.urinationCount, 'urinationStool.urinationCount', 0, 30);
+    const stoolAbnormal = readBoolean(urinationStool.value.stoolAbnormal, 'urinationStool.stoolAbnormal');
+    if (done.error) errors.push(done.error);
+    if (urinationCount.error) errors.push(urinationCount.error);
+    if (stoolAbnormal.error) errors.push(stoolAbnormal.error);
+    data.urinationStool = {
+      ...(done.value !== undefined ? { done: done.value } : {}),
+      ...(urinationCount.value !== undefined ? { urinationCount: urinationCount.value } : {}),
+      ...(stoolAbnormal.value !== undefined ? { stoolAbnormal: stoolAbnormal.value } : {}),
+    };
+  }
+
+  const medication = readSection(value.medication, 'medication');  if (medication.error) {
     errors.push(medication.error);
   } else if (medication.value) {
     errors.push(...validateSectionUnknownKeys(medication.value, ['done', 'notes'], 'medication'));

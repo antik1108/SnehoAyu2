@@ -27,6 +27,74 @@ type GrowthRecord = {
   createdAt?: Date;
 };
 
+// ─── Weight-gain validation (KB §7) ──────────────────────────────────────────
+
+export type WeightGainFlag = 'NORMAL' | 'REVIEW' | 'INFO';
+
+export interface WeightGainNote {
+  flag: WeightGainFlag;
+  /** Short, mother-facing narrative text key (resolved in frontend via i18n). */
+  messageKey: string;
+}
+
+/**
+ * Validates a weight entry against the expected weight-gain windows from
+ * KB §7. Uses corrected age throughout — this cohort is preterm.
+ *
+ * Returns a narrative flag and i18n message key that the frontend renders
+ * as a contextual note under the weight tile in CurrentMeasurementsCard.
+ *
+ * This is a MOTHER-FACING informational layer, not a clinical diagnostic tool.
+ * It sits on top of the WHO z-score chart already present in the app.
+ */
+export function validateWeightGain(
+  birthWeightGrams: number,
+  currentWeightGrams: number,
+  correctedAgeDays: number,
+  previousWeightGrams?: number | null,
+): WeightGainNote {
+  // KB §7: first 7 days — up to 10% weight loss is normal
+  if (correctedAgeDays >= 0 && correctedAgeDays <= 7) {
+    const lossPercent = ((birthWeightGrams - currentWeightGrams) / birthWeightGrams) * 100;
+    if (lossPercent > 10) {
+      return { flag: 'REVIEW', messageKey: 'growth.weightGainNote.excessLossFirstWeek' };
+    }
+    return { flag: 'NORMAL', messageKey: 'growth.weightGainNote.normalFirstWeek' };
+  }
+
+  // KB §7: by day 14 should have regained birth weight
+  if (correctedAgeDays >= 8 && correctedAgeDays <= 21) {
+    if (correctedAgeDays >= 14 && currentWeightGrams < birthWeightGrams) {
+      return { flag: 'REVIEW', messageKey: 'growth.weightGainNote.notRegainedByDay14' };
+    }
+    return { flag: 'NORMAL', messageKey: 'growth.weightGainNote.regainingWeight' };
+  }
+
+  // KB §7: after day 14 through ~4 months — expect ~25–30 g/day
+  if (correctedAgeDays > 21 && correctedAgeDays <= 120) {
+    if (previousWeightGrams != null && previousWeightGrams > 0) {
+      const gainPerDay = (currentWeightGrams - previousWeightGrams);
+      // gainPerDay here is total gain since last reading; we flag if it's
+      // negative (weight loss after the recovery window)
+      if (gainPerDay < 0) {
+        return { flag: 'REVIEW', messageKey: 'growth.weightGainNote.weightLossAfterRecovery' };
+      }
+    }
+    return { flag: 'NORMAL', messageKey: 'growth.weightGainNote.steadyGain' };
+  }
+
+  // KB §7: 4–5 months corrected — should have doubled birth weight
+  if (correctedAgeDays >= 121 && correctedAgeDays <= 150) {
+    if (currentWeightGrams < birthWeightGrams * 2) {
+      // INFO not REVIEW — may still be on track, just surfacing the milestone
+      return { flag: 'INFO', messageKey: 'growth.weightGainNote.doubleWeightMilestone' };
+    }
+    return { flag: 'NORMAL', messageKey: 'growth.weightGainNote.doubledBirthWeight' };
+  }
+
+  return { flag: 'NORMAL', messageKey: 'growth.weightGainNote.onTrack' };
+}
+
 function assertMotherUser(user: RequestUser | undefined): RequestUser {
   if (!user) {
     throw createError(401, 'AUTH_TOKEN_REQUIRED', 'Authentication required. Please log in.');
@@ -291,11 +359,29 @@ export async function getLatestGrowthReadingForMother(user: RequestUser) {
   });
 
   if (latest) {
+    // Fetch the reading just before this one for daily-gain calculation (KB §7)
+    const previous = await prisma.growthReading.findFirst({
+      where: {
+        motherProfileId: motherProfile.id,
+        babyProfileId: babyProfile.id,
+        readingDate: { lt: latest.readingDate },
+      },
+      orderBy: [{ readingDate: 'desc' }, { createdAt: 'desc' }],
+    });
+
+    const weightGainNote = validateWeightGain(
+      babyProfile.birthWeightGrams,
+      latest.weightGrams,
+      latest.correctedAgeDays,
+      previous?.weightGrams ?? null,
+    );
+
     return {
       success: true,
       data: {
         ...mapGrowthReading(latest, babyProfile.sex as Sex),
         source: 'growth' as const,
+        weightGainNote,
       },
     };
   }
@@ -306,6 +392,7 @@ export async function getLatestGrowthReadingForMother(user: RequestUser) {
       ...mapDischargeBaseline(babyProfile),
       chronologicalAge: undefined,
       correctedAge: undefined,
+      weightGainNote: null,
     },
   };
 }

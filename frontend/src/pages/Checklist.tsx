@@ -15,6 +15,8 @@ import {
   PartyPopper,
   CircleAlert,
   ArrowLeft,
+  Moon,
+  Droplets,
   type LucideIcon,
 } from 'lucide-react';
 import { AiAssistantButton } from '../components/dashboard/AiAssistantButton';
@@ -30,6 +32,7 @@ import {
   validateTemperature,
   validateWeight,
   validateMedication,
+  validateUrinationCount,
 } from '../features/checklist/validation';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
@@ -267,6 +270,7 @@ const BreastfeedingSection: React.FC<{
   focusRef?: React.Ref<HTMLElement>;
 }> = ({ initial, onSaved, focusRef }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [state, setState] = useState<BFState>({
     done: initial.done ? 'yes' : initial.feedsCount !== null ? 'yes' : '',
     feedsCount: initial.feedsCount !== null ? String(initial.feedsCount) : '',
@@ -341,6 +345,19 @@ const BreastfeedingSection: React.FC<{
         />
         <FieldError msg={errors.feedsCount} />
         <p className="text-xs text-text-muted mt-1">{t('checklist.fields.feedingTargetHint')}</p>
+        {/* KB §4.1: feeding <8/day for a newborn is a warning threshold; <6 is critical */}
+        {(() => {
+          const n = state.feedsCount.trim() !== '' ? Number(state.feedsCount) : null;
+          if (n !== null && n < 8) {
+            return (
+              <DangerWarningBanner
+                message={t('checklist.fields.feedingLowWarning')}
+                onViewGuide={() => navigate('/danger-signs')}
+              />
+            );
+          }
+          return null;
+        })()}
       </div>
       <div>
         <Label htmlFor="bf-volume">{t('checklist.fields.volumeMl')}</Label>
@@ -431,6 +448,18 @@ const KmcSection: React.FC<{
           onChange={(e) => setMinutes(e.target.value)}
         />
         <FieldError msg={errors.minutes} />
+        {(() => {
+          const mins = Number(minutes);
+          if (!minutes || Number.isNaN(mins) || mins <= 0 || mins > 1440) return null;
+          const categoryKey = mins <= 240 ? 'Short' : mins <= 480 ? 'Extended' : mins <= 720 ? 'Long' : 'Continuous';
+          return (
+            <p className="text-xs font-semibold text-primary mt-1">
+              {t('checklist.fields.kmcCategoryFeedback', {
+                category: t(`checklist.fields.kmcCategory${categoryKey}`)
+              })}
+            </p>
+          );
+        })()}
         <p className="text-xs text-text-muted mt-1">{t('checklist.fields.kmcTargetHint')}</p>
       </div>
     </SectionCard>
@@ -445,12 +474,26 @@ const TemperatureSection: React.FC<{
   focusRef?: React.Ref<HTMLElement>;
 }> = ({ initial, onSaved, focusRef }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [done, setDone] = useState(initial.done ? 'yes' : '');
   const [morningC, setMorningC] = useState(initial.morningC !== null ? String(initial.morningC) : '');
   const [eveningC, setEveningC] = useState(initial.eveningC !== null ? String(initial.eveningC) : '');
   const [errors, setErrors] = useState<{ morning?: string; evening?: string }>({});
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+
+  // KB §4.1: axillary temp <36°C = CRITICAL (feels cold / hypothermia),
+  //          axillary temp >37.5°C = CRITICAL (fever)
+  // Note: KB §4.1 danger threshold for fever is >37°C; §5.2 uses >37.5°C as
+  // the examination-table threshold. We use 37.5°C here per §5.2 to avoid
+  // over-alerting on borderline readings in self-reported home monitoring.
+  const TEMP_LOW = 36.0;
+  const TEMP_HIGH = 37.5;
+  function isTempDangerous(val: string): boolean {
+    const n = Number(val);
+    return val.trim() !== '' && !isNaN(n) && (n < TEMP_LOW || n > TEMP_HIGH);
+  }
+  const showTempWarning = isTempDangerous(morningC) || isTempDangerous(eveningC);
 
   const save = async () => {
     const v = validateTemperature(morningC, eveningC);
@@ -530,6 +573,13 @@ const TemperatureSection: React.FC<{
         />
         <FieldError msg={errors.evening} />
       </div>
+      {/* KB §4.1: temperature out of safe range is a CRITICAL danger sign */}
+      {showTempWarning && (
+        <DangerWarningBanner
+          message={t('checklist.fields.tempOutOfRangeWarning')}
+          onViewGuide={() => navigate('/danger-signs')}
+        />
+      )}
     </SectionCard>
   );
 };
@@ -736,6 +786,208 @@ const MedicationSection: React.FC<{
   );
 };
 
+// ─── Inline danger-sign warning banner ──────────────────────────────────────
+// Surfaces a non-blocking contextual warning when a logged value falls outside
+// the safe range defined in KB §4.1. Does not replace the Danger Sign Checker
+// — it routes the mother there for a full assessment.
+
+const DangerWarningBanner: React.FC<{ message: string; onViewGuide: () => void }> = ({
+  message,
+  onViewGuide,
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div
+      role="alert"
+      className="flex items-start gap-2 rounded-xl border border-warning/40 bg-warning/10 px-3 py-2.5"
+    >
+      <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-warning" aria-hidden="true" />
+      <div className="flex-1 min-w-0">
+        <p className="text-xs font-medium text-warning leading-snug">{message}</p>
+        <button
+          type="button"
+          onClick={onViewGuide}
+          className="mt-1 flex items-center gap-1 text-xs font-semibold text-warning underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warning"
+        >
+          {t('checklist.fields.viewDangerSignsGuide')}
+          <ChevronRight className="h-3 w-3" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// ─── Section: Sleep ──────────────────────────────────────────────────────────
+// Source: KB §4.4 — "Sleeps between feeds", "Wakes for feedings"
+
+const SleepSection: React.FC<{
+  initial: TodayChecklist['items']['sleep'];
+  onSaved: (updated: TodayChecklist) => void;
+}> = ({ initial, onSaved }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [done, setDone] = useState(initial.done ? 'yes' : '');
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  const save = async () => {
+    setSaving(true);
+    setSaveError(null);
+    try {
+      const updated = await updateTodayChecklist({ sleep: { done: done === 'yes' } });
+      onSaved(updated);
+    } catch {
+      setSaveError(t('checklist.errors.saveFailed'));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <SectionCard
+      id="section-sleep"
+      icon={Moon}
+      title={t('checklist.sections.sleep')}
+      done={initial.done}
+      saving={saving}
+      onSave={save}
+      error={saveError}
+    >
+      <ToggleGroup
+        name="sleep-done"
+        options={[
+          { value: 'yes', label: t('onboarding.common.yes') },
+          { value: 'no', label: t('onboarding.common.no') },
+        ]}
+        value={done}
+        onChange={setDone}
+      />
+      <p className="text-xs text-text-muted">{t('checklist.fields.sleepHint')}</p>
+      {/* Danger warning: if mother marks "no" (baby not sleeping between feeds / not waking),
+          flag excessive sleepiness as a HIGH danger sign per KB §4.1 */}
+      {done === 'no' && (
+        <DangerWarningBanner
+          message={t('checklist.fields.sleepAbnormalWarning')}
+          onViewGuide={() => navigate('/danger-signs')}
+        />
+      )}
+    </SectionCard>
+  );
+};
+
+// ─── Section: Urination & Stool ──────────────────────────────────────────────
+// Source: KB §4.4 — "Urinates at least 6 times in 24 hours", "Stools not watery"
+
+const UrinationStoolSection: React.FC<{
+  initial: TodayChecklist['items']['urinationStool'];
+  onSaved: (updated: TodayChecklist) => void;
+}> = ({ initial, onSaved }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [done, setDone] = useState(initial.done ? 'yes' : '');
+  const [urinationCount, setUrinationCount] = useState(
+    initial.urinationCount !== null ? String(initial.urinationCount) : '',
+  );
+  const [stoolAbnormal, setStoolAbnormal] = useState(initial.stoolAbnormal ? 'yes' : '');
+  const [errors, setErrors] = useState<{ count?: string }>({});
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  // Derived warning flags (KB §4.1)
+  const countNum = urinationCount.trim() !== '' ? Number(urinationCount) : null;
+  const showLowUrinationWarning = countNum !== null && countNum < 6;
+  const showStoolWarning = stoolAbnormal === 'yes';
+
+  const save = async () => {
+    const v = validateUrinationCount(urinationCount);
+    if (!v.valid) {
+      setErrors({ count: t('checklist.validation.urinationCount') });
+      return;
+    }
+    setErrors({});
+    setSaving(true);
+    setSaveError(null);
+    try {
+      const updated = await updateTodayChecklist({
+        urinationStool: {
+          done: done === 'yes',
+          urinationCount: urinationCount.trim() !== '' ? Number(urinationCount) : null,
+          stoolAbnormal: stoolAbnormal === 'yes',
+        },
+      });
+      onSaved(updated);
+    } catch {
+      setSaveError(t('checklist.errors.saveFailed'));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <SectionCard
+      id="section-urination-stool"
+      icon={Droplets}
+      title={t('checklist.sections.urinationStool')}
+      done={initial.done}
+      saving={saving}
+      onSave={save}
+      error={saveError}
+    >
+      <ToggleGroup
+        name="urination-done"
+        options={[
+          { value: 'yes', label: t('onboarding.common.yes') },
+          { value: 'no', label: t('onboarding.common.no') },
+        ]}
+        value={done}
+        onChange={setDone}
+      />
+      <div>
+        <Label htmlFor="urination-count">{t('checklist.fields.urinationCount')}</Label>
+        <Input
+          id="urination-count"
+          type="number"
+          inputMode="numeric"
+          min={0}
+          max={30}
+          placeholder="e.g. 7"
+          value={urinationCount}
+          onChange={(e) => setUrinationCount(e.target.value)}
+        />
+        <FieldError msg={errors.count} />
+        <p className="text-xs text-text-muted mt-1">{t('checklist.fields.urinationTargetHint')}</p>
+        {/* KB §4.1: urination <6/day is a danger-adjacent sign (poor feeding indicator) */}
+        {showLowUrinationWarning && (
+          <DangerWarningBanner
+            message={t('checklist.fields.urinationLowWarning')}
+            onViewGuide={() => navigate('/danger-signs')}
+          />
+        )}
+      </div>
+      <div>
+        <p className="text-xs font-medium text-text-muted mb-1">{t('checklist.fields.stoolAbnormal')}</p>
+        <ToggleGroup
+          name="stool-abnormal"
+          options={[
+            { value: 'yes', label: t('onboarding.common.yes') },
+            { value: 'no', label: t('onboarding.common.no') },
+          ]}
+          value={stoolAbnormal}
+          onChange={setStoolAbnormal}
+        />
+        <p className="text-xs text-text-muted mt-1">{t('checklist.fields.stoolAbnormalHint')}</p>
+        {/* KB §4.1: watery stool is a HIGH danger sign */}
+        {showStoolWarning && (
+          <DangerWarningBanner
+            message={t('checklist.fields.stoolAbnormalHint')}
+            onViewGuide={() => navigate('/danger-signs')}
+          />
+        )}
+      </div>
+    </SectionCard>
+  );
+};
+
 // ─── Section: Danger Signs ───────────────────────────────────────────────────
 
 const DangerSignsSection: React.FC<{
@@ -819,7 +1071,7 @@ const ChecklistError: React.FC<{ onRetry: () => void }> = ({ onRetry }) => {
 const ChecklistSkeleton: React.FC = () => (
   <div className="space-y-4 animate-pulse">
     <div className="h-24 rounded-2xl bg-border/30" />
-    {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
       <div key={i} className="h-44 rounded-2xl bg-border/30" />
     ))}
   </div>
@@ -958,6 +1210,14 @@ export const Checklist: React.FC = () => {
             />
             <SkinCordCareSection
               initial={checklist.items.skinCordCare}
+              onSaved={handleSaved}
+            />
+            <SleepSection
+              initial={checklist.items.sleep}
+              onSaved={handleSaved}
+            />
+            <UrinationStoolSection
+              initial={checklist.items.urinationStool}
               onSaved={handleSaved}
             />
             <MedicationSection

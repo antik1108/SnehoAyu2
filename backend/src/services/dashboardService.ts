@@ -216,7 +216,14 @@ export async function getDashboardHomeForMother(user: RequestUser): Promise<Dash
           },
       dailyMessage: (() => {
         const language: 'bn' | 'hi' | 'en' = currentUser.preferredLanguage === 'hi' || currentUser.preferredLanguage === 'en' ? currentUser.preferredLanguage : 'bn';
-        const { text } = resolveDailyMessageForMother(babyProfile.dischargeDate, today, language);
+        // Phase 2: message selection uses corrected age (KB §2 implementation rule).
+        const { text } = resolveDailyMessageForMother(
+          babyProfile.dateOfBirth,
+          gestationalAgeWeeks,
+          babyProfile.dischargeDate,
+          today,
+          language,
+        );
         return {
           available: text !== null,
           text,
