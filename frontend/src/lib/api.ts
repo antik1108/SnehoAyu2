@@ -6,7 +6,7 @@ export interface RetryableAxiosRequestConfig extends InternalAxiosRequestConfig 
   skipAuthRefresh?: boolean;
 }
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api';
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api'; // Live API URL
 
 const api = axios.create({
   baseURL: apiBaseUrl,
