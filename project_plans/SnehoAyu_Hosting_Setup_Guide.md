@@ -396,10 +396,7 @@ Before clicking Deploy, scroll down to 'Environment Variables' and add:
 
 | Variable Name | Value | Notes |
 | :---- | :---- | :---- |
-| VITE\_API\_URL | https://snehoayu-backend.up.railway.app | Your Railway backend URL from Step 2.5 |
-| VITE\_APP\_NAME | SnehoAyu |  |
-| VITE\_R2\_PUBLIC\_URL | https://media.snehoayu.com | Your R2 public URL from Step 3 |
-| VITE\_APP\_ENV | production |  |
+| VITE\_API\_BASE\_URL | https://snehoayu-backend.up.railway.app/api | Your Railway backend URL from Step 2.5 **with /api appended at the end** |
 
 All frontend environment variables MUST start with VITE\_ in a Vite/React project. Variables without VITE\_ are invisible to the browser for security.
 
@@ -903,10 +900,7 @@ Keep this page with you during setup. Every variable that needs to be set, where
 
 | Variable | Where to Get It | Example Value |
 | :---- | :---- | :---- |
-| VITE\_API\_URL | Railway → your service → domain URL | https://snehoayu-backend.up.railway.app |
-| VITE\_APP\_NAME | Hardcode | SnehoAyu |
-| VITE\_R2\_PUBLIC\_URL | Cloudflare R2 public URL | https://pub-abc.r2.dev |
-| VITE\_APP\_ENV | Hardcode | production |
+| VITE\_API\_BASE\_URL | Railway → your service → domain URL | https://snehoayu-backend.up.railway.app/api |
 
 ## **Local Development Only — backend/.env**
 
