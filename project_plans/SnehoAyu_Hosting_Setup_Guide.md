@@ -214,13 +214,12 @@ This is the most important step. Click on your service in Railway → click 'Var
 | Variable Name | Value / Where to Get It | Notes |
 | :---- | :---- | :---- |
 | DATABASE\_URL | Paste the POOLED connection string from Neon Step 1.5 | Must be the pooled URL |
-| JWT\_SECRET | Generate: run  openssl rand \-base64 32  in terminal | Random 32-char string. Keep secret. |
-| JWT\_REFRESH\_SECRET | Generate another: openssl rand \-base64 32 | Different from JWT\_SECRET |
-| JWT\_EXPIRES\_IN | 24h | Access token lifetime |
-| JWT\_REFRESH\_EXPIRES\_IN | 30d | Refresh token lifetime |
+| JWT\_ACCESS\_SECRET | Generate: run  openssl rand \-base64 32  in terminal | Random 32-char string. Keep secret. |
+| ACCESS\_TOKEN\_EXPIRES\_IN | 24h | Access token lifetime |
+| REFRESH\_TOKEN\_EXPIRES\_IN\_DAYS | 30 | Refresh token lifetime in days. **Must be a positive integer** (like 30, not 30d) |
 | PORT | 3000 | Railway uses this port |
 | NODE\_ENV | production |  |
-| CORS\_ORIGIN | https://snehoayu.vercel.app | Update after Vercel setup in Step 4 |
+| CORS\_ORIGINS | https://snehoayu.vercel.app | Comma-separated list of allowed frontend origins (no trailing slash). Update after Vercel setup in Step 4 |
 | MSG91\_AUTH\_KEY | Get from MSG91 dashboard — Step 5 | Fill in after Step 5 |
 | MSG91\_SENDER\_ID | SNHAYU  (6 chars, your choice) | Shown as SMS sender name |
 | MSG91\_TEMPLATE\_OTP | Get from MSG91 dashboard — Step 5 | OTP message template ID |
@@ -229,7 +228,7 @@ This is the most important step. Click on your service in Railway → click 'Var
 | R2\_SECRET\_ACCESS\_KEY | Get from Cloudflare dashboard — Step 3 | Fill in after Step 3 |
 | R2\_BUCKET\_NAME | snehoayu-media | The bucket you create in Step 3 |
 | R2\_PUBLIC\_URL | https://media.snehoayu.com  (or your R2 public URL) | Fill in after Step 3 |
-| BCRYPT\_ROUNDS | 12 | Password hashing strength |
+| BCRYPT\_PASSWORD\_ROUNDS | 12 | Password hashing strength (must be at least 12) |
 
 ### **2.4 — Set the Start Command**
 
@@ -884,14 +883,13 @@ Keep this page with you during setup. Every variable that needs to be set, where
 | Variable | Where to Get It | Example Value |
 | :---- | :---- | :---- |
 | DATABASE\_URL | Neon dashboard → Connection String (pooled) | postgresql://user:pass@host/db?sslmode=require |
-| JWT\_SECRET | Generate: openssl rand \-base64 32 | Kx9mP2qR7vN4wL8eA1bC6dF3gH5jM0n |
-| JWT\_REFRESH\_SECRET | Generate: openssl rand \-base64 32 | Different random string — not same as above |
-| JWT\_EXPIRES\_IN | Hardcode | 24h |
-| JWT\_REFRESH\_EXPIRES\_IN | Hardcode | 30d |
+| JWT\_ACCESS\_SECRET | Generate: openssl rand \-base64 32 | Kx9mP2qR7vN4wL8eA1bC6dF3gH5jM0n |
+| ACCESS\_TOKEN\_EXPIRES\_IN | Hardcode | 24h |
+| REFRESH\_TOKEN\_EXPIRES\_IN\_DAYS | Hardcode | 30 |
 | PORT | Hardcode | 3000 |
 | NODE\_ENV | Hardcode | production |
-| CORS\_ORIGIN | Vercel project URL | https://snehoayu.vercel.app |
-| BCRYPT\_ROUNDS | Hardcode | 12 |
+| CORS\_ORIGINS | Vercel project URL | https://snehoayu.vercel.app |
+| BCRYPT\_PASSWORD\_ROUNDS | Hardcode | 12 |
 | MSG91\_AUTH\_KEY | MSG91 dashboard → API section | 123456TxxxxXXXXXXXXX |
 | MSG91\_SENDER\_ID | Your DLT-approved sender ID | SNHAYU |
 | MSG91\_TEMPLATE\_OTP | MSG91 dashboard → Templates → OTP template ID | 1234567890123456789 |
@@ -916,7 +914,7 @@ Keep this page with you during setup. Every variable that needs to be set, where
 | :---- | :---- |
 | DATABASE\_URL | Neon DEVELOP branch connection string (not production) |
 | NODE\_ENV | development |
-| CORS\_ORIGIN | http://localhost:5173 |
+| CORS\_ORIGINS | http://localhost:5173 |
 | PORT | 3000 |
 | All others | Same values as Railway — copy from your Railway variables |
 
