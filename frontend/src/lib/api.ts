@@ -8,9 +8,13 @@ export interface RetryableAxiosRequestConfig extends InternalAxiosRequestConfig 
 }
 
 export function resolveApiBaseUrl(): string {
-  const configuredUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+  let configuredUrl = import.meta.env.VITE_API_BASE_URL?.trim();
   if (configuredUrl) {
-    return configuredUrl.replace(/\/+$/, '');
+    configuredUrl = configuredUrl.replace(/\/+$/, '');
+    if (!configuredUrl.endsWith('/api')) {
+      configuredUrl = `${configuredUrl}/api`;
+    }
+    return configuredUrl;
   }
 
   if (import.meta.env.PROD) {
