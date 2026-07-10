@@ -36,6 +36,9 @@ import dangerSignRouter from './routes/dangerSignRoutes.js';
 
 const app = express();
 
+// Trust reverse proxy (Railway ingress) for correct client IP detection in rate limiter
+app.set('trust proxy', 1);
+
 app.use(helmet());
 app.use(corsMiddleware);
 app.use(express.json({ limit: '10kb' }));
