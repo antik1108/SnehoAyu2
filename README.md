@@ -320,7 +320,7 @@ npm run dev                  # http://localhost:4000
 
 # frontend
 cd frontend
-cp .env.example .env   # optional — only needed if your API isn't at localhost:4000/api
+cp .env.example .env   # local default is http://localhost:4000/api
 npm run dev              # http://localhost:5173
 ```
 
@@ -330,13 +330,19 @@ npm run dev              # http://localhost:5173
 | --- | --- | --- |
 | `DATABASE_URL` | Yes | Postgres connection string. Works with local Postgres or a hosted provider (e.g. Neon) — include `?sslmode=require` for hosted Postgres. |
 | `JWT_ACCESS_SECRET` | Yes | Generate with `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"`. Never reuse the placeholder in `.env.example` or commit a real value. |
-| `PORT` | No (default `4000`) | |
-| `CORS_ORIGINS` | No | Comma-separated allowed frontend origins. |
-| `ACCESS_TOKEN_EXPIRES_IN` / `REFRESH_TOKEN_EXPIRES_IN_DAYS` | No | Token lifetimes. |
+| `PORT` | No (default `4000`) | Hosting providers such as Railway/Render usually set this automatically. |
+| `CORS_ORIGINS` | Required in production | Comma-separated allowed frontend origins, e.g. `https://snehoayu.in,https://www.snehoayu.in`. |
+| `ACCESS_TOKEN_EXPIRES_IN` / `REFRESH_TOKEN_EXPIRES_IN_DAYS` | Yes | Token lifetimes. |
 | `ENABLE_DEV_RANDOM_GROUP_ASSIGNMENT` | No | Dev-only escape hatch that randomly assigns study/control group instead of requiring a researcher to do it. **Never enable in production** — it breaks randomization integrity. |
-| `BCRYPT_PASSWORD_ROUNDS` | No (default `12`) | |
+| `BCRYPT_PASSWORD_ROUNDS` | Yes | Use `12` unless you have measured login/signup latency and intentionally tune it. |
 | `GROQ_API_KEY` | No — only for AI Care Assistant | Get one at [console.groq.com/keys](https://console.groq.com/keys). Without it, `/api/insights/generate` returns `503 AI_NOT_CONFIGURED`; the rest of the app works normally. |
 | `GROQ_MODEL` | No (default `llama-3.3-70b-versatile`) | |
+
+### Frontend environment variables (`frontend/.env`)
+
+| Variable | Required | Notes |
+| --- | --- | --- |
+| `VITE_API_BASE_URL` | Required in production | Backend API base URL. Use your stable API domain, e.g. `https://api.snehoayu.in/api`. Missing values fail production builds instead of silently calling localhost. |
 
 `backend/.env` and `frontend/.env` are git-ignored — only the `.env.example`
 templates are committed. Never commit a real `.env`; if a real credential

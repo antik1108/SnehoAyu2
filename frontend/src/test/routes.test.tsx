@@ -70,9 +70,9 @@ describe('AppRoutes routing and guards', () => {
     );
   };
 
-  it('renders LanguageSelect on /language-select', () => {
+  it('renders LanguageSelect on /language-select', async () => {
     renderWithAuth('/language-select', {});
-    expect(screen.getByText('Select Language')).toBeInTheDocument();
+    expect(await screen.findByText('Select Language')).toBeInTheDocument();
   });
 
   it('renders NotFound component on unknown paths', () => {
@@ -87,15 +87,15 @@ describe('AppRoutes routing and guards', () => {
 
   it('redirects to /login on protected routes when unauthenticated', async () => {
     renderWithAuth('/dashboard', { status: 'unauthenticated', isAuthenticated: false });
-    expect(screen.getByText('Welcome back')).toBeInTheDocument();
+    expect(await screen.findByText('Welcome back')).toBeInTheDocument();
   });
 
-  it('renders content on protected routes when authenticated', () => {
+  it('renders content on protected routes when authenticated', async () => {
     renderWithAuth('/dashboard', {
       status: 'authenticated',
       isAuthenticated: true,
       user: { id: '1', phone: '+919876543210', role: 'mother', preferredLanguage: 'bn', hasPin: true },
     });
-    expect(screen.getByRole('heading', { name: 'Home' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'Home' })).toBeInTheDocument();
   });
 });

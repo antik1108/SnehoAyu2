@@ -10,6 +10,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
       includeAssets: ['favicon.svg', 'icons.svg'],
       manifest: {
         name: 'SnehoAyu — Preterm Infant Care Companion',
@@ -25,22 +26,15 @@ export default defineConfig({
         ],
       },
       workbox: {
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         globPatterns: ['**/*.{js,css,html,svg,png,ico,json}'],
         runtimeCaching: [
           {
             urlPattern: /\/locales\/.*\.json$/,
             handler: 'CacheFirst',
             options: { cacheName: 'translations-cache' },
-          },
-          {
-            urlPattern: /\/api\/checklist\/.*/,
-            handler: 'NetworkFirst',
-            options: { cacheName: 'checklist-cache', networkTimeoutSeconds: 5 },
-          },
-          {
-            urlPattern: /\/api\/danger-signs.*/,
-            handler: 'CacheFirst',
-            options: { cacheName: 'danger-signs-cache' },
           },
         ],
       },

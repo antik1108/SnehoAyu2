@@ -1,12 +1,29 @@
 import axios, { type InternalAxiosRequestConfig, type AxiosRequestConfig } from 'axios';
 import { setServerDown } from './serverStatus';
+import { readAuthSession, writeAuthSession, clearAuthSession } from './authStorage';
 
 export interface RetryableAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
   skipAuthRefresh?: boolean;
 }
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000/api'; // Live API URL
+export function resolveApiBaseUrl(): string {
+  const configuredUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+  if (configuredUrl) {
+    return configuredUrl.replace(/\/+$/, '');
+  }
+
+  if (import.meta.env.PROD) {
+    throw new Error(
+      'VITE_API_BASE_URL is required for production builds. ' +
+        'Set it to your backend API URL, for example https://api.snehoayu.in/api.'
+    );
+  }
+
+  return 'http://localhost:4000/api';
+}
+
+const apiBaseUrl = resolveApiBaseUrl();
 
 const api = axios.create({
   baseURL: apiBaseUrl,
@@ -95,7 +112,6 @@ api.interceptors.response.use(
 
         (async () => {
           try {
-            const { readAuthSession, writeAuthSession } = await import('./authStorage');
             const session = readAuthSession();
             const refreshToken = session?.refreshToken;
 
@@ -121,7 +137,6 @@ api.interceptors.response.use(
             }
             resolveRefresh(accessToken);
           } catch (err) {
-            const { clearAuthSession } = await import('./authStorage');
             clearAuthSession();
             setAccessToken(null);
             if (unauthorizedHandler) unauthorizedHandler();

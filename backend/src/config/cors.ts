@@ -48,6 +48,14 @@ function resolveAllowedOrigins(): string[] {
 
 const allowedOrigins = resolveAllowedOrigins();
 
+if (process.env['NODE_ENV'] === 'production' && allowedOrigins.length === 0) {
+  throw new Error(
+    '[Config] CORS_ORIGINS is required in production. ' +
+      'Set it to the hosted frontend origins, for example: ' +
+      'https://snehoayu.in,https://www.snehoayu.in'
+  );
+}
+
 /**
  * Returns a fully configured CORS middleware.
  * - Validates the `Origin` header against the resolved allow-list.
