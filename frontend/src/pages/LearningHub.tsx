@@ -1,100 +1,196 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import { AppShell } from '../components/layout/AppShell';
-import { AudioPlayer } from '../components/AudioPlayer';
-import { learningHubContent, type LearningCategory, type LearningContentItem } from '../content/learningHubContent';
-import { recordContentView, getViewedSlugs } from '../features/content/api';
+import { LoadingScreen } from '../components/feedback/LoadingScreen';
+import { fetchArticles } from '../features/learning/api';
+import type { PublishedArticle } from '../features/learning/types';
+import { normalizeApiError } from '../lib/apiError';
+import { ROUTES } from '../routes/paths';
 
-const CATEGORY_KEYS: (LearningCategory | 'all')[] = ['all', 'feeding', 'kmc', 'growth', 'danger_signs', 'emotional_support', 'immunization', 'newborn_care'];
+type CategoryKey = 'all' | 'feeding' | 'kmc' | 'growth' | 'danger_signs' | 'emotional_support' | 'immunization' | 'newborn_care';
+
+const CATEGORY_KEYS: CategoryKey[] = [
+  'all', 'feeding', 'kmc', 'growth', 'danger_signs',
+  'emotional_support', 'immunization', 'newborn_care',
+];
 
 export const LearningHub: React.FC = () => {
   const { t } = useTranslation();
-  const [category, setCategory] = useState<LearningCategory | 'all'>('all');
-  const [selected, setSelected] = useState<LearningContentItem | null>(null);
-  const [viewedSlugs, setViewedSlugs] = useState<string[]>([]);
+  const navigate = useNavigate();
 
+  const [articles, setArticles] = useState<PublishedArticle[]>([]);
+  const [viewedSlugs, setViewedSlugs] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filterLoading, setFilterLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [category, setCategory] = useState<CategoryKey>('all');
+  const [search, setSearch] = useState('');
+
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isFirstLoad = useRef(true);
+
+  const loadArticles = useCallback(
+    async (cat: CategoryKey, searchVal: string, isInitial: boolean) => {
+      if (!isInitial) setFilterLoading(true);
+      setError(null);
+      try {
+        const filters: { category?: string; search?: string } = {};
+        if (cat !== 'all') filters.category = cat;
+        if (searchVal.trim()) filters.search = searchVal.trim();
+
+        const data = await fetchArticles(filters);
+        setArticles(data.articles);
+        setViewedSlugs(data.viewedSlugs);
+      } catch (err) {
+        setError(normalizeApiError(err).message);
+      } finally {
+        setLoading(false);
+        setFilterLoading(false);
+      }
+    },
+    []
+  );
+
+  // Initial load
   useEffect(() => {
-    getViewedSlugs().then(setViewedSlugs).catch(() => undefined);
+    void loadArticles('all', '', true);
+    isFirstLoad.current = false;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleOpen = (item: LearningContentItem) => {
-    setSelected(item);
-    recordContentView(item.slug, item.category)
-      .then(() => setViewedSlugs((prev) => (prev.includes(item.slug) ? prev : [...prev, item.slug])))
-      .catch(() => undefined);
+  // Debounced search / category filter
+  useEffect(() => {
+    if (isFirstLoad.current) return;
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => {
+      void loadArticles(category, search, false);
+    }, 300);
+    return () => {
+      if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    };
+  }, [category, search, loadArticles]);
+
+  const handleCategoryChange = (cat: CategoryKey) => {
+    setCategory(cat);
   };
 
-  const featured = learningHubContent.find((c) => c.featured);
-  const filtered = learningHubContent.filter((c) => category === 'all' || c.category === category);
+  const featured = articles.find((a) => a.coverImageUrl);
 
-  if (selected) {
-    return (
-      <AppShell title={selected.title} subtitle={t('learningHub.title')}>
-        <button type="button" onClick={() => setSelected(null)} className="mb-4 text-sm font-semibold text-primary">
-          {t('learningHub.back')}
-        </button>
-        <div className="space-y-4">
-          <p className="text-sm text-text-muted">{selected.durationMin} {t('learningHub.minRead')}</p>
-          <p className="text-sm leading-6 text-text">{selected.body}</p>
-          {selected.audioUrl && <AudioPlayer src={selected.audioUrl} />}
-        </div>
-      </AppShell>
-    );
-  }
+  if (loading) return <LoadingScreen />;
 
   return (
     <AppShell title={t('learningHub.title')} subtitle={t('learningHub.subtitle')}>
       <div className="space-y-4">
-        {featured && (
+        {/* Error banner */}
+        {error && (
+          <div className="rounded-xl border border-error/20 bg-error/5 p-3.5 text-xs font-medium text-error">
+            {error}
+          </div>
+        )}
+
+        {/* Featured article banner */}
+        {featured && !search && category === 'all' && (
           <button
             type="button"
-            onClick={() => handleOpen(featured)}
+            onClick={() => navigate(ROUTES.LEARN_ARTICLE.replace(':slug', featured.slug))}
             className="surface-brand shadow-brand w-full text-left rounded-xl p-5"
           >
+            {featured.coverImageUrl && (
+              <img
+                src={featured.coverImageUrl}
+                alt=""
+                className="mb-3 w-full rounded-lg object-cover"
+                style={{ maxHeight: '160px' }}
+              />
+            )}
             <p className="text-xs font-semibold uppercase opacity-80">{t('learningHub.featured')}</p>
             <h3 className="mt-1 text-lg font-bold">{featured.title}</h3>
-            <p className="mt-1 text-sm opacity-90">{featured.summary}</p>
+            <p className="mt-1 text-xs opacity-90">
+              {featured.durationMin} {t('learningHub.minRead')}
+              {featured.audioUrl ? ` · ${t('learningHub.audio')}` : ''}
+            </p>
           </button>
         )}
 
+        {/* Search input */}
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder={t('learningHub.search', 'খুঁজুন...')}
+          className="w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30"
+        />
+
+        {/* Category filter pills */}
         <div className="flex gap-2 overflow-x-auto pb-1">
           {CATEGORY_KEYS.map((key) => (
             <button
               key={key}
               type="button"
-              onClick={() => setCategory(key)}
-              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold ${
-                category === key ? 'bg-primary text-primary-foreground' : 'bg-slate-100 text-text-muted'
+              onClick={() => handleCategoryChange(key)}
+              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                category === key
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-slate-100 text-text-muted'
               }`}
             >
-              {t(`learningHub.categories.${key}`)}
+              {t(`learningHub.categories.${key}`, key)}
             </button>
           ))}
         </div>
 
-        <div className="space-y-2">
-          {filtered.map((item) => (
-            <button
-              key={item.slug}
-              type="button"
-              onClick={() => handleOpen(item)}
-              className="w-full text-left rounded-xl border border-border bg-surface p-4"
-            >
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-text">{item.title}</p>
-                {viewedSlugs.includes(item.slug) && (
-                  <span className="flex items-center gap-1 text-xs font-medium text-teal-700">
-                    <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-                    {t('learningHub.viewed')}
-                  </span>
-                )}
-              </div>
-              <p className="mt-1 text-xs text-text-muted">{item.summary}</p>
-              <p className="mt-2 text-xs text-text-muted">{item.durationMin} {t('learningHub.minRead')} {item.audioUrl ? `· ${t('learningHub.audio')}` : ''}</p>
-            </button>
-          ))}
-        </div>
+        {/* Articles list */}
+        {filterLoading ? (
+          <div className="flex items-center justify-center py-8">
+            <span className="h-5 w-5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+          </div>
+        ) : articles.length === 0 ? (
+          <div className="rounded-2xl border border-border bg-surface p-8 text-center text-sm text-text-muted">
+            {t('learningHub.noArticles', 'কোনো নিবন্ধ পাওয়া যায়নি')}
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {articles.map((article) => (
+              <button
+                key={article.slug}
+                type="button"
+                onClick={() => navigate(ROUTES.LEARN_ARTICLE.replace(':slug', article.slug))}
+                className="w-full text-left rounded-xl border border-border bg-surface p-4"
+              >
+                <div className="flex items-start gap-3">
+                  {article.coverImageUrl && (
+                    <img
+                      src={article.coverImageUrl}
+                      alt=""
+                      className="h-14 w-14 flex-shrink-0 rounded-lg object-cover"
+                    />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm font-semibold text-text truncate">{article.title}</p>
+                      {viewedSlugs.includes(article.slug) && (
+                        <span className="flex flex-shrink-0 items-center gap-1 text-xs font-medium text-teal-700">
+                          <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+                          {t('learningHub.viewed')}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 text-xs text-text-muted">
+                      {t(`learningHub.categories.${article.category}`, article.category)}
+                    </p>
+                    <p className="mt-1.5 text-xs text-text-muted">
+                      {article.durationMin} {t('learningHub.minRead')}
+                      {article.audioUrl ? ` · ${t('learningHub.audio')}` : ''}
+                      {article.videoUrl ? ` · ${t('learningHub.video', 'ভিডিও')}` : ''}
+                    </p>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </AppShell>
   );

@@ -37,6 +37,11 @@ const TdscTracker = lazy(() => import('../pages/assessments/TdscTracker').then(m
 const ImmunizationTracker = lazy(() => import('../pages/ImmunizationTracker').then(m => ({ default: m.ImmunizationTracker })));
 const BreastfeedingAssessment = lazy(() => import('../pages/assessments/BreastfeedingAssessment').then(m => ({ default: m.BreastfeedingAssessment })));
 const MessageHistory = lazy(() => import('../pages/MessageHistory').then(m => ({ default: m.MessageHistory })));
+const ArticleDetail = lazy(() => import('../pages/learning/ArticleDetail').then(m => ({ default: m.ArticleDetail })));
+const LearningDashboard = lazy(() => import('../pages/admin/LearningDashboard').then(m => ({ default: m.LearningDashboard })));
+const AdminArticleList = lazy(() => import('../pages/admin/AdminArticleList').then(m => ({ default: m.AdminArticleList })));
+const ArticleForm = lazy(() => import('../pages/admin/ArticleForm').then(m => ({ default: m.ArticleForm })));
+const ArticlePreview = lazy(() => import('../pages/admin/ArticlePreview').then(m => ({ default: m.ArticlePreview })));
 
 const NotFound: React.FC = () => {
   return (
@@ -270,6 +275,68 @@ export const AppRoutes: React.FC = () => {
               <RequireAuth>
                 <RequireRole roles={['researcher']}>
                   <HospitalManagement />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+
+          {/* Learning Hub — all authenticated roles */}
+          <Route
+            path={ROUTES.LEARN_ARTICLE}
+            element={
+              <RequireAuth>
+                <ArticleDetail />
+              </RequireAuth>
+            }
+          />
+
+          {/* Admin Learning CMS — researcher only */}
+          <Route
+            path={ROUTES.ADMIN_LEARNING}
+            element={
+              <RequireAuth>
+                <RequireRole roles={['researcher']}>
+                  <LearningDashboard />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.ADMIN_LEARNING_ARTICLES}
+            element={
+              <RequireAuth>
+                <RequireRole roles={['researcher']}>
+                  <AdminArticleList />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.ADMIN_LEARNING_NEW}
+            element={
+              <RequireAuth>
+                <RequireRole roles={['researcher']}>
+                  <ArticleForm />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.ADMIN_LEARNING_EDIT}
+            element={
+              <RequireAuth>
+                <RequireRole roles={['researcher']}>
+                  <ArticleForm />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.ADMIN_LEARNING_PREVIEW}
+            element={
+              <RequireAuth>
+                <RequireRole roles={['researcher']}>
+                  <ArticlePreview />
                 </RequireRole>
               </RequireAuth>
             }

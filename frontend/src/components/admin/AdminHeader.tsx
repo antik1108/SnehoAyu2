@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Users, Building2, LogOut } from 'lucide-react';
+import { Users, Building2, BookOpen, LogOut } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { ROUTES } from '../../routes/paths';
 
@@ -34,6 +34,17 @@ export const AdminHeader: React.FC = () => {
             >
               <Building2 className="h-4 w-4" aria-hidden="true" />
               Hospitals
+            </NavLink>
+            <NavLink
+              to={ROUTES.ADMIN_LEARNING}
+              className={({ isActive }) =>
+                `flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-bold transition-colors ${
+                  isActive ? 'bg-secondary text-primary' : 'text-text-muted hover:bg-primary/5'
+                }`
+              }
+            >
+              <BookOpen className="h-4 w-4" aria-hidden="true" />
+              Learning
             </NavLink>
           </nav>
         </div>

@@ -30,6 +30,12 @@ export const ROUTES = {
   MESSAGE_HISTORY: '/messages',
   NURSE_HOME: '/nurse',
   NURSE_PARTICIPANT_DETAIL: '/nurse/participants/:id',
+  LEARN_ARTICLE: '/learn/:slug',
+  ADMIN_LEARNING: '/admin/learning',
+  ADMIN_LEARNING_ARTICLES: '/admin/learning/articles',
+  ADMIN_LEARNING_NEW: '/admin/learning/articles/new',
+  ADMIN_LEARNING_EDIT: '/admin/learning/articles/:id/edit',
+  ADMIN_LEARNING_PREVIEW: '/admin/learning/articles/:id/preview',
 } as const;
 
 export type RoutePath = typeof ROUTES[keyof typeof ROUTES];

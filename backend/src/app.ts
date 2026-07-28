@@ -33,6 +33,8 @@ import insightsRouter from './routes/insightsRoutes.js';
 import nurseRouter from './routes/nurseRoutes.js';
 import staffRouter from './routes/staffRoutes.js';
 import dangerSignRouter from './routes/dangerSignRoutes.js';
+import learningRouter from './routes/learningRoutes.js';
+import adminLearningRouter from './routes/adminLearningRoutes.js';
 
 const app = express();
 
@@ -65,6 +67,8 @@ app.use('/api/checklist', checklistRouter);
 app.use('/api/assessments', assessmentRouter);
 app.use('/api/growth', growthRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/learning', learningRouter);
+app.use('/api/admin/learning', adminLearningRouter);
 app.use('/api/tdsc', tdscRouter);
 app.use('/api/immunization', immunizationRouter);
 app.use('/api/breastfeeding', breastfeedingRouter);

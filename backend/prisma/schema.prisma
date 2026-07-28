@@ -57,6 +57,7 @@ model User {
   researcherProfile ResearcherProfile?
   refreshTokens     RefreshToken[]
   recordedGrowthReadings GrowthReading[]
+  learningArticles  LearningArticle[]
 
   @@index([phone])
 }
@@ -487,4 +488,28 @@ model KmcDailyLog {
 
   @@unique([motherProfileId, logDate])
   @@map("kmc_daily_logs")
+}
+
+model LearningArticle {
+  id            String    @id @default(uuid()) @db.Uuid
+  title         String
+  slug          String    @unique @db.VarChar(100)
+  category      String    @db.VarChar(50)
+  tags          String[]
+  body          String    @db.Text
+  status        String    @default("draft") @db.VarChar(20)
+  authorId      String    @map("author_id") @db.Uuid
+  author        User      @relation(fields: [authorId], references: [id])
+  coverImageUrl String?   @map("cover_image_url")
+  imageUrls     String[]  @map("image_urls")
+  audioUrl      String?   @map("audio_url")
+  videoUrl      String?   @map("video_url")
+  publishedAt   DateTime? @map("published_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@index([category])
+  @@index([status, category])
+  @@map("learning_articles")
 }
