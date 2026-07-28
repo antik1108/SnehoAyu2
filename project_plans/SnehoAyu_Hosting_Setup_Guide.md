@@ -9,7 +9,7 @@ First-time setup — Every step, every click, every config value
 
 Version 1.0  |  June 2025  |  For Developer Use
 
-**Stack: Vercel (Frontend) \+ Railway (Backend) \+ Neon (Database) \+ Cloudflare R2 (Media) \+ MSG91 (SMS)**
+**Stack: Vercel (Frontend) \+ Render (Backend) \+ Neon (Database) \+ Cloudflare R2 (Media) \+ MSG91 (SMS)**
 
 # **Overview — What You Are Setting Up**
 
@@ -18,18 +18,18 @@ This guide walks you through setting up every service SnehoAyu needs — from ze
 | Service | What It Does | Cost | Setup Time |
 | :---- | :---- | :---- | :---- |
 | Vercel | Hosts the React PWA frontend. Auto-deploys from GitHub. | Free forever | 10 min |
-| Railway | Hosts the Node.js backend API. Always-on server. | \~$5/month | 15 min |
+| Render | Hosts the Node.js backend API. Connects to GitHub. | Free tier (or $7/month Starter) | 15 min |
 | Neon | PostgreSQL database. Stores all patient and research data. | Free tier | 10 min |
 | Cloudflare R2 | Stores all media files — videos, audio, images. | Free up to 10GB | 15 min |
 | MSG91 | Sends OTP SMS and daily care tip SMS to mothers. | \~₹0.15 per SMS | 20 min |
-| GitHub | Stores all code. Connects to Vercel and Railway for auto-deploy. | Free | 5 min |
-| TOTAL | Complete infrastructure for 200 users | \~₹500–700/month | \~75 min |
+| GitHub | Stores all code. Connects to Vercel and Render for auto-deploy. | Free | 5 min |
+| TOTAL | Complete infrastructure for 200 users | Free to \~₹600/month | \~75 min |
 
-Read this entire page before starting. The order matters. Set up GitHub first, then Neon, then Railway, then Vercel, then R2, then MSG91. Some steps give you values you need in later steps — keep a notepad open.
+Read this entire page before starting. The order matters. Set up GitHub first, then Neon, then Render, then Vercel, then R2, then MSG91. Some steps give you values you need in later steps — keep a notepad open.
 
   **STEP 0    GitHub — Set Up Your Code Repository**
 
-GitHub stores your code and connects to Vercel and Railway so they auto-deploy every time you push changes. You only set this up once.
+GitHub stores your code and connects to Vercel and Render so they auto-deploy every time you push changes. You only set this up once.
 
 ### **0.1 — Create a GitHub Account**
 
@@ -63,7 +63,7 @@ snehoayu/
 │   ├── public/  
 │   ├── package.json  
 │   └── vite.config.ts  
-├── backend/           ← Node.js API (this is what Railway hosts)  
+├── backend/           ← Node.js API (this is what Render hosts)  
 │   ├── src/  
 │   ├── prisma/  
 │   ├── package.json  
@@ -96,7 +96,7 @@ RULE: Never put real API keys, passwords, or database URLs in your code files. T
 
   **STEP 1    Neon — Set Up the PostgreSQL Database**
 
-Neon is your database. All patient records, research data, user accounts, checklist entries — everything lives here. Set this up first because Railway (backend) needs the database URL.
+Neon is your database. All patient records, research data, user accounts, checklist entries — everything lives here. Set this up first because Render (backend) needs the database URL.
 
 ### **1.1 — Create a Neon Account**
 
@@ -148,8 +148,8 @@ Neon has a branching feature. Use it to keep development and production data com
 
 25. Copy the connection string for the develop branch too — save it as DATABASE\_URL\_DEV
 
-Production database URL → used in Railway production environment  
-Development database URL → used on your local machine and Railway staging  
+Production database URL → used in Render production environment  
+Development database URL → used on your local machine and Render staging  
 NEVER use the production database for testing. Always test on develop branch.
 
 ### **1.5 — Enable Connection Pooling**
@@ -162,7 +162,7 @@ NEVER use the production database for testing. Always test on develop branch.
 
 29. Copy the pooled connection string — it looks like the same URL but with '-pooler' in the hostname
 
-30. Use this POOLED URL as your DATABASE\_URL in Railway — it handles many concurrent connections better
+30. Use this POOLED URL as your DATABASE\_URL in Render — it handles many concurrent connections better
 
 ### **1.6 — Verify the Connection (Test it now)**
 
@@ -177,88 +177,70 @@ psql 'postgresql://snehoayu\_user:PASSWORD@HOST/snehoayu\_db?sslmode=require'
 
 \# You should see:  
 \# snehoayu\_db=\>  
-\# Type \\q to exit
+\# Type \q to exit
 
-  **STEP 2    Railway — Host the Node.js Backend**
+  **STEP 2    Render — Host the Node.js Backend**
 
-Railway runs your backend API server. It is always on — unlike free Render which goes to sleep. It connects to your GitHub repo and deploys automatically every time you push code.
+Render runs your backend API server. It connects to your GitHub repository and deploys automatically every time you push code to the `main` branch.
 
-### **2.1 — Create a Railway Account**
+### **2.1 — Create a Render Account**
 
-31. Go to https://railway.app
+31. Go to https://render.com
 
-32. Click 'Login' → 'Login with GitHub'
+32. Click 'Sign Up' or 'Log In' → 'Sign in with GitHub'
 
-33. Authorise Railway to access your GitHub account
+33. Authorise Render to access your GitHub account
 
-34. You land on the Railway dashboard
+34. You land on the Render dashboard
 
-### **2.2 — Create a New Project**
+### **2.2 — Create a Web Service**
 
-35. Click 'New Project'
+35. Click **New +** top right → Select **Web Service**
 
-36. Select 'Deploy from GitHub repo'
+36. Select **Build and deploy from a Git repository**
 
-37. Find and select your snehoayu repository
+37. Find and select your `SnehoAyu2` repository
 
-38. Railway asks which folder to deploy — type: backend
-
-39. Click 'Deploy Now'
-
-Railway will try to deploy and probably fail — that's fine. We need to add environment variables first.
+38. Configure the service details:
+    * **Name**: `snehoayu-backend`
+    * **Language**: `Node`
+    * **Root Directory**: `backend` (⚠️ **CRITICAL**: Do not leave this blank! Type `backend` so Render knows to build and run the backend sub-folder)
+    * **Branch**: `main`
+    * **Build Command**: `npm run build`
+    * **Start Command**: `npm start` (This will automatically run database migrations and start the server)
+    * **Instance Type**: Select **Free** (Note: Free tier servers go to sleep after 15 minutes of inactivity. For production, the **Starter** tier at $7/month is highly recommended to prevent latency).
 
 ### **2.3 — Add Environment Variables**
 
-This is the most important step. Click on your service in Railway → click 'Variables' tab → add each variable below one by one.
+This is the most important step. In Render, click the **Environment** tab of your service, and add the following variables one by one:
 
 | Variable Name | Value / Where to Get It | Notes |
 | :---- | :---- | :---- |
 | DATABASE\_URL | Paste the POOLED connection string from Neon Step 1.5 | Must be the pooled URL |
-| JWT\_ACCESS\_SECRET | Generate: run  openssl rand \-base64 32  in terminal | Random 32-char string. Keep secret. |
-| ACCESS\_TOKEN\_EXPIRES\_IN | 24h | Access token lifetime |
+| JWT\_ACCESS\_SECRET | Generate: run `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"` in terminal | Random 64-char hex string. Keep secret. |
+| ACCESS\_TOKEN\_EXPIRES\_IN | 15m | Access token lifetime (e.g. 15m) |
 | REFRESH\_TOKEN\_EXPIRES\_IN\_DAYS | 30 | Refresh token lifetime in days. **Must be a positive integer** (like 30, not 30d) |
-| PORT | 3000 | Railway uses this port |
-| NODE\_ENV | production |  |
-| CORS\_ORIGINS | https://snehoayu.vercel.app | Comma-separated list of allowed frontend origins (no trailing slash). Update after Vercel setup in Step 4 |
+| NODE\_ENV | production | Set to production |
+| CORS\_ORIGINS | https://snehoayu.in,https://www.snehoayu.in | Comma-separated list of allowed frontend origins (no trailing slash). Update after Vercel setup in Step 4 |
+| BCRYPT\_PASSWORD\_ROUNDS | 12 | Password hashing strength (must be at least 12) |
 | MSG91\_AUTH\_KEY | Get from MSG91 dashboard — Step 5 | Fill in after Step 5 |
-| MSG91\_SENDER\_ID | SNHAYU  (6 chars, your choice) | Shown as SMS sender name |
+| MSG91\_SENDER\_ID | SNHAYU (6 chars, your choice) | Shown as SMS sender name |
 | MSG91\_TEMPLATE\_OTP | Get from MSG91 dashboard — Step 5 | OTP message template ID |
 | R2\_ACCOUNT\_ID | Get from Cloudflare dashboard — Step 3 | Fill in after Step 3 |
 | R2\_ACCESS\_KEY\_ID | Get from Cloudflare dashboard — Step 3 | Fill in after Step 3 |
 | R2\_SECRET\_ACCESS\_KEY | Get from Cloudflare dashboard — Step 3 | Fill in after Step 3 |
 | R2\_BUCKET\_NAME | snehoayu-media | The bucket you create in Step 3 |
-| R2\_PUBLIC\_URL | https://media.snehoayu.com  (or your R2 public URL) | Fill in after Step 3 |
-| BCRYPT\_PASSWORD\_ROUNDS | 12 | Password hashing strength (must be at least 12) |
+| R2\_PUBLIC\_URL | https://media.snehoayu.com (or your R2 public URL) | Fill in after Step 3 |
 
-### **2.4 — Set the Start Command**
+### **2.4 — Trigger First Deploy**
 
-40. In Railway, click your service → 'Settings' tab
+39. Click **Create Web Service** at the bottom of the page.
 
-41. Under 'Deploy', find 'Start Command'
+40. Watch the build logs — Render will build the project, run Prisma migrations (`npx prisma migrate deploy`), and start your server.
 
-42. Enter: node dist/index.js
+41. Save the public URL provided at the top of your Render service (e.g., `https://snehoayu-backend.onrender.com`). This is your `BACKEND_URL` that the frontend will call.
 
-43. Under 'Build Command' enter: npm run build
-
-### **2.5 — Add a Custom Domain (Optional but Recommended)**
-
-44. In Railway, click your service → 'Settings' → 'Domains'
-
-45. Click 'Generate Domain' — Railway gives you a free URL like snehoayu-backend.up.railway.app
-
-46. Save this URL — it is your BACKEND\_URL that the frontend will call
-
-### **2.6 — Trigger First Deploy**
-
-47. Go to your service → 'Deployments' tab
-
-48. Click 'Deploy' or push any code change to GitHub
-
-49. Watch the build logs — look for 'Server running on port 3000'
-
-50. If it fails, check the logs — usually a missing environment variable
-
-How to check if backend is working: open your Railway URL in browser and add /health to the end. Example: https://snehoayu-backend.up.railway.app/health — you should see: { status: 'ok', timestamp: '...' }
+How to check if backend is working: open your Render URL in browser and add `/api/health` to the end. Example: `https://snehoayu-backend.onrender.com/api/health` — you should see: `{"status":"ok","timestamp":"..."}`
 
   **STEP 3    Cloudflare R2 — Media File Storage**
 
@@ -358,7 +340,7 @@ Instead of pub-abc123.r2.dev you can use media.snehoayu.com if you own a domain.
 
 80. Cloudflare handles the DNS automatically if your domain is on Cloudflare
 
-81. Update R2\_PUBLIC\_URL in Railway to https://media.snehoayu.com
+81. Update R2\_PUBLIC\_URL in Render to https://media.snehoayu.com
 
   **STEP 4    Vercel — Host the React PWA Frontend**
 
@@ -396,7 +378,7 @@ Before clicking Deploy, scroll down to 'Environment Variables' and add:
 
 | Variable Name | Value | Notes |
 | :---- | :---- | :---- |
-| VITE\_API\_BASE\_URL | https://snehoayu-backend.up.railway.app/api | Your Railway backend URL from Step 2.5 **with /api appended at the end** |
+| VITE\_API\_BASE\_URL | https://snehoayu-backend.onrender.com/api | Your Render backend URL from Step 2.4 **with /api appended at the end** |
 
 All frontend environment variables MUST start with VITE\_ in a Vite/React project. Variables without VITE\_ are invisible to the browser for security.
 
@@ -410,13 +392,13 @@ All frontend environment variables MUST start with VITE\_ in a Vite/React projec
 
 92. Open it in your phone browser — you should see the SnehoAyu app
 
-### **4.5 — Update Railway CORS with Vercel URL**
+### **4.5 — Update Render CORS with Vercel URL**
 
-93. Go back to Railway → Variables
+93. Go back to Render → Environment
 
-94. Update CORS\_ORIGIN to: https://snehoayu.vercel.app
+94. Update CORS\_ORIGINS to include: https://snehoayu.vercel.app
 
-95. Redeploy Railway (or it auto-deploys on variable change)
+95. Redeploy Render (or it auto-deploys on variable change)
 
 ### **4.6 — Set Up PWA Manifest**
 
@@ -517,7 +499,7 @@ This is a one-time registration. Takes 3–7 working days. Do this in parallel w
 
 122. Copy the Auth Key — it looks like: 123456TsomethingXXXXXX
 
-123. Go to Railway → Variables → update MSG91\_AUTH\_KEY with this value
+123. Go to Render → Environment → update MSG91\_AUTH\_KEY with this value
 
 124. Update MSG91\_TEMPLATE\_OTP with the Template ID from 5.4
 
@@ -652,15 +634,15 @@ code .env.local
 
 ### **6.8 — The Frontend .env.local File**
 
-\# Frontend environment variables — must start with VITE\_
+# Frontend environment variables — must start with VITE_
 
-VITE\_API\_URL=http://localhost:3000  
-\# Points to your LOCAL backend while developing  
-\# Change to Railway URL when deploying
+VITE_API_URL=http://localhost:3000  
+# Points to your LOCAL backend while developing  
+# Change to Render URL when deploying
 
-VITE\_APP\_NAME=SnehoAyu  
-VITE\_R2\_PUBLIC\_URL=https://pub-abc123.r2.dev  
-VITE\_APP\_ENV=development
+VITE_APP_NAME=SnehoAyu  
+VITE_R2_PUBLIC_URL=https://pub-abc123.r2.dev  
+VITE_APP_ENV=development
 
 ### **6.9 — Start the Frontend**
 
@@ -676,7 +658,7 @@ npm run dev
 
   **STEP 7    Auto-Deploy — Push Code, Everything Updates**
 
-Once everything is connected, this is your daily workflow. You write code locally, push to GitHub, and both Vercel and Railway automatically update.
+Once everything is connected, this is your daily workflow. You write code locally, push to GitHub, and both Vercel and Render automatically update.
 
 ### **7.1 — The Git Workflow**
 
@@ -696,7 +678,7 @@ git push origin main
 
 \# What happens automatically after push:  
 \# → Vercel sees the push → rebuilds frontend → live in \~60 seconds  
-\# → Railway sees the push → rebuilds backend → live in \~90 seconds
+\# → Render sees the push → rebuilds backend → live in \~90 seconds
 
 ### **7.2 — Use Branches for Safety**
 
@@ -715,7 +697,7 @@ git push origin feature/otp-login
 
 \# On GitHub, create a Pull Request to merge into main  
 \# Review the code, then merge  
-\# Vercel and Railway auto-deploy after merge to main
+\# Vercel and Render auto-deploy after merge to main
 
   **STEP 8    Automated Backups — Protect Research Data**
 
@@ -727,7 +709,7 @@ Neon automatically keeps 7 days of point-in-time recovery on the free tier. No s
 
 ### **8.2 — Weekly Automated Database Dump**
 
-Create a cron job in Railway that runs every Sunday at 2 AM IST and dumps the database to R2.
+Create a Cron Job service in Render that runs every Sunday at 2 AM IST and dumps the database to R2.
 
 Create this file in your backend: backend/src/jobs/weeklyBackup.ts
 
@@ -796,15 +778,15 @@ Before starting participant enrolment, verify every item below. Tick each one ph
 
 * Test write and read one row to verify connection
 
-### **Railway Backend**
+### **Render Backend**
 
 * Service deployed and showing green status
 
-* All 17 environment variables are set
+* All environment variables are set
 
-* https://your-backend.up.railway.app/health returns { status: 'ok' }
+* https://snehoayu-backend.onrender.com/api/health returns { status: 'ok' }
 
-* CORS\_ORIGIN matches your Vercel URL exactly
+* CORS\_ORIGINS matches your Vercel URL exactly
 
 ### **Vercel Frontend**
 
@@ -812,7 +794,7 @@ Before starting participant enrolment, verify every item below. Tick each one ph
 
 * https://snehoayu.vercel.app opens in mobile browser
 
-* VITE\_API\_URL is set to Railway backend URL
+* VITE\_API\_BASE\_URL is set to Render backend URL (e.g. https://snehoayu-backend.onrender.com/api)
 
 * PWA manifest.json is present — app can be installed on Android
 
@@ -826,7 +808,7 @@ Before starting participant enrolment, verify every item below. Tick each one ph
 
 * Public access enabled — test by uploading a test image and opening its public URL
 
-* API credentials saved in Railway environment variables
+* API credentials saved in Render environment variables
 
 * Backups folder is working — test the weekly backup script manually
 
@@ -838,7 +820,7 @@ Before starting participant enrolment, verify every item below. Tick each one ph
 
 * OTP template created and DLT-approved
 
-* API key saved in Railway environment variables
+* API key saved in Render environment variables
 
 * Test OTP: call POST /auth/send-otp with a real Indian phone number and verify SMS is received
 
@@ -859,33 +841,32 @@ Before starting participant enrolment, verify every item below. Tick each one ph
 | Service | Free Tier Limit | Your Usage (200 users) | Monthly Cost |
 | :---- | :---- | :---- | :---- |
 | Vercel | 100GB bandwidth, unlimited deploys | \~2GB bandwidth | ₹0 |
-| Railway | No free tier — $5/month minimum | $5/month (\~₹420) | ₹420 |
+| Render | Free tier (Starter tier: $7/month) | Free or $7/month (\~₹600) | ₹0 - ₹600 |
 | Neon | 512MB storage, 10 compute hours/day | \~15MB storage, \<1 hour/day | ₹0 |
 | Cloudflare R2 | 10GB storage, 1M reads/month | \~600MB storage, \~10,000 reads | ₹0 |
 | MSG91 OTP | Pay per SMS at ₹0.15–0.25 | \~200 OTPs total (one-time signups) | \~₹30 total |
 | MSG91 Daily SMS | Pay per SMS at ₹0.15 | 136 mothers × 180 days \= 24,480 SMS | \~₹600/month |
 | GitHub | Unlimited private repos | 1 repo | ₹0 |
-| TOTAL |  |  | \~₹1,020/month |
+| TOTAL |  |  | \~₹600–1,200/month |
 
-Total cost for the 6-month study period: approximately ₹6,000–7,000 all inclusive.  
+Total cost for the 6-month study period: approximately ₹4,000–7,000 all inclusive.  
 This is well within the ₹1 lakh development budget.  
-The biggest cost is MSG91 daily SMS. If budget is tight, the daily tip can be shown only in-app (no SMS) which brings cost to ₹420/month.
+The biggest cost is MSG91 daily SMS. If budget is tight, the daily tip can be shown only in-app (no SMS) which brings cost to ₹0–600/month.
 
 # **Master List — All Environment Variables**
 
 Keep this page with you during setup. Every variable that needs to be set, where to set it, and where to get the value.
 
-## **Backend Variables — Set in Railway**
+## **Backend Variables — Set in Render**
 
 | Variable | Where to Get It | Example Value |
 | :---- | :---- | :---- |
 | DATABASE\_URL | Neon dashboard → Connection String (pooled) | postgresql://user:pass@host/db?sslmode=require |
-| JWT\_ACCESS\_SECRET | Generate: openssl rand \-base64 32 | Kx9mP2qR7vN4wL8eA1bC6dF3gH5jM0n |
-| ACCESS\_TOKEN\_EXPIRES\_IN | Hardcode | 24h |
+| JWT\_ACCESS\_SECRET | Generate: run Node script | Kx9mP2qR7vN4wL8eA1bC6dF3gH5jM0n |
+| ACCESS\_TOKEN\_EXPIRES\_IN | Hardcode | 15m |
 | REFRESH\_TOKEN\_EXPIRES\_IN\_DAYS | Hardcode | 30 |
-| PORT | Hardcode | 3000 |
 | NODE\_ENV | Hardcode | production |
-| CORS\_ORIGINS | Vercel project URL | https://snehoayu.vercel.app |
+| CORS\_ORIGINS | Vercel project URL | https://snehoayu.in,https://www.snehoayu.in |
 | BCRYPT\_PASSWORD\_ROUNDS | Hardcode | 12 |
 | MSG91\_AUTH\_KEY | MSG91 dashboard → API section | 123456TxxxxXXXXXXXXX |
 | MSG91\_SENDER\_ID | Your DLT-approved sender ID | SNHAYU |
@@ -900,7 +881,7 @@ Keep this page with you during setup. Every variable that needs to be set, where
 
 | Variable | Where to Get It | Example Value |
 | :---- | :---- | :---- |
-| VITE\_API\_BASE\_URL | Railway → your service → domain URL | https://snehoayu-backend.up.railway.app/api |
+| VITE\_API\_BASE\_URL | Render → your Web Service URL | https://snehoayu-backend.onrender.com/api |
 
 ## **Local Development Only — backend/.env**
 
@@ -909,7 +890,7 @@ Keep this page with you during setup. Every variable that needs to be set, where
 | DATABASE\_URL | Neon DEVELOP branch connection string (not production) |
 | NODE\_ENV | development |
 | CORS\_ORIGINS | http://localhost:5173 |
-| PORT | 3000 |
-| All others | Same values as Railway — copy from your Railway variables |
+| PORT | 4000 |
+| All others | Same values as Render — copy from your Render variables |
 
 *SnehoAyu Hosting Setup Guide  |  v1.0  |  June 2025  |  Keep this document secure — contains architecture details*
