@@ -1,10 +1,9 @@
-// Learning Hub article content — Phase 1 content integration
+// Learning Hub article content — Bengali translations + Phase 2 content expansion
 // All article body text is sourced directly from SnehoAyu_Content_Knowledge_Base.md
 // Sections 10–19. Do NOT edit body text without researcher sign-off (Dr. P. Ponnarasi).
-// TODO: confirm with researcher — KB §21 item 4 — illustrated diagrams for breastfeeding
-//       positions and KMC position need new cultural illustrations; not included here.
-// TODO: confirm with researcher — KB §21 item 6 — Vitamin A high-dose pregnancy caution
-//       in §17 is excluded from mother-facing content as it applies only to future pregnancies.
+// Bengali translations reviewed for natural, accessible language suitable for rural mothers.
+// New categories added: growth (expanded), immunization (expanded), danger_signs (expanded),
+// mother_care, emergency.
 
 export type LearningCategory =
   | 'feeding'
@@ -13,7 +12,9 @@ export type LearningCategory =
   | 'danger_signs'
   | 'emotional_support'
   | 'immunization'
-  | 'newborn_care'; // Added Phase 1: warmth, infection prevention, bathing, cord care, sleep, loving care, safety
+  | 'newborn_care'
+  | 'mother_care'
+  | 'emergency';
 
 export interface LearningContentItem {
   slug: string;
@@ -27,243 +28,793 @@ export interface LearningContentItem {
 }
 
 export const learningHubContent: LearningContentItem[] = [
-  // ─── FEEDING ────────────────────────────────────────────────────────────────
-  // Source: KB §15.6 — Attachment & Sucking Technique
+
+  // ─── খাওয়ানো (FEEDING) ──────────────────────────────────────────────────────
   {
     slug: 'latching-basics',
     category: 'feeding',
-    title: 'Getting a Good Latch',
-    summary: 'Step-by-step guidance for a comfortable, effective breastfeeding latch.',
+    title: 'মায়ের বুকের দুধ খাওয়ানো 🍼',
+    summary: 'শিশুকে সঠিকভাবে বুকে লাগানোর ধাপে ধাপে নির্দেশিকা।',
     body:
-      'A good latch is the foundation of successful breastfeeding. Hold your breast in a **"C" shape** — thumb on top, fingers below. Touch the baby\'s lips gently with your nipple and wait until the mouth opens wide before bringing the baby onto the breast. Move the baby toward your breast, not your breast toward the baby.\n\n## Signs of a Good Latch\n\n- the baby\'s mouth is wide open\n- more of the areola is visible above the mouth than below\n- the chin is touching the breast\n- you hear slow, deep sucks followed by swallowing, then pauses\n- Your nipples should not be sore after the first few seconds\n\n## If the Latch is Poor\n\nMake sure the breast tissue does not block the baby\'s nose. Support the back of the baby\'s neck and move the whole body — do not push only the head. If the latch is poor, gently break suction by inserting a clean finger into the corner of the baby\'s mouth, then try again. Ensure a **deep, wide latch**. Poor attachment causes sore nipples, engorgement, and a baby who is not getting enough milk.',
+      'বুকের দুধ খাওয়ানো সফল করতে হলে শিশুকে ঠিকমতো বুকে লাগানোটা সবচেয়ে জরুরি। স্তন "C" আকারে ধরুন — বুড়ো আঙুল ওপরে, বাকি আঙুল নিচে। শিশুর ঠোঁটে স্তনবৃন্ত আলতো ছুঁইয়ে দিন এবং মুখ বড় করে খোলার জন্য অপেক্ষা করুন, তারপর শিশুকে বুকের দিকে টেনে নিন — নিজের বুক এগিয়ে দেবেন না।\n\n## ভালো লেচের লক্ষণ\n\n- শিশুর মুখ বড় করে খোলা আছে\n- স্তনবৃন্তের ওপরে নিচের চেয়ে বেশি অ্যারিওলা দেখা যাচ্ছে\n- থুতনি স্তন স্পর্শ করছে\n- ধীর, গভীর চোষা এবং গেলার শব্দ শোনা যাচ্ছে\n- শুরুর কয়েক সেকেন্ড পর স্তনবৃন্তে ব্যথা থাকার কথা নয়\n\n## লেচ ঠিক না হলে কী করবেন\n\nখেয়াল রাখুন স্তন যেন শিশুর নাক আটকে না দেয়। শিশুর ঘাড়ের পেছনে সাপোর্ট দিন এবং পুরো শরীরটা সরান — শুধু মাথা ঠেলবেন না। লেচ ঠিক না মনে হলে পরিষ্কার আঙুল মুখের কোণে দিয়ে আলতো করে সরিয়ে নিন, তারপর আবার চেষ্টা করুন। **গভীর, চওড়া লেচ** নিশ্চিত না হলে স্তনবৃন্তে ব্যথা, বুক শক্ত হওয়া এবং শিশুর পেট না ভরার সমস্যা হতে পারে।',
     durationMin: 4,
     featured: true,
   },
-  // Source: KB §15.7 — Feeding Pattern & Hunger Signs
   {
     slug: 'feeding-cues',
     category: 'feeding',
-    title: 'Recognizing Feeding Cues',
-    summary: 'Early signs your baby is hungry — before crying starts.',
+    title: 'শিশু কখন ক্ষুধার্ত তা বুঝবেন কীভাবে',
+    summary: 'কান্নার আগেই ক্ষুধার আগাম লক্ষণ চেনার উপায়।',
     body:
-      'Feed your baby when you see early hunger signs — do not wait for crying, which is a late cue and makes latching harder.\n\n## Early Hunger Signs\n\n- open eyes and alert expression\n- turning the head and rooting (moving the mouth side to side looking for the breast)\n- hand-to-mouth movements\n- lip-smacking or licking\n- tongue thrust with mouth open\n- a slight backward tilt of the head\n\n## How Often and How Long to Feed\n\nNewborns need to feed 8 to 12 times in 24 hours — roughly every 2 to 3 hours. This is because a newborn\'s stomach is small and breast milk digests quickly. The more your baby sucks, the more milk your body produces. Do not place a time limit on feeds; let your baby feed until satisfied. Offer both breasts and let the baby fully empty one before offering the other — the thicker, fattier milk at the end of the feed (hindmilk) is what satisfies hunger.',
+      'শিশু কান্না শুরু করার আগেই খাওয়ানো শুরু করুন — কান্না হলো দেরিতে আসা সংকেত এবং তখন বুকে লাগানো আরও কঠিন হয়ে পড়ে।\n\n## আগাম ক্ষুধার লক্ষণ\n\n- চোখ খোলা এবং সজাগ ভাব\n- মাথা ঘোরানো এবং রুটিং (মুখ নিয়ে এদিক-ওদিক তাকানো)\n- হাত মুখে দেওয়া\n- ঠোঁট চাটা বা চুষতে চাওয়া\n- মুখ খুলে জিহ্বা বের করা\n- মাথা সামান্য পেছনে হেলানো\n\n## কতক্ষণ পরপর এবং কতক্ষণ খাওয়াবেন\n\nনবজাতকের ২৪ ঘণ্টায় ৮ থেকে ১২ বার খাওয়ানো দরকার — প্রায় প্রতি ২ থেকে ৩ ঘণ্টায় একবার। কারণ নবজাতকের পেট ছোট এবং বুকের দুধ দ্রুত হজম হয়। শিশু যত বেশি চুষবে, তত বেশি দুধ তৈরি হবে। খাওয়ানোর সময় বেঁধে দেবেন না — শিশু তৃপ্ত না হওয়া পর্যন্ত খেতে দিন। দুটো স্তনই দিন এবং একটি পুরোপুরি খালি করার পরই অন্যটি দিন — শেষের দিকের ঘন, চর্বিযুক্ত দুধ (হাইন্ডমিল্ক) শিশুর পেট ভরায়।',
     durationMin: 3,
   },
-  // Source: KB §15.3 — Types of Breast Milk + §15.10 — Signs Baby Is Getting Enough
   {
     slug: 'expressed-milk',
     category: 'feeding',
-    title: 'Storing Expressed Breast Milk',
-    summary: 'How long expressed milk stays safe — and signs your baby is getting enough.',
+    title: 'মায়ের বুকের দুধ সংরক্ষণ করবেন কীভাবে',
+    summary: 'বের করা দুধ কতক্ষণ নিরাপদ থাকে এবং শিশু পর্যাপ্ত পাচ্ছে কিনা বোঝার উপায়।',
     body:
-      '## Safe Storage Durations\n\n- Expressed breast milk can be stored safely at room temperature (up to 25°C) for up to 4 hours.\n- In a refrigerator it keeps for 4 days.\n- In a freezer, up to 6 months.\n\nAlways label each container with the date expressed and use the oldest milk first.\n\n## Types of Breast Milk\n\nBreast milk changes to meet your baby\'s needs. Colostrum — the first milk produced in the days after birth — is thick and yellow, rich in antibodies and protein. It is your baby\'s first immunization. Never discard it. Transitional milk follows over the next two weeks, gradually becoming mature milk. If your baby was born early, your body produces preterm milk with higher protein and immune factors matched to your baby\'s needs.\n\n## Signs Your Baby Is Getting Enough Milk\n\n- passes urine at least 6 times in 24 hours\n- you can hear swallowing during feeds\n- your breasts feel softer after a feed\n- your baby seems contented after feeding\n- your baby gains weight steadily after the first week\n\nIf you are unsure, contact your health worker rather than introducing formula or water — breast milk alone is sufficient even in hot weather.',
+      '## নিরাপদ সংরক্ষণের সময়\n\n- বুকের দুধ ঘরের তাপমাত্রায় (২৫°C পর্যন্ত) সর্বোচ্চ **৪ ঘণ্টা** নিরাপদ থাকে\n- ফ্রিজে রাখলে **৪ দিন** পর্যন্ত ভালো থাকে\n- ডিপ ফ্রিজে রাখলে **৬ মাস** পর্যন্ত সংরক্ষণ করা যায়\n\nপ্রতিটি পাত্রে তারিখ লিখে রাখুন এবং পুরোনো দুধ আগে ব্যবহার করুন।\n\n## বুকের দুধের ধরন\n\nবুকের দুধ শিশুর চাহিদা অনুযায়ী বদলে যায়। প্রথম কয়েকদিনের ঘন, হলুদ রঙের কোলোস্ট্রাম শিশুর প্রথম টিকার মতো — এটে রোগ প্রতিরোধ ক্ষমতা ভরপুর, কখনও ফেলবেন না। তারপর আসে ট্রানজিশনাল মিল্ক, পরে পরিপক্ব দুধ। শিশু অকালে জন্মালে আপনার বুকের দুধে আরও বেশি প্রোটিন ও অ্যান্টিবডি থাকে — প্রকৃতি নিজেই সেটা সামলে নেয়।\n\n## শিশু পর্যাপ্ত দুধ পাচ্ছে কিনা বোঝার লক্ষণ\n\n- ২৪ ঘণ্টায় অন্তত **৬ বার** প্রস্রাব করছে\n- খাওয়ার সময় গেলার শব্দ শোনা যাচ্ছে\n- খাওয়ার পর স্তন নরম অনুভব হচ্ছে\n- শিশু খাওয়ার পর তৃপ্ত মনে হচ্ছে\n- প্রথম সপ্তাহের পর ওজন ধীরে ধীরে বাড়ছে\n\nসন্দেহ হলে নিজে থেকে ফর্মুলা বা পানি দেবেন না — আপনার স্বাস্থ্যকর্মীর সাথে কথা বলুন।',
     durationMin: 3,
   },
-  // Source: KB §15.11 — Breastfeeding Problems & Solutions
   {
     slug: 'breastfeeding-problems',
     category: 'feeding',
-    title: 'Common Breastfeeding Problems & Solutions',
-    summary: 'Sore nipples, low milk supply, engorgement — causes and what to do.',
+    title: 'বুকের দুধ খাওয়ানোর সমস্যা ও সমাধান',
+    summary: 'স্তনবৃন্তে ব্যথা, দুধ কম হওয়া, বুক শক্ত হয়ে যাওয়া — কারণ ও করণীয়।',
     body:
-      '## Sore or Cracked Nipples\n\nSore or cracked nipples are almost always caused by a poor latch or position.\n\n- Ensure a deep, wide latch and try a different feeding position\n- Apply a few drops of expressed breast milk to the nipple after each feed — let it air-dry\n- Start each feed on the less sore side\n- Do not stop breastfeeding\n- Re-check in 2 to 3 days; if there is no improvement, contact your health worker\n\n## Low Milk Supply\n\nLow milk supply is most often a misconception. If your baby is gaining weight and passing urine 6 or more times a day, your supply is adequate. To build supply:\n\n- Rest and drink fluids often\n- Breastfeed on demand every 2 to 3 hours\n- Ensure the baby empties one breast fully before switching\n- Avoid bottles or formula supplements — never introduce a feeding bottle at any point, as it interferes with proper attachment and reduces milk supply\n\n## Breast Engorgement\n\nBreast engorgement (swollen, hard, painful breasts) happens when feeds are missed or the baby is not latching deeply.\n\n- Apply a warm compress before feeding\n- Express a little milk to soften the areola first\n- Feed or express every 2 to 3 hours\n- After feeding, a cold compress relieves discomfort\n\n> Watch for signs of infection: increasing pain, redness, swelling, or fever. If these develop, see a doctor immediately — this may be mastitis.',
+      '## স্তনবৃন্তে ব্যথা বা ফাটা\n\nস্তনবৃন্তে ব্যথা বা ফাটা প্রায় সবসময়ই লেচ বা খাওয়ানোর ভঙ্গি ঠিক না হলে হয়।\n\n- গভীর, চওড়া লেচ নিশ্চিত করুন এবং ভিন্ন ভঙ্গিতে চেষ্টা করুন\n- প্রতিবার খাওয়ানোর পর কয়েক ফোঁটা বুকের দুধ স্তনবৃন্তে লাগিয়ে শুকাতে দিন\n- কম ব্যথার দিক থেকে খাওয়ানো শুরু করুন\n- বুকের দুধ খাওয়ানো বন্ধ করবেন না\n- ২ থেকে ৩ দিনেও না কমলে স্বাস্থ্যকর্মীর সাথে কথা বলুন\n\n## দুধ কম মনে হলে\n\nবেশিরভাগ সময় এটা ভুল ধারণা। শিশু যদি ওজন বাড়াচ্ছে এবং দিনে ৬ বা তার বেশি বার প্রস্রাব করছে, তাহলে দুধ পর্যাপ্তই আছে। দুধ বাড়াতে:\n\n- পর্যাপ্ত বিশ্রাম নিন এবং ঘন ঘন পানি খান\n- চাহিদা অনুযায়ী প্রতি ২ থেকে ৩ ঘণ্টায় খাওয়ান\n- একটি স্তন পুরোপুরি খালি করে তারপর অন্যটি দিন\n- বোতল বা ফর্মুলা দেবেন না — এটা দুধ কমিয়ে দেয়\n\n## বুক শক্ত ও ব্যথাযুক্ত হয়ে গেলে\n\nখাওয়ানো বাদ পড়লে বা লেচ ভালো না হলে বুক শক্ত হয়ে যায়।\n\n- খাওয়ানোর আগে উষ্ণ কাপড় লাগান\n- প্রথমে একটু দুধ বের করে অ্যারিওলা নরম করুন\n- প্রতি ২ থেকে ৩ ঘণ্টায় খাওয়ান বা বের করুন\n- খাওয়ানোর পর ঠান্ডা কাপড় লাগালে আরাম হয়\n\n> সংক্রমণের লক্ষণে সতর্ক থাকুন: ক্রমশ বাড়তে থাকা ব্যথা, লালচে ভাব, ফোলা বা জ্বর। এগুলো দেখা দিলে এখনই ডাক্তার দেখান — এটি ম্যাস্টাইটিস হতে পারে।',
     durationMin: 5,
   },
-  // Source: KB §15.1 — Benefits of Breastfeeding
   {
     slug: 'benefits-of-breastfeeding',
     category: 'feeding',
-    title: 'Why Breast Milk Is the Best Choice',
-    summary: 'Complete nutrition, infection protection, and benefits for both mother and baby.',
+    title: 'বুকের দুধ কেন সেরা',
+    summary: 'সম্পূর্ণ পুষ্টি, সংক্রমণ প্রতিরোধ এবং মা ও শিশু উভয়ের উপকার।',
     body:
-      'Breast milk is the only complete food your baby needs for the first 6 months of life — no water, tea, formula, or other foods are necessary. It contains exactly the right nutrients in the right proportions, changes its composition as your baby grows, and is always at the right temperature.\n\n## Benefits for Your Baby\n\n- breast milk acts as the first immunization\n- strengthens the immune system\n- protects against diarrhea, pneumonia, and intestinal disease (especially important for low-birth-weight babies)\n- reduces allergy risk\n- supports healthy development of the brain, mouth, and jaw\n- particularly important for premature babies — preterm milk is specially adapted with higher protein and immune factors\n\n## Benefits for You\n\n- helps your uterus return to its normal size\n- reduces bleeding after birth\n- lowers the risk of anaemia\n- supports natural child spacing by delaying ovulation\n- builds a close bond with your baby and saves the cost of formula and medical care\n\n## Exclusive Breastfeeding\n\nExclusive breastfeeding means only breast milk — no other liquid or food — from birth to 6 months. After 6 months, continue breastfeeding while gradually introducing mashed, soft complementary foods. Breastfeeding to 2 years and beyond continues to provide immune protection and nutrition.',
+      'বুকের দুধ আপনার শিশুর জন্য প্রথম ৬ মাসে একমাত্র প্রয়োজনীয় খাবার — পানি, চা, ফর্মুলা বা অন্য কিছু দরকার নেই। এতে ঠিক সঠিক পরিমাণে সঠিক পুষ্টি আছে, শিশুর বৃদ্ধির সাথে সাথে নিজেও বদলায় এবং সবসময় সঠিক তাপমাত্রায় থাকে।\n\n## শিশুর জন্য উপকার\n\n- বুকের দুধ শিশুর প্রথম টিকার মতো কাজ করে\n- রোগ প্রতিরোধ ক্ষমতা শক্তিশালী করে\n- ডায়রিয়া, নিউমোনিয়া ও অন্ত্রের সংক্রমণ থেকে রক্ষা করে (অকালজাত শিশুর জন্য বিশেষ জরুরি)\n- অ্যালার্জির ঝুঁকি কমায়\n- মস্তিষ্ক, মুখ ও চোয়ালের সুস্থ বিকাশে সাহায্য করে\n- অকালজাত শিশুর বুকের দুধে বেশি প্রোটিন ও অ্যান্টিবডি থাকে, প্রকৃতি নিজেই মিলিয়ে দেয়\n\n## মায়ের জন্য উপকার\n\n- জরায়ু দ্রুত স্বাভাবিক আকারে ফিরে আসে\n- প্রসবের পর রক্তপাত কমায়\n- রক্তশূন্যতার ঝুঁকি কমায়\n- পরবর্তী সন্তান ধারণে স্বাভাবিক বিরতি দেয়\n- শিশুর সাথে গভীর বন্ধন তৈরি করে এবং ফর্মুলার খরচ বাঁচায়\n\n## শুধু বুকের দুধ দেওয়া\n\nজন্ম থেকে ৬ মাস পর্যন্ত শুধু বুকের দুধ — অন্য কোনো তরল বা খাবার নয়। ৬ মাস পর নরম পরিপূরক খাবার শুরু করুন এবং বুকের দুধ চালিয়ে যান। ২ বছর ও তার পরেও বুকের দুধ রোগ প্রতিরোধ ক্ষমতা ও পুষ্টি দেয়।',
     durationMin: 4,
   },
-  // ─── KMC ────────────────────────────────────────────────────────────────────
-  // Source: KB §16.6 — How to Provide KMC
+
+  // ─── ক্যাঙারু মাদার কেয়ার (KMC) ────────────────────────────────────────────
   {
     slug: 'kmc-how-to',
     category: 'kmc',
-    title: 'How to Do Kangaroo Mother Care',
-    summary: 'Step-by-step skin-to-skin technique and what to wear.',
+    title: 'ক্যাঙারু মাদার কেয়ার (KMC) 🦘💕',
+    summary: 'ধাপে ধাপে ত্বকে-ত্বকে স্পর্শের পদ্ধতি এবং কী পরতে হবে।',
     body:
-      'Kangaroo Mother Care (KMC) is a simple, proven method for caring for low-birth-weight and premature babies using prolonged skin-to-skin contact with the mother — or any willing, healthy adult family member.\n\n## How to Get into Position\n\n- Dress your baby in a soft cap, socks, and a small open-fronted shirt or cloth\n- Place your baby upright between your breasts with the head turned to one side and slightly extended\n- The hips should be flexed and spread in a "frog" position\n- The baby\'s abdomen should rest at the level of your upper stomach\n- Support the baby from below with a sling, binder, or wrap\n\n## During KMC\n\nDuring KMC you can walk, stand, sit, or even sleep in this position if comfortable. Monitor your baby continuously: the airway must be clear, breathing regular, skin colour pink, and temperature maintained. You can breastfeed directly from this position.\n\n## Clothing\n\nFor clothing, any front-open garment suits — no special garment is required. KMC can be provided by the father or another family member when the mother needs to rest.',
+      'ক্যাঙারু মাদার কেয়ার (KMC) হলো কম ওজনের ও অকালজাত শিশুকে মায়ের — বা পরিবারের যেকোনো সুস্থ সদস্যের — বুকে ধরে রাখার একটি সহজ, কার্যকর পদ্ধতি।\n\n## কীভাবে শুরু করবেন\n\n- শিশুকে নরম টুপি, মোজা ও সামনে খোলা ছোট জামা পরান\n- শিশুকে সোজা করে দুই স্তনের মাঝে রাখুন, মাথা একপাশে সামান্য উঁচু করে\n- পা দুটো ব্যাঙের মতো ভাঁজ করা ও ছড়ানো থাকবে\n- শিশুর পেট আপনার পেটের ওপরের অংশে থাকবে\n- একটি কাপড়, স্লিং বা র‍্যাপ দিয়ে শিশুকে নিচ থেকে সাপোর্ট দিন\n\n## KMC করার সময়\n\nKMC করার সময় হাঁটা, দাঁড়ানো, বসা, এমনকি ঘুমানোও সম্ভব। শিশুর শ্বাস স্বাভাবিক আছে কিনা, ত্বক গোলাপী কিনা ও গলা পরিষ্কার কিনা নজর রাখুন। এই অবস্থায় সরাসরি বুকের দুধও খাওয়ানো যায়।\n\n## পোশাক\n\nসামনে খুলে যায় এমন যেকোনো পোশাকই চলবে — বিশেষ পোশাক কিনতে হবে না। মা বিশ্রাম নিলে বাবা বা পরিবারের অন্য সদস্যও KMC করতে পারেন।',
     durationMin: 4,
     audioUrl: '/audio/kmc-how-to.mp3',
-    featured: false,
+    featured: true,
   },
-  // Source: KB §16.3 + §16.2 — Benefits + Duration Categories
   {
     slug: 'kmc-benefits',
     category: 'kmc',
-    title: 'Why Kangaroo Care Matters',
-    summary: 'The evidence behind skin-to-skin contact for preterm and low-birth-weight babies.',
+    title: 'KMC কেন এত জরুরি',
+    summary: 'অকালজাত ও কম ওজনের শিশুর জন্য ত্বকে-ত্বকে স্পর্শের প্রমাণিত উপকার।',
     body:
-      '## Physical Stability for Your Baby\n\nKangaroo Mother Care stabilizes your baby\'s body temperature, heart rate, and breathing — three functions premature babies struggle with outside the womb. Research consistently shows that KMC supports better weight gain, earlier hospital discharge, and improved neurodevelopment compared to incubator care alone.\n\n## Effect on Breastfeeding\n\nKMC also promotes breastfeeding. The skin-to-skin position stimulates milk production and helps your baby latch and suck more effectively. It prevents infection, strengthens the bond between you and your baby, and helps your baby feel safe and calm.\n\n## How Long to Do KMC Each Day\n\nHow long should you do KMC each day? More is better.\n- **Short KMC:** around 4 hours daily\n- **Extended KMC:** 5 to 8 hours\n- **Long KMC:** 9 to 12 hours\n- **Continuous KMC:** more than 12 hours daily (goal for the smallest babies)\n\nEven a few hours a day makes a significant difference — start with what is comfortable and increase gradually.\n\nKMC should continue until your baby reaches a healthy weight of 2500 grams and is feeding well. It can be provided by the mother, father, or any other healthy, willing family member.',
+      '## শিশুর শরীর স্থিতিশীল রাখে\n\nক্যাঙারু মাদার কেয়ার শিশুর শরীরের তাপমাত্রা, হৃদস্পন্দন ও শ্বাস-প্রশ্বাস স্বাভাবিক রাখে — যে তিনটি জিনিস অকালজাত শিশু নিজে সামলাতে পারে না। গবেষণায় প্রমাণিত যে KMC শিশুর ওজন বাড়ানোয়, হাসপাতাল থেকে আগে ছাড়া পাওয়ায় এবং মস্তিষ্কের সুস্থ বিকাশে ইনকিউবেটরের চেয়েও ভালো কাজ করে।\n\n## বুকের দুধে সাহায্য করে\n\nKMC মায়ের দুধ তৈরি বাড়ায় এবং শিশুর চোষার শক্তি বাড়ায়। সংক্রমণ প্রতিরোধ করে, মা ও শিশুর মধ্যে গভীর বন্ধন তৈরি করে এবং শিশুকে নিরাপদ ও শান্ত রাখে।\n\n## প্রতিদিন কতক্ষণ KMC করবেন\n\nযত বেশি, তত ভালো।\n\n- **শর্ট KMC:** প্রতিদিন প্রায় **৪ ঘণ্টা**\n- **এক্সটেন্ডেড KMC:** **৫ থেকে ৮ ঘণ্টা**\n- **লং KMC:** **৯ থেকে ১২ ঘণ্টা**\n- **কন্টিনিউয়াস KMC:** প্রতিদিন **১২ ঘণ্টার বেশি** (সবচেয়ে ছোট শিশুর জন্য লক্ষ্য)\n\nকয়েক ঘণ্টা করলেও অনেক পার্থক্য হয় — যেটুকু পারেন সেটা দিয়ে শুরু করুন। শিশুর ওজন ২৫০০ গ্রাম না হওয়া পর্যন্ত এবং ভালো করে খাওয়া শুরু না করা পর্যন্ত KMC চালিয়ে যান।',
     durationMin: 3,
     audioUrl: '/audio/kmc-how-to.mp3',
   },
-  // Source: KB §16.5 — Time of Initiation Based on Birth Weight
   {
     slug: 'kmc-when-to-start',
     category: 'kmc',
-    title: 'When to Start KMC — Birth Weight Guide',
-    summary: 'Initiation guidance based on your baby\'s birth weight.',
+    title: 'কখন থেকে KMC শুরু করবেন',
+    summary: 'জন্মের ওজন অনুযায়ী KMC শুরুর সঠিক সময়।',
     body:
-      'Kangaroo Mother Care should be started as early as possible, but the timing depends on how stable your baby is.\n\n## Starting Time Based on Birth Weight\n\n- **1800–2500 g:** generally stable — KMC can start immediately after birth\n- **1200–1800 g:** KMC starts after stabilization, usually a few days in the facility\n- **Less than 1200 g:** KMC begins only after the baby is medically stable — may take days to weeks\n\nDuring transport, skin-to-skin care with a family member is the safest option if a transport incubator is not available.\n\n## Follow-up After Discharge\n\nKMC follow-up is important. After discharge:\n- First check-up within 1 week after discharge\n- Then fortnightly for the next two visits\n- Continue until your baby reaches 2500 grams\n\nDo not miss these visits — your health worker will monitor your baby\'s growth, feeding, and development at each one.',
+      'যত দ্রুত সম্ভব KMC শুরু করুন, তবে সময়টা শিশুর অবস্থার ওপর নির্ভর করে।\n\n## জন্মের ওজন অনুযায়ী শুরুর সময়\n\n- **১৮০০–২৫০০ গ্রাম:** সাধারণত স্থিতিশীল — জন্মের পরপরই KMC শুরু করা যায়\n- **১২০০–১৮০০ গ্রাম:** অবস্থা স্থিতিশীল হওয়ার পর শুরু, সাধারণত কয়েকদিন হাসপাতালে থেকে\n- **১২০০ গ্রামের কম:** শিশু চিকিৎসাগতভাবে স্থিতিশীল হওয়ার পর শুরু — কয়েকদিন থেকে কয়েক সপ্তাহ লাগতে পারে\n\nহাসপাতাল থেকে বাড়ি নিয়ে আসার সময় ট্রান্সপোর্ট ইনকিউবেটর না থাকলে পরিবারের সদস্যের বুকে ধরে নিয়ে আসা সবচেয়ে নিরাপদ।\n\n## ছাড়ার পর ফলো-আপ\n\nKMC ফলো-আপ অত্যন্ত জরুরি। ছাড়ার পর:\n\n- ছাড়ার **১ সপ্তাহের মধ্যে** প্রথম চেকআপ\n- এরপর পরপর দুটো ভিজিট **দুই সপ্তাহ পরপর**\n- শিশুর ওজন **২৫০০ গ্রাম** না হওয়া পর্যন্ত চালিয়ে যান\n\nএই ভিজিট মিস করবেন না — প্রতিটিতে বৃদ্ধি, খাওয়া ও বিকাশ দেখা হয়।',
     durationMin: 3,
   },
-  // ─── GROWTH ─────────────────────────────────────────────────────────────────
-  // Source: KB §7 — Growth & Weight-Gain Validation Logic (narrative layer)
+
+  // ─── বৃদ্ধি ও বিকাশ (GROWTH) ────────────────────────────────────────────────
   {
     slug: 'corrected-age-explained',
     category: 'growth',
-    title: 'Understanding Corrected Age',
-    summary: 'Why your preterm baby\'s growth is measured against corrected age.',
+    title: 'Corrected Age বা সংশোধিত বয়স কী',
+    summary: 'অকালজাত শিশুর বিকাশ কেন সংশোধিত বয়স দিয়ে মাপা হয়।',
     body:
-      '## How to Calculate Corrected Age\n\nCorrected age (also called adjusted age) accounts for how early your baby was born. It is calculated by subtracting the number of weeks born early from the baby\'s actual (chronological) age. For example, a baby born **8 weeks early** who is now **4 months old** has a **corrected age of about 2 months**.\n\n## How It Is Used in This App\n\nFor premature babies, corrected age is the right baseline for comparing growth and development milestones. This app uses corrected age throughout — for daily care messages, growth chart comparisons, and care guidance — to ensure every recommendation is matched to where your baby actually is in their development.\n\n## Reading Your Baby\'s Growth Chart\n\nYour baby\'s growth chart uses corrected age on the horizontal axis. When checking milestones (weight gain, length, head circumference), always use the corrected age column, not the actual age in weeks since birth.',
-    durationMin: 3,
+      'যে শিশু নির্ধারিত সময়ের আগে জন্মেছে, তার আসল বয়সের বদলে সংশোধিত বয়স হিসাব করা হয় — অর্থাৎ জন্ম যত সপ্তাহ আগে হয়েছে, সেটা বাদ দিয়ে যে বয়স বের হয়। যেমন একটি শিশু **৮ সপ্তাহ আগে** জন্মালে, তার প্রকৃত বয়স ৪ মাস হলেও **সংশোধিত বয়স হবে প্রায় ২ মাস**।\n\n## এই অ্যাপে কীভাবে ব্যবহার হয়\n\nঅকালজাত শিশুর ক্ষেত্রে সংশোধিত বয়সই বিকাশের সঠিক মাপকাঠি। এই অ্যাপ সর্বত্র সংশোধিত বয়স ব্যবহার করে — প্রতিদিনের যত্নের বার্তা, গ্রোথ চার্ট ও বিকাশের পরামর্শ সবকিছুতেই।\n\n## গ্রোথ চার্ট পড়ার নিয়ম\n\nগ্রোথ চার্টের আনুভূমিক রেখায় সংশোধিত বয়স লেখা থাকে। ওজন, উচ্চতা ও মাথার পরিধি যাচাই করার সময় সবসময় সংশোধিত বয়সের কলাম ব্যবহার করুন, জন্মের তারিখ থেকে গণনা করা আসল বয়স নয়। এটা কোনো দুর্বলতা নয়, শুধু প্রকৃতির নিয়ম — তাই তুলনা করে মন খারাপ করবেন না।',
+    durationMin: 2,
   },
-  // Source: KB §7 — Weight-gain windows
+  {
+    slug: 'chronological-age-explained',
+    category: 'growth',
+    title: 'Chronological Age বা প্রকৃত বয়স কী',
+    summary: 'টিকার সময়সূচি মেনে চলতে প্রকৃত বয়স কেন জরুরি।',
+    body:
+      'প্রকৃত বয়স হলো শিশুর জন্ম তারিখ থেকে গণনা করা স্বাভাবিক বয়স, যেভাবে আমরা সাধারণত হিসাব করি। এই বয়স টিকাকরণের সময়সূচি ঠিক করতে ব্যবহার হয়, কারণ টিকা শিশুর জন্মের দিন থেকেই হিসাব হয়, সংশোধিত বয়স থেকে নয়।\n\n## মনে রাখার নিয়ম\n\n- **টিকার জন্য:** প্রকৃত বয়স\n- **বিকাশ বোঝার জন্য:** সংশোধিত বয়স\n\nদুটো আলাদা জিনিস হলেও আপনার শিশুর যত্নে দুটোই সমান জরুরি। অ্যাপের ভ্যাকসিন ট্র্যাকার স্বয়ংক্রিয়ভাবে প্রকৃত বয়স ব্যবহার করে, তাই আলাদা করে হিসাব করার চিন্তা নেই।',
+    durationMin: 2,
+  },
   {
     slug: 'tracking-growth',
     category: 'growth',
-    title: 'What to Expect: Growth Tracking',
-    summary: 'Normal weight-gain patterns week by week.',
+    title: 'শিশুর ওজন কেন মাপা জরুরি',
+    summary: 'নিয়মিত ওজন মাপলে বোঝা যায় শিশু ঠিকমতো বাড়ছে কিনা।',
     body:
-      '## First 7 Days — Weight Loss Is Normal\n\nSome weight loss in the first 7 days is completely normal — up to **5 to 10%** of birth weight. From around days 7 to 10, your baby should begin gaining weight again. By **day 14**, your baby should have regained their birth weight. If this has not happened by day 14, bring it up with your health worker at the next visit.\n\n## Weight Gain After Day 14\n\nAfter day 14 and through to around 4 months of corrected age, expect an average gain of **25 to 30 grams per day**. By 4 to 5 months, your baby should have roughly **doubled their birth weight**.\n\n## Growth Targets and Tracking\n\nWeigh your baby regularly (weekly if advised) and bring the record to every follow-up visit. Steady, gradual growth over time matters more than any single reading. The growth chart in this app tracks your baby\'s weight, length, and head circumference against standard reference bands — a reading between the bands is the goal, but a consistent upward trend is the most reassuring sign.',
+      'শিশুর ওজন হলো তার সুস্থতার সবচেয়ে সহজ আয়না। নিয়মিত ওজন মাপলে বোঝা যায় শিশু ঠিকমতো দুধ পাচ্ছে কিনা এবং তার শরীর ভালোভাবে বেড়ে উঠছে কিনা। ওজন কম বাড়া অনেক সময় শরীরে কোনো সমস্যার প্রথম ইঙ্গিত হতে পারে।\n\n## প্রথম ৭ দিন — ওজন সামান্য কমা স্বাভাবিক\n\nপ্রথম ৭ দিন ওজন একটু কমা সম্পূর্ণ স্বাভাবিক — জন্মের ওজনের **৫ থেকে ১০%** পর্যন্ত। ৭ থেকে ১০ দিনের মধ্যে আবার বাড়তে শুরু করা উচিত এবং **১৪ দিনের মধ্যে** জন্মের ওজন ফিরে আসা উচিত।\n\n## ১৪ দিনের পর ওজন বৃদ্ধি\n\n১৪ দিনের পর থেকে প্রায় ৪ মাস পর্যন্ত প্রতিদিন গড়ে **২৫ থেকে ৩০ গ্রাম** বাড়া উচিত। ৪ থেকে ৫ মাসে শিশুর ওজন জন্মের ওজনের **দ্বিগুণ** হওয়া উচিত।\n\n## সহজ টিপস\n\n- প্রতিবার একই পোশাকে, একই সময়ে ওজন মাপুন — তুলনা করা সহজ হয়\n- অ্যাপে তথ্য টুকে রাখুন\n- ওজন বাড়ছে না মনে হলে ঘাবড়াবেন না, স্বাস্থ্যকর্মীর সাথে কথা বলুন',
     durationMin: 3,
   },
-  // ─── DANGER SIGNS ───────────────────────────────────────────────────────────
-  // Source: KB §4.1 — Master Danger Sign Table
+  {
+    slug: 'how-often-to-weigh',
+    category: 'growth',
+    title: 'কতদিন পরপর ওজন মাপবেন',
+    summary: 'শিশুর বয়স ও অবস্থা অনুযায়ী ওজন মাপার সঠিক সময়সূচি।',
+    body:
+      'প্রথম কয়েক মাস শিশুর বৃদ্ধি খুব দ্রুত হয়, তাই এই সময় নিয়মিত ওজন মাপা জরুরি। সাধারণত **মাসে একবার** ওজন মাপার পরামর্শ দেওয়া হয়।\n\n## কখন বেশি ঘন ঘন মাপতে হবে\n\n- শিশু কম ওজনে জন্মেছে\n- শিশু অসুস্থ ছিল বা এখনও আছে\n- স্বাস্থ্যকর্মী আলাদা নির্দেশ দিয়েছেন\n\nআপনার হাসপাতাল বা স্বাস্থ্যকর্মী সঠিক সময়সূচি বলে দেবেন। বাড়িতে ওজন মাপার সুযোগ থাকলে অ্যাপে সেই তথ্য টুকে রাখুন যাতে বৃদ্ধির ধারা সহজে বোঝা যায়।',
+    durationMin: 2,
+  },
+  {
+    slug: 'measuring-height',
+    category: 'growth',
+    title: 'উচ্চতা কীভাবে মাপবেন',
+    summary: 'শিশুর দৈর্ঘ্য সঠিকভাবে মাপার সহজ পদ্ধতি।',
+    body:
+      'শিশুকে সমতল জায়গায় সোজা করে চিত করে শুইয়ে মাথা থেকে পা পর্যন্ত মেপে নিন। একজন মাথার দিকে ধরে রাখুন আর অন্যজন পা সোজা করে মাপ নিন — শিশুরা নড়াচড়া করে বলে একা মাপা কঠিন।\n\n## কেন উচ্চতা গুরুত্বপূর্ণ\n\nউচ্চতা ওজনের মতোই জরুরি, কারণ এটি বলে দেয় শিশুর হাড় ও শরীরের কাঠামো ঠিকভাবে বাড়ছে কিনা। হাসপাতালের নিয়মিত চেকআপে এই মাপ নেওয়া হয়। বাড়িতে নিজে চেষ্টা করলেও চূড়ান্ত মাপের জন্য স্বাস্থ্যকর্মীর সাহায্য নিন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'head-circumference',
+    category: 'growth',
+    title: 'মাথার পরিধি কেন গুরুত্বপূর্ণ',
+    summary: 'মাথার পরিধি মস্তিষ্কের বৃদ্ধির গুরুত্বপূর্ণ সূচক।',
+    body:
+      'মাথার পরিধি মাপা হয় কারণ এটি মস্তিষ্কের বৃদ্ধির একটি গুরুত্বপূর্ণ সূচক। জন্মের পর প্রথম বছরে মস্তিষ্ক দ্রুত বাড়ে, আর মাথার পরিধির স্বাভাবিক বৃদ্ধি সেই বিকাশ ঠিকমতো হচ্ছে কিনা তা বোঝায়।\n\n## কীভাবে মাপা হয়\n\nকপালের একটু ওপর থেকে কানের ওপর দিয়ে ঘুরিয়ে টেপ দিয়ে এই মাপ নেওয়া হয়। প্রতিটি চেকআপে এই মাপ নেওয়া হয় — আলাদা করে চিন্তার কিছু নেই, শুধু নিয়মিত চেকআপে যাওয়া নিশ্চিত করুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'low-weight-gain',
+    category: 'growth',
+    title: 'ওজন কম বাড়লে কী করবেন',
+    summary: 'শিশুর ওজন প্রত্যাশিত হারে না বাড়লে সঠিক পদক্ষেপ।',
+    body:
+      'শিশুর ওজন প্রত্যাশিত হারে না বাড়লে প্রথমেই ঘাবড়াবেন না, তবে বিষয়টি এড়িয়েও যাবেন না।\n\n## কী করবেন\n\n- দুধ খাওয়ানোর পরিমাণ ও নিয়ম ঠিক আছে কিনা খেয়াল করুন\n- যত দ্রুত সম্ভব আপনার স্বাস্থ্যকর্মী বা ডাক্তারের সাথে দেখা করুন\n- তারা শিশুর খাওয়ানোর ধরন যাচাই করে প্রয়োজনীয় পরামর্শ দেবেন\n\n## কী করবেন না\n\n- নিজে থেকে কোনো বাড়তি খাবার বা ওষুধ শুরু করবেন না\n- অন্য শিশুর সাথে তুলনা করে দুশ্চিন্তায় পড়বেন না\n\nমনে রাখবেন, সময়মতো পদক্ষেপ নিলে বেশিরভাগ ক্ষেত্রেই এই সমস্যা ঠিক করা সম্ভব।',
+    durationMin: 2,
+  },
+  {
+    slug: 'normal-growth-pattern',
+    category: 'growth',
+    title: 'শিশুর স্বাভাবিক বৃদ্ধি কেমন হওয়া উচিত',
+    summary: 'ওজন, উচ্চতা ও মাথার পরিধির ধারাবাহিক বৃদ্ধিই সুস্থতার লক্ষণ।',
+    body:
+      'প্রতিটি শিশুর বৃদ্ধির গতি একটু আলাদা হতে পারে, তাই অন্য শিশুর সাথে তুলনা না করে নিজের শিশুর বৃদ্ধির ধারা দেখুন।\n\n## স্বাভাবিক বৃদ্ধি মানে কী\n\nসময়ের সাথে ওজন, উচ্চতা ও মাথার পরিধি ধারাবাহিকভাবে বাড়তে থাকা — হঠাৎ থেমে যাওয়া বা কমে যাওয়া নয়। WHO-এর গ্রোথ চার্ট অনুযায়ী স্বাস্থ্যকর্মীরা এই বৃদ্ধি যাচাই করেন।\n\nনিয়মিত চেকআপে গেলে যেকোনো সমস্যা শুরুতেই ধরা পড়ে, যা চিকিৎসা সহজ করে দেয়। বাড়িতে একটু বেশি বা কম দেখালেও একটি একক মাপের চেয়ে কয়েক সপ্তাহের ধারাটাই বেশি গুরুত্বপূর্ণ।',
+    durationMin: 2,
+  },
+  {
+    slug: 'monthly-milestones',
+    category: 'growth',
+    title: 'মাসভিত্তিক বিকাশ কী',
+    summary: 'শিশু কোন বয়সে কী শেখে — ধাপে ধাপে বিকাশের পরিচয়।',
+    body:
+      'শিশুর শরীর ও মস্তিষ্ক ধাপে ধাপে বিকশিত হয় — প্রথমে মাথা তোলা, তারপর উল্টে যাওয়া, বসা, হামাগুড়ি দেওয়া, তারপর দাঁড়ানো ও হাঁটা। এই ধাপগুলো সাধারণত একটি নির্দিষ্ট বয়সসীমার মধ্যে ঘটে।\n\n## মনে রাখার বিষয়\n\n- প্রতিটি শিশুর গতি একটু আলাদা হতে পারে\n- অকালজাত শিশুর ক্ষেত্রে সংশোধিত বয়স হিসাব করতে হয়\n- কোনো ধাপ অনেক দেরিতে হচ্ছে মনে হলে স্বাস্থ্যকর্মীর সাথে আলোচনা করুন\n\nএই ধাপগুলো লক্ষ রাখলে আপনি বুঝতে পারবেন আপনার শিশুর বিকাশ ঠিক পথে আছে কিনা।',
+    durationMin: 2,
+  },
+  {
+    slug: 'first-smile',
+    category: 'growth',
+    title: 'শিশুর প্রথম হাসি',
+    summary: 'কখন শিশু সত্যিকারের সচেতন হাসি হাসতে শুরু করে।',
+    body:
+      'জন্মের প্রথম কয়েক সপ্তাহে শিশু মাঝে মাঝে ঘুমের মধ্যে হাসে, কিন্তু সেটা সামাজিক হাসি নয়। সাধারণত **৬ থেকে ৮ সপ্তাহ বয়সে** (সংশোধিত বয়স হিসাবে) শিশু আপনার মুখ দেখে বা আওয়াজ শুনে সচেতনভাবে হাসতে শুরু করে। এই প্রথম হাসি আপনাদের বন্ধনের এক সুন্দর মুহূর্ত।\n\n## কীভাবে সাহায্য করবেন\n\nশিশুর সাথে চোখে চোখ রেখে কথা বলুন, হাসুন — এটি তার হাসতে শেখার প্রক্রিয়া দ্রুত করে। যদি **৩ মাস বয়সেও** শিশু একেবারেই না হাসে, স্বাস্থ্যকর্মীকে জানান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'head-lifting',
+    category: 'growth',
+    title: 'শিশুর মাথা তোলা',
+    summary: 'কখন শিশু নিজে থেকে মাথা তুলতে শুরু করে এবং কীভাবে সাহায্য করবেন।',
+    body:
+      'প্রথম দিকে শিশুর ঘাড়ের পেশি দুর্বল থাকে বলে মাথা ধরে রাখতে পারে না — কোলে নেওয়ার সময় সবসময় মাথা সাপোর্ট দিতে হয়। সাধারণত **২ থেকে ৩ মাস বয়সে** (সংশোধিত বয়স) শিশু উপুড় হয়ে থাকলে নিজে থেকে মাথা তুলতে শুরু করে।\n\n## টামি টাইম\n\nপ্রতিদিন কিছুক্ষণ তত্ত্বাবধানে পেটের ওপর শুইয়ে রাখলে (টামি টাইম) ঘাড় ও পিঠের পেশি শক্তিশালী হয়। এটি পরবর্তী বিকাশ যেমন উল্টে যাওয়া ও বসার ভিত্তি তৈরি করে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'rolling-over',
+    category: 'growth',
+    title: 'শিশুর উল্টে যাওয়া',
+    summary: 'কখন শিশু উল্টাতে শেখে এবং কীভাবে নিরাপদ রাখবেন।',
+    body:
+      'সাধারণত **৪ থেকে ৬ মাস বয়সে** (সংশোধিত বয়স) শিশু প্রথমে পেট থেকে পিঠে, পরে পিঠ থেকে পেটে উল্টাতে শেখে। এটি তার পেশি শক্তি ও শরীরের নিয়ন্ত্রণ বাড়ার লক্ষণ।\n\n## নিরাপত্তার বিষয়\n\n> এই সময় থেকে শিশুকে কখনো উঁচু জায়গায় একা রাখবেন না — সে হঠাৎ উল্টে পড়ে যেতে পারে।\n\nনিয়মিত টামি টাইম দিলে এই দক্ষতা তাড়াতাড়ি আসে। যদি **৬ থেকে ৭ মাস বয়সেও** একেবারে উল্টাতে না পারে, স্বাস্থ্যকর্মীর সাথে কথা বলুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'sitting-up',
+    category: 'growth',
+    title: 'শিশুর বসা',
+    summary: 'কখন শিশু বসতে শেখে এবং কীভাবে সাহায্য করবেন।',
+    body:
+      'সাধারণত **৬ থেকে ৮ মাস বয়সে** (সংশোধিত বয়স) শিশু প্রথমে সাপোর্ট নিয়ে, পরে নিজে থেকে বসতে শেখে। এর জন্য পিঠ ও ঘাড়ের পেশি যথেষ্ট শক্তিশালী হওয়া প্রয়োজন।\n\nশুরুতে বালিশ বা কোলে সাপোর্ট দিয়ে বসার অভ্যাস করাতে পারেন। শিশু বসতে শিখলে চারপাশের জগৎ নতুনভাবে দেখতে শুরু করে, যা তার মানসিক বিকাশেও সাহায্য করে। দেরি হলে চিন্তিত না হয়ে পরবর্তী চেকআপে বিষয়টি জানান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'crawling',
+    category: 'growth',
+    title: 'শিশুর হামাগুড়ি দেওয়া',
+    summary: 'হামাগুড়ির সময়কাল, ঘরের নিরাপত্তা ও কিছু না দেওয়াও স্বাভাবিক।',
+    body:
+      'সাধারণত **৮ থেকে ১০ মাস বয়সে** (সংশোধিত বয়স) শিশু হামাগুড়ি দিতে শুরু করে। যদিও কিছু শিশু এই ধাপ এড়িয়ে সরাসরি হাঁটা শেখে — এটাও স্বাভাবিক। হামাগুড়ি শিশুর হাত-পায়ের সমন্বয় ও শরীরের ভারসাম্য উন্নত করে।\n\n## ঘর নিরাপদ রাখুন\n\n- মেঝে পরিষ্কার ও নিরাপদ রাখুন\n- ছোট জিনিস বা ধারালো কিছু হাতের নাগালে রাখবেন না\n- শিশুকে খোলা জায়গায় ঘোরাফেরার সুযোগ দিন — এতে আত্মবিশ্বাস বাড়ে',
+    durationMin: 2,
+  },
+  {
+    slug: 'standing-up',
+    category: 'growth',
+    title: 'শিশুর দাঁড়ানো',
+    summary: 'কখন শিশু ধরে দাঁড়াতে শুরু করে এবং কী করা ঠিক নয়।',
+    body:
+      'সাধারণত **৯ থেকে ১২ মাস বয়সে** (সংশোধিত বয়স) শিশু কোনো কিছু ধরে দাঁড়াতে শুরু করে। এই সময় পায়ের পেশি ও হাড় যথেষ্ট শক্তিশালী হয়ে ওঠে।\n\nশিশুকে সোফা বা টেবিলের মতো শক্ত জিনিস ধরে দাঁড়ানোর সুযোগ দিন, তবে সবসময় কাছে থেকে নজর রাখুন।\n\n> জোর করে দাঁড় করানোর চেষ্টা করবেন না — শিশুকে তার নিজের গতিতে শিখতে দিন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'first-steps',
+    category: 'growth',
+    title: 'শিশুর হাঁটা',
+    summary: 'প্রথম পা ফেলার সময়কাল ও ঘরে নিরাপত্তার টিপস।',
+    body:
+      'সাধারণত **১২ থেকে ১৫ মাস বয়সের** (সংশোধিত বয়স) মধ্যে শিশু প্রথম পা ফেলতে শুরু করে। কিছু শিশুর একটু বেশি সময় লাগতে পারে — এটাও স্বাভাবিক।\n\n## জানার বিষয়\n\n- হাঁটার জন্য জুতা পরানোর দরকার নেই — খালি পায়ে হাঁটলে ভারসাম্য শিখতে সুবিধা হয়\n- ধারালো কোণ, সিঁড়ি বা পিচ্ছিল জায়গা নিরাপদ করে রাখুন\n\n> **১৮ মাস বয়সেও** একেবারে হাঁটতে না পারলে অবশ্যই স্বাস্থ্যকর্মীর পরামর্শ নিন।',
+    durationMin: 2,
+  },
+
+  // ─── টিকাকরণ (IMMUNIZATION) ──────────────────────────────────────────────────
+  {
+    slug: 'vaccine-basics',
+    category: 'immunization',
+    title: 'টিকা কেন জরুরি',
+    summary: 'টিকা শিশুকে মারাত্মক রোগ থেকে কীভাবে রক্ষা করে।',
+    body:
+      'টিকা শিশুর শরীরে এমন প্রতিরোধ ক্ষমতা তৈরি করে যা তাকে যক্ষ্মা, পোলিও, হেপাটাইটিস, হুপিং কাশির মতো মারাত্মক রোগ থেকে রক্ষা করে। এই রোগগুলো একবার হলে শিশুর জীবনের জন্য বিপজ্জনক হতে পারে, কিন্তু টিকা দিয়ে আগেই ঠেকানো সম্ভব।\n\n## মনে রাখার বিষয়\n\n- সরকারি নির্ধারিত সময়সূচি মেনে টিকা দেওয়া প্রতিটি শিশুর অধিকার\n- সম্পূর্ণ নিরাপদ ও সরকারি হাসপাতালে বিনামূল্যে পাওয়া যায়\n- সময়মতো টিকা দিলে আপনার শিশু ও তার আশেপাশের সবাই সুরক্ষিত থাকে\n- অকালজাত শিশুও একই সময়সূচিতে (প্রকৃত জন্ম তারিখ থেকে) টিকা পায়\n\n> কোনো ডোজ মিস হলে যত দ্রুত সম্ভব নিকটস্থ স্বাস্থ্যকেন্দ্রে যান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'birth-vaccines',
+    category: 'immunization',
+    title: 'জন্মের সময় কোন টিকা দেওয়া হয়',
+    summary: 'জন্মের পরপরই দেওয়া তিনটি গুরুত্বপূর্ণ টিকার পরিচয়।',
+    body:
+      'জন্মের পরপরই বা প্রথম কয়েকদিনের মধ্যে শিশুকে তিনটি টিকা দেওয়া হয়:\n\n- **BCG** — যক্ষ্মা প্রতিরোধে\n- **OPV-0** — পোলিও প্রতিরোধে\n- **Hepatitis B (১ম ডোজ)** — লিভারের সংক্রমণ প্রতিরোধে\n\nহাসপাতাল থেকে ছাড়ার আগেই সাধারণত এই টিকাগুলো দেওয়া হয়ে যায়। যদি কোনো কারণে শিশু এই টিকা না পেয়ে থাকে, তাহলে বাড়ি ফেরার পর যত দ্রুত সম্ভব নিকটস্থ স্বাস্থ্যকেন্দ্রে নিয়ে যান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'bcg-vaccine',
+    category: 'immunization',
+    title: 'BCG টিকা',
+    summary: 'যক্ষ্মা প্রতিরোধী BCG টিকা সম্পর্কে যা জানা দরকার।',
+    body:
+      'BCG টিকা শিশুকে যক্ষ্মা রোগ থেকে রক্ষা করে, যা ফুসফুসের একটি মারাত্মক সংক্রমণ। এই টিকা জন্মের পরপরই একবার দেওয়া হয়, সাধারণত **বাম হাতের ওপরের অংশে**।\n\n## টিকার পর যা হতে পারে\n\nটিকা দেওয়ার জায়গায় কিছুদিন পর ছোট একটি ফুসকুড়ি বা ঘা হতে পারে, যা কয়েক সপ্তাহের মধ্যে নিজে থেকে শুকিয়ে যায় এবং একটি ছোট দাগ থেকে যায় — এটি স্বাভাবিক, চিন্তার কিছু নেই। জায়গাটি পরিষ্কার রাখুন এবং নিজে থেকে কিছু লাগাবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'opv-vaccine',
+    category: 'immunization',
+    title: 'OPV টিকা',
+    summary: 'মুখে খাওয়ানো পোলিও টিকা এবং কখন কখন দেওয়া হয়।',
+    body:
+      'OPV বা মুখে খাওয়ানো পোলিও টিকা শিশুকে পোলিও রোগ থেকে রক্ষা করে, যা পা অবশ করে দিতে পারে। এই টিকা জন্মের সময় এবং পরবর্তীতে **৬, ১০ ও ১৪ সপ্তাহে** ফোঁটা আকারে মুখে খাওয়ানো হয়।\n\nটিকা দেওয়ার পর শিশু যদি সামান্য বমি করেও ফেলে, সাধারণত বাড়তি চিন্তার কিছু নেই — তবে স্বাস্থ্যকর্মীকে জানিয়ে রাখুন। এই টিকা সম্পূর্ণ নিরাপদ ও সারা দেশে বিনামূল্যে দেওয়া হয়।',
+    durationMin: 2,
+  },
+  {
+    slug: 'hepatitis-b-vaccine',
+    category: 'immunization',
+    title: 'Hepatitis B টিকা',
+    summary: 'লিভার সংক্রমণ থেকে রক্ষাকারী এই টিকার ডোজ সম্পর্কে জানুন।',
+    body:
+      'Hepatitis B টিকা শিশুকে লিভারের একটি মারাত্মক ভাইরাস সংক্রমণ থেকে রক্ষা করে, যা দীর্ঘমেয়াদে লিভারের গুরুতর ক্ষতি করতে পারে।\n\n## কখন কখন দেওয়া হয়\n\n- **জন্মের সময়:** ১ম ডোজ\n- **৬, ১০ ও ১৪ সপ্তাহে:** পেন্টাভ্যালেন্ট টিকার সাথে\n\nএটি ইনজেকশনের মাধ্যমে দেওয়া হয় এবং সম্পূর্ণ নিরাপদ। সময়মতো সবগুলো ডোজ সম্পূর্ণ করা জরুরি। একটি ডোজ মিস হলেও পরবর্তী ভিজিটে জানিয়ে তা পূরণ করে নিন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'six-week-vaccines',
+    category: 'immunization',
+    title: '৬ সপ্তাহের টিকা',
+    summary: 'শিশুর ৬ সপ্তাহ বয়সে দেওয়া গুচ্ছ টিকার পরিচয়।',
+    body:
+      'শিশুর **৬ সপ্তাহ বয়সে** বেশ কয়েকটি গুরুত্বপূর্ণ টিকা একসাথে দেওয়া হয়:\n\n- **পেন্টাভ্যালেন্ট (১ম ডোজ):** ডিপথেরিয়া, হুপিং কাশি, টিটেনাস, হেপাটাইটিস বি ও হিব সংক্রমণ প্রতিরোধে\n- **OPV (১ম ডোজ)**\n- **রোটাভাইরাস (১ম ডোজ)**\n- **নিউমোকক্কাল (১ম ডোজ)**\n\nএকসাথে অনেক টিকা দেওয়া হলেও এটি শিশুর জন্য সম্পূর্ণ নিরাপদ — এই সময়সূচি বহু গবেষণার পর নির্ধারণ করা হয়েছে। টিকার পর শিশু একটু খিটখিটে হতে পারে, এটি স্বাভাবিক।',
+    durationMin: 2,
+  },
+  {
+    slug: 'ten-week-vaccines',
+    category: 'immunization',
+    title: '১০ সপ্তাহের টিকা',
+    summary: '৬ সপ্তাহে দেওয়া টিকাগুলোর দ্বিতীয় ডোজ।',
+    body:
+      '**১০ সপ্তাহ বয়সে** ৬ সপ্তাহে দেওয়া টিকাগুলোর দ্বিতীয় ডোজ দেওয়া হয় — পেন্টাভ্যালেন্ট, OPV, রোটাভাইরাস ও নিউমোকক্কাল।\n\nপ্রতিটি ডোজ শিশুর শরীরে প্রতিরোধ ক্ষমতা আরও শক্তিশালী করে, তাই কোনো ডোজ বাদ দেওয়া উচিত নয়। অ্যাপের টিকা ট্র্যাকার ব্যবহার করুন, যাতে কোনো ডোজ মিস না হয়ে যায়।',
+    durationMin: 2,
+  },
+  {
+    slug: 'fourteen-week-vaccines',
+    category: 'immunization',
+    title: '১৪ সপ্তাহের টিকা',
+    summary: 'প্রাথমিক টিকাক্রম সম্পন্ন করার শেষ ধাপ।',
+    body:
+      '**১৪ সপ্তাহ বয়সে** পেন্টাভ্যালেন্ট, OPV, রোটাভাইরাস ও নিউমোকক্কাল টিকার তৃতীয় ও শেষ ডোজ দেওয়া হয়, সাথে **IPV** (ইনজেকশনের পোলিও টিকা)-ও দেওয়া হয়।\n\nএই ডোজের মাধ্যমে প্রাথমিক টিকাক্রম সম্পূর্ণ হয়। এরপর পরবর্তী টিকা সাধারণত **৯ মাস বয়সে** — মাঝের এই সময়টায় নিয়মিত চেকআপে যেতে ভুলবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'nine-month-vaccines',
+    category: 'immunization',
+    title: '৯ মাসের টিকা',
+    summary: 'হাম-রুবেলা টিকা ও ভিটামিন A সম্পর্কে জানুন।',
+    body:
+      '**৯ মাস বয়সে** শিশুকে হাম ও রুবেলা প্রতিরোধী **MR টিকা** এবং **ভিটামিন A-এর প্রথম ডোজ** দেওয়া হয়। কিছু এলাকায় জাপানিজ এনসেফালাইটিস টিকাও এই সময় দেওয়া হয়।\n\nহাম একটি অত্যন্ত ছোঁয়াচে ও মারাত্মক রোগ হতে পারে, তাই এই টিকা বাদ দেওয়া উচিত নয়। টিকার পর হালকা জ্বর বা র‍্যাশ হতে পারে, যা সাধারণত কয়েকদিনের মধ্যে নিজে থেকে সেরে যায়।',
+    durationMin: 2,
+  },
+  {
+    slug: 'fever-after-vaccine',
+    category: 'immunization',
+    title: 'টিকার পর জ্বর হলে কী করবেন',
+    summary: 'টিকার পর স্বাভাবিক প্রতিক্রিয়া ও কখন ডাক্তার দেখাবেন।',
+    body:
+      'টিকা দেওয়ার পর শিশুর শরীরে হালকা জ্বর, ইনজেকশনের জায়গায় ফোলাভাব বা খিটখিটে ভাব দেখা দিতে পারে — এটি শরীরের স্বাভাবিক প্রতিক্রিয়া, যার অর্থ টিকা কাজ করছে।\n\n## কী করবেন\n\n- শিশুকে বেশি করে বুকের দুধ খাওয়ান\n- হালকা পোশাক পরান\n\n> জ্বর যদি খুব বেশি হয়, **২৪ ঘণ্টার বেশি** স্থায়ী হয়, বা শিশু খুব ঢিলে হয়ে যায় — দেরি না করে স্বাস্থ্যকেন্দ্রে যোগাযোগ করুন। নিজে থেকে কোনো ওষুধ দেবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'missed-vaccine',
+    category: 'immunization',
+    title: 'টিকা মিস হলে কী করবেন',
+    summary: 'ডোজ মিস হলে ঘাবড়াবেন না — পুনরায় শুরু করার দরকার নেই।',
+    body:
+      'কোনো কারণে নির্ধারিত দিনে টিকা দিতে না পারলে ঘাবড়াবেন না, তবে দেরি করবেন না। যত দ্রুত সম্ভব নিকটস্থ স্বাস্থ্যকেন্দ্রে গিয়ে বাকি ডোজ সম্পূর্ণ করুন — প্রথম থেকে নতুন করে শুরু করার প্রয়োজন সাধারণত হয় না।\n\nঅ্যাপের টিকা ট্র্যাকারে আপনার শিশুর টিকার তারিখ দেখে নিন এবং রিমাইন্ডার চালু রাখুন, যাতে ভবিষ্যতে মিস না হয়।',
+    durationMin: 2,
+  },
+  {
+    slug: 'vaccine-myths',
+    category: 'immunization',
+    title: 'টিকা নিয়ে প্রচলিত ভুল ধারণা',
+    summary: 'টিকা নিয়ে যে কথাগুলো সত্যি নয়।',
+    body:
+      'অনেকে মনে করেন টিকা দিলে শিশু অসুস্থ হয়ে যায় বা একসাথে অনেক টিকা দেওয়া শরীরের জন্য ক্ষতিকর — এই দুটোই ভুল ধারণা।\n\n## সত্যিটা কী\n\n- টিকার পর সামান্য জ্বর মানে শরীর সুরক্ষা তৈরি করছে — ক্ষতিকর নয়\n- আধুনিক টিকাক্রম বহু গবেষণার মাধ্যমে নিরাপদ প্রমাণিত\n- একসাথে একাধিক টিকা দিলেও শিশুর শরীর তা সহজেই সামলাতে পারে\n\nকোনো দ্বিধা থাকলে গুজবে কান না দিয়ে সরাসরি আপনার স্বাস্থ্যকর্মীর সাথে কথা বলুন।',
+    durationMin: 2,
+  },
+
+  // ─── বিপদের লক্ষণ (DANGER SIGNS) ────────────────────────────────────────────
   {
     slug: 'danger-signs-overview',
     category: 'danger_signs',
-    title: 'Danger Signs at a Glance',
-    summary: 'Warning signs that mean seek care immediately or consult a doctor soon.',
+    title: 'বিপদের লক্ষণ — এক নজরে',
+    summary: 'কোন লক্ষণ দেখলে এখনই হাসপাতালে যাবেন আর কোনটায় একই দিনে ডাক্তার দেখাবেন।',
     body:
-      'Knowing your baby\'s danger signs can save their life.\n\n## Go to Hospital Immediately\n\n> Seek medical care immediately — go to the nearest hospital or contact your ASHA/ANM worker now — if your baby shows any of the following:\n> - stops feeding well and feels cold to touch\n> - breathing rate is less than 30 or more than 60 breaths per minute\n> - gasping, grunting, chest indrawing, or nostrils flaring\n> - lips, tongue, or skin appearing blue\n> - high fever or feels cold (axillary temperature above 37°C or below 36°C)\n> - redness, swelling, pus, or foul smell around the umbilical cord\n> - any seizure or convulsion\n> - body is limp or floppy\n> - the baby is inactive and very difficult to wake\n\n## See a Doctor Soon (Same Day)\n\n- red or swollen eyelids with pus discharge\n- yellow skin or eyes (jaundice)\n- a baby who is excessively sleepy, very hard to wake, and missing feeds\n- persistent watery/loose stools\n\nUse the Danger Signs Checker in this app any time you are worried. You cannot "over-use" it — when in doubt, check. If you see a CRITICAL warning, do not wait — seek help immediately.',
+      'শিশুর বিপদচিহ্ন জানা তার জীবন বাঁচাতে পারে।\n\n## এখনই হাসপাতালে যান\n\n> এখনই চিকিৎসা নিন — নিকটতম হাসপাতালে যান বা এখনই আপনার ASHA/ANM কর্মীকে ডাকুন — যদি শিশু নিচের যেকোনো লক্ষণ দেখায়:\n> - খাওয়া বন্ধ করে দিয়েছে এবং ছুঁলে ঠান্ডা লাগছে\n> - শ্বাসের হার মিনিটে **৩০-এর কম বা ৬০-এর বেশি**\n> - গোঁঙানি, বুক দেবে যাওয়া বা নাকের ছিদ্র ফুলছে\n> - ঠোঁট, জিহ্বা বা ত্বক নীলাভ\n> - জ্বর বা ঠান্ডা (বগলের তাপমাত্রা **৩৭°C-এর বেশি বা ৩৬°C-এর কম**)\n> - নাভির চারপাশে লালভাব, ফোলা, পুঁজ বা দুর্গন্ধ\n> - যেকোনো খিঁচুনি বা কনভালশন\n> - শরীর নেতিয়ে পড়েছে বা ঝুলে যাচ্ছে\n> - শিশু নিষ্ক্রিয় এবং জাগানো খুব কঠিন\n\n## শীঘ্রই ডাক্তার দেখান (একই দিনে)\n\n- চোখের পাতা লাল বা ফোলা, পুঁজ বের হচ্ছে\n- ত্বক বা চোখ হলুদ (জন্ডিস)\n- অতিরিক্ত ঘুমন্ত, জাগানো খুব কঠিন, খাওয়া মিস হচ্ছে\n- ক্রমাগত পাতলা পায়খানা\n\nএই অ্যাপের বিপদচিহ্ন চেকারটি যেকোনো সময় ব্যবহার করুন। সন্দেহ হলেই চেক করুন।',
     durationMin: 3,
   },
-  // ─── EMOTIONAL SUPPORT ──────────────────────────────────────────────────────
-  // Source: KB §19 — Mother's Own Wellbeing / Postpartum Self-Care
+  {
+    slug: 'danger-no-feeding',
+    category: 'danger_signs',
+    title: 'শিশু দুধ খাচ্ছে না',
+    summary: 'হঠাৎ দুধ খাওয়া কমে গেলে বা একদম না খেলে কী করবেন।',
+    body:
+      'শিশু যদি হঠাৎ দুধ খাওয়া কমিয়ে দেয় বা একেবারেই খেতে না চায়, তাহলে এটি অবহেলা করার মতো বিষয় নয়। এটি শরীরে কোনো সংক্রমণ বা অসুস্থতার প্রথম লক্ষণ হতে পারে, বিশেষ করে অকালজাত শিশুর ক্ষেত্রে।\n\n> একটানা কয়েক ঘণ্টা শিশু দুধ খেতে অস্বীকার করলে বা খুব দুর্বলভাবে খেলে দেরি না করে দ্রুত হাসপাতালে যোগাযোগ করুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-breathing-difficulty',
+    category: 'danger_signs',
+    title: 'শ্বাস নিতে কষ্ট হচ্ছে',
+    summary: 'শ্বাসকষ্টের লক্ষণ চিনুন ও তৎক্ষণাৎ কী করবেন জানুন।',
+    body:
+      'শিশুর বুক ভেতরের দিকে বসে যাওয়া, নাক ফুলিয়ে জোরে শ্বাস নেওয়া, বা শ্বাস নেওয়ার সময় শব্দ হওয়া — এগুলো শ্বাসকষ্টের গুরুত্বপূর্ণ লক্ষণ।\n\n> এটি দেখা দিলে সময় নষ্ট না করে তৎক্ষণাৎ শিশুকে হাসপাতালে নিয়ে যান — শ্বাসকষ্ট দ্রুত গুরুতর হয়ে উঠতে পারে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-fast-breathing',
+    category: 'danger_signs',
+    title: 'দ্রুত শ্বাস নিচ্ছে',
+    summary: 'শিশুর শ্বাসের গতি স্বাভাবিকের চেয়ে বেশি হলে কী করবেন।',
+    body:
+      'শিশু স্বাভাবিকের চেয়ে অনেক দ্রুত শ্বাস নিলে তা সংক্রমণ বা নিউমোনিয়ার লক্ষণ হতে পারে। শিশু শান্ত ও ঘুমন্ত অবস্থায় এক মিনিটে কতবার শ্বাস নিচ্ছে গুনে দেখুন।\n\n> স্বাভাবিকের চেয়ে বেশি দ্রুত মনে হলে বা সাথে অন্য কোনো লক্ষণ থাকলে দ্রুত স্বাস্থ্যকেন্দ্রে যোগাযোগ করুন — দেরি করবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-blue-skin',
+    category: 'danger_signs',
+    title: 'শরীর নীল হয়ে যাচ্ছে',
+    summary: 'ঠোঁট বা ত্বক নীলচে হলে এটি জরুরি অবস্থা।',
+    body:
+      'শিশুর ঠোঁট, জিভ বা শরীর নীলচে হয়ে যাওয়া মানে তার শরীরে পর্যাপ্ত অক্সিজেন পৌঁছাচ্ছে না — এটি একটি জরুরি অবস্থা।\n\n> এই লক্ষণ দেখলে এক মুহূর্তও দেরি না করে সবচেয়ে কাছের হাসপাতাল বা জরুরি বিভাগে ছুটে যান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-seizure',
+    category: 'danger_signs',
+    title: 'খিঁচুনি',
+    summary: 'খিঁচুনি হলে কী করবেন আর কী করবেন না।',
+    body:
+      'শিশুর শরীর হঠাৎ শক্ত হয়ে যাওয়া, কাঁপতে থাকা, চোখ উল্টে যাওয়া বা সাড়া না দেওয়া খিঁচুনির লক্ষণ।\n\n## করণীয়\n\n- শিশুকে একপাশে কাত করে শুইয়ে দিন\n- মুখে কিছু দেবেন না বা জোর করে ধরে রাখবেন না\n\n> খিঁচুনি থামুক বা না থামুক, দ্রুত জরুরি চিকিৎসা নিন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-fever',
+    category: 'danger_signs',
+    title: 'জ্বর',
+    summary: 'নবজাতকের জ্বর কখন বিপজ্জনক ও কী করবেন।',
+    body:
+      'নবজাতকের শরীরের তাপমাত্রা **৩৮°C-এর বেশি** হলে তা গুরুত্ব সহকারে নিতে হবে — ছোট শিশুদের জ্বর দ্রুত গুরুতর হয়ে উঠতে পারে।\n\n## কী করবেন\n\n- শিশুকে হালকা পোশাক পরান\n- ঘরের বাতাস চলাচল ঠিক রাখুন\n\n> দেরি না করে স্বাস্থ্যকেন্দ্রে যোগাযোগ করুন। নিজে থেকে কোনো ওষুধ দেবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-cold-body',
+    category: 'danger_signs',
+    title: 'শরীর ঠান্ডা হয়ে যাওয়া',
+    summary: 'শিশুর শরীর ঠান্ডা হওয়া জ্বরের মতোই বিপজ্জনক।',
+    body:
+      'নবজাতকের শরীরের তাপমাত্রা খুব কমে গেলে — হাত-পা ঠান্ডা, শরীর নেতিয়ে পড়া — এটিও জ্বরের মতোই বিপজ্জনক হতে পারে, বিশেষ করে কম ওজনের শিশুর ক্ষেত্রে।\n\n> শিশুকে সাথে সাথে ত্বকে-ত্বকে (ক্যাঙারু কেয়ার) জড়িয়ে গরম রাখার চেষ্টা করুন এবং দ্রুত স্বাস্থ্যকেন্দ্রে যোগাযোগ করুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-excessive-sleep',
+    category: 'danger_signs',
+    title: 'অতিরিক্ত ঘুম',
+    summary: 'শিশু জাগানো কঠিন হলে এটি সতর্কতার লক্ষণ।',
+    body:
+      'শিশু যদি স্বাভাবিকের চেয়ে অনেক বেশি ঘুমায়, ডেকেও সহজে না জাগে, বা জাগলেও একদম নিস্তেজ থাকে, তাহলে এটি একটি সতর্কীকরণ লক্ষণ। এটি শরীরে সংক্রমণ বা অন্য কোনো সমস্যার ইঙ্গিত হতে পারে।\n\n> এমন মনে হলে দেরি না করে হাসপাতালে যোগাযোগ করুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-vomiting',
+    category: 'danger_signs',
+    title: 'বারবার বমি',
+    summary: 'সামান্য উগরানো স্বাভাবিক — কিন্তু এই লক্ষণগুলো চিন্তার।',
+    body:
+      'সামান্য দুধ উগরে দেওয়া স্বাভাবিক হলেও, শিশু যদি প্রতিবার খাওয়ার পর জোরে বমি করে বা বমির সাথে সবুজাভ রঙ দেখা যায়, তা চিন্তার বিষয়। এতে শিশুর শরীরে পানিশূন্যতা হতে পারে।\n\n> এমন হলে দ্রুত স্বাস্থ্যকর্মীর সাথে যোগাযোগ করুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-diarrhea',
+    category: 'danger_signs',
+    title: 'ডায়রিয়া',
+    summary: 'ঘন ঘন পাতলা পায়খানা হলে দ্রুত পানিশূন্যতা হতে পারে।',
+    body:
+      'শিশুর পায়খানা যদি স্বাভাবিকের চেয়ে অনেক বেশি পাতলা ও ঘন ঘন হয়, তাহলে তা ডায়রিয়া হতে পারে, যা দ্রুত পানিশূন্যতা ঘটাতে পারে।\n\n- বুকের দুধ খাওয়ানো চালিয়ে যান\n\n> দ্রুত স্বাস্থ্যকেন্দ্রে যোগাযোগ করুন — বিশেষ করে যদি সাথে বমি বা জ্বরও থাকে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-dehydration',
+    category: 'danger_signs',
+    title: 'পানিশূন্যতা',
+    summary: 'পানিশূন্যতার লক্ষণ চিনুন — নবজাতকের জন্য এটি বিপজ্জনক।',
+    body:
+      'শুকনো ঠোঁট, কম প্রস্রাব হওয়া, চোখ ভেতরে বসে যাওয়া বা কান্নার সময় চোখে পানি না আসা — এগুলো পানিশূন্যতার লক্ষণ, যা নবজাতকের জন্য বিপজ্জনক হতে পারে।\n\n> এমন লক্ষণ দেখলে দেরি না করে দ্রুত হাসপাতালে নিয়ে যান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-jaundice',
+    category: 'danger_signs',
+    title: 'জন্ডিস',
+    summary: 'হলুদভাব কখন স্বাভাবিক আর কখন ডাক্তার দেখানো জরুরি।',
+    body:
+      'জন্মের পর শিশুর ত্বক ও চোখের সাদা অংশ হালকা হলুদ হওয়া অনেক সময় স্বাভাবিক হলেও, এই হলুদভাব যদি বাড়তে থাকে, হাত-পায়ের তালু পর্যন্ত ছড়িয়ে যায়, বা শিশু খেতে না চায় ও ঝিমিয়ে থাকে, তাহলে দ্রুত ডাক্তার দেখানো জরুরি।\n\n> ঘরোয়া উপায়ে সারানোর চেষ্টা করবেন না — রোদে শোয়ানোও যথেষ্ট নয়। চিকিৎসকের পরামর্শ নিন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-cord-infection',
+    category: 'danger_signs',
+    title: 'নাভি থেকে পুঁজ বের হওয়া',
+    summary: 'নাভির সংক্রমণের লক্ষণ ও কী করবেন।',
+    body:
+      'নাভি লালচে হয়ে যাওয়া, ফুলে ওঠা, দুর্গন্ধযুক্ত স্রাব বা পুঁজ বের হওয়া সংক্রমণের লক্ষণ।\n\n> এই অবস্থায় বাড়িতে কিছু লাগানোর চেষ্টা না করে দ্রুত স্বাস্থ্যকেন্দ্রে দেখান — নাভির সংক্রমণ দ্রুত সারা শরীরে ছড়িয়ে পড়তে পারে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-eye-infection',
+    category: 'danger_signs',
+    title: 'চোখে সংক্রমণ',
+    summary: 'শিশুর চোখ লাল বা স্রাব বের হলে কী করবেন।',
+    body:
+      'শিশুর চোখ লাল হয়ে যাওয়া, ফুলে যাওয়া বা চোখ দিয়ে হলুদ-সবুজ স্রাব বের হওয়া সংক্রমণের লক্ষণ হতে পারে।\n\nভেজা পরিষ্কার তুলো দিয়ে আলতোভাবে মুছে দিতে পারেন। তবে সমস্যা না কমলে বা বাড়তে থাকলে দ্রুত ডাক্তার দেখান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-bleeding',
+    category: 'danger_signs',
+    title: 'রক্তপাত',
+    summary: 'অস্বাভাবিক রক্তপাত হলে তৎক্ষণাৎ হাসপাতালে যান।',
+    body:
+      'নাভি, মুখ, নাক বা অন্য কোনো জায়গা থেকে অস্বাভাবিক রক্তপাত হলে তা অবহেলা করবেন না। সামান্য চাপ দিয়ে রক্ত বন্ধ করার চেষ্টা করুন।\n\n> সাথে সাথে হাসপাতালে যোগাযোগ করুন — বিশেষ করে রক্তপাত বন্ধ না হলে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'danger-when-to-go',
+    category: 'danger_signs',
+    title: 'কখন জরুরি হাসপাতালে যাবেন',
+    summary: 'এই লক্ষণগুলোর যেকোনো একটি দেখলেই এক মুহূর্ত দেরি করবেন না।',
+    body:
+      'শিশুর বিপদচিহ্ন জানা জীবন বাঁচাতে পারে। নিচের লক্ষণগুলোর যেকোনো একটি দেখলে দেরি না করে সবচেয়ে কাছের হাসপাতালে ছুটে যান:\n\n> - শ্বাসকষ্ট বা বুক বসে যাচ্ছে\n> - শরীর নীল হয়ে যাচ্ছে\n> - খিঁচুনি হচ্ছে\n> - তীব্র জ্বর বা শরীর ঠান্ডা হয়ে যাচ্ছে\n> - দুধ খেতে চাচ্ছে না\n> - অতিরিক্ত ঘুম বা সাড়া দিচ্ছে না\n\nএই মুহূর্তগুলোতে দ্বিধা না করে দ্রুত পদক্ষেপ নেওয়াই আপনার শিশুর জীবন বাঁচাতে পারে।',
+    durationMin: 2,
+  },
+
+  // ─── মায়ের যত্ন (MOTHER CARE) ────────────────────────────────────────────────
+  {
+    slug: 'mother-postpartum-care',
+    category: 'mother_care',
+    title: 'প্রসবের পর নিজের যত্ন',
+    summary: 'সুস্থ মা-ই শিশুর সবচেয়ে বড় ভরসা — নিজেকে অবহেলা করবেন না।',
+    body:
+      'শিশুর যত্নের পাশাপাশি নিজের শরীরের যত্ন নেওয়াও সমান জরুরি — সুস্থ মা-ই শিশুর সবচেয়ে বড় ভরসা। প্রসবের ক্ষত পরিষ্কার রাখুন, পর্যাপ্ত বিশ্রাম নিন।\n\n> শরীরে কোনো অস্বাভাবিক ব্যথা, রক্তপাত বা জ্বর দেখলে দ্রুত ডাক্তার দেখান। নিজেকে অবহেলা করবেন না — আপনার সুস্থতাই আপনার শিশুর সুস্থতার ভিত্তি।',
+    durationMin: 2,
+  },
+  {
+    slug: 'mother-nutrition',
+    category: 'mother_care',
+    title: 'মায়ের পুষ্টি',
+    summary: 'বুকের দুধ তৈরিতে কোন খাবার খাওয়া জরুরি।',
+    body:
+      'বুকের দুধ তৈরি করতে মায়ের শরীরের বাড়তি পুষ্টির প্রয়োজন হয়। ভাত-রুটির সাথে ডাল, সবুজ শাকসবজি, ডিম, মাছ বা মাংস এবং দুধজাত খাবার নিয়মিত খাওয়ার চেষ্টা করুন।\n\nবাড়তি টাকা খরচ করে বিশেষ কিছু কিনতে হবে না — ঘরের সহজলভ্য পুষ্টিকর খাবারই যথেষ্ট। ভালো খাওয়া শুধু আপনার নয়, আপনার শিশুরও উপকারে আসে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'mother-hydration',
+    category: 'mother_care',
+    title: 'পর্যাপ্ত পানি পান',
+    summary: 'বুকের দুধ তৈরিতে পানি কতটা জরুরি।',
+    body:
+      'বুকের দুধ তৈরিতে শরীরে প্রচুর পানির প্রয়োজন হয়। সারাদিনে পর্যাপ্ত পানি পান করুন — বিশেষ করে প্রতিবার দুধ খাওয়ানোর আগে বা পরে এক গ্লাস পানি খাওয়ার অভ্যাস করুন।\n\nপানি কম খেলে ক্লান্তি, মাথাব্যথা ও দুধ উৎপাদন কমে যেতে পারে। তেষ্টা না পেলেও নিয়মিত অল্প অল্প করে পানি পান চালিয়ে যান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'mother-rest',
+    category: 'mother_care',
+    title: 'বিশ্রাম কেন জরুরি',
+    summary: 'ঘুম ও বিশ্রাম শরীর সারিয়ে তোলে এবং দুধ উৎপাদন বাড়ায়।',
+    body:
+      'নতুন মায়েদের জন্য পর্যাপ্ত বিশ্রাম শরীর সেরে ওঠার জন্য অপরিহার্য। শিশুর ঘুমের সময় নিজেও একটু ঘুমিয়ে নেওয়ার চেষ্টা করুন — সব কাজ একবারে শেষ করার চাপ নেবেন না।\n\nপরিবারের সদস্যদের সাহায্য চাইতে দ্বিধা করবেন না। বিশ্রাম কম হলে শারীরিক দুর্বলতার পাশাপাশি মানসিক চাপও বাড়তে পারে।',
+    durationMin: 2,
+  },
+  {
+    slug: 'mother-stress',
+    category: 'mother_care',
+    title: 'মানসিক চাপ সামলানো',
+    summary: 'নতুন মা হওয়ার পর মানসিক চাপ স্বাভাবিক — একা বহন করবেন না।',
+    body:
+      'নতুন মা হওয়ার পর দুশ্চিন্তা, ক্লান্তি বা অস্থিরতা অনুভব করা খুবই স্বাভাবিক। মনের ভার একা বহন করার চেষ্টা করবেন না — পরিবারের কাছের মানুষের সাথে মন খুলে কথা বলুন।\n\nপ্রতিদিন কিছুটা সময় নিজের জন্য রাখার চেষ্টা করুন, এমনকি তা কয়েক মিনিটের হলেও। মানসিক চাপ বেশিদিন থাকলে বা সামলাতে কষ্ট হলে স্বাস্থ্যকর্মীর সাথে কথা বলুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'baby-blues',
+    category: 'mother_care',
+    title: 'Baby Blues কী',
+    summary: 'প্রসবের পর কান্না পাওয়া বা মন খারাপ লাগা কেন হয় এবং কখন সতর্ক হবেন।',
+    body:
+      'প্রসবের পর প্রথম কয়েক দিনে শরীরের হরমোন পরিবর্তনের কারণে অনেক মা হঠাৎ কান্না পাওয়া, খিটখিটে ভাব বা মন খারাপ অনুভব করেন — একে বলা হয় বেবি ব্লুজ। এটি সাধারণত দুই সপ্তাহের মধ্যে নিজে থেকে কমে যায় এবং এটি সম্পূর্ণ স্বাভাবিক — লজ্জার কিছু নেই।\n\n> তবে এই অনুভূতি দুই সপ্তাহের বেশি স্থায়ী হলে বা গভীর হতে থাকলে অবশ্যই স্বাস্থ্যকর্মীকে জানান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'postpartum-depression',
+    category: 'mother_care',
+    title: 'প্রসব-পরবর্তী বিষণ্নতা',
+    summary: 'এটি দুর্বলতা নয় — এটি একটি চিকিৎসাযোগ্য অবস্থা।',
+    body:
+      'বেবি ব্লুজের চেয়ে বেশি সময় ও তীব্রতা নিয়ে যদি মন খারাপ, আশাহীনতা, শিশুর প্রতি টান কম অনুভব করা বা ঘুম-খাওয়ায় বড় পরিবর্তন দেখা দেয়, তাহলে তা প্রসব-পরবর্তী বিষণ্নতার লক্ষণ হতে পারে।\n\nএটি কোনো দুর্বলতা নয় — এটি একটি চিকিৎসাযোগ্য অবস্থা।\n\n> এমন অনুভূতি হলে লুকিয়ে না রেখে দ্রুত স্বাস্থ্যকর্মী বা ডাক্তারের সাথে কথা বলুন — সাহায্য চাওয়া সাহসের কাজ।',
+    durationMin: 2,
+  },
+  {
+    slug: 'family-support',
+    category: 'mother_care',
+    title: 'পরিবার কীভাবে সাহায্য করবে',
+    summary: 'নতুন মায়ের সবচেয়ে বড় শক্তি হলো পরিবারের সহযোগিতা।',
+    body:
+      'নতুন মায়ের সবচেয়ে বড় শক্তি হলো পরিবারের সহযোগিতা। বাড়ির কাজ, রান্না বা রাতের যত্নে ভাগ নেওয়া, মাকে বিশ্রাম নেওয়ার সুযোগ দেওয়া এবং তার মানসিক অবস্থার প্রতি সংবেদনশীল থাকা পরিবারের গুরুত্বপূর্ণ দায়িত্ব।\n\nমাকে দোষারোপ না করে তার কথা শোনা এবং প্রয়োজনে ডাক্তারের কাছে নিয়ে যাওয়াও পরিবারের ভূমিকার অংশ।',
+    durationMin: 2,
+  },
+  {
+    slug: 'mother-sleep',
+    category: 'mother_care',
+    title: 'মায়ের ঘুম',
+    summary: 'রাতের ঘুম ভেঙে যায় — কীভাবে ক্লান্তি কমাবেন।',
+    body:
+      'নবজাতকের সাথে রাতে ঘন ঘন জেগে ওঠার কারণে মায়ের ঘুম ভেঙে ভেঙে হয় — এটি স্বাভাবিক হলেও ক্লান্তিকর। শিশুর ঘুমের সাথে নিজের ঘুমের সময় মিলিয়ে নিন যতটা সম্ভব।\n\nরাতের দায়িত্ব পরিবারের অন্য সদস্যের সাথে ভাগ করে নিতে পারলে ভালো হয়। দীর্ঘদিন ঘুমের ঘাটতি চললে শরীর ও মন দুটোই ক্লান্ত হয়ে পড়ে — তাই এটিকে হালকাভাবে নেবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'cesarean-aftercare',
+    category: 'mother_care',
+    title: 'সিজারিয়ানের পর যত্ন',
+    summary: 'অপারেশনের পর ক্ষত সারাতে কী করবেন আর কী এড়াবেন।',
+    body:
+      'সিজারিয়ান অস্ত্রোপচারের পর ক্ষত সারতে একটু বেশি সময় লাগে, তাই ভারী জিনিস তোলা বা বেশি পরিশ্রম এড়িয়ে চলুন। ক্ষতের জায়গা শুকনো ও পরিষ্কার রাখুন এবং ডাক্তারের নির্দেশ অনুযায়ী চেকআপে যান।\n\n> ক্ষতস্থানে লালচে ভাব, ফোলা, ব্যথা বাড়া বা স্রাব দেখলে দ্রুত ডাক্তার দেখান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'normal-delivery-aftercare',
+    category: 'mother_care',
+    title: 'স্বাভাবিক প্রসবের পর যত্ন',
+    summary: 'স্বাভাবিক প্রসবের পরও শরীরকে সময় ও যত্ন দিতে হয়।',
+    body:
+      'স্বাভাবিক প্রসবের পরও শরীরের সেরে ওঠার জন্য সময় ও যত্নের প্রয়োজন। যোনিপথের ক্ষত পরিষ্কার রাখুন, নিয়মিত পরিষ্কার প্যাড ব্যবহার করুন এবং হালকা হাঁটাচলা করুন যা সুস্থতায় সাহায্য করে।\n\n> রক্তপাত হঠাৎ বেড়ে গেলে, তীব্র ব্যথা হলে বা জ্বর এলে দেরি না করে হাসপাতালে যোগাযোগ করুন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'mother-when-to-see-doctor',
+    category: 'mother_care',
+    title: 'কখন চিকিৎসকের কাছে যাবেন',
+    summary: 'প্রসবের পর মায়ের এই লক্ষণগুলো দেখলে দেরি করবেন না।',
+    body:
+      'প্রসবের পর নিজের শরীরের দিকেও নজর রাখুন। নিচের যেকোনো লক্ষণ দেখলে দেরি না করে দ্রুত ডাক্তারের কাছে যান:\n\n> - তীব্র রক্তপাত\n> - তীব্র পেটে ব্যথা\n> - জ্বর\n> - ক্ষতস্থানে সংক্রমণের লক্ষণ\n> - তীব্র মাথাব্যথা বা দৃষ্টি ঝাপসা হয়ে যাওয়া\n\nএছাড়া মানসিকভাবে খুব বেশি খারাপ লাগলেও তা এড়িয়ে না গিয়ে সাহায্য নিন। নিজের প্রতি যত্নশীল হওয়া কোনো স্বার্থপরতা নয় — এটি আপনার শিশুর জন্যও জরুরি।',
+    durationMin: 2,
+  },
+
+  // ─── জরুরি পরিস্থিতি (EMERGENCY) ────────────────────────────────────────────
+  {
+    slug: 'emergency-not-breathing',
+    category: 'emergency',
+    title: 'শিশু শ্বাস নিচ্ছে না',
+    summary: 'সবচেয়ে জরুরি পরিস্থিতি — এক মুহূর্তও দেরি করা উচিত নয়।',
+    body:
+      'এটি সবচেয়ে জরুরি পরিস্থিতিগুলোর একটি। শিশুর বুক নড়ছে কিনা, নাক-মুখের কাছে শ্বাস অনুভব হচ্ছে কিনা দেখুন।\n\n> শ্বাস না থাকলে সাথে সাথে জরুরি সাহায্যের জন্য ফোন করুন এবং দ্রুততম উপায়ে হাসপাতালে ছুটুন। এক মুহূর্তও দেরি করা উচিত নয়।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-high-fever',
+    category: 'emergency',
+    title: 'শিশুর জ্বর ৩৮° সেলসিয়াসের বেশি',
+    summary: 'নবজাতকের তীব্র জ্বর জরুরি অবস্থা — নিজে ওষুধ দেবেন না।',
+    body:
+      'নবজাতকের শরীরের তাপমাত্রা **৩৮°C-এর বেশি** হলে তা জরুরি অবস্থা হিসেবে বিবেচনা করতে হবে।\n\n## কী করবেন\n\n- শিশুর পোশাক হালকা করুন\n\n> দেরি না করে সবচেয়ে কাছের হাসপাতালে নিয়ে যান। নিজে থেকে কোনো ওষুধ খাওয়াবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-unconscious',
+    category: 'emergency',
+    title: 'শিশু অজ্ঞান',
+    summary: 'শিশু সাড়া না দিলে তৎক্ষণাৎ জরুরি চিকিৎসার ব্যবস্থা করুন।',
+    body:
+      'শিশু ডাকলে বা স্পর্শ করলে সাড়া না দিলে তা অত্যন্ত গুরুতর লক্ষণ।\n\n## কী করবেন\n\n- শিশুকে সমতল জায়গায় একপাশ করে শুইয়ে রাখুন যাতে শ্বাসনালী খোলা থাকে\n\n> তাৎক্ষণিক জরুরি চিকিৎসার ব্যবস্থা করুন — এক মুহূর্তও দেরি করবেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-seizure',
+    category: 'emergency',
+    title: 'খিঁচুনি (জরুরি পরিস্থিতি)',
+    summary: 'খিঁচুনি চলাকালীন কী করবেন, কী করবেন না।',
+    body:
+      'খিঁচুনি চলাকালীন:\n\n- শিশুকে একপাশে কাত করে শুইয়ে দিন\n- মুখে কিছু ঢোকানোর চেষ্টা করবেন না\n- জোর করে শরীর ধরে রাখবেন না\n- আশেপাশের বিপজ্জনক জিনিস সরিয়ে দিন\n\n> সাথে সাথে জরুরি সাহায্য চান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-excessive-bleeding',
+    category: 'emergency',
+    title: 'অতিরিক্ত রক্তপাত',
+    summary: 'রক্তপাত বন্ধ না হওয়া পর্যন্ত চাপ ছাড়বেন না।',
+    body:
+      'অতিরিক্ত রক্তপাত হলে পরিষ্কার কাপড় দিয়ে জায়গাটিতে হালকা চাপ দিয়ে রাখুন।\n\n> দ্রুত হাসপাতালে ছুটুন। রক্তপাত বন্ধ না হওয়া পর্যন্ত চাপ ছাড়বেন না।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-poisoning',
+    category: 'emergency',
+    title: 'বিষ খেয়ে ফেললে',
+    summary: 'শিশু ক্ষতিকর কিছু গিলে ফেললে বমি করানোর চেষ্টা করবেন না।',
+    body:
+      'শিশু ভুলবশত কোনো ক্ষতিকর জিনিস মুখে দিলে বা গিলে ফেললে, নিজে থেকে বমি করানোর চেষ্টা করবেন না।\n\n> জিনিসটির প্যাকেট বা নাম সাথে নিয়ে দ্রুত হাসপাতালে যান — যাতে ডাক্তার সঠিক চিকিৎসা দিতে পারেন।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-burns',
+    category: 'emergency',
+    title: 'আগুনে পুড়ে গেলে',
+    summary: 'পোড়া জায়গায় মাখন বা তেল লাগাবেন না — ঠান্ডা পানিই সঠিক।',
+    body:
+      'পোড়া জায়গা ঠান্ডা পরিষ্কার পানি দিয়ে কিছুক্ষণ ধুয়ে দিন।\n\n## কী করবেন না\n\n- পোড়া জায়গায় মাখন, টুথপেস্ট বা তেল লাগাবেন না\n\n> জায়গাটি পরিষ্কার কাপড় দিয়ে হালকা ঢেকে দ্রুত হাসপাতালে নিয়ে যান।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-before-hospital',
+    category: 'emergency',
+    title: 'হাসপাতালে যাওয়ার আগে কী করবেন',
+    summary: 'শান্ত থাকুন, প্রয়োজনীয় কাগজ নিন, পরিবারকে জানান।',
+    body:
+      'জরুরি পরিস্থিতিতে শান্ত থাকার চেষ্টা করুন। শিশুকে নিরাপদে ধরে রাখুন এবং শিশুর স্বাস্থ্য কার্ড, টিকার তথ্য ও প্রয়োজনীয় কাগজপত্র সাথে নিন।\n\n- বাড়ির কাউকে জানিয়ে রাখুন\n- সম্ভব হলে যাওয়ার পথে হাসপাতালকে আগে থেকে ফোনে জানিয়ে রাখুন',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-ambulance',
+    category: 'emergency',
+    title: 'অ্যাম্বুলেন্স ডাকবেন কখন',
+    summary: 'কখন নিজে নেওয়া ঠিক নয় — জরুরি সেবায় ফোন করুন।',
+    body:
+      'শ্বাসকষ্ট, অজ্ঞান অবস্থা, তীব্র খিঁচুনি বা অতিরিক্ত রক্তপাতের মতো পরিস্থিতিতে নিজে বহন করার চেষ্টা না করে যত দ্রুত সম্ভব অ্যাম্বুলেন্স বা জরুরি সেবায় ফোন করুন।\n\nদ্রুত ও নিরাপদ পরিবহনই এই মুহূর্তে সবচেয়ে গুরুত্বপূর্ণ।',
+    durationMin: 2,
+  },
+  {
+    slug: 'emergency-dos-and-donts',
+    category: 'emergency',
+    title: 'জরুরি অবস্থায় কী করবেন, কী করবেন না',
+    summary: 'সঠিক সিদ্ধান্তই শিশুর জীবন বাঁচাতে পারে।',
+    body:
+      '## করণীয়\n\n- শান্ত থাকুন\n- দ্রুত সাহায্য চান\n- শিশুকে নিরাপদে ধরে রাখুন\n\n## যা করবেন না\n\n- শিশুকে জোরে ঝাঁকাবেন না\n- মুখে জোর করে কিছু ঢোকাবেন না\n- নিজে থেকে ওষুধ দেবেন না\n- সময় নষ্ট করবেন না\n\nমনে রাখবেন, জরুরি মুহূর্তে দ্রুত সঠিক সিদ্ধান্তই আপনার শিশুর জীবন বাঁচাতে পারে।',
+    durationMin: 2,
+  },
+
+  // ─── নবজাতকের যত্ন (NEWBORN CARE) ───────────────────────────────────────────
+  {
+    slug: 'warmth-thermal-care',
+    category: 'newborn_care',
+    title: 'শিশুকে গরম রাখবেন কীভাবে',
+    summary: 'নবজাতক নিজে শরীর গরম রাখতে পারে না — এভাবে সাহায্য করুন।',
+    body:
+      'উষ্ণতা একটি নবজাতকের জন্য জীবনের মতো। একটি শিশু — বিশেষত অকালজাত শিশু — নিজে থেকে শরীরের তাপমাত্রা ঠিক রাখতে পারে না। শিশু খুব ঠান্ডা হয়ে গেলে তা জীবনের জন্য বিপজ্জনক হতে পারে।\n\n## ঘর ও পোশাক\n\n- ঘর সবসময় গরম ও বাতাস-মুক্ত রাখুন, দিনে ও রাতে\n- আপনি যা পরছেন তার চেয়ে ১ থেকে ২টি বাড়তি স্তর পরান\n- মাথা সবসময় নরম টুপি বা কাপড় দিয়ে ঢেকে রাখুন — শিশু মাথা দিয়ে সবচেয়ে বেশি তাপ হারায়\n- আলগা, নরম পোশাক ও কম্বল ব্যবহার করুন; আঁটো পোশাকে শিশু আরও ঠান্ডা হয়\n- মুখ সবসময় খোলা রাখুন যাতে শ্বাস নিতে পারে\n\n## KMC — শিশুকে গরম রাখার সবচেয়ে কার্যকর উপায়\n\nছোট শিশুকে গরম রাখার সবচেয়ে শক্তিশালী উপায় হলো ত্বকে-ত্বকে ক্যাঙারু মাদার কেয়ার। এটি কম্বলের চেয়েও বেশি কার্যকর এবং বুকের দুধ খাওয়ানো ও বন্ধনও শক্তিশালী করে।',
+    durationMin: 3,
+  },
+  {
+    slug: 'infection-prevention',
+    category: 'newborn_care',
+    title: 'বাড়িতে সংক্রমণ প্রতিরোধ',
+    summary: 'শিশুর দুর্বল রোগ প্রতিরোধ ক্ষমতা রক্ষার সহজ উপায়।',
+    body:
+      'নবজাতকের রোগ প্রতিরোধ ক্ষমতা এখনও পরিপক্ব হয়নি। বাড়িতে জীবাণুর সংস্পর্শ থেকে রক্ষা করাই সবচেয়ে গুরুত্বপূর্ণ কাজ।\n\n## হাত ধোয়া\n\nশিশুকে ছোঁয়ার আগে ও পরে সবসময় সাবান ও পানি দিয়ে হাত ধুন — এটি **সংক্রমণ প্রতিরোধের সবচেয়ে কার্যকর উপায়**। নখ ছোট ও পরিষ্কার রাখুন। শিশুর কাপড়, বিছানা ও মোড়ানো কাপড় নিয়মিত ধুন।\n\n## দর্শনার্থী সামলানো\n\n- অসুস্থ মানুষকে শিশুর কাছ থেকে দূরে রাখুন\n- সিগারেটের ধোঁয়া ও রান্নার ধোঁয়া শিশুর কাছ থেকে দূরে রাখুন\n- মশার এলাকায় কীটনাশক-প্রতিরোধী মশারি ব্যবহার করুন\n\n## নাভি ও বুকের দুধ\n\n- নাভিতে কখনো তেল, গুঁড়া বা ভেষজ কিছু লাগাবেন না — শুধু পরিষ্কার ও শুকনো রাখুন\n- শুধু বুকের দুধ খাওয়ান — এটি শিশুকে সংক্রমণ থেকে বিশেষ সুরক্ষা দেয়\n- সময়মতো সব টিকা দিন',
+    durationMin: 3,
+  },
+  {
+    slug: 'bathing-your-baby',
+    category: 'newborn_care',
+    title: 'শিশুকে গোসল করানো',
+    summary: 'নাভি পড়ার আগে স্পঞ্জ বাথ — পরে পুরো গোসল, ধাপে ধাপে।',
+    body:
+      '## স্পঞ্জ বাথ (নাভি পড়ার আগে)\n\nনাভি পড়ে যাওয়া ও সেরে ওঠার আগে পর্যন্ত শুধু স্পঞ্জ বাথ দিন — শিশুকে পানিতে ডুবাবেন না। ভেজা গরম কাপড় ব্যবহার করুন। আগে ওপরের শরীর ধুয়ে মুছে ঢেকে দিন, তারপর নিচের অংশ ধুন।\n\n## নাভি সারার পর\n\nনাভি সেরে গেলে প্রতি ২ থেকে ৩ দিনে একবার পুরো গোসল করাতে পারেন। প্রতিটি প্রস্রাব বা পায়খানার পর নরম ভেজা কাপড় দিয়ে নিতম্ব আলতো মুছে দিন।\n\n## গোসলের সময় গরম রাখুন\n\n১. জানালা-দরজা বন্ধ করুন, সব জিনিস আগে থেকে তৈরি রাখুন\n২. কনুই দিয়ে পানির তাপমাত্রা পরীক্ষা করুন (আরামদায়ক গরম হওয়া উচিত)\n৩. আগে মুখ ধুন, মাথা সবশেষে — মাথা দিয়ে সবচেয়ে বেশি তাপ যায়\n৪. দ্রুত কিন্তু আলতোভাবে কাজ করুন, তারপর সব ভাঁজসহ শরীর ভালো করে মুছুন\n৫. গোসলের পর শিশুকে বুকে ধরুন ও উভয়কে গরম কাপড়ে ঢাকুন\n\n## চোখ ও কান\n\n- প্রতিটি চোখ আলাদা পরিষ্কার কাপড়ের কোণে মুছুন — ভেতর থেকে বাইরে দিকে\n- মুখে শুধু পানি ব্যবহার করুন — সাবান নয়\n- কান বা নাকের ভেতর পরিষ্কার করবেন না, শুধু বাইরের অংশ\n- বেবি পাউডার ব্যবহার করবেন না — এটি ফুসফুসে ঢুকতে পারে',
+    durationMin: 4,
+  },
+  {
+    slug: 'cord-care',
+    category: 'newborn_care',
+    title: 'নাভির যত্ন',
+    summary: 'পরিষ্কার ও শুকনো রাখুন — এবং বিপদের লক্ষণ জানুন।',
+    body:
+      '## একটাই নিয়ম: পরিষ্কার ও শুকনো রাখুন\n\nসঠিক নাভির যত্ন গুরুতর সংক্রমণ প্রতিরোধ করে। একটাই নিয়ম: নাভি পরিষ্কার ও শুকনো রাখুন। এতে কিছু লাগাবেন না — মলম, তেল, গুঁড়া, ছাই বা কোনো ভেষজ জিনিস নয়।\n\nপ্রস্রাব বা পায়খানা যেন নাভিতে না লাগে। যদি নোংরা হয়, সাবান ও পরিষ্কার পানি দিয়ে আলতো ধুয়ে পরিষ্কার কাপড় বা বাতাসে শুকিয়ে নিন। নাভি পুরো পড়ে না যাওয়া পর্যন্ত শুধু স্পঞ্জ বাথ দিন।\n\n## কখন নাভি পড়বে\n\nনাভি সাধারণত জন্মের **৫ থেকে ১০ দিনের** মধ্যে পড়ে যায়। প্রতিদিন খেয়াল রাখুন — সুস্থ নাভি নিজে থেকে শুকিয়ে ছোট হয়ে পড়ে যাবে।\n\n## বিপদের লক্ষণ\n\n> এখনই ডাক্তারের কাছে যান যদি:\n> - পুঁজ বের হচ্ছে\n> - দুর্গন্ধ আসছে\n> - নাভির গোড়ায় লালভাব বা ফোলা\n> - নাভি অস্বাভাবিক দেরিতে পড়ছে\n>\n> এগুলো নাভির সংক্রমণের লক্ষণ, যা দ্রুত গুরুতর হয়ে উঠতে পারে। দেরি না করে ASHA/ANM কর্মী বা নিকটস্থ হাসপাতালে যোগাযোগ করুন।',
+    durationMin: 3,
+  },
+  {
+    slug: 'loving-care',
+    category: 'newborn_care',
+    title: 'ভালোবাসা ও যত্নশীল পরিচর্যা',
+    summary: 'শিশুর সংকেতে সাড়া দেওয়া বিশ্বাস ও সুস্থ বিকাশের ভিত্তি।',
+    body:
+      'একটি নবজাতক ভালোবাসা ও যত্ন ছাড়া বেঁচে থাকতে পারে না। জন্মের পর শিশু পুরোপুরি অন্যের ওপর নির্ভর করে — শুধু খাবার ও উষ্ণতার জন্য নয়, স্পর্শ, গলার স্বর ও মনোযোগের জন্যও। ভালোবাসা, উষ্ণতা ও আলতো স্পর্শ খাবার ও ওষুধের মতোই জরুরি।\n\n## প্রতিটি শিশু আলাদা\n\nপ্রতিটি শিশু আলাদা। কেউ শান্ত ও ঘুমন্ত; কেউ সক্রিয় ও চঞ্চল। কেউ সহজে থামে; কেউ বেশি ধৈর্যের প্রয়োজন করে। একজন মা দিন দিন তার শিশুকে চিনতে পারেন — এই জ্ঞানই শিশুর যত্নের সবচেয়ে বড় সম্পদ।\n\n## সাড়া দেওয়া কেন জরুরি\n\nশিশু কাঁদলে যখন কেউ ভালোবাসা ও যত্ন নিয়ে সাড়া দেয়, শিশু দুটো জিনিস শেখে — **পৃথিবী নিরাপদ** এবং **তার সংকেত গুরুত্বপূর্ণ**। এটি শিশুর আত্মবিশ্বাস ও বিশ্বাস গড়ে তোলে, যা সুস্থ বিকাশের ভিত্তি। নবজাতকের কান্না কখনো উপেক্ষা করবেন না — এটাই তার একমাত্র যোগাযোগের উপায়।\n\n## যত্নশীল পরিচর্যা\n\nশিশুকে সবসময় আলতো করে ধরুন এবং শান্ত, নরম গলায় কথা বলুন। যত্নের সময় কথা বলুন — শব্দ না বুঝলেও আপনার গলার স্বর শিশুর মনে আরাম দেয়। **ভালোবাসা ও মনোযোগ দিয়ে নবজাতককে "বেশি আদর করা" সম্ভব নয়।**',
+    durationMin: 3,
+  },
+  {
+    slug: 'sleep-safe-practices',
+    category: 'newborn_care',
+    title: 'শিশুর নিরাপদ ঘুম',
+    summary: 'ঘুম কতটা স্বাভাবিক এবং রাতে শিশুকে নিরাপদ রাখবেন কীভাবে।',
+    body:
+      '## স্বাভাবিক ঘুমের ধরন\n\nনবজাতক দিনে ১৬ থেকে ১৮ ঘণ্টা ঘুমায় — কিন্তু ছোট ছোট ভাগে, প্রতি ২ থেকে ৩ ঘণ্টায় খাওয়ার জন্য জেগে উঠে। এটি সম্পূর্ণ স্বাভাবিক। কিছু শিশু রাতে ৪ ঘণ্টা পর্যন্ত ঘুমাতে পারে। বয়স বাড়লে ধীরে ধীরে রাতের ঘুম দীর্ঘ হয়।\n\n## নিরাপদ ঘুমানোর অবস্থান\n\n**শিশুকে সবসময় পিঠের ওপর ভর দিয়ে শোয়ান** — এটি সবচেয়ে নিরাপদ অবস্থান এবং প্রথম বছর জুড়ে মেনে চলা উচিত। ঘুমানোর জায়গা শান্ত ও নিরাপদ রাখুন — শিশুর মুখের কাছে আলগা কম্বল বা বালিশ রাখবেন না।\n\n## বিপদের লক্ষণ\n\n> বিপদের লক্ষণ: শিশু জাগানো খুব কঠিন হলে বা স্বাভাবিকের চেয়ে অনেক বেশি ঘুমালে এবং খাওয়া মিস হলে, এটি অসুস্থতার লক্ষণ হতে পারে। অ্যাপের বিপদচিহ্ন চেকার ব্যবহার করুন এবং দ্রুত সাহায্য নিন।\n\n## মায়েদের জন্য পরামর্শ\n\nদিনে শিশু ঘুমালে নিজেও ঘুমিয়ে নিন। প্রথম সপ্তাহগুলোতে রাতে ঘন ঘন জেগে উঠতে হয় — সারাদিন-রাত মিলিয়ে ৭ থেকে ৯ ঘণ্টা বিশ্রামের লক্ষ্য রাখুন। পর্যাপ্ত বিশ্রাম দুধের পরিমাণ ঠিক রাখতে সাহায্য করে।',
+    durationMin: 3,
+  },
+  {
+    slug: 'vitamin-a',
+    category: 'newborn_care',
+    title: 'মা ও শিশুর জন্য ভিটামিন A',
+    summary: 'এটি কেন জরুরি, কখন নেবেন এবং কোন খাবারে পাবেন।',
+    body:
+      'নবজাতক জন্মের সময় খুব কম ভিটামিন A নিয়ে আসে। প্রথম কয়েক মাস বুকের দুধ খাওয়ানো শিশু মায়ের বুকের দুধের ভিটামিন A-এর ওপর পুরোপুরি নির্ভরশীল — আর সেটা নির্ভর করে মায়ের খাওয়ার ওপর। ভিটামিন A মা ও শিশু উভয়ের বৃদ্ধি, সংক্রমণ প্রতিরোধ এবং অসুস্থতার পর দ্রুত সেরে উঠতে সাহায্য করে।\n\n## ভিটামিন A ক্যাপসুল কখন নেবেন\n\nপ্রসবের পরপরই একটি উচ্চ মাত্রার ভিটামিন A ক্যাপসুল (**২,০০,০০০ IU**) নেওয়া উচিত — **প্রসবের ৮ সপ্তাহের মধ্যে** অবশ্যই নিন।\n\n> ৮ সপ্তাহ পেরিয়ে গেলে নিজে থেকে দেরিতে নেবেন না — স্বাস্থ্যকর্মীর পরামর্শ নিন।\n\n## খাবার থেকে ভিটামিন A\n\nবেশি করে খান:\n\n- কমলা ও হলুদ ফল ও সবজি (আম, পেঁপে, গাজর)\n- প্রাণিজ খাবার: ডিমের কুসুম, কলিজা, মাছ\n\nবুকের দুধই শিশুর প্রথম ৬ মাসে ভিটামিন A-এর একমাত্র নিরাপদ উৎস — এটি শুধু বুকের দুধ খাওয়ানোর আরেকটি কারণ।',
+    durationMin: 3,
+  },
+  {
+    slug: 'safety-at-home',
+    category: 'newborn_care',
+    title: 'বাড়িতে নিরাপত্তা',
+    summary: 'দুর্ঘটনা এড়াতে এবং শিশুকে নিরাপদ রাখতে সহজ নিয়ম।',
+    body:
+      '## পড়ে যাওয়া ঠেকান\n\nশিশুকে কখনো বিছানা, সোফা বা টেবিলে একা রাখবেন না — এক মুহূর্তের জন্যও নয়। শিশু সেকেন্ডের মধ্যে গড়িয়ে পড়তে পারে। পাশে যেতে হলে শিশুকে মেঝেতে বা শিশু খাঁচায় রাখুন।\n\n## নিরাপদ ধরা\n\nনবজাতককে কখনো পা ধরে মাথা নিচু করে ধরবেন না। নবজাতকের ঘাড়ের পেশি মাথা ধরে রাখতে পারে না — এই অবস্থা বিপজ্জনক।\n\n## এড়িয়ে চলার জিনিস\n\nবুকের দুধ খাওয়ানো মায়েরা এড়িয়ে চলবেন:\n\n- ধূমপান — পরোক্ষ ধোঁয়াও শিশুর শ্বাসতন্ত্রে সমস্যা করতে পারে\n- মদ্যপান\n- ডাক্তারের পরামর্শ ছাড়া কোনো ওষুধ — এটি বুকের দুধের মাধ্যমে শিশুর কাছে পৌঁছায়\n\n## আগুন ও গরম জিনিস\n\n> শিশুকে খোলা আগুন, গরম তরল ও রান্নার জায়গা থেকে দূরে রাখুন। গোসলের আগে পানির তাপমাত্রা সবসময় পরীক্ষা করুন।',
+    durationMin: 2,
+  },
+
+  // ─── মানসিক সহায়তা (EMOTIONAL SUPPORT) ─────────────────────────────────────
   {
     slug: 'coping-with-anxiety',
     category: 'emotional_support',
-    title: 'Coping with Anxiety as a New Mother',
-    summary: 'Self-care essentials when caring for a premature baby.',
+    title: 'নতুন মায়ের দুশ্চিন্তা সামলানো',
+    summary: 'অকালজাত শিশুর যত্ন নেওয়ার সময় নিজের যত্ন নেওয়াও জরুরি।',
     body:
-      'It is completely normal to feel worried, overwhelmed, or exhausted when caring for a premature baby. Your feelings are valid — and taking care of yourself is part of taking care of your baby.\n\n## Rest and Sleep\n\nRest whenever your baby sleeps. This is not a luxury — insufficient rest directly reduces your milk supply and your ability to respond to your baby. Aim for 7 to 9 hours of rest across the day and night combined, even if it is broken into shorter naps.\n\n## Food and Fluids\n\n- Eat at least one large extra serving of your regular staple food every day while breastfeeding\n- Drink 3 to 4 litres of fluid daily — drink something every time you breastfeed\n- Avoid smoking, alcohol, and any unprescribed medicines while breastfeeding, as these pass to your baby through milk\n\n## Asking for Help\n\nAccept help from family and caregivers without guilt. Keep essential baby supplies organized so routines feel manageable. Continue your own postpartum care, not only the baby\'s.\n\n> If your worry feels persistent or overwhelming, please speak to your nurse, ASHA worker, or the research team — you do not have to manage this alone.',
+      'অকালজাত শিশুর যত্ন নিতে গিয়ে দুশ্চিন্তা, অভিভূত লাগা বা ক্লান্তি অনুভব করা সম্পূর্ণ স্বাভাবিক। আপনার অনুভূতি সত্যিকারের — এবং নিজের যত্ন নেওয়াও শিশুর যত্নের অংশ।\n\n## বিশ্রাম ও ঘুম\n\nশিশু ঘুমালে নিজেও বিশ্রাম নিন। এটা বিলাসিতা নয় — পর্যাপ্ত বিশ্রাম না হলে সরাসরি দুধের পরিমাণ কমে যায় এবং শিশুর প্রতি সাড়া দেওয়ার ক্ষমতাও কমে। দিনে ও রাতে মিলিয়ে ৭ থেকে ৯ ঘণ্টা বিশ্রামের চেষ্টা করুন।\n\n## খাওয়া ও পানি\n\n- বুকের দুধ খাওয়ানোর সময় প্রতিদিন স্বাভাবিক খাবারের চেয়ে একটি বড় অতিরিক্ত পরিবেশন খান\n- প্রতিদিন ৩ থেকে ৪ লিটার তরল পান করুন — প্রতিবার বুকের দুধ খাওয়ানোর সময় কিছু পান করুন\n- বুকের দুধ খাওয়ানোর সময় ধূমপান, মদ ও ডাক্তারের পরামর্শ ছাড়া কোনো ওষুধ এড়িয়ে চলুন\n\n## সাহায্য চাওয়া\n\nপরিবার ও পরিচর্যাকারীদের সাহায্য অপরাধবোধ ছাড়াই নিন। দৈনন্দিন জিনিসপত্র গুছিয়ে রাখুন যাতে নিয়মিত কাজ সহজ হয়। নিজের প্রসব-পরবর্তী যত্নও চালিয়ে যান।\n\n> দুশ্চিন্তা যদি অনেক বেশি বা মাথা ছাড়া না দেয়, তাহলে আপনার নার্স, ASHA কর্মী বা গবেষণা দলের সাথে কথা বলুন — এটা একা বহন করতে হবে না।',
     durationMin: 3,
     audioUrl: '/audio/coping-with-anxiety.mp3',
     featured: true,
   },
-  // Source: KB §19 — Mother's Wellbeing / support-seeking
   {
     slug: 'asking-for-help',
     category: 'emotional_support',
-    title: 'It Is Okay to Ask for Help',
-    summary: 'Building a support system around you and your baby.',
+    title: 'সাহায্য চাওয়া সাহসের কাজ',
+    summary: 'আপনার চারপাশে একটি সহায়তার বলয় গড়ে তুলুন।',
     body:
-      '## Asking for Help Is a Strength\n\nCaring for a preterm baby is one of the most demanding things a person can do. Lean on your family, friends, and care team. **Asking for help is a sign of strength, not weakness** — no one is meant to do this alone.\n\n## The Role of Family in Breastfeeding\n\nPeople who support a breastfeeding mother materially improve breastfeeding success. **A relaxed, supported mother produces milk more easily**; stress and anxiety genuinely hinder milk flow. Every time a family member reassures you, takes a household task off your hands, or simply sits with you — that helps your baby too.\n\n## Your Care Team\n\nYour ASHA worker and the research nurse are part of your care team. Reach out if something worries you, if breastfeeding is difficult, or if you feel you are not coping. They are there to support you through the study period and beyond.',
-    durationMin: 2,
-  },
-  // ─── IMMUNIZATION ───────────────────────────────────────────────────────────
-  // Source: KB §8 — Immunization Schedule & Reminder Logic
-  {
-    slug: 'vaccine-basics',
-    category: 'immunization',
-    title: 'Why Vaccines Matter for Preterm Babies',
-    summary: 'The schedule, what to expect, and how to stay on track.',
-    body:
-      // TODO: confirm with researcher — KB §21 item 2 — immunization timing:
-      // India\'s UIP schedule is conventionally chronological-age-based even for preterm infants.
-      // This article uses chronological age (birth date) as the basis, consistent with national
-      // guidelines, but this must be confirmed by Dr. Ponnarasi before the reminder engine is built.
-      'Immunizations protect your baby from serious diseases during the most vulnerable period of their life. Premature babies need and benefit from the same vaccines as full-term babies, on the same schedule from their actual birth date.\n\n## Vaccine Schedule\n\n- **At birth:** BCG (against tuberculosis), OPV-0 (polio), and Hepatitis B (1st dose)\n- **At 6 weeks:** Pentavalent 1st dose, OPV-1, Hepatitis B 2nd dose, and Rotavirus 1st dose\n- **At 10 weeks:** Pentavalent 2nd dose, OPV-2, and Rotavirus 2nd dose\n- **At 14 weeks:** Pentavalent 3rd dose, OPV-3, and Hepatitis B 3rd dose\n- **At 9 months:** Measles/MR/MMR vaccine\n\n## Remember\n\nAllow at least 4 weeks between each scheduled set. Mark every date on your health card and bring it to every visit. A mild fever for up to 24 hours after the Hepatitis B or Pentavalent vaccine is expected and is not a danger sign. Continue exclusive breastfeeding during the vaccination period — it strengthens your baby\'s immune response.\n\n> If a dose is missed, go to your nearest health centre as soon as possible.',
-    durationMin: 3,
-  },
-  // ─── NEWBORN CARE ───────────────────────────────────────────────────────────
-  // Source: KB §10 — Warmth & Thermal Care Module
-  {
-    slug: 'warmth-thermal-care',
-    category: 'newborn_care',
-    title: 'Keeping Your Baby Warm',
-    summary: 'Newborns cannot control their temperature — here is how to help.',
-    body:
-      'Warmth is life for a newborn. A baby — especially a premature baby — cannot regulate their own body temperature. If a newborn gets too cold, it is life-threatening.\n\n## Room and Clothing\n\n- Keep the room warm and free of draughts, day and night\n- Dress your baby in 1 to 2 more layers than you are wearing\n- Always cover the head with a soft hat or cloth — babies lose a large amount of heat through the head\n- Use loose, soft clothing and blankets; tight clothes actually make the baby colder\n- Keep the baby\'s face uncovered so they can always breathe freely\n\n## KMC — The Most Effective Way to Keep Your Baby Warm\n\nThe most powerful way to keep a small baby warm is skin-to-skin Kangaroo Mother Care — holding your baby upright against your bare chest and covering both of you with a warm cloth. This is more effective than blankets alone and has the added benefits of supporting breastfeeding and bonding. See the KMC articles in this app for detailed guidance.',
-    durationMin: 3,
-  },
-  // Source: KB §11 — Infection Prevention & Hygiene Module
-  {
-    slug: 'infection-prevention',
-    category: 'newborn_care',
-    title: 'Preventing Infections at Home',
-    summary: 'Simple hygiene rules that protect your baby\'s immature immune system.',
-    body:
-      'A newborn\'s immune system is not yet mature. Preventing exposure to germs is one of the most important things you can do at home.\n\n## Hand Washing\n\nAlways wash your hands with soap and water before and after touching your baby — this is **the single most effective infection prevention measure**. Keep your fingernails short and clean. Wash your baby\'s clothes, bedding, and wraps regularly.\n\n## Managing Visitors\n\n- Keep sick people away from your baby; ask visitors who have a cough, cold, or fever to stay away until they are well\n- Avoid smoke from cigarettes and cooking fires near your baby\n- Use an insecticide-treated bed net in areas where mosquitoes are present\n\n## Cord Care and Breastfeeding\n\n- Never apply oils, powders, herbs, or any other substance to the umbilical cord — keep it clean and dry only\n- Breastfeed exclusively — your breast milk gives your baby strong, specific protection against infections that no formula can replicate\n- Ensure all immunizations are given on time to build your baby\'s own defences',
-    durationMin: 3,
-  },
-  // Source: KB §12 — Bathing Module
-  {
-    slug: 'bathing-your-baby',
-    category: 'newborn_care',
-    title: 'Bathing Your Baby Safely',
-    summary: 'Sponge baths until the cord heals — then full baths, step by step.',
-    body:
-      '## Sponge Baths (Before the Cord Falls Off)\n\nUntil your baby\'s umbilical cord has fallen off and the area has healed, give only sponge baths — do not immerse your baby in water. Use a warm, wet cloth. Wash the upper body first, dry and cover it before washing the lower body.\n\n## After the Cord Heals\n\nAfter the cord heals, you can give a full bath every 2 to 3 days. Clean the buttocks gently with a soft wet cloth after every urine or stool in between baths.\n\n## Keeping Your Baby Warm During the Bath\n\n1. Close windows and doors, prepare everything you need before starting\n2. Test the water temperature with your elbow (it should feel comfortably warm)\n3. Wash the face first and the head last — babies lose the most heat through the head\n4. Work quickly but gently, then dry your baby completely including inside all skin folds and the hair\n5. After the bath, hold your baby skin-to-skin against your chest, cover both of you warmly, and re-cover the baby\'s head\n\n## Eyes and Ears\n\n- Clean each eye with a separate clean corner of cloth, wiping from the inner corner (near the nose) outward\n- Use clean water only on the face — no soap\n- Do not clean inside the ears or nose, only the outside\n- Avoid baby powder — fine powder can enter your baby\'s lungs',
-    durationMin: 4,
-  },
-  // Source: KB §13 — Cord Care Module
-  {
-    slug: 'cord-care',
-    category: 'newborn_care',
-    title: 'Umbilical Cord Care',
-    summary: 'Keep it clean, keep it dry — and know the danger signs.',
-    body:
-      '## The Only Rule: Keep It Clean and Dry\n\nProper cord care prevents serious infections. The only rule is: keep the cord clean and dry. Do not apply anything to it — no ointment, oil, powder, ash, or herbal dressing.\n\nDo not allow urine or stool to touch the cord. If it gets dirty, wash gently with soap and clean water, then dry thoroughly with a clean cloth or allow to air-dry. Give only sponge baths until the cord has completely fallen off and the area has healed.\n\n## When Will the Cord Fall Off\n\nThe cord normally falls off within 5 to 10 days after birth. Check it every day. A healthy cord will dry, shrink, and detach on its own.\n\n## Danger Signs — Seek Help Immediately\n\n> Seek medical help immediately if you notice any of these:\n> - pus discharge\n> - foul or bad smell\n> - redness or swelling of the skin around the cord base\n> - the cord taking an unusually long time to fall off\n>\n> These are signs of umbilical infection, which can progress to serious sepsis quickly. Do not wait — contact your ASHA/ANM worker or go to the nearest hospital.',
-    durationMin: 3,
-  },
-  // Source: KB §14 — Loving Care / Responsive Caregiving Module
-  {
-    slug: 'loving-care',
-    category: 'newborn_care',
-    title: 'Loving, Responsive Care',
-    summary: 'Why responding to your baby\'s cues builds trust and healthy development.',
-    body:
-      'A newborn cannot survive without love and care. At birth, a baby depends completely on others — not only for food and warmth, but for touch, voice, and gentle attention. Love, warmth, and gentle touch are as important as food and medicine.\n\n## Every Baby Is Different\n\nEvery baby is different. Some are calm and sleepy; others are active and fussy. Some have a soft cry, others a loud one. Some settle easily; others need more patience. A mother learns to recognize her baby\'s unique personality through observation — and this knowledge builds over days and weeks.\n\n## Why Responding Matters\n\nWhen a baby cries and someone responds with love and care, the baby learns two things: that **the world is safe**, and that **their cues matter**. This builds the baby\'s confidence and trust, which are the foundation of healthy development. Never ignore a newborn\'s cry — it is their only way of communicating a need.\n\n## Give Loving Care\n\nAlways handle your baby gently and speak in a calm, quiet voice. Observe closely for signs of hunger, tiredness, or discomfort. Talk to your baby during care routines — your voice is comforting and stimulating even before they understand words. **You cannot "spoil" a newborn with attention and love.**',
-    durationMin: 3,
-  },
-  // Source: KB §9 — Sleep Guidance by Age
-  {
-    slug: 'sleep-safe-practices',
-    category: 'newborn_care',
-    title: 'Safe Sleep for Your Baby',
-    summary: 'How much sleep is normal and how to keep your baby safe at night.',
-    body:
-      '## Normal Sleep Patterns\n\nNewborns sleep 16 to 18 hours a day — but in short stretches, waking every 2 to 3 hours to feed. This is completely normal and healthy. Some babies may sleep up to 4 hours between night feeds. As your baby grows, night sleep gradually lengthens and daytime wake periods become more regular.\n\n## Safe Sleeping Position\n\n**Always place your baby on their back to sleep** — this is the safest sleeping position and should continue throughout the first year. Keep the sleeping area calm and safe, with no loose bedding or pillows near the baby\'s face.\n\nUse an insecticide-treated bed net if you are in an area where mosquitoes are present.\n\n## Danger Sign\n\n> Danger sign: if your baby is very hard to wake, or is sleeping far more than usual and missing feeds, this may be a sign of illness. Use the Danger Signs Checker in this app and seek medical help promptly.\n\n## Advice for Mothers\n\nFor mothers: nap when your baby sleeps during the day. Night waking is frequent in the early weeks — aim for 7 to 9 hours of rest across the full day and night combined. Getting enough rest helps maintain your milk supply.',
-    durationMin: 3,
-  },
-  // Source: KB §17 — Vitamin A Supplementation Logic
-  {
-    slug: 'vitamin-a',
-    category: 'newborn_care',
-    title: 'Vitamin A for Mother and Baby',
-    summary: 'Why it matters, when to take it, and which foods are rich in vitamin A.',
-    body:
-      // TODO: confirm with researcher — KB §21 item 6 — the high-dose pregnancy caution
-      // from §17 is excluded here as it applies only to future pregnancies, not this cohort.
-      'Newborns are born with very small vitamin A stores. For the first months of life, a breastfed baby depends entirely on the vitamin A in the mother\'s breast milk — and that level depends on the mother\'s own intake. Vitamin A helps both mother and baby grow well, fight infections, and recover faster when illness occurs.\n\n## When to Take the Vitamin A Capsule\n\nA single high-dose vitamin A capsule (**200,000 IU**) should be taken by the mother as soon as possible after giving birth, and no later than **8 weeks after delivery**.\n\n> If you have not yet taken this capsule and more than 8 weeks have passed since your baby was born, speak to your health worker rather than taking it late — they will advise you.\n\n## Vitamin A from Food\n\nEat plenty of:\n\n- Orange and yellow fruits and vegetables (mangoes, papaya, carrots)\n- Animal-source foods: egg yolk, liver, fish\n\nBreast milk is the only safe source of vitamin A for your baby for the first 6 months — another reason exclusive breastfeeding matters.',
-    durationMin: 3,
-  },
-  // Source: KB §18 — Safety & Security Guidance
-  {
-    slug: 'safety-at-home',
-    category: 'newborn_care',
-    title: 'Safety at Home',
-    summary: 'Simple rules to prevent accidents and keep your baby safe.',
-    body:
-      '## Preventing Falls\n\nNever leave your baby alone on a bed, sofa, or table — even for a moment. Babies can roll or slide off in seconds. If you need to step away, place the baby on a safe, flat surface on the floor or in a crib.\n\n## Safe Handling\n\nNever hold a newborn by the feet with the head hanging down. A newborn\'s neck muscles cannot support the head, and this position is dangerous.\n\n## Substances to Avoid\n\nBreastfeeding mothers should avoid:\n\n- Avoid smoking — even secondhand smoke near your baby increases the risk of respiratory infections\n- Avoid alcohol while breastfeeding\n- Avoid any unprescribed medicines or drugs — these pass to your baby through breast milk\n\n## Fire and Heat Safety\n\n> Keep your baby away from open flames, hot liquids, and cooking areas. Test water temperature carefully before bathing.',
+      '## সাহায্য চাওয়া শক্তির লক্ষণ\n\nঅকালজাত শিশুর যত্ন নেওয়া জীবনের সবচেয়ে কঠিন কাজগুলোর একটি। পরিবার, বন্ধু ও যত্নকারী দলের ওপর ভরসা করুন। **সাহায্য চাওয়া দুর্বলতার নয়, শক্তির লক্ষণ** — কেউ একা এটা করার জন্য তৈরি নয়।\n\n## বুকের দুধ খাওয়ানোতে পরিবারের ভূমিকা\n\nযারা বুকের দুধ খাওয়ানো মাকে সহায়তা করেন, তারা সত্যিকার পার্থক্য তৈরি করেন। **শান্ত, সহায়তাপ্রাপ্ত মা আরও সহজে দুধ তৈরি করেন** — মানসিক চাপ ও উদ্বেগ সত্যিই দুধের প্রবাহ কমিয়ে দেয়। যতবারই পরিবারের কেউ আপনাকে সাহস দেয়, ঘরের কাজ করে দেয় বা পাশে বসে থাকে — সেটা আপনার শিশুরও উপকারে আসে।\n\n## আপনার যত্ন দল\n\nআপনার ASHA কর্মী ও গবেষণার নার্স আপনার যত্ন দলের অংশ। কোনো বিষয়ে চিন্তা হলে, বুকের দুধ খাওয়াতে সমস্যা হলে বা নিজেকে সামলাতে কষ্ট হলে তাদের কাছে পৌঁছান।',
     durationMin: 2,
   },
 ];
