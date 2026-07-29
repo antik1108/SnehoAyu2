@@ -83,13 +83,12 @@ export const ArticleDetail: React.FC = () => {
           </span>
         </div>
 
-        {/* Cover image */}
+        {/* Cover image — natural aspect ratio, no cropping */}
         {article.coverImageUrl && (
           <img
             src={article.coverImageUrl}
             alt={article.title}
-            className="w-full rounded-xl object-cover"
-            style={{ maxHeight: '260px' }}
+            className="w-full rounded-xl object-contain bg-surface"
           />
         )}
 
@@ -98,15 +97,15 @@ export const ArticleDetail: React.FC = () => {
           <ReactMarkdown>{article.body}</ReactMarkdown>
         </div>
 
-        {/* Additional images */}
+        {/* Additional images — each at its natural aspect ratio */}
         {article.imageUrls && article.imageUrls.length > 0 && (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="flex flex-col gap-4">
             {article.imageUrls.map((url, i) => (
               <img
                 key={i}
                 src={url}
                 alt=""
-                className="w-full rounded-xl object-cover aspect-square"
+                className="w-full rounded-xl object-contain"
               />
             ))}
           </div>
@@ -133,6 +132,7 @@ export const ArticleDetail: React.FC = () => {
               controls
               src={article.videoUrl}
               className="w-full rounded-xl"
+              style={{ maxHeight: '70vh' }}
             />
           </div>
         )}

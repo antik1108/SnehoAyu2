@@ -34,7 +34,10 @@ export async function listPublishedArticles(
   const skip = (page - 1) * limit;
 
   // Build where clause
-  const where: Record<string, unknown> = { status: 'published' };
+  // Researchers see all statuses; everyone else only sees published articles
+  const where: Record<string, unknown> = role === 'researcher'
+    ? {}
+    : { status: 'published' };
   if (filters.category) where['category'] = filters.category;
   if (filters.search) {
     const search = filters.search;
@@ -104,7 +107,9 @@ export async function getPublishedArticleBySlug(
     where: { slug },
   });
 
-  if (!article || article.status !== 'published') {
+  // Researchers and nurses can read any status; mothers and others only see published
+  const isPrivileged = role === 'researcher' || role === 'nurse';
+  if (!article || (!isPrivileged && article.status !== 'published')) {
     throw createError(404, 'ARTICLE_NOT_FOUND', 'Article not found.');
   }
 

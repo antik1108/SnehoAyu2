@@ -101,8 +101,7 @@ export const LearningHub: React.FC = () => {
               <img
                 src={featured.coverImageUrl}
                 alt=""
-                className="mb-3 w-full rounded-lg object-cover"
-                style={{ maxHeight: '160px' }}
+                className="mb-3 w-full rounded-lg object-contain"
               />
             )}
             <p className="text-xs font-semibold uppercase opacity-80">{t('learningHub.featured')}</p>
@@ -164,7 +163,7 @@ export const LearningHub: React.FC = () => {
                     <img
                       src={article.coverImageUrl}
                       alt=""
-                      className="h-14 w-14 flex-shrink-0 rounded-lg object-cover"
+                      className="w-20 flex-shrink-0 rounded-lg object-contain self-start"
                     />
                   )}
                   <div className="flex-1 min-w-0">
