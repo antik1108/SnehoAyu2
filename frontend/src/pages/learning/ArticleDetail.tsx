@@ -83,13 +83,15 @@ export const ArticleDetail: React.FC = () => {
           </span>
         </div>
 
-        {/* Cover image — natural aspect ratio, no cropping */}
+        {/* Cover image — 16:9 banner, cropped to fit cleanly */}
         {article.coverImageUrl && (
-          <img
-            src={article.coverImageUrl}
-            alt={article.title}
-            className="w-full rounded-xl object-contain bg-surface"
-          />
+          <div className="w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
+            <img
+              src={article.coverImageUrl}
+              alt={article.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
         )}
 
         {/* Markdown body */}
@@ -97,7 +99,7 @@ export const ArticleDetail: React.FC = () => {
           <ReactMarkdown>{article.body}</ReactMarkdown>
         </div>
 
-        {/* Additional images — each at its natural aspect ratio */}
+        {/* Additional images — full width, natural ratio, max height capped */}
         {article.imageUrls && article.imageUrls.length > 0 && (
           <div className="flex flex-col gap-4">
             {article.imageUrls.map((url, i) => (
@@ -106,6 +108,7 @@ export const ArticleDetail: React.FC = () => {
                 src={url}
                 alt=""
                 className="w-full rounded-xl object-contain"
+                style={{ maxHeight: '400px' }}
               />
             ))}
           </div>
