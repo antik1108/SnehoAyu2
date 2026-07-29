@@ -90,30 +90,30 @@ export const LearningHub: React.FC = () => {
           </div>
         )}
 
-        {/* Featured article — same card style as list, just highlighted */}
+        {/* Featured article — compact card on mobile, wider on desktop */}
         {featured && !search && category === 'all' && (
           <button
             type="button"
             onClick={() => navigate(ROUTES.LEARN_ARTICLE.replace(':slug', featured.slug))}
-            className="surface-brand shadow-brand w-full text-left rounded-xl p-4"
+            className="surface-brand shadow-brand w-full text-left rounded-xl p-4 lg:p-5"
           >
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-3 lg:gap-5">
               {featured.coverImageUrl && (
                 <img
                   src={featured.coverImageUrl}
                   alt=""
-                  className="h-16 w-16 flex-shrink-0 rounded-lg object-cover"
+                  className="h-16 w-16 flex-shrink-0 rounded-lg object-cover lg:h-28 lg:w-28 lg:rounded-xl"
                 />
               )}
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-semibold uppercase opacity-70 mb-1">
+                <p className="text-[10px] font-semibold uppercase opacity-70 mb-1 lg:text-xs">
                   {t('learningHub.featured')}
                 </p>
-                <p className="text-sm font-bold leading-snug">{featured.title}</p>
-                <p className="mt-1 text-xs opacity-80">
+                <p className="text-sm font-bold leading-snug lg:text-xl lg:leading-tight">{featured.title}</p>
+                <p className="mt-1 text-xs opacity-80 lg:text-sm lg:mt-2">
                   {t(`learningHub.categories.${featured.category}`, featured.category)}
                 </p>
-                <p className="mt-1 text-xs opacity-70">
+                <p className="mt-1 text-xs opacity-70 lg:mt-1.5 lg:text-sm">
                   {featured.durationMin} {t('learningHub.minRead')}
                   {featured.audioUrl ? ` · ${t('learningHub.audio')}` : ''}
                 </p>
@@ -159,25 +159,25 @@ export const LearningHub: React.FC = () => {
             {t('learningHub.noArticles', 'কোনো নিবন্ধ পাওয়া যায়নি')}
           </div>
         ) : (
-          <div className="space-y-2">
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
             {articles.map((article) => (
               <button
                 key={article.slug}
                 type="button"
                 onClick={() => navigate(ROUTES.LEARN_ARTICLE.replace(':slug', article.slug))}
-                className="w-full text-left rounded-xl border border-border bg-surface p-4"
+                className="w-full text-left rounded-xl border border-border bg-surface p-4 hover:border-primary/40 hover:shadow-sm transition-all"
               >
                 <div className="flex items-start gap-3">
                   {article.coverImageUrl && (
                     <img
                       src={article.coverImageUrl}
                       alt=""
-                      className="h-16 w-16 flex-shrink-0 rounded-lg object-cover"
+                      className="h-20 w-20 flex-shrink-0 rounded-lg object-cover lg:h-24 lg:w-24"
                     />
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-sm font-semibold text-text truncate">{article.title}</p>
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-sm font-semibold text-text lg:text-base">{article.title}</p>
                       {viewedSlugs.includes(article.slug) && (
                         <span className="flex flex-shrink-0 items-center gap-1 text-xs font-medium text-teal-700">
                           <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -185,7 +185,7 @@ export const LearningHub: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 text-xs text-text-muted">
+                    <p className="mt-1 text-xs text-text-muted lg:text-sm">
                       {t(`learningHub.categories.${article.category}`, article.category)}
                     </p>
                     <p className="mt-1.5 text-xs text-text-muted">

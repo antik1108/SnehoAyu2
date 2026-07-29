@@ -63,78 +63,94 @@ export const ArticleDetail: React.FC = () => {
 
   return (
     <AppShell title={article.title} subtitle={t('learningHub.title')}>
-      <div className="space-y-5">
-        {/* Back button */}
-        <button
-          type="button"
-          onClick={() => navigate(ROUTES.LEARN)}
-          className="text-sm font-semibold text-primary"
-        >
-          ← {t('learningHub.back', 'Back')}
-        </button>
+      {/* On desktop: two-column — content left, cover image right (sticky) */}
+      <div className="lg:grid lg:grid-cols-[1fr_420px] lg:gap-10 lg:items-start">
 
-        {/* Meta */}
-        <div className="flex flex-wrap gap-3 text-xs text-text-muted">
-          <span>
-            {article.durationMin} {t('learningHub.minRead', 'min read')}
-          </span>
-          <span className="capitalize">
-            {t(`learningHub.categories.${article.category}`, article.category)}
-          </span>
-        </div>
+        {/* ── Left column: back, meta, body, media ── */}
+        <div className="space-y-5">
+          {/* Back button */}
+          <button
+            type="button"
+            onClick={() => navigate(ROUTES.LEARN)}
+            className="text-sm font-semibold text-primary"
+          >
+            ← {t('learningHub.back', 'Back')}
+          </button>
 
-        {/* Cover image — max 280px tall, natural width, no cropping */}
-        {article.coverImageUrl && (
-          <img
-            src={article.coverImageUrl}
-            alt={article.title}
-            className="w-full rounded-xl object-contain"
-            style={{ maxHeight: '280px' }}
-          />
-        )}
+          {/* Meta */}
+          <div className="flex flex-wrap gap-3 text-xs text-text-muted lg:text-sm">
+            <span>
+              {article.durationMin} {t('learningHub.minRead', 'min read')}
+            </span>
+            <span className="capitalize">
+              {t(`learningHub.categories.${article.category}`, article.category)}
+            </span>
+          </div>
 
-        {/* Markdown body */}
-        <div className="prose prose-sm max-w-none text-text">
-          <ReactMarkdown>{article.body}</ReactMarkdown>
-        </div>
+          {/* Cover image — mobile only (shown above text on small screens) */}
+          {article.coverImageUrl && (
+            <img
+              src={article.coverImageUrl}
+              alt={article.title}
+              className="w-full rounded-xl object-contain lg:hidden"
+              style={{ maxHeight: '280px' }}
+            />
+          )}
 
-        {/* Additional images — full width, natural ratio, max height capped */}
-        {article.imageUrls && article.imageUrls.length > 0 && (
-          <div className="flex flex-col gap-4">
-            {article.imageUrls.map((url, i) => (
-              <img
-                key={i}
-                src={url}
-                alt=""
-                className="w-full rounded-xl object-contain"
-                style={{ maxHeight: '400px' }}
+          {/* Markdown body — larger prose on desktop */}
+          <div className="prose prose-sm max-w-none text-text lg:prose-base">
+            <ReactMarkdown>{article.body}</ReactMarkdown>
+          </div>
+
+          {/* Additional images */}
+          {article.imageUrls && article.imageUrls.length > 0 && (
+            <div className="flex flex-col gap-4">
+              {article.imageUrls.map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt=""
+                  className="w-full rounded-xl object-contain"
+                  style={{ maxHeight: '480px' }}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Audio player */}
+          {article.audioUrl && (
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase text-text-muted lg:text-sm">
+                {t('learningHub.audio', 'Audio')}
+              </p>
+              <AudioPlayer src={article.audioUrl} />
+            </div>
+          )}
+
+          {/* Video player */}
+          {article.videoUrl && (
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase text-text-muted lg:text-sm">
+                {t('learningHub.video', 'Video')}
+              </p>
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video
+                controls
+                src={article.videoUrl}
+                className="w-full rounded-xl"
               />
-            ))}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
 
-        {/* Audio player */}
-        {article.audioUrl && (
-          <div>
-            <p className="mb-2 text-xs font-semibold text-text-muted uppercase">
-              {t('learningHub.audio', 'Audio')}
-            </p>
-            <AudioPlayer src={article.audioUrl} />
-          </div>
-        )}
-
-        {/* Video player */}
-        {article.videoUrl && (
-          <div>
-            <p className="mb-2 text-xs font-semibold text-text-muted uppercase">
-              {t('learningHub.video', 'Video')}
-            </p>
-            {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-            <video
-              controls
-              src={article.videoUrl}
-              className="w-full rounded-xl"
-              style={{ maxHeight: '70vh' }}
+        {/* ── Right column: cover image, desktop only, sticky ── */}
+        {article.coverImageUrl && (
+          <div className="hidden lg:block lg:sticky lg:top-8">
+            <img
+              src={article.coverImageUrl}
+              alt={article.title}
+              className="w-full rounded-2xl object-contain shadow-sm"
+              style={{ maxHeight: '520px' }}
             />
           </div>
         )}
