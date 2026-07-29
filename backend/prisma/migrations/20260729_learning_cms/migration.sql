@@ -33,4 +33,4 @@ CREATE INDEX IF NOT EXISTS "learning_articles_status_category_idx" ON "learning_
 
 -- AddForeignKey
 ALTER TABLE "learning_articles" ADD CONSTRAINT "learning_articles_author_id_fkey" 
-    FOREIGN KEY ("author_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+    FOREIGN KEY ("author_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
