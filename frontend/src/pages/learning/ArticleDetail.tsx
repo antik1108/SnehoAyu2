@@ -36,12 +36,12 @@ export const ArticleDetail: React.FC = () => {
   if (error) {
     return (
       <AppShell title={t('learningHub.title')}>
-        <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="flex flex-col items-center justify-center py-16 text-center px-4">
           {error.status === 404 ? (
             <>
               <p className="text-lg font-bold text-text">নিবন্ধটি পাওয়া যায়নি</p>
               <p className="mt-1 text-sm text-text-muted">
-                {t('learningHub.articleNotFound', 'The article could not be found.')}
+                এই নিবন্ধটি এখন পাওয়া যাচ্ছে না।
               </p>
             </>
           ) : (
@@ -50,9 +50,9 @@ export const ArticleDetail: React.FC = () => {
           <button
             type="button"
             onClick={() => navigate(ROUTES.LEARN)}
-            className="mt-6 text-sm font-semibold text-primary"
+            className="mt-6 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
-            ← {t('learningHub.back', 'Back')}
+            ← শিক্ষা কেন্দ্রে ফিরুন
           </button>
         </div>
       </AppShell>
@@ -83,15 +83,14 @@ export const ArticleDetail: React.FC = () => {
           </span>
         </div>
 
-        {/* Cover image — 16:9 banner, cropped to fit cleanly */}
+        {/* Cover image — max 280px tall, natural width, no cropping */}
         {article.coverImageUrl && (
-          <div className="w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
-            <img
-              src={article.coverImageUrl}
-              alt={article.title}
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <img
+            src={article.coverImageUrl}
+            alt={article.title}
+            className="w-full rounded-xl object-contain"
+            style={{ maxHeight: '280px' }}
+          />
         )}
 
         {/* Markdown body */}

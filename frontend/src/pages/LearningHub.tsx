@@ -90,27 +90,35 @@ export const LearningHub: React.FC = () => {
           </div>
         )}
 
-        {/* Featured article banner */}
+        {/* Featured article — same card style as list, just highlighted */}
         {featured && !search && category === 'all' && (
           <button
             type="button"
             onClick={() => navigate(ROUTES.LEARN_ARTICLE.replace(':slug', featured.slug))}
-            className="surface-brand shadow-brand w-full text-left rounded-xl p-5"
+            className="surface-brand shadow-brand w-full text-left rounded-xl p-4"
           >
-            {featured.coverImageUrl && (
-              <img
-                src={featured.coverImageUrl}
-                alt=""
-                className="mb-3 w-full rounded-lg object-cover"
-                style={{ height: '180px' }}
-              />
-            )}
-            <p className="text-xs font-semibold uppercase opacity-80">{t('learningHub.featured')}</p>
-            <h3 className="mt-1 text-lg font-bold">{featured.title}</h3>
-            <p className="mt-1 text-xs opacity-90">
-              {featured.durationMin} {t('learningHub.minRead')}
-              {featured.audioUrl ? ` · ${t('learningHub.audio')}` : ''}
-            </p>
+            <div className="flex items-start gap-3">
+              {featured.coverImageUrl && (
+                <img
+                  src={featured.coverImageUrl}
+                  alt=""
+                  className="h-16 w-16 flex-shrink-0 rounded-lg object-cover"
+                />
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-semibold uppercase opacity-70 mb-1">
+                  {t('learningHub.featured')}
+                </p>
+                <p className="text-sm font-bold leading-snug">{featured.title}</p>
+                <p className="mt-1 text-xs opacity-80">
+                  {t(`learningHub.categories.${featured.category}`, featured.category)}
+                </p>
+                <p className="mt-1 text-xs opacity-70">
+                  {featured.durationMin} {t('learningHub.minRead')}
+                  {featured.audioUrl ? ` · ${t('learningHub.audio')}` : ''}
+                </p>
+              </div>
+            </div>
           </button>
         )}
 
