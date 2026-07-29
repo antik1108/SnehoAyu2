@@ -40,6 +40,13 @@ export function normalizeApiError(error: unknown): AppApiError {
       };
     }
 
+    if (error.code === 'ECONNABORTED') {
+      return {
+        code: 'ECONNABORTED',
+        message: 'The request took too long. Please check your connection and try again.',
+      };
+    }
+
     return {
       status,
       code: 'UNEXPECTED_ERROR',

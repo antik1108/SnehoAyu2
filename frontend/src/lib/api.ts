@@ -4,6 +4,7 @@ import { readAuthSession, writeAuthSession, clearAuthSession } from './authStora
 
 export interface RetryableAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
+  _retryCount?: number;
   skipAuthRefresh?: boolean;
 }
 
@@ -31,11 +32,17 @@ const apiBaseUrl = resolveApiBaseUrl();
 
 const api = axios.create({
   baseURL: apiBaseUrl,
-  timeout: 10000,
+  // 30 seconds — enough for slow mobile connections without hanging the UI
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+// How long to wait before retrying a failed network/timeout request (ms)
+const RETRY_DELAY_MS = 1500;
+// Maximum number of automatic retries for safe (read-only) requests
+const MAX_RETRIES = 2;
 
 let activeAccessToken: string | null = null;
 let unauthorizedHandler: (() => void) | null = null;
@@ -69,6 +76,9 @@ api.interceptors.response.use(
     return response;
   },
   async (error) => {
+    // Grab the original request config upfront — used in both retry paths below.
+    const originalRequest = error.config as RetryableAxiosRequestConfig | undefined;
+
     // Only treat genuine connectivity/server failures as "the server is
     // down" — not ordinary 4xx application errors (wrong password, 404,
     // validation, etc.), which mean the server is working fine.
@@ -82,9 +92,24 @@ api.interceptors.response.use(
         status === 503 ||
         status === 504;
       setServerDown(isConnectivityFailure);
-    }
 
-    const originalRequest = error.config as RetryableAxiosRequestConfig | undefined;
+      // ── Automatic retry for transient network/timeout errors ──────────────
+      // Only retry safe (GET/HEAD) requests to avoid duplicate mutations.
+      if (
+        isConnectivityFailure &&
+        originalRequest &&
+        !originalRequest.skipAuthRefresh &&
+        (originalRequest.method?.toUpperCase() === 'GET' ||
+          originalRequest.method?.toUpperCase() === 'HEAD')
+      ) {
+        const retryCount = originalRequest._retryCount ?? 0;
+        if (retryCount < MAX_RETRIES) {
+          originalRequest._retryCount = retryCount + 1;
+          await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+          return api(originalRequest);
+        }
+      }
+    }
 
     if (
       axios.isAxiosError(error) &&
