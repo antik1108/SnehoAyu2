@@ -14,6 +14,7 @@ export interface PublishedArticle {
 export interface ArticleDetail extends PublishedArticle {
   body: string;
   imageUrls: string[];
+  summary?: string;
 }
 
 export interface ArticleListResponse {

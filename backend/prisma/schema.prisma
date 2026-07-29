@@ -497,6 +497,7 @@ model LearningArticle {
   category      String    @db.VarChar(50)
   tags          String[]
   body          String    @db.Text
+  summary       String?   @db.Text
   status        String    @default("draft") @db.VarChar(20)
   authorId      String    @map("author_id") @db.Uuid
   author        User      @relation(fields: [authorId], references: [id])

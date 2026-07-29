@@ -5,6 +5,7 @@ import { PrismaClient } from '../generated/prisma/index.js';
 import { formatParticipantCode, type StudyGroup } from '../src/utils/participantCode.js';
 import { calculateBirthWeightStratum } from '../src/validators/onboardingValidator.js';
 import { addUtcDays } from '../src/utils/dateOnly.js';
+import { learningHubContent } from '../../frontend/src/content/learningHubContent.js';
 
 const connectionString = process.env['DATABASE_URL'];
 if (!connectionString) {
@@ -231,6 +232,51 @@ async function main() {
   }
 
   console.log(`Seeded ${totalSeeded} mother participants across ${HOSPITALS.length} hospitals (phones +919000002001-${motherPhoneSeq - 1}). Password: ${TEST_PASSWORD}`);
+
+  // ── Learning Articles — seed all articles from learningHubContent.ts ───────
+  // Use the first researcher/admin as the authorId for seeded articles
+  const seedAuthor = await prisma.user.findFirst({
+    where: { role: 'researcher' },
+    select: { id: true },
+  });
+
+  if (!seedAuthor) {
+    console.warn('No researcher user found; skipping learning article seed. Run seed after researcher accounts are created.');
+  } else {
+    let articlesSeeded = 0;
+    for (const item of learningHubContent) {
+      await prisma.learningArticle.upsert({
+        where: { slug: item.slug },
+        update: {
+          title: item.title,
+          body: item.body,
+          summary: item.summary ?? null,
+          category: item.category,
+          audioUrl: item.audioUrl ?? null,
+          status: 'published',
+          publishedAt: new Date('2025-01-01T00:00:00.000Z'),
+        },
+        create: {
+          slug: item.slug,
+          title: item.title,
+          body: item.body,
+          summary: item.summary ?? null,
+          category: item.category,
+          tags: [],
+          imageUrls: [],
+          audioUrl: item.audioUrl ?? null,
+          videoUrl: null,
+          coverImageUrl: null,
+          status: 'published',
+          publishedAt: new Date('2025-01-01T00:00:00.000Z'),
+          authorId: seedAuthor.id,
+        },
+      });
+      articlesSeeded += 1;
+    }
+    console.log(`Seeded ${articlesSeeded} learning articles (with summary) from learningHubContent.`);
+  }
+
   console.log('Seed completed.');
 }
 

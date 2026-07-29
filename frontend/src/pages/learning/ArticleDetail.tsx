@@ -64,47 +64,57 @@ export const ArticleDetail: React.FC = () => {
   return (
     <AppShell title={article.title} subtitle={t('learningHub.title')}>
       {/* On desktop: two-column — content left, cover image right (sticky) */}
-      <div className="lg:grid lg:grid-cols-[1fr_420px] lg:gap-10 lg:items-start">
+      <div className="lg:grid lg:grid-cols-[1fr_400px] lg:gap-12 lg:items-start">
 
-        {/* ── Left column: back, meta, body, media ── */}
-        <div className="space-y-5">
+        {/* ── Left column ── */}
+        <div>
           {/* Back button */}
           <button
             type="button"
             onClick={() => navigate(ROUTES.LEARN)}
-            className="text-sm font-semibold text-primary"
+            className="mb-5 text-sm font-semibold text-primary inline-flex items-center gap-1"
           >
             ← {t('learningHub.back', 'Back')}
           </button>
 
-          {/* Meta */}
-          <div className="flex flex-wrap gap-3 text-xs text-text-muted lg:text-sm">
-            <span>
-              {article.durationMin} {t('learningHub.minRead', 'min read')}
-            </span>
-            <span className="capitalize">
+          {/* Category + read-time chips */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="care-chip capitalize">
               {t(`learningHub.categories.${article.category}`, article.category)}
+            </span>
+            <span className="care-chip">
+              {article.durationMin} {t('learningHub.minRead', 'min read')}
             </span>
           </div>
 
-          {/* Cover image — mobile only (shown above text on small screens) */}
+          {/* Summary lead — displayed as a pull-quote intro above the body */}
+          {article.summary && (
+            <p className="text-base font-semibold text-text-muted leading-relaxed mb-5 border-l-4 border-secondary pl-4">
+              {article.summary}
+            </p>
+          )}
+
+          {/* Cover image — mobile only */}
           {article.coverImageUrl && (
             <img
               src={article.coverImageUrl}
               alt={article.title}
-              className="w-full rounded-xl object-contain lg:hidden"
-              style={{ maxHeight: '280px' }}
+              className="w-full rounded-xl object-cover mb-6 lg:hidden"
+              style={{ maxHeight: '260px' }}
             />
           )}
 
-          {/* Markdown body — larger prose on desktop */}
-          <div className="prose prose-sm max-w-none text-text lg:prose-base">
+          {/* Divider before body */}
+          <hr className="border-border mb-6" />
+
+          {/* Article body — Bengali-optimised typography */}
+          <div className="article-prose max-w-none">
             <ReactMarkdown>{article.body}</ReactMarkdown>
           </div>
 
-          {/* Additional images */}
+          {/* Additional images inline with body */}
           {article.imageUrls && article.imageUrls.length > 0 && (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-5 mt-6">
               {article.imageUrls.map((url, i) => (
                 <img
                   key={i}
@@ -119,8 +129,8 @@ export const ArticleDetail: React.FC = () => {
 
           {/* Audio player */}
           {article.audioUrl && (
-            <div>
-              <p className="mb-2 text-xs font-semibold uppercase text-text-muted lg:text-sm">
+            <div className="mt-8 p-4 rounded-xl bg-surface border border-border">
+              <p className="mb-3 text-xs font-bold uppercase tracking-wide text-text-muted">
                 {t('learningHub.audio', 'Audio')}
               </p>
               <AudioPlayer src={article.audioUrl} />
@@ -129,8 +139,8 @@ export const ArticleDetail: React.FC = () => {
 
           {/* Video player */}
           {article.videoUrl && (
-            <div>
-              <p className="mb-2 text-xs font-semibold uppercase text-text-muted lg:text-sm">
+            <div className="mt-6">
+              <p className="mb-3 text-xs font-bold uppercase tracking-wide text-text-muted">
                 {t('learningHub.video', 'Video')}
               </p>
               {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -149,8 +159,8 @@ export const ArticleDetail: React.FC = () => {
             <img
               src={article.coverImageUrl}
               alt={article.title}
-              className="w-full rounded-2xl object-contain shadow-sm"
-              style={{ maxHeight: '520px' }}
+              className="w-full rounded-2xl object-cover shadow-sm"
+              style={{ maxHeight: '480px' }}
             />
           </div>
         )}
