@@ -53,7 +53,7 @@ export async function listPublishedArticles(
       where,
       skip,
       take: limit,
-      orderBy: { publishedAt: 'desc' },
+      orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
       select: {
         id: true,
         slug: true,

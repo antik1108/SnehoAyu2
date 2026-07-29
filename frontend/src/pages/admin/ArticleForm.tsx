@@ -37,7 +37,7 @@ export const ArticleForm: React.FC = () => {
   const [category, setCategory] = useState<typeof CATEGORIES[number]>('feeding');
   const [tags, setTags] = useState('');
   const [body, setBody] = useState('');
-  const [status, setStatus] = useState<typeof STATUSES[number]>('draft');
+  const [status, setStatus] = useState<typeof STATUSES[number]>(isEdit ? 'draft' : 'published');
   const [coverImageUrl, setCoverImageUrl] = useState('');
   const [audioUrl, setAudioUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
@@ -268,12 +268,23 @@ export const ArticleForm: React.FC = () => {
               id="status"
               value={status}
               onChange={(e) => setStatus(e.target.value as typeof STATUSES[number])}
-              className="w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className={`w-full rounded-xl border px-4 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary/30 ${
+                status === 'published'
+                  ? 'border-green-400 bg-green-50 text-green-800'
+                  : status === 'archived'
+                  ? 'border-slate-300 bg-slate-50 text-slate-600'
+                  : 'border-amber-400 bg-amber-50 text-amber-800'
+              }`}
             >
               {STATUSES.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>{s === 'published' ? '✅ published — visible to patients' : s === 'draft' ? '⚠️ draft — hidden from patients' : '🗄 archived'}</option>
               ))}
             </select>
+            {status === 'draft' && (
+              <p className="mt-1.5 text-xs font-semibold text-amber-700">
+                ⚠️ Draft articles are NOT visible to mothers. Change to "published" to make it live.
+              </p>
+            )}
           </div>
 
           {/* Cover image */}
