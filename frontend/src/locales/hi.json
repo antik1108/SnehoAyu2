@@ -637,7 +637,9 @@
       "danger_signs": "खतरे के संकेत",
       "emotional_support": "भावनात्मक सहयोग",
       "immunization": "टीकाकरण",
-      "newborn_care": "नवजात देखभाल"
+      "newborn_care": "नवजात देखभाल",
+      "mother_care": "माँ की देखभाल",
+      "emergency": "आपातकाल"
     }
   },
   "dangerSignsFull": {

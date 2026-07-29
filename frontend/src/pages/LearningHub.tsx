@@ -9,11 +9,12 @@ import type { PublishedArticle } from '../features/learning/types';
 import { normalizeApiError } from '../lib/apiError';
 import { ROUTES } from '../routes/paths';
 
-type CategoryKey = 'all' | 'feeding' | 'kmc' | 'growth' | 'danger_signs' | 'emotional_support' | 'immunization' | 'newborn_care';
+type CategoryKey = 'all' | 'feeding' | 'kmc' | 'growth' | 'danger_signs' | 'emotional_support' | 'immunization' | 'newborn_care' | 'mother_care' | 'emergency';
 
 const CATEGORY_KEYS: CategoryKey[] = [
   'all', 'feeding', 'kmc', 'growth', 'danger_signs',
   'emotional_support', 'immunization', 'newborn_care',
+  'mother_care', 'emergency',
 ];
 
 export const LearningHub: React.FC = () => {

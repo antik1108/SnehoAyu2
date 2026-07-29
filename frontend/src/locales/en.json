@@ -637,7 +637,9 @@
       "danger_signs": "Danger Signs",
       "emotional_support": "Emotional Support",
       "immunization": "Immunization",
-      "newborn_care": "Newborn Care"
+      "newborn_care": "Newborn Care",
+      "mother_care": "Mother Care",
+      "emergency": "Emergency"
     }
   },
   "dangerSignsFull": {
