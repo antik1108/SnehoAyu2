@@ -6,7 +6,7 @@ export async function fetchArticles(filters?: {
   search?: string;
 }): Promise<ArticleListResponse> {
   const res = await api.get<{ success: boolean; data: ArticleListResponse }>('/learning', {
-    params: filters,
+    params: { limit: 500, ...filters },
   });
   return res.data.data;
 }

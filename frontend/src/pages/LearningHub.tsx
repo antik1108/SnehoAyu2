@@ -17,6 +17,20 @@ const CATEGORY_KEYS: CategoryKey[] = [
   'mother_care', 'emergency',
 ];
 
+// Bengali labels used as fallback when i18n bundle hasn't reloaded yet
+const CATEGORY_LABELS_BN: Record<CategoryKey, string> = {
+  all: 'সব',
+  feeding: 'খাওয়ানো',
+  kmc: 'কেএমসি',
+  growth: 'বৃদ্ধি',
+  danger_signs: 'বিপদ চিহ্ন',
+  emotional_support: 'মানসিক সহায়তা',
+  immunization: 'টিকাকরণ',
+  newborn_care: 'নবজাতকের যত্ন',
+  mother_care: 'মায়ের যত্ন',
+  emergency: 'জরুরি পরিস্থিতি',
+};
+
 export const LearningHub: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -77,6 +91,15 @@ export const LearningHub: React.FC = () => {
     setCategory(cat);
   };
 
+  // Resolve category label: use i18n if key exists, otherwise use hardcoded Bengali map
+  const getCategoryLabel = (cat: string): string => {
+    const i18nKey = `learningHub.categories.${cat}`;
+    const translated = t(i18nKey);
+    // t() returns the key itself when translation is missing — detect that
+    if (translated !== i18nKey) return translated;
+    return CATEGORY_LABELS_BN[cat as CategoryKey] ?? cat;
+  };
+
   const featured = articles.find((a) => a.coverImageUrl);
 
   if (loading) return <LoadingScreen />;
@@ -112,7 +135,7 @@ export const LearningHub: React.FC = () => {
                 </p>
                 <p className="text-sm font-bold leading-snug lg:text-xl lg:leading-tight">{featured.title}</p>
                 <p className="mt-1 text-xs opacity-80 lg:text-sm lg:mt-2">
-                  {t(`learningHub.categories.${featured.category}`, featured.category)}
+                  {getCategoryLabel(featured.category)}
                 </p>
                 <p className="mt-1 text-xs opacity-70 lg:mt-1.5 lg:text-sm">
                   {featured.durationMin} {t('learningHub.minRead')}
@@ -145,7 +168,7 @@ export const LearningHub: React.FC = () => {
                   : 'bg-slate-100 text-text-muted'
               }`}
             >
-              {t(`learningHub.categories.${key}`, key)}
+              {getCategoryLabel(key)}
             </button>
           ))}
         </div>
@@ -187,7 +210,7 @@ export const LearningHub: React.FC = () => {
                       )}
                     </div>
                     <p className="mt-1 text-xs text-text-muted lg:text-sm">
-                      {t(`learningHub.categories.${article.category}`, article.category)}
+                      {getCategoryLabel(article.category)}
                     </p>
                     <p className="mt-1.5 text-xs text-text-muted">
                       {article.durationMin} {t('learningHub.minRead')}
