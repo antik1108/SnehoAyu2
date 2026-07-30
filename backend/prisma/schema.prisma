@@ -132,6 +132,7 @@ model MotherProfile {
   contentViews         ContentView[]
   videoCallSessions    VideoCallSession[]
   kmcDailyLogs         KmcDailyLog[]
+  dangerSignAlerts     DangerSignAlert[]
 }
 
 model BabyProfile {
@@ -513,4 +514,37 @@ model LearningArticle {
   @@index([category])
   @@index([status, category])
   @@map("learning_articles")
+}
+
+enum DangerSignCategory {
+  STOOL_ABNORMAL
+  POOR_WEIGHT_GAIN
+  POOR_WELLBEING
+  DEVELOPMENTAL_CONCERN
+  OTHER
+}
+
+enum DangerSignStatus {
+  OPEN
+  ACKNOWLEDGED
+  RESOLVED
+}
+
+model DangerSignAlert {
+  id              String             @id @default(uuid()) @db.Uuid
+  motherProfileId String             @map("mother_profile_id") @db.Uuid
+  motherProfile   MotherProfile      @relation(fields: [motherProfileId], references: [id], onDelete: Restrict)
+  raisedAt        DateTime           @default(now()) @map("raised_at")
+  category        DangerSignCategory
+  description     String?            @db.Text
+  acknowledgedAt  DateTime?          @map("acknowledged_at")
+  resolvedAt      DateTime?          @map("resolved_at")
+  resolvedBy      String?            @map("resolved_by") @db.VarChar(100)
+  status          DangerSignStatus   @default(OPEN)
+  createdAt       DateTime           @default(now()) @map("created_at")
+  updatedAt       DateTime           @updatedAt @map("updated_at")
+
+  @@index([motherProfileId, status])
+  @@index([raisedAt])
+  @@map("danger_sign_alerts")
 }

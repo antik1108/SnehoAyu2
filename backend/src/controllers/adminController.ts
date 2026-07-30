@@ -5,10 +5,50 @@ import * as adminService from '../services/adminService.js';
 
 export async function getParticipants(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const birthWeightStratum = typeof req.query['birthWeightStratum'] === 'string' ? req.query['birthWeightStratum'] : undefined;
-    const hospitalId = typeof req.query['hospitalId'] === 'string' ? req.query['hospitalId'] : undefined;
+    const {
+      hospitalId,
+      studyGroup,
+      birthWeightStratum,
+      onboardingStatus,
+      enrolledAfter,
+      enrolledBefore,
+      checkpointWindow,
+      engagementTier,
+    } = req.query;
 
-    const data = await adminService.listParticipants({ birthWeightStratum, hospitalId });
+    const filter: any = {};
+
+    if (typeof hospitalId === 'string' && hospitalId.trim()) filter.hospitalId = hospitalId.trim();
+    if (studyGroup === 'study' || studyGroup === 'control') filter.studyGroup = studyGroup;
+    if (typeof birthWeightStratum === 'string' && birthWeightStratum.trim()) filter.birthWeightStratum = birthWeightStratum.trim();
+    if (onboardingStatus === 'onboarded' || onboardingStatus === 'pending') filter.onboardingStatus = onboardingStatus;
+
+    if (typeof enrolledAfter === 'string' && enrolledAfter.trim()) {
+      const d = new Date(enrolledAfter.trim());
+      if (!isNaN(d.getTime())) filter.enrolledAfter = d;
+    }
+    if (typeof enrolledBefore === 'string' && enrolledBefore.trim()) {
+      const d = new Date(enrolledBefore.trim());
+      if (!isNaN(d.getTime())) filter.enrolledBefore = d;
+    }
+    if (
+      checkpointWindow === 'overdue' ||
+      checkpointWindow === 'due_this_week' ||
+      checkpointWindow === 'due_this_month' ||
+      checkpointWindow === 'due_next_month'
+    ) {
+      filter.checkpointWindow = checkpointWindow;
+    }
+    if (
+      engagementTier === 'high' ||
+      engagementTier === 'medium' ||
+      engagementTier === 'low' ||
+      engagementTier === 'inactive'
+    ) {
+      filter.engagementTier = engagementTier;
+    }
+
+    const data = await adminService.listParticipants(filter);
     res.status(200).json({ success: true, data });
   } catch (err) {
     next(err);
@@ -23,6 +63,20 @@ export async function getParticipantDetail(req: Request, res: Response, next: Ne
       return;
     }
     const data = await adminService.getParticipantDetail(id);
+    res.status(200).json({ success: true, data });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function getParticipantGrowth(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      next(createError(400, 'INVALID_REQUEST', 'Participant id is required.'));
+      return;
+    }
+    const data = await adminService.getAdminParticipantGrowth(id);
     res.status(200).json({ success: true, data });
   } catch (err) {
     next(err);

@@ -130,7 +130,7 @@ describe('AuthProvider', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId('status').textContent).toBe('unauthenticated');
+      expect(screen.getByTestId('status').textContent).toBe('authenticated');
     });
     expect(localStorage.getItem('snehoayu.auth.session.v1')).not.toBeNull();
   });

@@ -134,7 +134,7 @@ function toNumber(value: unknown): number {
   return Number(value);
 }
 
-function mapGrowthReading(record: GrowthRecord, sex?: Sex) {
+export function mapGrowthReading(record: GrowthRecord, sex?: Sex) {
   const correctedAgeWeeks = toNumber(record.correctedAgeWeeks);
   const weightKg = record.weightGrams / 1000;
   const lengthCm = toNumber(record.lengthCm);

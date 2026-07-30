@@ -107,8 +107,8 @@ export async function getPublishedArticleBySlug(
     where: { slug },
   });
 
-  // Researchers and nurses can read any status; mothers and others only see published
-  const isPrivileged = role === 'researcher' || role === 'nurse';
+  // Researchers can read any status; nurses, mothers, and others only see published
+  const isPrivileged = role === 'researcher';
   if (!article || (!isPrivileged && article.status !== 'published')) {
     throw createError(404, 'ARTICLE_NOT_FOUND', 'Article not found.');
   }
