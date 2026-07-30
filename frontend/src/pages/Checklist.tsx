@@ -1141,22 +1141,22 @@ export const Checklist: React.FC = () => {
   };
 
   return (
-    <div className="care-canvas min-h-screen pb-24 lg:pl-64">
+    <div className="care-canvas min-h-[100dvh] lg:pl-64">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-border bg-background/88 px-4 py-5 backdrop-blur-xl lg:static lg:border-0 lg:bg-transparent">
+      <header className="sticky top-0 z-10 border-b border-border bg-background/90 px-4 py-4 backdrop-blur-xl lg:static lg:border-0 lg:bg-transparent">
         <div className="mx-auto flex max-w-5xl items-start gap-4">
           <button
             type="button"
             onClick={() => navigate(-1)}
             aria-label={t('common.back', 'Go back')}
-            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-text transition-colors hover:bg-secondary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-text transition-colors hover:bg-secondary/15 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             <ArrowLeft className="h-5 w-5" aria-hidden="true" />
           </button>
           <div className="min-w-0 flex-1">
             <p className="hidden text-xs font-extrabold uppercase text-secondary lg:block">Daily care</p>
             <h1 className="text-2xl font-extrabold text-text lg:text-4xl">{t('checklist.title')}</h1>
-            <p className="mt-1 text-sm font-medium text-text-muted">{t('checklist.subtitle')}</p>
+            <p className="mt-0.5 text-sm font-medium text-text-muted">{t('checklist.subtitle')}</p>
           </div>
         </div>
       </header>
@@ -1164,7 +1164,7 @@ export const Checklist: React.FC = () => {
           block for fixed-position descendants) so it positions correctly. */}
       <AiAssistantButton />
 
-      <main className="mx-auto max-w-md space-y-4 px-4 py-5 lg:max-w-5xl">
+      <main className="mx-auto max-w-md space-y-4 px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-5 lg:max-w-5xl">
         {loading && <ChecklistSkeleton />}
 
         {!loading && loadError && <ChecklistError onRetry={retryLoad} />}
@@ -1231,6 +1231,8 @@ export const Checklist: React.FC = () => {
           </>
         )}
       </main>
+      {/* BottomNavigation is now fixed to viewport — no need to render it
+          as a block at end of content. Rendering once keeps a single DOM node. */}
       <BottomNavigation />
     </div>
   );
