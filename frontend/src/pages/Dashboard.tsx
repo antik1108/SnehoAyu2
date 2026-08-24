@@ -157,27 +157,27 @@ export const Dashboard: React.FC = () => {
               {data.hospital.code}
             </span>
           </div>
-          <h2 className="mt-5 max-w-2xl text-4xl font-extrabold leading-tight lg:text-6xl">
+          <h2 className="mt-5 max-w-2xl text-3xl sm:text-4xl font-extrabold leading-tight lg:text-6xl">
             {data.baby.displayName}'s care today
           </h2>
           <p className="mt-4 max-w-xl text-sm font-medium leading-6 text-white/68">
             Quick view of daily care progress, last vitals, feeding, learning and follow-up reminders.
           </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="mt-6 grid gap-3 grid-cols-1 sm:grid-cols-3">
             <div className="rounded-2xl bg-white/8 p-4">
               <CalendarDays className="h-5 w-5 text-[#efd35c]" aria-hidden="true" />
               <p className="mt-3 text-xs font-bold text-white/52">Today</p>
-              <p className="text-sm font-extrabold">{new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}</p>
+              <p className="text-xs sm:text-sm font-extrabold">{new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}</p>
             </div>
             <div className="rounded-2xl bg-white/8 p-4">
               <HeartPulse className="h-5 w-5 text-[#efa8d0]" aria-hidden="true" />
               <p className="mt-3 text-xs font-bold text-white/52">Care tasks</p>
-              <p className="text-sm font-extrabold">{data.careToday.completedCount}/{data.careToday.totalCount} done</p>
+              <p className="text-xs sm:text-sm font-extrabold">{data.careToday.completedCount}/{data.careToday.totalCount} done</p>
             </div>
             <div className="rounded-2xl bg-white/8 p-4">
               <Sparkles className="h-5 w-5 text-[#aac3e9]" aria-hidden="true" />
               <p className="mt-3 text-xs font-bold text-white/52">Corrected age</p>
-              <p className="text-sm font-extrabold">{data.baby.correctedAgeDisplay}</p>
+              <p className="text-xs sm:text-sm font-extrabold">{data.baby.correctedAgeDisplay}</p>
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@ export const Dashboard: React.FC = () => {
           <div className="care-photo-overlay absolute inset-0" />
         </div>
       </section>
-      <div className="grid gap-4 lg:grid-cols-12 lg:items-start">
+      <div className="grid gap-4 md:grid-cols-12 lg:grid-cols-12 md:items-start lg:items-start">
         <BabyStatusCard baby={data.baby} participant={data.participant} hospital={data.hospital} />
         <CareProgressRing
           percent={data.careToday.completionPercent}

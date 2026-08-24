@@ -13,7 +13,7 @@ export const BabyStatusCard: React.FC<BabyStatusCardProps> = ({ baby, participan
   const { t } = useTranslation();
 
   return (
-    <section className="interactive-card relative overflow-hidden rounded-2xl border border-[#e7cd5d] bg-[#efd35c] p-5 text-[#181715] lg:col-span-7">
+    <section className="interactive-card relative overflow-hidden rounded-2xl border border-[#e7cd5d] bg-[#efd35c] p-5 text-[#181715] md:col-span-7 lg:col-span-7">
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-[32px] bg-white/18 rotate-12" />
       <div className="relative flex items-start justify-between gap-4">
         <div>
@@ -24,7 +24,7 @@ export const BabyStatusCard: React.FC<BabyStatusCardProps> = ({ baby, participan
           <Baby className="h-6 w-6" aria-hidden="true" />
         </span>
       </div>
-      <div className="relative mt-5 grid gap-3 text-sm sm:grid-cols-2">
+      <div className="relative mt-5 grid gap-3 text-xs sm:text-sm sm:grid-cols-2">
         <p className="rounded-xl bg-white/28 p-3 font-bold">{t('dashboard.babyStatus.age')}: {baby.ageDisplay}</p>
         <p className="rounded-xl bg-white/28 p-3 font-bold">{t('dashboard.babyStatus.correctedAge')}: {baby.correctedAgeDisplay}</p>
         <p className="rounded-xl bg-white/28 p-3 font-bold sm:col-span-2">

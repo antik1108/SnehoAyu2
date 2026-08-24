@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Activity, AlertTriangle, Baby, CheckCircle2, TrendingUp } from 'lucide-react';
 import { ROUTES } from '../routes/paths';
 
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?auto=format&fit=crop&w=900&q=80';
+const HERO_IMAGE = 'https://plus.unsplash.com/premium_photo-1676400362022-83a03c3e5366?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&w=900&q=80';
 
 export const Welcome: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -27,8 +27,8 @@ export const Welcome: React.FC = () => {
               {currentLang === 'bn'
                 ? 'প্রতিদিনের সহজ যত্নের নির্দেশনা, শিশুর বৃদ্ধি পর্যবেক্ষণ এবং জরুরি লক্ষণের তথ্য—সব এক জায়গায়।'
                 : currentLang === 'hi'
-                ? 'रोज़ की देखभाल, विकास की निगरानी और खतरे के संकेतों की जानकारी—सब एक जगह।'
-                : 'Simple daily guidance, growth tracking, and urgent care information—together in one place.'}
+                  ? 'रोज़ की देखभाल, विकास की निगरानी और खतरे के संकेतों की जानकारी—सब एक जगह।'
+                  : 'Simple daily guidance, growth tracking, and urgent care information—together in one place.'}
             </p>
             <div className="mt-6 grid max-w-lg grid-cols-3 gap-2">
               {[Baby, Activity, CheckCircle2].map((Icon, index) => (
@@ -47,85 +47,85 @@ export const Welcome: React.FC = () => {
           </h2>
 
           <div className="mt-8 flex flex-col gap-4">
-          <div className="flex items-start gap-3.5 rounded-2xl border border-border bg-[#efd35c] p-4 text-[#181715]">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/32">
-              <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+            <div className="flex items-start gap-3.5 rounded-2xl border border-border bg-[#efd35c] p-4 text-[#181715]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/32">
+                <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="font-sans text-sm font-extrabold">
+                  {t('welcomeScreen.dailyCareGuide', 'Daily Care Guide')}
+                </h3>
+                <p className="mt-1 text-xs font-semibold leading-relaxed text-[#181715]/70">
+                  {currentLang === 'bn'
+                    ? 'নবজাতকের প্রতিদিনের সহজ যত্নের নির্দেশিকা।'
+                    : currentLang === 'hi'
+                      ? 'नवजात शिशु की रोज़ की देखभाल के लिए आसान मार्गदर्शन।'
+                      : 'Simple support for everyday newborn care.'}
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-sans text-sm font-extrabold">
-                {t('welcomeScreen.dailyCareGuide', 'Daily Care Guide')}
-              </h3>
-              <p className="mt-1 text-xs font-semibold leading-relaxed text-[#181715]/70">
-                {currentLang === 'bn'
-                  ? 'নবজাতকের প্রতিদিনের সহজ যত্নের নির্দেশিকা।'
-                  : currentLang === 'hi'
-                  ? 'नवजात शिशु की रोज़ की देखभाल के लिए आसान मार्गदर्शन।'
-                  : 'Simple support for everyday newborn care.'}
-              </p>
+
+            <div className="flex items-start gap-3.5 rounded-2xl border border-border bg-[#aac3e9] p-4 text-[#181715]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/32">
+                <TrendingUp className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="font-sans text-sm font-extrabold">
+                  {t('welcomeScreen.growthTracking', 'Growth Tracking')}
+                </h3>
+                <p className="mt-1 text-xs font-semibold leading-relaxed text-[#181715]/70">
+                  {currentLang === 'bn'
+                    ? 'আপনার শিশুর ওজন ও উচ্চতার বৃদ্ধি লক্ষ্য করুন।'
+                    : currentLang === 'hi'
+                      ? 'समय के साथ अपने शिशु के विकास की निगरानी करें।'
+                      : 'Follow your baby’s growth over time.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3.5 rounded-2xl border border-border bg-[#efa8d0] p-4 text-[#181715]">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/32">
+                <AlertTriangle className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="font-sans text-sm font-extrabold">
+                  {t('welcomeScreen.dangerSigns', 'Danger Signs')}
+                </h3>
+                <p className="mt-1 text-xs font-semibold leading-relaxed text-[#181715]/70">
+                  {currentLang === 'bn'
+                    ? 'কখন শিশুর জরুরি চিকিৎসাসেবা প্রয়োজন তা জানুন।'
+                    : currentLang === 'hi'
+                      ? 'जानें कि आपके शिशु को कब तत्काल मदद की आवश्यकता है।'
+                      : 'Know when your baby needs urgent help.'}
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3.5 rounded-2xl border border-border bg-[#aac3e9] p-4 text-[#181715]">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/32">
-              <TrendingUp className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <div>
-              <h3 className="font-sans text-sm font-extrabold">
-                {t('welcomeScreen.growthTracking', 'Growth Tracking')}
-              </h3>
-              <p className="mt-1 text-xs font-semibold leading-relaxed text-[#181715]/70">
-                {currentLang === 'bn'
-                  ? 'আপনার শিশুর ওজন ও উচ্চতার বৃদ্ধি লক্ষ্য করুন।'
-                  : currentLang === 'hi'
-                  ? 'समय के साथ अपने शिशु के विकास की निगरानी करें।'
-                  : 'Follow your baby’s growth over time.'}
-              </p>
-            </div>
+          <div className="mt-8 flex flex-col gap-3.5">
+            <button
+              type="button"
+              onClick={() => navigate(ROUTES.SIGNUP_PHONE)}
+              className="min-h-[52px] w-full rounded-full bg-primary py-3 text-center font-extrabold text-primary-foreground transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              {t('welcomeScreen.createAccount', 'Create Account')}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigate(ROUTES.LOGIN)}
+              className="min-h-[52px] w-full rounded-full border border-border bg-surface py-3 text-center font-extrabold text-text transition-all hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              {t('welcomeScreen.alreadyHaveAccount', 'I Already Have an Account')}
+            </button>
+
+            <Link
+              to={ROUTES.LANGUAGE_SELECT}
+              className="mt-2 text-center text-xs font-semibold text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              {currentLang === 'bn' ? 'বাংলা / ভাষা পরিবর্তন করুন' : currentLang === 'hi' ? 'हिंदी / भाषा बदलें' : 'English / Change Language'}
+            </Link>
           </div>
-
-          <div className="flex items-start gap-3.5 rounded-2xl border border-border bg-[#efa8d0] p-4 text-[#181715]">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/32">
-              <AlertTriangle className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <div>
-              <h3 className="font-sans text-sm font-extrabold">
-                {t('welcomeScreen.dangerSigns', 'Danger Signs')}
-              </h3>
-              <p className="mt-1 text-xs font-semibold leading-relaxed text-[#181715]/70">
-                {currentLang === 'bn'
-                  ? 'কখন শিশুর জরুরি চিকিৎসাসেবা প্রয়োজন তা জানুন।'
-                  : currentLang === 'hi'
-                  ? 'जानें कि आपके शिशु को कब तत्काल मदद की आवश्यकता है।'
-                  : 'Know when your baby needs urgent help.'}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3.5">
-          <button
-            type="button"
-            onClick={() => navigate(ROUTES.SIGNUP_PHONE)}
-            className="min-h-[52px] w-full rounded-full bg-primary py-3 text-center font-extrabold text-primary-foreground transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            {t('welcomeScreen.createAccount', 'Create Account')}
-          </button>
-          
-          <button
-            type="button"
-            onClick={() => navigate(ROUTES.LOGIN)}
-            className="min-h-[52px] w-full rounded-full border border-border bg-surface py-3 text-center font-extrabold text-text transition-all hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            {t('welcomeScreen.alreadyHaveAccount', 'I Already Have an Account')}
-          </button>
-
-          <Link
-            to={ROUTES.LANGUAGE_SELECT}
-            className="mt-2 text-center text-xs font-semibold text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            {currentLang === 'bn' ? 'বাংলা / ভাষা পরিবর্তন করুন' : currentLang === 'hi' ? 'हिंदी / भाषा बदलें' : 'English / Change Language'}
-          </Link>
-        </div>
         </section>
       </main>
     </div>

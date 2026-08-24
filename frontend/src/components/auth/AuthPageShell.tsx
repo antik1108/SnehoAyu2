@@ -9,7 +9,7 @@ interface AuthPageShellProps {
   onBack?: () => void;
 }
 
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=800&q=80';
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1574706473454-a3b3da3fc5b5?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&w=800&q=80';
 
 export const AuthPageShell: React.FC<AuthPageShellProps> = ({
   children,

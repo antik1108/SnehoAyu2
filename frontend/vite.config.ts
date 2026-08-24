@@ -16,7 +16,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
-      includeAssets: ['favicon.svg', 'icons.svg'],
+      includeAssets: ['favicon.svg', 'favicon.png', 'favicon-192.png', 'favicon-512.png', 'icons.svg'],
       manifest: {
         name: 'SnehoAyu — Preterm Infant Care Companion',
         short_name: 'SnehoAyu',
@@ -26,6 +26,10 @@ export default defineConfig({
         background_color: '#f8fafc',
         theme_color: '#0f766e',
         icons: [
+          { src: '/favicon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: '/favicon-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
+          { src: '/favicon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: '/favicon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
           { src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
           { src: '/favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' },
         ],

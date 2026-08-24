@@ -18,7 +18,13 @@ export function normalizeApiError(error: unknown): AppApiError {
 
     if (data && typeof data === 'object') {
       const code = typeof data.code === 'string' ? data.code : 'UNEXPECTED_ERROR';
-      const message = typeof data.message === 'string' ? data.message : error.message;
+      let message = typeof data.message === 'string' ? data.message : error.message;
+
+      // Sanitize generic routing/endpoint 404 messages for user-friendly display
+      if (status === 404 && (message.includes('Route ') || message.toLowerCase().includes('not found') || code === 'NOT_FOUND')) {
+        message = 'The requested content could not be loaded. Please try again later.';
+      }
+
       const details = Array.isArray(data.details) ? (data.details as Array<{
         field?: string;
         section?: string;

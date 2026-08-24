@@ -11,6 +11,23 @@ import {
 } from 'recharts';
 import { SiteComparisonData } from '../../features/admin/analyticsHooks';
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="rounded-xl border border-neutral-200 bg-white/95 backdrop-blur-md p-3 shadow-md text-xs space-y-1.5">
+        <div className="font-extrabold text-[#111] mb-1">{label}</div>
+        {payload.map((entry: any, index: number) => (
+          <div key={index} className="flex items-center gap-2 font-semibold" style={{ color: entry.fill }}>
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: entry.fill }} />
+            {entry.name}: <span className="font-extrabold">{entry.value}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
 export const SiteComparisonChart: React.FC<{
   data?: SiteComparisonData;
   isLoading: boolean;
@@ -22,7 +39,7 @@ export const SiteComparisonChart: React.FC<{
   const sites = data?.sites ?? [];
 
   return (
-    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-white p-5 shadow-xs transition-all hover:shadow-sm">
       <div className="mb-4">
         <h3 className="font-sans text-sm font-extrabold text-text-main">Site Comparison</h3>
         <p className="text-[11px] font-medium text-text-muted">Enrollment counts by study group per site</p>
@@ -35,21 +52,14 @@ export const SiteComparisonChart: React.FC<{
       ) : (
         <div className="h-60 w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={sites} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-              <XAxis dataKey="hospitalName" tickLine={false} axisLine={{ stroke: '#e5e7eb' }} tick={{ fontSize: 10, fill: '#6b7280' }} />
-              <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#6b7280' }} />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: '#ffffff',
-                  borderRadius: '12px',
-                  border: '1px solid #e5e7eb',
-                  fontSize: '12px',
-                }}
-              />
-              <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-              <Bar dataKey="studyCount" name="Study Group" fill="#0f766e" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="controlCount" name="Control Group" fill="#2563eb" radius={[4, 4, 0, 0]} />
+            <BarChart data={sites} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
+              <XAxis dataKey="hospitalName" tickLine={false} axisLine={{ stroke: '#e5e7eb' }} tick={{ fontSize: 9, fill: '#6b7280', fontWeight: 500 }} />
+              <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 9, fill: '#6b7280', fontWeight: 500 }} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend iconType="circle" wrapperStyle={{ fontSize: '10px', paddingTop: '12px', fontWeight: 600 }} />
+              <Bar dataKey="studyCount" name="Study Group" fill="#0f766e" radius={[6, 6, 0, 0]} maxBarSize={32} />
+              <Bar dataKey="controlCount" name="Control Group" fill="#6366f1" radius={[6, 6, 0, 0]} maxBarSize={32} />
             </BarChart>
           </ResponsiveContainer>
         </div>

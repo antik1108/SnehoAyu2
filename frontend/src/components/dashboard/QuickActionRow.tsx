@@ -13,9 +13,9 @@ export const QuickActionRow: React.FC<QuickActionRowProps> = ({ onAction }) => {
   const navigate = useNavigate();
 
   return (
-    <section className="rounded-2xl border border-border bg-surface p-5 lg:col-span-12">
+    <section className="rounded-2xl border border-border bg-surface p-5 md:col-span-12 lg:col-span-12">
       <h2 className="text-sm font-extrabold text-text">{t('dashboard.quickActions.title')}</h2>
-      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Log Feeding */}
         <button
           type="button"

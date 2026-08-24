@@ -20,7 +20,7 @@ export const CareProgressRing: React.FC<CareProgressRingProps> = ({ percent, com
   const offset = circumference - (safePercent / 100) * circumference;
 
   return (
-    <div className="interactive-card flex items-center justify-between gap-4 rounded-2xl border border-[#e693c5] bg-[#efa8d0] p-5 text-[#181715] lg:col-span-5">
+    <div className="interactive-card flex items-center justify-between gap-3 sm:gap-4 rounded-2xl border border-[#e693c5] bg-[#efa8d0] p-4 sm:p-5 text-[#181715] md:col-span-5 lg:col-span-5">
       <div>
         <p className="text-xs font-extrabold uppercase text-[#181715]/62">{label}</p>
         <p className="mt-3 text-4xl font-extrabold leading-none">{safePercent}%</p>

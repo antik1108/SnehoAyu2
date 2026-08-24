@@ -1,14 +1,29 @@
 import React from 'react';
 import {
   ResponsiveContainer,
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
 } from 'recharts';
 import { EngagementTrendData } from '../../features/admin/analyticsHooks';
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="rounded-xl border border-neutral-200 bg-white/95 backdrop-blur-md p-3 shadow-md text-xs">
+        <div className="font-extrabold text-[#111] mb-1.5">{label}</div>
+        <div className="flex items-center gap-2 font-semibold text-emerald-700">
+          <span className="h-2 w-2 rounded-full bg-emerald-600" />
+          Mean Engagement: <span className="font-extrabold">{payload[0].value}%</span>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
 
 export const EngagementTrendChart: React.FC<{
   data?: EngagementTrendData;
@@ -21,12 +36,12 @@ export const EngagementTrendChart: React.FC<{
   const weeks = data?.weeks ?? [];
 
   return (
-    <div className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+    <div className="rounded-2xl border border-border bg-white p-5 shadow-xs transition-all hover:shadow-sm">
       <div className="mb-4 flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
             <h3 className="font-sans text-sm font-extrabold text-text-main">Weekly Mean Engagement Trend</h3>
-            <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+            <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-extrabold text-emerald-700 border border-emerald-500/20">
               Study group only
             </span>
           </div>
@@ -43,28 +58,27 @@ export const EngagementTrendChart: React.FC<{
       ) : (
         <div className="h-60 w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={weeks} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-              <XAxis dataKey="weekStart" tickLine={false} axisLine={{ stroke: '#e5e7eb' }} tick={{ fontSize: 10, fill: '#6b7280' }} />
-              <YAxis domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#6b7280' }} unit="%" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: '#ffffff',
-                  borderRadius: '12px',
-                  border: '1px solid #e5e7eb',
-                  fontSize: '12px',
-                }}
-                formatter={(val: any) => [`${val}%`, 'Mean Engagement']}
-              />
-              <Line
+            <AreaChart data={weeks} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+              <defs>
+                <linearGradient id="colorEngagement" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#059669" stopOpacity={0.2}/>
+                  <stop offset="95%" stopColor="#059669" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
+              <XAxis dataKey="weekStart" tickLine={false} axisLine={{ stroke: '#e5e7eb' }} tick={{ fontSize: 9, fill: '#6b7280', fontWeight: 500 }} />
+              <YAxis domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fontSize: 9, fill: '#6b7280', fontWeight: 500 }} unit="%" />
+              <Tooltip content={<CustomTooltip />} />
+              <Area
                 type="monotone"
                 dataKey="meanEngagementPct"
                 stroke="#059669"
-                strokeWidth={2.5}
-                dot={{ r: 3, fill: '#059669' }}
-                activeDot={{ r: 6 }}
+                strokeWidth={2}
+                fillOpacity={1}
+                fill="url(#colorEngagement)"
+                activeDot={{ r: 5, stroke: '#ffffff', strokeWidth: 1.5 }}
               />
-            </LineChart>
+            </AreaChart>
           </ResponsiveContainer>
         </div>
       )}

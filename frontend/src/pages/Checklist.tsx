@@ -22,6 +22,9 @@ import {
 import { AiAssistantButton } from '../components/dashboard/AiAssistantButton';
 import { BottomNavigation } from '../components/layout/BottomNavigation';
 import { getTodayChecklist, updateTodayChecklist } from '../features/checklist/api';
+import { normalizeApiError, type AppApiError } from '../lib/apiError';
+import { DashboardRecoveryState } from '../components/dashboard/DashboardRecoveryState';
+import { ROUTES } from '../routes/paths';
 import type {
   TodayChecklist,
   ChecklistLogInput,
@@ -1077,6 +1080,29 @@ const ChecklistSkeleton: React.FC = () => (
   </div>
 );
 
+const recoveryCodes = new Set([
+  'MOTHER_PROFILE_REQUIRED',
+  'BABY_PROFILE_REQUIRED',
+  'HOSPITAL_LINK_REQUIRED',
+  'PARTICIPANT_CODE_REQUIRED',
+  'ONBOARDING_INCOMPLETE',
+]);
+
+function mapRecoveryRoute(code?: string): string {
+  switch (code) {
+    case 'MOTHER_PROFILE_REQUIRED':
+      return ROUTES.MOTHER_PROFILE;
+    case 'BABY_PROFILE_REQUIRED':
+      return ROUTES.BABY_PROFILE;
+    case 'HOSPITAL_LINK_REQUIRED':
+    case 'PARTICIPANT_CODE_REQUIRED':
+    case 'ONBOARDING_INCOMPLETE':
+      return ROUTES.HOSPITAL_CODE;
+    default:
+      return ROUTES.SIGNUP_COMPLETE;
+  }
+}
+
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export const Checklist: React.FC = () => {
@@ -1087,7 +1113,7 @@ export const Checklist: React.FC = () => {
 
   const [checklist, setChecklist] = useState<TodayChecklist | null>(null);
   const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState(false);
+  const [error, setError] = useState<AppApiError | null>(null);
 
   // Refs for focus deep-linking
   const feedingRef = useRef<HTMLElement>(null);
@@ -1096,12 +1122,12 @@ export const Checklist: React.FC = () => {
 
   const loadChecklist = async () => {
     setLoading(true);
-    setLoadError(false);
+    setError(null);
     try {
       const data = await getTodayChecklist();
       setChecklist(data);
-    } catch {
-      setLoadError(true);
+    } catch (err) {
+      setError(normalizeApiError(err));
     } finally {
       setLoading(false);
     }
@@ -1167,9 +1193,19 @@ export const Checklist: React.FC = () => {
       <main className="mx-auto max-w-md space-y-4 px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-5 lg:max-w-5xl">
         {loading && <ChecklistSkeleton />}
 
-        {!loading && loadError && <ChecklistError onRetry={retryLoad} />}
+        {!loading && error && (
+          recoveryCodes.has(error.code) ? (
+            <DashboardRecoveryState
+              message={t(`dashboard.recovery.${error.code}`, t('dashboard.recovery.generic'))}
+              actionLabel={t('dashboard.recovery.action')}
+              to={mapRecoveryRoute(error.code)}
+            />
+          ) : (
+            <ChecklistError onRetry={retryLoad} />
+          )
+        )}
 
-        {!loading && !loadError && checklist && (
+        {!loading && !error && checklist && (
           <>
             {/* Progress summary */}
             <ProgressRing

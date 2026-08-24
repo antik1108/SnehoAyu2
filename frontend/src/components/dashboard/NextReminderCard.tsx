@@ -13,7 +13,7 @@ export const NextReminderCard: React.FC<NextReminderCardProps> = ({ nextReminder
   const hasReminder = nextReminder.type !== 'none' && nextReminder.date;
 
   return (
-    <section className="interactive-card rounded-2xl border border-border bg-surface p-5 lg:col-span-4">
+    <section className="interactive-card rounded-2xl border border-border bg-surface p-5 md:col-span-4 lg:col-span-4">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-extrabold text-text">{t('dashboard.reminder.title')}</h2>
         <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/20 text-primary">

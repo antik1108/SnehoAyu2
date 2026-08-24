@@ -11,7 +11,7 @@ export const FeedingSummaryCard: React.FC<FeedingSummaryCardProps> = ({ feeding 
   const { t } = useTranslation();
 
   return (
-    <section className="interactive-card rounded-2xl border border-[#8d9e59] bg-[#94a45f] p-5 text-[#181715] lg:col-span-5">
+    <section className="interactive-card rounded-2xl border border-[#8d9e59] bg-[#94a45f] p-5 text-[#181715] md:col-span-5 lg:col-span-5">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-extrabold">{t('dashboard.feeding.title')}</h2>
         <Milk className="h-5 w-5" aria-hidden="true" />

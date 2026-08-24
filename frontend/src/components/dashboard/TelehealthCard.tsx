@@ -12,7 +12,7 @@ export const TelehealthCard: React.FC = () => {
   if (!session) return null;
 
   return (
-    <div className="interactive-card flex items-center justify-between rounded-2xl border border-[#9bb6df] bg-[#aac3e9] p-5 text-[#181715] lg:col-span-12">
+    <div className="interactive-card flex items-center justify-between rounded-2xl border border-[#9bb6df] bg-[#aac3e9] p-5 text-[#181715] md:col-span-12 lg:col-span-12">
       <div>
         <p className="text-sm font-extrabold">Video call scheduled</p>
         <p className="text-xs font-bold text-[#181715]/70">
