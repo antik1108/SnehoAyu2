@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { AdminHeader } from '../../components/admin/AdminHeader';
 import { FilterPanel } from '../../features/admin/FilterPanel';
@@ -168,7 +168,6 @@ const ParticipantRowExpanded: React.FC<{ id: string }> = ({ id }) => {
 };
 
 export const ParticipantListContent: React.FC = () => {
-  const navigate = useNavigate();
   const { filters } = useFilters();
 
   const [activeTab, setActiveTab] = useState<'directory' | 'analytics' | 'alerts'>('directory');
